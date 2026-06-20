@@ -54,7 +54,7 @@ body{font-family:var(--font);background:var(--cream);color:var(--gray);}
 .pill{display:inline-block;padding:3px 11px;border-radius:20px;font-size:12px;font-weight:600;margin:3px 2px;}
 .pill-red{background:var(--red);color:#fff;}.pill-yellow{background:var(--yellow);color:var(--navy);}
 .pill-teal{background:var(--teal);color:#fff;}.pill-green{background:var(--green);color:#fff;}
-.pill-gray{background:#e8e8e8;color:var(--gray);}.pill-purple{background:var(--purple);color:#fff;}
+.pill-gray{background:#e8e8e8;color:var(--gray);}.pill-purple{background:#3949AB;color:#fff;}
 .pill-orange{background:var(--orange);color:#fff;}
 
 /* ── GRIDS ── */
@@ -112,16 +112,16 @@ details.faq-item .faq-cat-label{font-size:10px;background:#eee;color:#666;paddin
 
 /* ── RETORT ANIMATION ── */
 .retort-flow{display:flex;align-items:center;gap:0;margin:20px 0;flex-wrap:wrap;justify-content:center;}
-.retort-step{text-align:center;background:#fff;border-radius:12px;padding:16px 14px;flex:1;min-width:130px;box-shadow:var(--shadow);border-top:3px solid var(--purple);position:relative;animation:slideUp .5s ease both;}
+.retort-step{text-align:center;background:#fff;border-radius:12px;padding:16px 14px;flex:1;min-width:130px;box-shadow:var(--shadow);border-top:3px solid var(--teal);position:relative;animation:slideUp .5s ease both;}
 .retort-step:nth-child(1){animation-delay:.1s;}
 .retort-step:nth-child(3){animation-delay:.2s;}
 .retort-step:nth-child(5){animation-delay:.3s;}
 .retort-step:nth-child(7){animation-delay:.4s;}
 .retort-step .step-icon{font-size:28px;margin-bottom:8px;}
-.retort-step .step-num{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.retort-step .step-num{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 .retort-step strong{display:block;font-size:13px;color:var(--navy);margin-bottom:4px;}
 .retort-step span{font-size:11.5px;color:var(--gray);}
-.retort-arrow{font-size:20px;color:var(--purple);padding:0 4px;flex-shrink:0;}
+.retort-arrow{font-size:20px;color:var(--navy);padding:0 4px;flex-shrink:0;}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── WIN POINTS (PRODUCT CARDS) ── */
@@ -307,7 +307,7 @@ table.sku tr:hover td{background:#fff8e1;}
 .rt-easy{background:#e8f5e9;color:#1B5E20;}
 .rt-quick{background:#e3f2fd;color:#01579B;}
 .rt-halal{background:#fff3e0;color:#E65100;}
-.rt-healthy{background:#f3e5f5;color:#4A148C;}
+.rt-healthy{background:#e8f5e9;color:#1B5E20;}
 .rt-viet{background:#ffebee;color:#b71c1c;}
 
 </style>
@@ -451,7 +451,7 @@ table.sku tr:hover td{background:#fff8e1;}
     </div>
 
     <div class="infographic" style="margin-top:20px">
-      <div class="infographic-header" style="background:linear-gradient(135deg,var(--purple),#7B1FA2);color:#fff">
+      <div class="infographic-header" style="background:linear-gradient(135deg,#C8102E,#8B0000);color:#fff">
         <div>
           <h3 class="vi-only">⚔️ Retort vs Chất Bảo Quản Hóa Học – So sánh trực tiếp</h3>
           <h3 class="en-only hide">⚔️ Retort vs Chemical Preservatives – Direct Comparison</h3>
@@ -528,8 +528,8 @@ table.sku tr:hover td{background:#fff8e1;}
     <div class="card">
       <h2>📖 <span class="vi-only">3 Cơ chế bảo quản tự nhiên</span><span class="en-only hide">3 Natural Preservation Mechanisms</span></h2>
       <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
-        <div style="background:#f3e5f5;border-radius:10px;padding:14px;border-left:4px solid var(--purple)">
-          <strong style="color:var(--purple)">1. 🔬 Retort Sterilization</strong>
+        <div style="background:#e8eaf6;border-radius:10px;padding:14px;border-left:4px solid #3949AB">
+          <strong style="color:#283593">1. 🔬 Retort Sterilization</strong>
           <p style="font-size:13px;margin-top:5px" class="vi-only">Gia nhiệt 115–135°C áp suất cao trong autoclave → tiêu diệt 100% vi sinh vật & bào tử chịu nhiệt (kể cả <em data-tip="Loại vi khuẩn nguy hiểm nhất trong thực phẩm đóng hộp">Clostridium botulinum</em>)</p>
           <p style="font-size:13px;margin-top:5px" class="en-only hide">Heat 115–135°C at high pressure in autoclave → destroys 100% of microorganisms & heat-resistant spores (including <em data-tip="The most dangerous bacteria in canned foods">Clostridium botulinum</em>)</p>
         </div>
@@ -590,11 +590,11 @@ table.sku tr:hover td{background:#fff8e1;}
       <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="300">
         <div style="width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">4</div>
         <div>
-          <strong style="color:var(--purple);font-size:14px" class="vi-only">🌡️ Tiệt trùng Retort & Làm lạnh</strong>
-          <strong style="color:var(--purple);font-size:14px" class="en-only hide">🌡️ Retort Sterilization & Cooling</strong>
+          <strong style="color:#283593;font-size:14px" class="vi-only">🌡️ Tiệt trùng Retort & Làm lạnh</strong>
+          <strong style="color:#283593;font-size:14px" class="en-only hide">🌡️ Retort Sterilization & Cooling</strong>
           <p style="font-size:13px;margin-top:5px" class="vi-only"><strong>Retorting</strong> — 115–135°C áp suất cao, 30–90 phút tùy sản phẩm. 4 phương pháp: Steam / Water Immersion / Water Spray / Overpressure. Tiêu diệt 100% vi sinh vật kể cả Clostridium botulinum. <strong>Cooling</strong> — làm lạnh nhanh, giữ kết cấu, cân bằng áp suất lon.</p>
           <p style="font-size:13px;margin-top:5px" class="en-only hide"><strong>Retorting</strong> — 115–135°C high pressure, 30–90 min depending on product. 4 methods: Steam / Water Immersion / Water Spray / Overpressure. Destroys 100% microorganisms including Clostridium botulinum. <strong>Cooling</strong> — rapid cooling preserves texture, balances can pressure.</p>
-          <div style="background:#f3e5f5;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12.5px;color:var(--purple)">
+          <div style="background:#e8eaf6;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12.5px;color:#1A237E">
             🔬 <span class="vi-only"><strong>Tại sao 30–90 phút?</strong> Thời gian phụ thuộc vào kích thước lon, độ đặc của thực phẩm, và F₀ value (chỉ số tiệt trùng). Lon 425g cần lâu hơn 230g vì nhiệt cần xâm nhập sâu hơn vào trung tâm.</span>
             <span class="en-only hide"><strong>Why 30–90 min?</strong> Time depends on can size, food density, and F₀ value (sterilization index). A 425g can needs longer than 230g because heat must penetrate deeper to the center.</span>
           </div>
@@ -874,7 +874,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <h2>🍳 <span class="vi-only">Ứng dụng thực tế</span><span class="en-only hide">Real-World Applications</span></h2>
     <div class="grid3">
       <div style="background:#e0f2f1;border-radius:10px;padding:14px"><strong style="color:var(--coconut)">🏠 <span class="vi-only">Nấu ăn tại nhà</span><span class="en-only hide">Home Cooking</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>🍲 <span class="vi-only">Cà ri 2 người – đúng lượng</span><span class="en-only hide">Curry for 2 – perfect portion</span></li><li>🍜 <span class="vi-only">Canh / soup</span><span class="en-only hide">Soup / broth</span></li><li>🍮 <span class="vi-only">Chè dừa, bánh</span><span class="en-only hide">Coconut desserts</span></li><li>🥤 <span class="vi-only">Coconut smoothie</span><span class="en-only hide">Coconut smoothie</span></li></ul></div>
-      <div style="background:#f3e5f5;border-radius:10px;padding:14px"><strong style="color:var(--purple)">☕ <span class="vi-only">Café & Dessert Trend</span><span class="en-only hide">Café & Dessert Trend</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>☕ Coconut Coffee / Latte</li><li>🧋 Coconut milk tea</li><li>🍦 <span class="vi-only">Kem dừa, parfait</span><span class="en-only hide">Coconut ice cream</span></li><li>🥐 <span class="vi-only">Bánh ngọt, tráng miệng</span><span class="en-only hide">Pastries, desserts</span></li></ul></div>
+      <div style="background:#e8f5e9;border-radius:10px;padding:14px"><strong style="color:var(--coconut)">☕ <span class="vi-only">Café & Dessert Trend</span><span class="en-only hide">Café & Dessert Trend</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>☕ Coconut Coffee / Latte</li><li>🧋 Coconut milk tea</li><li>🍦 <span class="vi-only">Kem dừa, parfait</span><span class="en-only hide">Coconut ice cream</span></li><li>🥐 <span class="vi-only">Bánh ngọt, tráng miệng</span><span class="en-only hide">Pastries, desserts</span></li></ul></div>
       <div style="background:#fff3e0;border-radius:10px;padding:14px"><strong style="color:var(--orange)">🍽️ <span class="vi-only">HoReCa nhỏ</span><span class="en-only hide">Small HoReCa</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>🍴 <span class="vi-only">Quán cơm – 1 gói = 1 phần cà ri</span><span class="en-only hide">Rice shops – 1 pack = 1 curry portion</span></li><li>🚚 Food truck</li><li>🏨 <span class="vi-only">Khách sạn mini</span><span class="en-only hide">Mini hotel amenity</span></li><li>📦 <span class="vi-only">Căng tin, bếp nhỏ</span><span class="en-only hide">Canteen, small kitchen</span></li></ul></div>
     </div>
     <div class="note" style="margin-top:14px">
