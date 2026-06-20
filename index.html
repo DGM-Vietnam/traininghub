@@ -277,6 +277,39 @@ table.sku tr:hover td{background:#fff8e1;}
   .content{padding:18px 12px 60px;}
   .price-badge{font-size:22px;}
 }
+
+/* ── PRODUCT IMAGES ── */
+.prod-img-row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0;}
+.prod-img-card{flex:1;min-width:100px;max-width:160px;text-align:center;background:#fff;border-radius:12px;padding:10px 8px;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .2s;}
+.prod-img-card:hover{transform:translateY(-4px);box-shadow:0 6px 20px rgba(0,0,0,.13);}
+.prod-img-card img{width:100%;height:120px;object-fit:contain;border-radius:6px;}
+.prod-img-card .pic-label{font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;line-height:1.3;}
+/* ── SALES STEPS ── */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:14px;}
+.step-card{background:#fff;border-radius:12px;padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--yellow);}
+.step-card .s-num{font-size:28px;font-weight:900;color:var(--yellow);opacity:.3;line-height:1;}
+.step-card .s-title{font-size:13.5px;font-weight:800;color:var(--navy);margin:-4px 0 8px;}
+.step-card .s-body{font-size:12.5px;color:var(--gray);line-height:1.65;}
+.step-card .s-tip{margin-top:8px;background:var(--cream);border-radius:8px;padding:7px 10px;font-size:12px;color:var(--brown);}
+/* ── NEGOTIATION ── */
+.neg-principle{background:#fff;border-radius:10px;padding:14px;box-shadow:var(--shadow);border-left:4px solid var(--teal);margin-bottom:10px;}
+.neg-principle strong{color:var(--teal);}
+.neg-strategy{background:var(--cream);border-radius:10px;padding:14px;margin-bottom:10px;border-left:4px solid var(--navy);}
+.neg-strategy strong{color:var(--navy);}
+.rejection-table{width:100%;border-collapse:collapse;font-size:13px;}
+.rejection-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rejection-table td{padding:10px 14px;border-bottom:1px solid #eee;vertical-align:top;}
+.rejection-table tr:nth-child(even) td{background:#f8fafc;}
+.rejection-table tr:hover td{background:#fff8e1;}
+.rejection-table td:first-child{font-weight:700;color:var(--red);width:30%;}
+/* ── RECIPE CARDS ENHANCED ── */
+.recipe-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin:2px;}
+.rt-easy{background:#e8f5e9;color:#1B5E20;}
+.rt-quick{background:#e3f2fd;color:#01579B;}
+.rt-halal{background:#fff3e0;color:#E65100;}
+.rt-healthy{background:#f3e5f5;color:#4A148C;}
+.rt-viet{background:#ffebee;color:#b71c1c;}
+
 </style>
 </head>
 <body>
@@ -307,6 +340,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <button onclick="showModule('m-obj',this)">💬 <span class="vi-only">Xử lý phản đối</span><span class="en-only hide">Objections</span></button>
     <button onclick="showModule('m-faq',this)">📚 <span class="vi-only">Kiến thức chuyên sâu</span><span class="en-only hide">Deep Knowledge</span><span class="badge">GS</span></button>
     <button onclick="showModule('m-sku',this)">📦 <span class="vi-only">SKU Directory</span><span class="en-only hide">SKU Directory</span></button>
+    <button onclick="showModule('m-sales',this)">🎯 <span class="vi-only">Kỹ năng Sales</span><span class="en-only hide">Sales Skills</span></button>
     <button onclick="showModule('m-cook',this)">🍳 <span class="vi-only">Cookbook</span><span class="en-only hide">Cookbook</span></button>
   </div>
 </div>
@@ -417,7 +451,7 @@ table.sku tr:hover td{background:#fff8e1;}
     </div>
 
     <div class="infographic" style="margin-top:20px">
-      <div class="infographic-header" style="background:linear-gradient(135deg,var(--purple),#7B1FA2)">
+      <div class="infographic-header" style="background:linear-gradient(135deg,var(--purple),#7B1FA2);color:#fff">
         <div>
           <h3 class="vi-only">⚔️ Retort vs Chất Bảo Quản Hóa Học – So sánh trực tiếp</h3>
           <h3 class="en-only hide">⚔️ Retort vs Chemical Preservatives – Direct Comparison</h3>
@@ -512,6 +546,103 @@ table.sku tr:hover td{background:#fff8e1;}
       </div>
     </div>
   </div>
+
+  <!-- Production process from Excel -->
+  <div class="card" style="margin-top:0">
+    <h2>🏭 <span class="vi-only">Quy trình sản xuất đầy đủ – Từ nguyên liệu đến thành phẩm</span><span class="en-only hide">Full Production Process – From Raw Material to Finished Product</span></h2>
+    <p style="font-size:13px;color:var(--teal);margin-bottom:16px" class="vi-only">Nguồn: Denis G.M. – Sales & Marketing Training Session II | Quy trình áp dụng cho nhóm Đậu (Beans & Vegetables)</p>
+    <p style="font-size:13px;color:var(--teal);margin-bottom:16px" class="en-only hide">Source: Denis G.M. – Sales & Marketing Training Session II | Process applies to Beans & Vegetables group</p>
+
+    <!-- Animated timeline -->
+    <div id="prodTimeline" style="position:relative;">
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="0">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">1</div>
+        <div>
+          <strong style="color:var(--navy);font-size:14px" class="vi-only">🌿 Chuẩn bị nguyên liệu</strong>
+          <strong style="color:var(--navy);font-size:14px" class="en-only hide">🌿 Raw Material Preparation</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only">Đậu khô nhập khẩu: <strong>Receive → Check quality → Storage</strong>. Ngâm và cấp ẩm lại (Rehydrating) — giúp hạt mềm, chín đều, không bị nát, giảm vị đắng, dễ hấp thu sốt cà hơn. Đậu đi qua máy bẫy nam châm (Magnet Trap) để loại kim loại nặng.</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide">Imported dry beans: <strong>Receive → Quality check → Storage</strong>. Rehydrating — softens beans, ensures even cooking, removes bitterness, improves sauce absorption. Beans pass through Magnet Trap to remove heavy metals.</p>
+        </div>
+      </div>
+
+      <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="100">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">2</div>
+        <div>
+          <strong style="color:var(--teal);font-size:14px" class="vi-only">🫙 Phân loại & Làm sạch</strong>
+          <strong style="color:var(--teal);font-size:14px" class="en-only hide">🫙 Sorting & Cleaning</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only"><strong>Detoning & Sorting</strong> — loại bỏ hạt hỏng, kích thước không đạt. <strong>Washing & Cleaning</strong> — rửa sạch nhiều lần bằng nước sạch tiêu chuẩn. <strong>Magnet & Sieving</strong> — kiểm tra lần 2 để đảm bảo không có tạp chất.</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide"><strong>Detoning & Sorting</strong> — removes damaged/undersized beans. <strong>Washing & Cleaning</strong> — multiple clean water rinses. <strong>Magnet & Sieving</strong> — second check to ensure no foreign matter.</p>
+        </div>
+      </div>
+
+      <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="200">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">3</div>
+        <div>
+          <strong style="color:var(--red);font-size:14px" class="vi-only">🍅 Nấu sốt & Đóng lon</strong>
+          <strong style="color:var(--red);font-size:14px" class="en-only hide">🍅 Sauce Cooking & Can Filling</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only"><strong>Cook Sauce</strong> — sốt cà chua được nấu theo công thức chuẩn. <strong>Empty Can</strong> kiểm tra chất lượng lon (Quality Check). <strong>Filling</strong> — đổ sốt vào lon theo tỷ lệ chính xác. <strong>Seaming</strong> — hàn kín hermetic.</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide"><strong>Cook Sauce</strong> — tomato sauce cooked to standard recipe. <strong>Empty Can</strong> quality check. <strong>Filling</strong> — sauce added to cans at precise ratio. <strong>Seaming</strong> — hermetic sealing.</p>
+        </div>
+      </div>
+
+      <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="300">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">4</div>
+        <div>
+          <strong style="color:var(--purple);font-size:14px" class="vi-only">🌡️ Tiệt trùng Retort & Làm lạnh</strong>
+          <strong style="color:var(--purple);font-size:14px" class="en-only hide">🌡️ Retort Sterilization & Cooling</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only"><strong>Retorting</strong> — 115–135°C áp suất cao, 30–90 phút tùy sản phẩm. 4 phương pháp: Steam / Water Immersion / Water Spray / Overpressure. Tiêu diệt 100% vi sinh vật kể cả Clostridium botulinum. <strong>Cooling</strong> — làm lạnh nhanh, giữ kết cấu, cân bằng áp suất lon.</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide"><strong>Retorting</strong> — 115–135°C high pressure, 30–90 min depending on product. 4 methods: Steam / Water Immersion / Water Spray / Overpressure. Destroys 100% microorganisms including Clostridium botulinum. <strong>Cooling</strong> — rapid cooling preserves texture, balances can pressure.</p>
+          <div style="background:#f3e5f5;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12.5px;color:var(--purple)">
+            🔬 <span class="vi-only"><strong>Tại sao 30–90 phút?</strong> Thời gian phụ thuộc vào kích thước lon, độ đặc của thực phẩm, và F₀ value (chỉ số tiệt trùng). Lon 425g cần lâu hơn 230g vì nhiệt cần xâm nhập sâu hơn vào trung tâm.</span>
+            <span class="en-only hide"><strong>Why 30–90 min?</strong> Time depends on can size, food density, and F₀ value (sterilization index). A 425g can needs longer than 230g because heat must penetrate deeper to the center.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-step" style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;opacity:0;transform:translateX(-20px);transition:all .5s ease;" data-delay="400">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;">5</div>
+        <div>
+          <strong style="color:var(--green);font-size:14px" class="vi-only">✅ Kiểm tra & Xuất kho</strong>
+          <strong style="color:var(--green);font-size:14px" class="en-only hide">✅ Quality Check & Dispatch</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only"><strong>X-Ray Machine</strong> — kiểm tra dị vật bên trong lon (xương, kim loại, tạp chất). <strong>Quality check</strong> — kiểm tra ngoại quan, hàn kín, nhãn. <strong>Packing & Storage</strong> — đóng thùng, lưu kho điều kiện chuẩn. Sau đó mới xuất kho theo lệnh sản xuất.</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide"><strong>X-Ray Machine</strong> — detects foreign objects inside cans (bones, metal, debris). <strong>Quality check</strong> — visual inspection, seal integrity, labeling. <strong>Packing & Storage</strong> — boxing, storage under standard conditions. Then dispatched per production order.</p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+    <div class="note" style="margin-top:16px">
+      💬 <strong class="vi-only">Script cho team sales:</strong><strong class="en-only hide">Sales team script:</strong>
+      <em class="vi-only"> "Từ lúc đậu nhập kho đến lúc đóng thùng xuất xưởng, lon Ayam trải qua 5 bước kiểm soát chất lượng — kể cả X-Ray từng lon. Đó là lý do HSD 3 năm mà không cần chất bảo quản."</em>
+      <em class="en-only hide"> "From the time beans enter the warehouse to when cartons leave the factory, each Ayam can goes through 5 quality control steps — including X-Ray of every can. That's why we have a 3-year shelf life without preservatives."</em>
+    </div>
+  </div>
+
+  <script>
+  // Animate production steps on scroll
+  (function(){
+    var steps = document.querySelectorAll('.prod-step');
+    function checkSteps(){
+      steps.forEach(function(s){
+        var rect = s.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60){
+          var delay = parseInt(s.dataset.delay||0);
+          setTimeout(function(){ s.style.opacity='1'; s.style.transform='translateX(0)'; }, delay);
+        }
+      });
+    }
+    window.addEventListener('scroll', checkSteps);
+    // Also check on retort tab open
+    setTimeout(checkSteps, 300);
+    document.querySelectorAll('.nav-tabs button').forEach(function(btn){
+      btn.addEventListener('click', function(){ setTimeout(checkSteps, 200); });
+    });
+  })();
+  </script>
+
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -529,6 +660,39 @@ table.sku tr:hover td{background:#fff8e1;}
   <div class="product-group">
     <div class="product-group-title" style="background:var(--navy)">🫘 <span class="vi-only">Nhóm Đậu – Baked Beans / Chickpeas / Red Kidney Beans</span><span class="en-only hide">Bean Group – Baked Beans / Chickpeas / Red Kidney Beans</span></div>
     <div class="product-group-body">
+      
+<div class="prod-img-row">
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/_Baked_beans_in_tomato_sauce_425g_2_en.png" 
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFE140%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🫘</text></svg>';"
+         alt="Baked Beans 425g"/>
+    <div class="pic-label">Baked Beans<br/>425g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/baked-beans-tomato-230g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFE140%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🫘</text></svg>';"
+         alt="Baked Beans 230g"/>
+    <div class="pic-label">Baked Beans<br/>230g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/chickpeas-425g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFFDE7%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🫘</text></svg>';"
+         alt="Chickpeas 425g"/>
+    <div class="pic-label">Chickpeas<br/>425g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/red-kidney-beans-425g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFEBEE%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🫘</text></svg>';"
+         alt="Red Kidney Beans 425g"/>
+    <div class="pic-label">Red Kidney<br/>Beans 425g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/tomato-puree-430g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFEBEE%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🍅</text></svg>';"
+         alt="Tomato Puree 430g"/>
+    <div class="pic-label">Tomato<br/>Puree 430g</div>
+  </div>
+</div>
       <div class="win-grid">
         <div class="win-card"><div class="wc-num">01</div><div class="wc-title">🌽 Great Northern Beans từ Mỹ</div><div class="wc-body vi-only">Hạt to hơn Navy Beans (Heinz) — kết cấu chắc, không nhão. Nhập khẩu trực tiếp từ USA & Canada.</div><div class="wc-body en-only hide">Larger than Navy Beans (Heinz) — firm texture, not mushy. Directly imported from USA & Canada.</div></div>
         <div class="win-card"><div class="wc-num">02</div><div class="wc-title">🏭 Nhà máy VN FSSC 22000 – giá tốt nhất</div><div class="wc-body vi-only">Sản xuất tại VN → giá competitive 18,900–29,900đ. Heinz từ UK giá 42–49k. Chất lượng quốc tế, giá địa phương.</div><div class="wc-body en-only hide">Made in VN → competitive price 18,900–29,900₫. Heinz from UK costs 42–49k. International quality, local price.</div></div>
@@ -563,6 +727,39 @@ table.sku tr:hover td{background:#fff8e1;}
   <div class="product-group">
     <div class="product-group-title" style="background:#01579B">🐟 <span class="vi-only">Nhóm Cá – Tuna / Sardines / Mackerel</span><span class="en-only hide">Fish Group – Tuna / Sardines / Mackerel</span></div>
     <div class="product-group-body">
+      
+<div class="prod-img-row">
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/_Tuna_flakes_light_in_water_150g_2_en.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E3F2FD%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🐟</text></svg>';"
+         alt="Tuna Flakes Water 150g"/>
+    <div class="pic-label">Tuna Flakes<br/>in Water 150g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/tuna-chunks-sunflower-oil-150g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E3F2FD%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🐟</text></svg>';"
+         alt="Tuna Chunks Oil 150g"/>
+    <div class="pic-label">Tuna Chunks<br/>Sunflower Oil 150g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/Ayam_Brand-_Mackerels_-230g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFF8E1%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🐟</text></svg>';"
+         alt="Mackerel 230g"/>
+    <div class="pic-label">Mackerel<br/>Tomato 230g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/Ca_trich_dau_olive.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E8F5E9%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🐟</text></svg>';"
+         alt="Sardines EVOO 120g"/>
+    <div class="pic-label">Sardines<br/>EVOO 120g</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/sardines-tomato-155g.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E8F5E9%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🐟</text></svg>';"
+         alt="Sardines Tomato 155g"/>
+    <div class="pic-label">Sardines<br/>Tomato 155g</div>
+  </div>
+</div>
       <div class="win-grid">
         <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">01</div><div class="wc-title">🐟 73% Cá Ngừ – cao nhất phân khúc</div><div class="wc-body vi-only">Sea Crown 53% · Hạ Long ~57%. Tính giá/gram thịt thực tế: Ayam có thể RẺ HƠN Sea Crown.</div><div class="wc-body en-only hide">Sea Crown 53% · Ha Long ~57%. On price-per-gram-of-fish: Ayam may be CHEAPER than Sea Crown.</div></div>
         <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">02</div><div class="wc-title">🫒 EVOO – Extra Virgin Olive Oil</div><div class="wc-body vi-only">Cá Trích Ayam dùng EVOO – cao cấp nhất. 3 Cô Gái dùng dầu đậu nành. Rẻ hơn Minerva 30–50%.</div><div class="wc-body en-only hide">Ayam Sardines use EVOO – highest grade. 3 Co Gai uses soybean oil. 30–50% cheaper than Minerva.</div></div>
@@ -597,6 +794,33 @@ table.sku tr:hover td{background:#fff8e1;}
   <div class="product-group">
     <div class="product-group-title" style="background:var(--coconut)">🥥 <span class="vi-only">Nhóm Dừa – Coconut Milk 400ml & 65ml</span><span class="en-only hide">Coconut Group – Coconut Milk 400ml & 65ml</span></div>
     <div class="product-group-body">
+      
+<div class="prod-img-row">
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/RS35836_VN_AYB_26_Coconut-milk-17p-65ml_8936121070412-A_C1C1.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E0F2F1%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🥥</text></svg>';"
+         alt="Coconut Milk 65ml"/>
+    <div class="pic-label" style="color:var(--coconut)">⭐ Coconut Milk<br/>65ml Tetra Pak</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/coconut-milk-400ml.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E0F2F1%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🥥</text></svg>';"
+         alt="Coconut Milk 400ml"/>
+    <div class="pic-label">Coconut Milk<br/>400ml</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="https://www.ayambrand.com.vn/wp-content/uploads/2022/04/pure-coconut-cream-400ml.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E0F2F1%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🥥</text></svg>';"
+         alt="Pure Coconut Cream 400ml"/>
+    <div class="pic-label">Pure Coconut<br/>Cream 400ml</div>
+  </div>
+  <div class="prod-img-card">
+    <img src="/mnt/user-data/uploads/RS15633_9556041603171.png"
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23E8F5E9%22/><text y=%2250%22 x=%2250%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-size=%2240%22>🌽</text></svg>';"
+         alt="Corn 425g"/>
+    <div class="pic-label">Whole Kernel<br/>Corn 425g</div>
+  </div>
+</div>
       <div class="win-grid">
         <div class="win-card coconut"><div class="wc-num">01</div><div class="wc-title">🌴 Non-GMO + Nhà máy Denis Malaysia</div><div class="wc-body vi-only">Dừa Non-GMO, nhà máy quản lý trực tiếp – không outsource. Chaokoh, Kara đều third-party. Denis kiểm soát toàn bộ chuỗi.</div><div class="wc-body en-only hide">Non-GMO coconuts, factory directly managed – no outsourcing. Chaokoh, Kara are third-party. Denis controls full supply chain.</div></div>
         <div class="win-card coconut highlight"><div class="wc-num">02</div><div class="wc-title">⭐ 65ml – Không đối thủ tại VN</div><div class="wc-body vi-only">Thiết kế tam giác Tetra Pak độc quyền. 9,900đ/gói. Chưa có sản phẩm nào cùng quy cách tại VN. First mover advantage.</div><div class="wc-body en-only hide">Exclusive triangle Tetra Pak design. 9,900₫/pack. No product with same format in VN. Clear first mover advantage.</div></div>
@@ -771,34 +995,505 @@ table.sku tr:hover td{background:#fff8e1;}
 </div>
 
 <!-- ══════════════════════════════════════════
-     MODULE 8 – COOKBOOK
+     MODULE: KỸ NĂNG SALES
 ══════════════════════════════════════════ -->
-<div id="m-cook" class="module">
-  <div class="card"><h2>🍳 <span class="vi-only">Cookbook – Gợi ý món ăn ngon</span><span class="en-only hide">Cookbook – Recipe Suggestions</span></h2><p style="font-size:13.5px" class="vi-only">Tất cả công thức dưới 30 phút, phù hợp bếp gia đình Việt. Dùng để tư vấn khách hàng cách sử dụng sản phẩm.</p><p style="font-size:13.5px" class="en-only hide">All recipes under 30 minutes, suitable for Vietnamese family cooking. Use to advise customers on product usage.</p></div>
+<div id="m-sales" class="module">
 
-  <div class="recipe-card">
-    <div class="recipe-header"><h3 class="vi-only">🐟 Cá Thu Kho Tiêu & Sốt Đen</h3><h3 class="en-only hide">🐟 Braised Mackerel with Black Pepper Sauce</h3><div class="recipe-meta"><span>⏱ 15 min</span><span class="vi-only">👥 2–3 người</span><span class="en-only hide">👥 Serves 2–3</span><span>⭐ Easy</span></div></div>
-    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Cá Thu Sốt Cà 230g</span><span class="rp-badge en-only hide">🥫 Mackerel in Tomato 230g</span><span class="rp-badge vi-only">🫙 Sốt Tiêu Đen 210ml</span><span class="rp-badge en-only hide">🫙 Black Pepper Sauce 210ml</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1 lon Cá Thu Sốt Cà 230g</li><li class="en-only hide">1 can Mackerel in Tomato 230g</li><li class="vi-only">2–3 muỗng Sốt Tiêu Đen Ayam</li><li class="en-only hide">2–3 tbsp Ayam Black Pepper Sauce</li><li class="vi-only">1/2 hành tím, 2 tép tỏi</li><li class="en-only hide">1/2 shallot, 2 garlic cloves</li><li class="vi-only">Nước mắm, đường, tiêu, hành lá</li><li class="en-only hide">Fish sauce, sugar, pepper, spring onion</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Phi tỏi hành tím thơm</li><li class="en-only hide">Sauté garlic & shallot</li><li class="vi-only">Cho cá vào, đảo nhẹ</li><li class="en-only hide">Add fish, stir gently</li><li class="vi-only">Thêm sốt tiêu đen, nước mắm, đường</li><li class="en-only hide">Add black pepper sauce, fish sauce, sugar</li><li class="vi-only">Rim nhỏ lửa 8–10 phút</li><li class="en-only hide">Simmer on low heat 8–10 min</li><li class="vi-only">Dùng nóng với cơm trắng</li><li class="en-only hide">Serve hot with steamed rice</li></ol></div></div></div>
-  </div>
+  <!-- 7 BƯỚC BÁN HÀNG -->
+  <div class="card">
+    <h2>🎯 <span class="vi-only">7 Bước Bán Hàng Hiệu Quả</span><span class="en-only hide">7 Steps to Effective Selling</span></h2>
+    <p style="font-size:13.5px" class="vi-only">Một nhân viên kinh doanh chuyên nghiệp luôn tuân thủ quy trình bán hàng bài bản. Ghi nhớ 7 bước này và áp dụng mỗi lần ghé thăm điểm bán.</p>
+    <p style="font-size:13.5px" class="en-only hide">A professional sales rep always follows a structured sales process. Memorize these 7 steps and apply them on every outlet visit.</p>
+    <div class="steps-grid" style="margin-top:16px">
 
-  <div class="recipe-card">
-    <div class="recipe-header"><h3 class="vi-only">☕ Latte Đậu Đỏ (Café Trend)</h3><h3 class="en-only hide">☕ Red Bean Latte (Café Trend)</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 1 người</span><span class="en-only hide">👥 Serves 1</span><span>⭐ Very Easy</span></div></div>
-    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Đậu Đỏ 425g</span><span class="rp-badge en-only hide">🥫 Red Kidney Beans 425g</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">2–3 muỗng Đậu Đỏ Ayam Brand</li><li class="en-only hide">2–3 tbsp Ayam Red Kidney Beans</li><li class="vi-only">120–150ml sữa tươi</li><li class="en-only hide">120–150ml fresh milk</li><li class="vi-only">30ml espresso (hoặc cà phê phin đậm)</li><li class="en-only hide">30ml espresso or strong drip coffee</li><li class="vi-only">10–20ml syrup / sữa đặc</li><li class="en-only hide">10–20ml syrup or condensed milk</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Cho đậu đỏ vào đáy ly</li><li class="en-only hide">Place red beans at bottom of glass</li><li class="vi-only">Hâm nóng sữa + syrup, rót vào</li><li class="en-only hide">Warm milk + syrup, pour in</li><li class="vi-only">Rót cà phê lên tạo tầng màu</li><li class="en-only hide">Pour coffee on top for color layers</li><li class="vi-only">Thêm đá nếu dùng lạnh</li><li class="en-only hide">Add ice for iced version</li></ol></div></div></div>
-  </div>
+      <div class="step-card">
+        <div class="s-num">01</div>
+        <div class="s-title vi-only">🔍 Tìm kiếm khách hàng tiềm năng</div>
+        <div class="s-title en-only hide">🔍 Prospect Identification</div>
+        <div class="s-body vi-only">Xác định đúng loại điểm bán: tạp hóa thực phẩm, siêu thị mini, quán ăn, café. Quan sát kệ hàng trước khi bước vào — đã có đối thủ chưa? Loại khách nào hay ghé?</div>
+        <div class="s-body en-only hide">Identify the right outlet type: grocery, mini-mart, restaurant, café. Observe shelves before entering — any competitors already there? What type of customers visit?</div>
+        <div class="s-tip vi-only">💡 Điểm bán tốt nhất: Có bán cá hộp / đậu hộp ngoại, hoặc nằm gần khu expat / gia đình văn phòng</div>
+        <div class="s-tip en-only hide">💡 Best outlets: Already sell imported canned fish/beans, or near expat/office family areas</div>
+      </div>
 
-  <div class="recipe-card">
-    <div class="recipe-header" style="background:linear-gradient(135deg,var(--coconut),#00897B)"><h3 class="vi-only">🥥 Cà Ri Gà Nước Cốt Dừa 65ml</h3><h3 class="en-only hide">🥥 Coconut Chicken Curry – 65ml pack</h3><div class="recipe-meta"><span>⏱ 25 min</span><span class="vi-only">👥 2 người (1 gói 65ml = vừa đủ)</span><span class="en-only hide">👥 2 persons (1 pack 65ml = perfect amount)</span><span>⭐ Easy</span></div></div>
-    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge" style="background:#e0f2f1;border-color:var(--coconut);color:var(--coconut)">🥥 Nước Cốt Dừa 65ml</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1 gói Nước Cốt Dừa Ayam 65ml</li><li class="en-only hide">1 pack Ayam Coconut Milk 65ml</li><li class="vi-only">200g đùi gà xẻ miếng</li><li class="en-only hide">200g chicken thigh, cut</li><li class="vi-only">1 muỗng bột cà ri, muối, đường</li><li class="en-only hide">1 tbsp curry powder, salt, sugar</li><li class="vi-only">Khoai tây, hành tây</li><li class="en-only hide">Potato, onion</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Ướp gà với bột cà ri 10 phút</li><li class="en-only hide">Marinate chicken with curry powder 10 min</li><li class="vi-only">Xào hành, thêm gà, chiên sơ</li><li class="en-only hide">Sauté onion, add chicken, brown slightly</li><li class="vi-only">Thêm khoai tây + 100ml nước</li><li class="en-only hide">Add potato + 100ml water</li><li class="vi-only">Rót nước cốt dừa 65ml vào, rim 10 phút</li><li class="en-only hide">Pour in 65ml coconut milk, simmer 10 min</li></ol></div></div>
-      <div class="note vi-only" style="margin-top:10px">💡 1 gói 65ml = đúng lượng cho 2 người, không thừa, không cần tủ lạnh sau khi dùng xong gói.</div>
-      <div class="note en-only hide" style="margin-top:10px">💡 1 pack 65ml = exactly right for 2 persons, no leftovers, no refrigeration needed after use.</div>
+      <div class="step-card">
+        <div class="s-num">02</div>
+        <div class="s-title vi-only">👋 Tiếp cận & Tạo ấn tượng ban đầu</div>
+        <div class="s-title en-only hide">👋 Approach & First Impression</div>
+        <div class="s-body vi-only">Chọn thời điểm phù hợp — tránh lúc đông khách. Giới thiệu 30 giây: <em>"Em là [tên], đại diện Denis G.M. — phân phối độc quyền Ayam Brand tại VN. Ayam Brand là thương hiệu 130 năm, hiện có tại Mega Market, Lotte, GO!..."</em></div>
+        <div class="s-body en-only hide">Choose the right timing — avoid busy hours. 30-second intro: <em>"Hi, I'm [name] from Denis G.M. — exclusive Ayam Brand distributor in VN. Ayam Brand is a 130-year brand, currently at Mega Market, Lotte, GO!..."</em></div>
+        <div class="s-tip vi-only">💡 Giọng tự tin, không vội, nhìn thẳng vào mắt. Đừng bắt đầu bằng "Em có sp muốn giới thiệu..."</div>
+        <div class="s-tip en-only hide">💡 Confident voice, unhurried, make eye contact. Don't start with "I have a product to introduce..."</div>
+      </div>
+
+      <div class="step-card">
+        <div class="s-num">03</div>
+        <div class="s-title vi-only">❓ Khai thác nhu cầu khách hàng</div>
+        <div class="s-title en-only hide">❓ Needs Discovery</div>
+        <div class="s-body vi-only">Đặt câu hỏi mở: <em>"Anh/chị đang bán cá hộp nhãn nào?"</em> / <em>"Khách hay hỏi loại nào nhiều nhất?"</em> / <em>"Điều gì anh/chị quan tâm nhất khi chọn nhà cung cấp?"</em> → Xác định pain point: giá, tồn kho, margin, thương hiệu.</div>
+        <div class="s-body en-only hide">Open questions: <em>"Which canned fish brands do you currently carry?"</em> / <em>"Which do customers ask for most?"</em> / <em>"What's most important to you when choosing a supplier?"</em> → Identify pain point: price, stock risk, margin, brand.</div>
+        <div class="s-tip vi-only">💡 Nghe nhiều hơn nói ở bước này. Ghi chép ngắn gọn.</div>
+        <div class="s-tip en-only hide">💡 Listen more than you speak at this step. Take brief notes.</div>
+      </div>
+
+      <div class="step-card">
+        <div class="s-num">04</div>
+        <div class="s-title vi-only">💡 Trình bày giải pháp & Chứng minh giá trị</div>
+        <div class="s-title en-only hide">💡 Solution Presentation & Value Proof</div>
+        <div class="s-body vi-only">Tập trung vào <strong>LỢI ÍCH</strong> — không chỉ đặc tính. Dùng số liệu: <em>"73% cá ngừ — cao nhất phân khúc"</em>. Dùng bằng chứng: <em>"Đang bán tại 1,694 điểm toàn quốc, Mega/Lotte/GO!"</em>. Để khách cầm sản phẩm trực tiếp.</div>
+        <div class="s-body en-only hide">Focus on <strong>BENEFITS</strong> — not just features. Use numbers: <em>"73% tuna — highest in segment"</em>. Use proof: <em>"Already in 1,694 outlets nationwide, Mega/Lotte/GO!"</em>. Let customers hold the product.</div>
+        <div class="s-tip vi-only">💡 "Sản phẩm này không MSG, không BQ hóa học — đang là trend khách hàng tìm kiếm."</div>
+        <div class="s-tip en-only hide">💡 "No MSG, no chemical preservatives — exactly what customers are looking for now."</div>
+      </div>
+
+      <div class="step-card">
+        <div class="s-num">05</div>
+        <div class="s-title vi-only">🛡️ Xử lý phản đối & Thuyết phục</div>
+        <div class="s-title en-only hide">🛡️ Handle Objections & Persuade</div>
+        <div class="s-body vi-only">Phương pháp: <strong>Đồng cảm → Giải thích → Đề xuất</strong>. Không tranh luận. Dùng câu hỏi ngược để dẫn dắt. Xem tab "Xử lý phản đối" để có đầy đủ script theo từng tình huống.</div>
+        <div class="s-body en-only hide">Method: <strong>Empathize → Explain → Propose</strong>. Never argue. Use counter-questions to guide. See the "Objections" tab for complete scripts per situation.</div>
+        <div class="s-tip vi-only">💡 "Dạ anh/chị nói đúng... Nhưng nếu nhìn theo hướng này thì..."</div>
+        <div class="s-tip en-only hide">💡 "You're right... But if we look at it this way..."</div>
+      </div>
+
+      <div class="step-card">
+        <div class="s-num">06</div>
+        <div class="s-title vi-only">✅ Chốt đơn hàng</div>
+        <div class="s-title en-only hide">✅ Close the Order</div>
+        <div class="s-body vi-only">Nhận diện tín hiệu mua: hỏi giá cụ thể, hỏi giao hàng, cầm sản phẩm lâu. 3 kỹ thuật chốt:<br>• <strong>Chốt lựa chọn:</strong> <em>"Anh/chị muốn chọn 230g hay 425g?"</em><br>• <strong>Chốt lợi ích:</strong> <em>"Đặt hôm nay tặng ngay 1 thùng khi mua 8"</em><br>• <strong>Chốt khan hiếm:</strong> <em>"Chương trình này chỉ còn đến cuối tháng"</em></div>
+        <div class="s-body en-only hide">Spot buying signals: asking specific prices, delivery questions, holding product. 3 closing techniques:<br>• <strong>Choice close:</strong> <em>"Would you prefer 230g or 425g?"</em><br>• <strong>Benefit close:</strong> <em>"Order today and get 1 free carton with 8"</em><br>• <strong>Scarcity close:</strong> <em>"This promotion only lasts until end of month"</em></div>
+        <div class="s-tip vi-only">💡 Sau khi đưa ra offer chốt → im lặng, để khách quyết định. Ai nói trước là người yếu thế.</div>
+        <div class="s-tip en-only hide">💡 After presenting your closing offer → stay silent, let the customer decide. First to speak is at a disadvantage.</div>
+      </div>
+
+      <div class="step-card" style="border-top-color:var(--green)">
+        <div class="s-num" style="color:var(--green)">07</div>
+        <div class="s-title vi-only">💚 Chăm sóc sau bán</div>
+        <div class="s-title en-only hide">💚 After-Sales Care</div>
+        <div class="s-body vi-only">Ghé thăm theo lịch trình cố định. Kiểm tra xoay date. Hỗ trợ trưng bày kệ. Ghi nhận phản hồi. Giới thiệu mặt hàng mới khi mối quan hệ đã có. Cross-sell / Up-sell tự nhiên.</div>
+        <div class="s-body en-only hide">Visit on a fixed schedule. Check and rotate dates. Help with shelf display. Record feedback. Introduce new items once relationship is established. Natural cross-sell / up-sell.</div>
+        <div class="s-tip vi-only">💡 Mỗi lần thăm: Chào → Kiểm tra kệ → Đặt thêm → Giới thiệu mới → Từ biệt. 15 phút là đủ nếu làm đúng quy trình.</div>
+        <div class="s-tip en-only hide">💡 Each visit: Greet → Check shelf → Reorder → Introduce new → Goodbye. 15 minutes is enough if done right.</div>
+      </div>
+
     </div>
   </div>
 
-  <div class="recipe-card">
-    <div class="recipe-header"><h3>🥗 Healthy Chickpea & Tuna Salad</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Very Easy</span></div></div>
-    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Đậu Gà 425g</span><span class="rp-badge en-only hide">🥫 Chickpeas 425g</span><span class="rp-badge vi-only">🥫 Cá Ngừ Ngâm Nước 150g</span><span class="rp-badge en-only hide">🥫 Tuna in Water 150g</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1/2 lon Đậu Gà Ayam 425g (rửa, ráo)</li><li class="en-only hide">1/2 can Ayam Chickpeas 425g (drained, rinsed)</li><li class="vi-only">1 lon Cá Ngừ Ngâm Nước 150g</li><li class="en-only hide">1 can Tuna in Water 150g</li><li class="vi-only">1/2 dưa leo, ớt chuông, rau mùi</li><li class="en-only hide">1/2 cucumber, capsicum, coriander</li><li class="vi-only">Dressing: 2 muỗng dầu olive + chanh + muối tiêu</li><li class="en-only hide">Dressing: 2 tbsp olive oil + lemon + salt & pepper</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Mở lon đậu gà, rửa qua nước để giảm natri</li><li class="en-only hide">Open chickpeas, rinse to reduce sodium</li><li class="vi-only">Mở lon cá ngừ, để ráo, tách thành miếng</li><li class="en-only hide">Open tuna, drain, flake into pieces</li><li class="vi-only">Trộn tất cả với dressing</li><li class="en-only hide">Mix all ingredients with dressing</li><li class="vi-only">Để lạnh 15 phút trước khi ăn</li><li class="en-only hide">Chill 15 min before serving</li></ol></div></div></div>
+  <!-- KỸ NĂNG ĐÀM PHÁN -->
+  <div class="card">
+    <h2>🤝 <span class="vi-only">Kỹ năng Đàm phán</span><span class="en-only hide">Negotiation Skills</span></h2>
+
+    <h3 class="vi-only">🔑 Nguyên tắc cốt lõi</h3>
+    <h3 class="en-only hide">🔑 Core Principles</h3>
+    <div class="grid2">
+      <div class="neg-principle"><strong class="vi-only">⚖️ Win-Win</strong><strong class="en-only hide">⚖️ Win-Win</strong><p style="font-size:13px;margin-top:5px" class="vi-only">Không ép khách hàng — tạo ra giá trị đôi bên cùng có lợi. Khách có margin tốt, mình có đơn hàng dài hạn.</p><p style="font-size:13px;margin-top:5px" class="en-only hide">Don't pressure customers — create mutual value. They get good margin, you get long-term orders.</p></div>
+      <div class="neg-principle"><strong class="vi-only">📚 Chuẩn bị kỹ</strong><strong class="en-only hide">📚 Prepare Thoroughly</strong><p style="font-size:13px;margin-top:5px" class="vi-only">Nghiên cứu khách hàng, giá trị sản phẩm, đối thủ trước khi đàm phán. Người chuẩn bị tốt hơn luôn thắng.</p><p style="font-size:13px;margin-top:5px" class="en-only hide">Research the customer, product value, competitors before negotiating. The better-prepared party always wins.</p></div>
+      <div class="neg-principle"><strong class="vi-only">😎 Tự tin nhưng linh hoạt</strong><strong class="en-only hide">😎 Confident but Flexible</strong><p style="font-size:13px;margin-top:5px" class="vi-only">Không tỏ ra vội vàng. Sẵn sàng nhượng bộ trong giới hạn cho phép — nhưng luôn đổi lấy điều gì đó.</p><p style="font-size:13px;margin-top:5px" class="en-only hide">Don't show urgency. Ready to concede within limits — but always trade for something in return.</p></div>
+      <div class="neg-principle"><strong class="vi-only">🤫 Biết khi nào im lặng</strong><strong class="en-only hide">🤫 Know When to Be Silent</strong><p style="font-size:13px;margin-top:5px" class="vi-only">Sau khi đưa ra offer → dừng lại. Sự im lặng tạo áp lực tự nhiên. Ai nói trước thường nhượng bộ trước.</p><p style="font-size:13px;margin-top:5px" class="en-only hide">After presenting your offer → pause. Silence creates natural pressure. The first to speak usually concedes first.</p></div>
+    </div>
+
+    <h3 style="margin-top:18px" class="vi-only">⚡ Chiến lược đàm phán quan trọng</h3>
+    <h3 style="margin-top:18px" class="en-only hide">⚡ Key Negotiation Strategies</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+      <div class="neg-strategy"><strong>1. 💎 Đàm phán dựa trên giá trị — không phải giá cả</strong><br/><p style="font-size:13px;margin-top:6px" class="vi-only">Khi khách nói <em>"Sản phẩm đắt hơn đối thủ"</em> → trả lời: <em>"Đúng. Nhưng nếu so về giá trị thương hiệu 130 năm, chất lượng không MSG, chuỗi siêu thị đang trưng bày — thì giá đó rất xứng đáng. Khách của anh/chị đang trả tiền cho thương hiệu, không phải chỉ cho lon đậu."</em></p><p style="font-size:13px;margin-top:6px" class="en-only hide">When customer says <em>"Your product is more expensive"</em> → respond: <em>"You're right. But when you factor in 130 years of brand heritage, no MSG quality, distribution in major chains — that price is absolutely justified. Your customers are paying for the brand, not just a can."</em></p></div>
+      <div class="neg-strategy"><strong>2. ⏰ Tạo sự khan hiếm & cấp bách</strong><br/><p style="font-size:13px;margin-top:6px" class="vi-only"><em>"Chương trình mua 8 tặng 1 chỉ còn đến [ngày]"</em> / <em>"Khu vực này em đang chào 3 điểm, ai lấy trước sẽ được hỗ trợ trưng bày ưu tiên"</em></p><p style="font-size:13px;margin-top:6px" class="en-only hide"><em>"Buy 8 get 1 offer only valid until [date]"</em> / <em>"I'm approaching 3 outlets in this area — whoever orders first gets priority display support"</em></p></div>
+      <div class="neg-strategy"><strong>3. 👥 Social Proof — Hiệu ứng đám đông</strong><br/><p style="font-size:13px;margin-top:6px" class="vi-only"><em>"Sản phẩm này đang bán tại Mega Market, Lotte Mart, GO!, Co.opmart toàn quốc. Hàng xóm điểm bán của anh/chị (tên cụ thể) đang bán được và đặt lại hàng tuần."</em></p><p style="font-size:13px;margin-top:6px" class="en-only hide"><em>"This product is sold at Mega Market, Lotte Mart, GO!, Co.opmart nationwide. The outlet next door [specific name] is selling it and reordering weekly."</em></p></div>
+      <div class="neg-strategy"><strong>4. 🔄 Trao đổi lợi ích — Trade concessions</strong><br/><p style="font-size:13px;margin-top:6px" class="vi-only">Thay vì giảm giá → đổi bằng: thời gian giao hàng nhanh hơn / chương trình sampling / hỗ trợ trưng bày / tặng kệ nhỏ. Mỗi nhượng bộ đều phải đổi lấy điều gì đó từ khách.</p><p style="font-size:13px;margin-top:6px" class="en-only hide">Instead of discounting → trade for: faster delivery / sampling program / display support / small display stand. Every concession must be traded for something from the customer.</p></div>
+    </div>
+  </div>
+
+  <!-- VƯỢT QUA TỪ CHỐI & SO SÁNH -->
+  <div class="card">
+    <h2>🚫 <span class="vi-only">Vượt qua Từ chối & So sánh với Đối thủ</span><span class="en-only hide">Overcoming Rejection & Competitor Comparisons</span></h2>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px" class="vi-only">Nguyên tắc vàng: <strong>Không bao giờ nói xấu đối thủ</strong> — nhấn mạnh điểm mạnh của Ayam Brand thay vì điểm yếu của đối thủ.</p>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:12px" class="en-only hide">Golden rule: <strong>Never badmouth competitors</strong> — emphasize Ayam Brand strengths instead of competitor weaknesses.</p>
+    <div style="overflow-x:auto">
+    <table class="rejection-table">
+      <thead><tr><th class="vi-only">Loại từ chối / So sánh</th><th class="en-only hide">Rejection Type</th><th class="vi-only">Cách xử lý hiệu quả</th><th class="en-only hide">Effective Response</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="vi-only">💰 Giá cao</td><td class="en-only hide">💰 Price too high</td>
+          <td class="vi-only">• Nhấn mạnh giá trị thương hiệu 130 năm, chất lượng quốc tế<br>• Tính giá trên gram thịt thực tế: Ayam 73% cá vs đối thủ 53% — ai rẻ hơn thật sự?<br>• Chuỗi cung ứng ổn định, không bị đứt hàng, không bị phá giá<br>• <em>"Khách của mình đang trả cho thương hiệu — họ không phàn nàn về giá tại Mega Market"</em></td>
+          <td class="en-only hide">• Emphasize 130-year brand value, international quality<br>• Calculate price-per-gram of actual fish: Ayam 73% vs competitor 53% — who's really cheaper?<br>• Stable supply chain, no stockouts, no price war<br>• <em>"Our customers pay for the brand — they don't complain about price at Mega Market"</em></td>
+        </tr>
+        <tr>
+          <td class="vi-only">🤔 Muốn suy nghĩ thêm</td><td class="en-only hide">🤔 Need more time</td>
+          <td class="vi-only">• Hỏi khéo léo: <em>"Anh/chị còn băn khoăn điều gì cụ thể?"</em><br>• Giới thiệu thêm chương trình ưu đãi, hỗ trợ đi kèm<br>• Đặt thử số lượng nhỏ: <em>"Anh/chị thử 2–3 thùng xem phản hồi của khách — em đảm bảo đổi nếu không bán được"</em></td>
+          <td class="en-only hide">• Ask tactfully: <em>"Is there something specific you're still unsure about?"</em><br>• Introduce additional promotional programs and support<br>• Small trial order: <em>"Try 2–3 cartons and see customer response — I guarantee a swap if it doesn't sell"</em></td>
+        </tr>
+        <tr>
+          <td class="vi-only">🏪 Đã có sản phẩm đối thủ</td><td class="en-only hide">🏪 Already carry competitors</td>
+          <td class="vi-only">• Không nói xấu đối thủ — NGUYÊN TẮC<br>• Nhấn mạnh USP Ayam: không MSG, HSD dài, Halal JAKIM+MUI, phân phối rộng<br>• Hỏi: <em>"Khách của anh/chị quan tâm đến giá, chất lượng, hay promotion nhiều hơn?"</em><br>• Đề xuất <strong>thêm</strong> Ayam bên cạnh (không thay thế): đa dạng hóa kệ, thêm lựa chọn cho NTD, thêm khách trung thành Ayam</td>
+          <td class="en-only hide">• Never badmouth competitors — PRINCIPLE<br>• Emphasize Ayam USP: no MSG, long shelf life, Halal JAKIM+MUI, wide distribution<br>• Ask: <em>"Do your customers care more about price, quality, or promotions?"</em><br>• Propose <strong>adding</strong> Ayam alongside (not replacing): diversify shelf, more consumer choices, adds loyal Ayam customers</td>
+        </tr>
+        <tr>
+          <td class="vi-only">📦 Sợ hàng tồn kho</td><td class="en-only hide">📦 Fear of unsold stock</td>
+          <td class="vi-only">• HSD 3 năm — rủi ro tồn kho gần bằng 0<br>• DGM hỗ trợ xoay date — cam kết bằng lời<br>• Số lượng thử nhỏ: <em>"Chỉ 1 thùng — nếu 30 ngày không bán được, em đổi cho"</em><br>• Date dài là <strong>lợi thế tài chính</strong> của điểm bán: không cần bán gấp, không bị phá giá</td>
+          <td class="en-only hide">• 3-year shelf life — near-zero stock risk<br>• DGM supports date rotation — verbal commitment<br>• Small trial: <em>"Just 1 carton — if it doesn't sell in 30 days, I'll swap it"</em><br>• Long date is a <strong>financial advantage</strong> for the outlet: no need to rush sales, no price dumping</td>
+        </tr>
+        <tr>
+          <td class="vi-only">🆕 Hàng mới, khách chưa biết</td><td class="en-only hide">🆕 New product, customers don't know it</td>
+          <td class="vi-only">• <em>"Đây là sản phẩm dành cho xu hướng tiêu dùng an toàn — đang bùng nổ"</em><br>• Social proof: <em>"Đang bán tốt tại Mega Market, Lotte — khách GT cũng đang tìm mua về"</em><br>• DGM hỗ trợ sampling, hoạt náo, trưng bày để giúp ra hàng<br>• <em>"Thêm hàng trên kệ là thêm lựa chọn cho khách — tăng cơ hội bán hàng"</em></td>
+          <td class="en-only hide">• <em>"This product targets the clean-eating trend — it's exploding right now"</em><br>• Social proof: <em>"Selling well at Mega Market, Lotte — GT customers are already looking for it"</em><br>• DGM supports sampling, activations, display to drive sell-out<br>• <em>"More products on shelf = more choices for customers = more revenue opportunities"</em></td>
+        </tr>
+        <tr>
+          <td class="vi-only">💳 Xin công nợ</td><td class="en-only hide">💳 Requesting credit terms</td>
+          <td class="vi-only">• Linh động theo chính sách NPP<br>• Cho điểm mới: chào số lượng nhỏ (vài lon/mã) → chi phí ban đầu thấp, không cần công nợ nhiều<br>• Cam kết tần suất thăm, hỗ trợ giải tồn nếu bán chậm</td>
+          <td class="en-only hide">• Be flexible per distributor policy<br>• For new outlets: offer small quantities (few cans per SKU) → low initial cost, minimal credit needed<br>• Commit to regular visits and sell-out support if stock moves slowly</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Situation scripts from Excel -->
+    <div style="margin-top:18px">
+      <h3 class="vi-only">🎭 3 Tình huống thực tế hay gặp</h3>
+      <h3 class="en-only hide">🎭 3 Common Real-World Scenarios</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+        <div style="background:#e3f2fd;border-radius:10px;padding:14px;border-left:4px solid var(--teal)">
+          <strong style="color:var(--teal)" class="vi-only">📌 Tình huống 1: Điểm bán MỚI — Chào hàng lần đầu</strong>
+          <strong style="color:var(--teal)" class="en-only hide">📌 Scenario 1: NEW outlet — First approach</strong>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="vi-only">
+            <li>Giới thiệu nhanh, rõ: Ai, công ty nào, sản phẩm gì, đang bán ở đâu, nấu món gì</li>
+            <li>Đưa ra giá mua + giá bán đề xuất → lợi nhuận rõ ràng/lon</li>
+            <li>Đặt câu hỏi tìm hiểu quan tâm: giá? tồn kho? thương hiệu? khách hay hỏi loại nào?</li>
+            <li>Chọn thời điểm phù hợp — tránh giờ cao điểm</li>
+            <li>Quan sát kệ hàng trước khi vào để biết tiềm năng điểm bán</li>
+          </ul>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="en-only hide">
+            <li>Quick, clear intro: Who, company, product, where it's sold, what dishes it makes</li>
+            <li>State buying price + suggested selling price → clear profit per can</li>
+            <li>Ask to understand priorities: price? stock risk? brand? what do customers ask for?</li>
+            <li>Choose right timing — avoid peak hours</li>
+            <li>Observe shelves before entering to assess outlet potential</li>
+          </ul>
+        </div>
+        <div style="background:#e8f5e9;border-radius:10px;padding:14px;border-left:4px solid var(--green)">
+          <strong style="color:var(--green)" class="vi-only">📌 Tình huống 2: Điểm bán ĐÃ bán — Chào thêm hàng mới & giải tồn</strong>
+          <strong style="color:var(--green)" class="en-only hide">📌 Scenario 2: EXISTING outlet — Upsell new items & clear slow stock</strong>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="vi-only">
+            <li>Kiểm tra kệ trước: hàng tồn bao nhiêu? date còn bao lâu?</li>
+            <li>Thêm sp mới = đa dạng hóa kệ, thêm lựa chọn cho khách → không cạnh tranh với hàng cũ</li>
+            <li>Offer phải đủ hấp dẫn để khó từ chối — mục tiêu lấy tiền ngay</li>
+            <li>Last resort: swap hàng tồn sang SKU bán nhanh hơn + thêm mặt hàng mới</li>
+          </ul>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="en-only hide">
+            <li>Check shelf first: how much stock? how long until expiry?</li>
+            <li>New items = shelf diversification, more consumer choices → doesn't compete with existing</li>
+            <li>Offer must be attractive enough to make refusal awkward — goal is cash on the spot</li>
+            <li>Last resort: swap slow SKU for faster-moving one + add new item</li>
+          </ul>
+        </div>
+        <div style="background:#fff3e0;border-radius:10px;padding:14px;border-left:4px solid var(--orange)">
+          <strong style="color:var(--orange)" class="vi-only">📌 Tình huống 3: Phản hồi về chất lượng sản phẩm</strong>
+          <strong style="color:var(--orange)" class="en-only hide">📌 Scenario 3: Product quality complaint</strong>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="vi-only">
+            <li>Lắng nghe đầy đủ — không cắt ngang, không bào chữa ngay</li>
+            <li>Xác nhận: <em>"Dạ em rất tiếc khi anh/chị gặp phải tình huống này"</em></li>
+            <li>Thu thập thông tin: Mã lô (số lot), ngày sản xuất, ảnh chụp nếu có</li>
+            <li>Không tự ý hứa đổi trả mà chưa báo cáo → báo ngay cho DGM để xử lý theo quy trình</li>
+            <li>Lon phồng / gỉ nặng / mùi lạ → thu hồi ngay, không để tiếp tục bán</li>
+          </ul>
+          <ul style="font-size:13px;margin-top:8px;line-height:1.8" class="en-only hide">
+            <li>Listen fully — don't interrupt or defend immediately</li>
+            <li>Acknowledge: <em>"I'm really sorry you experienced this"</em></li>
+            <li>Gather information: Lot code, production date, photos if available</li>
+            <li>Don't promise replacement without reporting → report to DGM immediately for proper handling</li>
+            <li>Bulging / heavily rusted can / strange odor → recall immediately, don't let it continue selling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<!-- ══════════════════════════════════════════
+     MODULE 8 – COOKBOOK
+══════════════════════════════════════════ -->
+<div id="m-cook" class="module">
+  <div class="card">
+    <h2>🍳 <span class="vi-only">Cookbook – Gợi ý món ăn với sản phẩm Ayam Brand</span><span class="en-only hide">Cookbook – Recipe Ideas with Ayam Brand Products</span></h2>
+    <p style="font-size:13.5px" class="vi-only">Tất cả công thức phù hợp bếp gia đình Việt. Dùng để tư vấn khách hàng cách sử dụng sản phẩm. Nguồn: Ayam Brand 130-Year E-Recipe Book + DGM Vietnam adaptation.</p>
+    <p style="font-size:13.5px" class="en-only hide">All recipes suitable for Vietnamese home cooking. Use to advise customers on product usage. Source: Ayam Brand 130-Year E-Recipe Book + DGM Vietnam adaptation.</p>
+    <div class="sku-filter-row" id="recipeFilters" style="margin-bottom:14px">
+      <button class="sku-filter active" onclick="filterRecipes(this,'all')">🍽️ <span class="vi-only">Tất cả</span><span class="en-only hide">All</span></button>
+      <button class="sku-filter" onclick="filterRecipes(this,'ca')">🐟 <span class="vi-only">Nhóm Cá</span><span class="en-only hide">Fish</span></button>
+      <button class="sku-filter" onclick="filterRecipes(this,'dau')">🫘 <span class="vi-only">Nhóm Đậu</span><span class="en-only hide">Beans</span></button>
+      <button class="sku-filter" onclick="filterRecipes(this,'dua')">🥥 <span class="vi-only">Nhóm Dừa</span><span class="en-only hide">Coconut</span></button>
+      <button class="sku-filter" onclick="filterRecipes(this,'nhanh')">⚡ <span class="vi-only">Dưới 15 phút</span><span class="en-only hide">Under 15 min</span></button>
+    </div>
+  </div>
+
+  <!-- FISH RECIPES -->
+  <div class="recipe-card" data-group="ca">
+    <div class="recipe-header"><h3 class="vi-only">🐟 Cá Thu Sốt Cà Chua Kho Tiêu</h3><h3 class="en-only hide">🐟 Braised Mackerel in Tomato Black Pepper Sauce</h3><div class="recipe-meta"><span>⏱ 15 min</span><span class="vi-only">👥 2–3 người</span><span class="en-only hide">👥 Serves 2–3</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Cá Thu Sốt Cà 230g</span><span class="rp-badge">🫙 Tiêu Đen Xay 50g (optional)</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-quick">⚡ Nhanh</span><span class="recipe-tag rt-halal">☪️ Halal</span><span class="recipe-tag rt-viet">🇻🇳 Phong cách Việt</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 lon Cá Thu Sốt Cà Ayam 230g</li><li class="en-only hide">1 can Ayam Mackerel in Tomato 230g</li>
+          <li class="vi-only">2–3 muỗng sốt tiêu đen (hoặc tiêu xay + tương cà)</li><li class="en-only hide">2–3 tbsp black pepper sauce (or ground pepper + ketchup)</li>
+          <li class="vi-only">1/2 củ hành tím, 2 tép tỏi</li><li class="en-only hide">½ shallot, 2 garlic cloves</li>
+          <li class="vi-only">Nước mắm, đường, hành lá</li><li class="en-only hide">Fish sauce, sugar, spring onion</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Phi thơm tỏi hành tím</li><li class="en-only hide">Sauté garlic and shallot</li>
+          <li class="vi-only">Cho cá vào, đảo nhẹ tay</li><li class="en-only hide">Add fish, stir gently</li>
+          <li class="vi-only">Thêm tiêu đen, nước mắm, chút đường</li><li class="en-only hide">Add black pepper, fish sauce, a little sugar</li>
+          <li class="vi-only">Rim nhỏ lửa 8–10 phút</li><li class="en-only hide">Simmer on low heat 8–10 min</li>
+          <li class="vi-only">Rắc hành lá, dùng nóng với cơm</li><li class="en-only hide">Garnish with spring onion, serve hot with rice</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="ca">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#01579B,#0288D1)"><h3 class="vi-only">🐟 Cơm Chiên Cá Trích Kiểu Danish (từ Ebook)</h3><h3 class="en-only hide">🐟 Danish's Sardine Fried Rice (from Ebook)</h3><div class="recipe-meta"><span>⏱ 20 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Cá Trích EVOO 120g</span><span class="rp-badge">🍚 Cơm nguội</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-quick">⚡ Nhanh</span><span class="recipe-tag rt-healthy">💚 Healthy</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 lon Cá Trích EVOO Ayam 120g</li><li class="en-only hide">1 can Ayam Sardines EVOO 120g</li>
+          <li class="vi-only">2 chén cơm nguội</li><li class="en-only hide">2 cups leftover rice</li>
+          <li class="vi-only">2 quả trứng</li><li class="en-only hide">2 eggs</li>
+          <li class="vi-only">Hành lá, ớt, nước mắm, dầu ăn</li><li class="en-only hide">Spring onion, chili, fish sauce, oil</li>
+          <li class="vi-only">Tương ớt Sriracha Ayam (tùy chọn)</li><li class="en-only hide">Ayam Sriracha sauce (optional)</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Đập trứng vào chảo nóng dầu, scramble sơ</li><li class="en-only hide">Crack eggs into hot oiled wok, scramble briefly</li>
+          <li class="vi-only">Thêm cơm, xào lửa lớn 3–4 phút</li><li class="en-only hide">Add rice, stir-fry on high heat 3–4 min</li>
+          <li class="vi-only">Mở lon cá trích, cho vào cùng dầu olive trong lon</li><li class="en-only hide">Open sardines, add fish and EVOO from can</li>
+          <li class="vi-only">Nêm nước mắm, ớt, hành lá. Dùng nóng</li><li class="en-only hide">Season with fish sauce, chili, spring onion. Serve hot</li></ol>
+        </div>
+      </div>
+      <div class="note vi-only">💡 Dầu olive trong lon cá trích Ayam là EVOO tự nhiên — thêm trực tiếp vào chảo để tăng hương vị Địa Trung Hải, không cần thêm dầu khác.</div>
+      <div class="note en-only hide">💡 The olive oil in Ayam sardine cans is natural EVOO — add it directly to the wok for Mediterranean flavor, no need to add extra oil.</div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="ca">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#0277BD,#01579B)"><h3 class="vi-only">🐟 Cá Ngừ Sốt Cà Chua Cay Kiểu Shakshuka</h3><h3 class="en-only hide">🐟 Spicy Tuna Shakshuka</h3><div class="recipe-meta"><span>⏱ 20 min</span><span class="vi-only">👥 2–3 người</span><span class="en-only hide">👥 Serves 2–3</span><span>⭐ Trung bình / Medium</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Cá Ngừ Chilli 160g</span><span class="rp-badge">🥫 Puree Cà Chua 220g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-healthy">💚 Healthy</span><span class="recipe-tag rt-halal">☪️ Halal</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 lon Chilli Tuna Ayam 160g</li><li class="en-only hide">1 can Ayam Chilli Tuna 160g</li>
+          <li class="vi-only">1/2 lon Puree Cà Chua Ayam 220g</li><li class="en-only hide">½ can Ayam Tomato Puree 220g</li>
+          <li class="vi-only">2–3 quả trứng</li><li class="en-only hide">2–3 eggs</li>
+          <li class="vi-only">1/2 củ hành tây, 1 trái ớt chuông đỏ</li><li class="en-only hide">½ onion, 1 red capsicum</li>
+          <li class="vi-only">Tỏi, muối, tiêu, cumin (tùy chọn)</li><li class="en-only hide">Garlic, salt, pepper, cumin (optional)</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Xào tỏi, hành tây, ớt chuông đến mềm</li><li class="en-only hide">Sauté garlic, onion, capsicum until soft</li>
+          <li class="vi-only">Thêm puree cà chua + 1/4 chén nước, đun sôi</li><li class="en-only hide">Add tomato puree + ¼ cup water, bring to boil</li>
+          <li class="vi-only">Cho cá ngừ chilli vào, khuấy đều</li><li class="en-only hide">Add chilli tuna, stir well</li>
+          <li class="vi-only">Tạo 3 hố nhỏ, đập trứng vào, đậy nắp 6–8 phút</li><li class="en-only hide">Make 3 wells, crack eggs in, cover 6–8 min</li>
+          <li class="vi-only">Ăn kèm bánh mì nướng</li><li class="en-only hide">Serve with toasted bread</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="ca">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#1565C0,#283593)"><h3 class="vi-only">🐟 Cá Trích Sốt Cà Chua Rim Sả Ớt (Việt hóa)</h3><h3 class="en-only hide">🐟 Sardines in Tomato with Lemongrass & Chili (Vietnamese style)</h3><div class="recipe-meta"><span>⏱ 15 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Cá Trích Sốt Cà 155g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-viet">🇻🇳 Phong cách Việt</span><span class="recipe-tag rt-quick">⚡ Nhanh</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 lon Cá Trích Sốt Cà Ayam 155g</li><li class="en-only hide">1 can Ayam Sardines Tomato 155g</li>
+          <li class="vi-only">1 cây sả băm nhỏ, 2 trái ớt đỏ</li><li class="en-only hide">1 lemongrass stalk minced, 2 red chilies</li>
+          <li class="vi-only">Tỏi, hành tím, nước mắm, đường</li><li class="en-only hide">Garlic, shallots, fish sauce, sugar</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Phi tỏi, hành, sả cho thơm</li><li class="en-only hide">Fry garlic, shallots, lemongrass until fragrant</li>
+          <li class="vi-only">Cho cá vào cùng sốt cà trong lon</li><li class="en-only hide">Add fish with tomato sauce from can</li>
+          <li class="vi-only">Nêm nước mắm, đường, ớt. Rim 8 phút</li><li class="en-only hide">Season with fish sauce, sugar, chili. Braise 8 min</li>
+          <li class="vi-only">Ăn nóng với cơm trắng</li><li class="en-only hide">Serve hot with steamed rice</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEAN RECIPES -->
+  <div class="recipe-card" data-group="dau">
+    <div class="recipe-header" style="background:linear-gradient(135deg,var(--navy),var(--teal))"><h3 class="vi-only">☕ Red Bean Latte – Trend Café (Đậu Đỏ)</h3><h3 class="en-only hide">☕ Red Bean Latte – Café Trend</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 1 ly</span><span class="en-only hide">👥 1 glass</span><span>⭐ Rất dễ / Very Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Đậu Đỏ Ayam 425g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-quick">⚡ Nhanh</span><span class="recipe-tag rt-healthy">💚 Healthy</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">2–3 muỗng Đậu Đỏ Ayam (đã ráo nước)</li><li class="en-only hide">2–3 tbsp Ayam Red Kidney Beans (drained)</li>
+          <li class="vi-only">150ml sữa tươi (hâm nóng hoặc đánh bọt)</li><li class="en-only hide">150ml fresh milk (warmed or frothed)</li>
+          <li class="vi-only">30ml espresso hoặc cà phê phin đậm</li><li class="en-only hide">30ml espresso or strong drip coffee</li>
+          <li class="vi-only">10–20ml syrup hoặc sữa đặc</li><li class="en-only hide">10–20ml syrup or condensed milk</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Cho đậu đỏ vào đáy ly</li><li class="en-only hide">Place red beans at bottom of glass</li>
+          <li class="vi-only">Hâm sữa + syrup, rót vào</li><li class="en-only hide">Warm milk + syrup, pour over beans</li>
+          <li class="vi-only">Rót cà phê lên tạo tầng màu đẹp</li><li class="en-only hide">Pour coffee on top for layered effect</li>
+          <li class="vi-only">Thêm đá nếu dùng lạnh, không đá nếu dùng nóng</li><li class="en-only hide">Add ice for iced version, skip for hot</li></ol>
+        </div>
+      </div>
+      <div class="note vi-only">💡 Đậu đỏ Ayam mở lon dùng ngay — không cần ngâm, không cần nấu. Hoàn hảo cho barista cần tốc độ.</div>
+      <div class="note en-only hide">💡 Ayam red beans are ready to use — no soaking, no cooking. Perfect for baristas who need speed.</div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="dau">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#C62828,#B71C1C)"><h3 class="vi-only">🫘 Đậu Sốt Cà Chua Nấu Trứng Kiểu Anh (Baked Beans & Eggs)</h3><h3 class="en-only hide">🫘 Baked Beans with Eggs – English Breakfast Style</h3><div class="recipe-meta"><span>⏱ 12 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Baked Beans Tomato 425g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-quick">⚡ Nhanh</span><span class="recipe-tag rt-halal">☪️ Halal</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 lon Baked Beans Ayam 425g</li><li class="en-only hide">1 can Ayam Baked Beans 425g</li>
+          <li class="vi-only">3 quả trứng</li><li class="en-only hide">3 eggs</li>
+          <li class="vi-only">Bánh mì nướng, bơ, muối, tiêu</li><li class="en-only hide">Toast, butter, salt, pepper</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Đổ đậu vào chảo, đun nóng vừa</li><li class="en-only hide">Pour beans into pan, heat on medium</li>
+          <li class="vi-only">Tạo 3 hố, đập trứng vào, đậy nắp</li><li class="en-only hide">Make 3 wells, crack in eggs, cover</li>
+          <li class="vi-only">Đun đến khi lòng trắng đông, lòng đỏ còn ướt</li><li class="en-only hide">Cook until whites are set, yolks still runny</li>
+          <li class="vi-only">Ăn kèm bánh mì nướng bơ</li><li class="en-only hide">Serve with buttered toast</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="dau">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#1B5E20,#2E7D32)"><h3 class="vi-only">🥗 Salad Đậu Gà & Cá Ngừ High Protein</h3><h3 class="en-only hide">🥗 High Protein Chickpea & Tuna Salad</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Rất dễ / Very Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Đậu Gà 425g</span><span class="rp-badge">🥫 Tuna Flakes Water 150g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-healthy">💚 Healthy</span><span class="recipe-tag rt-quick">⚡ Nhanh</span><span class="recipe-tag rt-halal">☪️ Halal</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">½ lon Đậu Gà Ayam 425g (rửa ráo)</li><li class="en-only hide">½ can Ayam Chickpeas 425g (rinsed, drained)</li>
+          <li class="vi-only">1 lon Cá Ngừ Ngâm Nước 150g</li><li class="en-only hide">1 can Ayam Tuna in Water 150g</li>
+          <li class="vi-only">½ dưa leo, ớt chuông, rau mùi</li><li class="en-only hide">½ cucumber, capsicum, coriander</li>
+          <li class="vi-only">Dressing: 2 muỗng dầu olive + chanh + muối tiêu</li><li class="en-only hide">Dressing: 2 tbsp olive oil + lemon + salt & pepper</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Mở lon đậu gà, rửa qua nước (giảm sodium)</li><li class="en-only hide">Open chickpeas, rinse to reduce sodium</li>
+          <li class="vi-only">Mở lon cá ngừ, để ráo, tách thành miếng</li><li class="en-only hide">Open tuna, drain, flake apart</li>
+          <li class="vi-only">Trộn tất cả với dressing</li><li class="en-only hide">Toss all ingredients with dressing</li>
+          <li class="vi-only">Để lạnh 10 phút rồi dùng</li><li class="en-only hide">Chill 10 min before serving</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="dau">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#E65100,#BF360C)"><h3 class="vi-only">🍅 Pasta Cà Chua Cá Ngừ Sốt Dầu Tỏi (Aglio Olio)</h3><h3 class="en-only hide">🍅 Tuna Tomato Aglio Olio Pasta</h3><div class="recipe-meta"><span>⏱ 20 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Trung bình / Medium</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Tuna Chunks Oil 150g</span><span class="rp-badge">🥫 Puree Cà Chua 220g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-healthy">💚 Healthy</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">200g spaghetti hoặc penne</li><li class="en-only hide">200g spaghetti or penne</li>
+          <li class="vi-only">1 lon Cá Ngừ Ngâm Dầu 150g</li><li class="en-only hide">1 can Ayam Tuna in Oil 150g</li>
+          <li class="vi-only">½ lon Puree Cà Chua Ayam 220g</li><li class="en-only hide">½ can Ayam Tomato Puree 220g</li>
+          <li class="vi-only">4 tép tỏi, ớt khô, dầu olive, muối</li><li class="en-only hide">4 garlic cloves, dry chili, olive oil, salt</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Luộc pasta đến al dente</li><li class="en-only hide">Boil pasta to al dente</li>
+          <li class="vi-only">Phi tỏi + ớt khô trong dầu olive</li><li class="en-only hide">Sauté garlic + dry chili in olive oil</li>
+          <li class="vi-only">Thêm puree cà chua, nêm muối, đun 3 phút</li><li class="en-only hide">Add tomato puree, season, cook 3 min</li>
+          <li class="vi-only">Cho cá ngừ + pasta vào trộn đều</li><li class="en-only hide">Add tuna + pasta, toss well</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COCONUT RECIPES -->
+  <div class="recipe-card" data-group="dua">
+    <div class="recipe-header" style="background:linear-gradient(135deg,var(--coconut),#00897B)"><h3 class="vi-only">🥥 Cà Ri Gà Nước Cốt Dừa 65ml – 1 Gói Vừa Đủ 2 Người</h3><h3 class="en-only hide">🥥 Coconut Chicken Curry – 1 Pack Serves 2 Perfectly</h3><div class="recipe-meta"><span>⏱ 25 min</span><span class="vi-only">👥 2 người (1 gói 65ml = vừa đủ)</span><span class="en-only hide">👥 2 persons (1 pack 65ml = perfect)</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge" style="background:#e0f2f1;border-color:var(--coconut);color:var(--coconut)">🥥 Coconut Milk 65ml ⭐</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-halal">☪️ Halal</span><span class="recipe-tag rt-viet">🇻🇳 Phong cách Việt</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">1 gói Nước Cốt Dừa Ayam 65ml</li><li class="en-only hide">1 pack Ayam Coconut Milk 65ml</li>
+          <li class="vi-only">200g đùi gà xẻ miếng</li><li class="en-only hide">200g chicken thigh, cut up</li>
+          <li class="vi-only">1 muỗng bột cà ri, muối, đường</li><li class="en-only hide">1 tbsp curry powder, salt, sugar</li>
+          <li class="vi-only">Khoai tây, hành tây, sả</li><li class="en-only hide">Potato, onion, lemongrass</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Ướp gà với bột cà ri 10 phút</li><li class="en-only hide">Marinate chicken with curry powder 10 min</li>
+          <li class="vi-only">Xào hành tây, sả, thêm gà chiên sơ</li><li class="en-only hide">Sauté onion, lemongrass, add chicken and brown</li>
+          <li class="vi-only">Thêm khoai tây + 100ml nước, đun 10 phút</li><li class="en-only hide">Add potato + 100ml water, cook 10 min</li>
+          <li class="vi-only">Rót nước cốt dừa 65ml vào, rim thêm 5 phút</li><li class="en-only hide">Pour in 65ml coconut milk, simmer 5 more min</li></ol>
+        </div>
+      </div>
+      <div class="note vi-only">⭐ 1 gói 65ml = đúng lượng cho 2 người. Không thừa, không cần tủ lạnh sau dùng xong gói.</div>
+      <div class="note en-only hide">⭐ 1 pack 65ml = exactly right for 2 persons. No waste, no refrigeration needed after use.</div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="dua">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#004D40,#00695C)"><h3 class="vi-only">🥥 Chè Đậu Đỏ Nước Cốt Dừa (Truyền thống Việt)</h3><h3 class="en-only hide">🥥 Vietnamese Red Bean Sweet Soup with Coconut Milk</h3><div class="recipe-meta"><span>⏱ 20 min</span><span class="vi-only">👥 4 người</span><span class="en-only hide">👥 Serves 4</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge">🥫 Đậu Đỏ 425g</span><span class="rp-badge" style="background:#e0f2f1;border-color:var(--coconut);color:var(--coconut)">🥥 Coconut Milk 65ml ⭐</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-viet">🇻🇳 Truyền thống</span><span class="recipe-tag rt-halal">☪️ Halal</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">½ lon Đậu Đỏ Ayam 425g</li><li class="en-only hide">½ can Ayam Red Kidney Beans 425g</li>
+          <li class="vi-only">1 gói Nước Cốt Dừa Ayam 65ml</li><li class="en-only hide">1 pack Ayam Coconut Milk 65ml</li>
+          <li class="vi-only">600ml nước, 80g đường thốt nốt/đường vàng</li><li class="en-only hide">600ml water, 80g palm/brown sugar</li>
+          <li class="vi-only">Chút muối, lá dứa (tùy chọn)</li><li class="en-only hide">Pinch of salt, pandan leaves (optional)</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Đậu đỏ mở lon, cho vào nồi cùng nước + đường</li><li class="en-only hide">Open beans, add to pot with water + sugar</li>
+          <li class="vi-only">Đun sôi nhỏ lửa 15 phút đến đậu mềm thêm</li><li class="en-only hide">Simmer 15 min until beans soften further</li>
+          <li class="vi-only">Tắt bếp, rót nước cốt dừa + chút muối</li><li class="en-only hide">Turn off heat, pour in coconut milk + salt</li>
+          <li class="vi-only">Ăn nóng hoặc lạnh đều ngon</li><li class="en-only hide">Delicious hot or chilled</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-card" data-group="dua">
+    <div class="recipe-header" style="background:linear-gradient(135deg,#1A237E,#283593)"><h3 class="vi-only">🥥 Cơm Nước Cốt Dừa Nấu Cùng Bắp Ngô (Coconut Corn Rice)</h3><h3 class="en-only hide">🥥 Coconut Corn Rice</h3><div class="recipe-meta"><span>⏱ 30 min</span><span class="vi-only">👥 3–4 người</span><span class="en-only hide">👥 Serves 3–4</span><span>⭐ Dễ / Easy</span></div></div>
+    <div class="recipe-body">
+      <div class="recipe-products"><span class="rp-badge" style="background:#e0f2f1;border-color:var(--coconut);color:var(--coconut)">🥥 Coconut Milk 400ml</span><span class="rp-badge">🌽 Corn Kernels 425g</span></div>
+      <div style="margin-bottom:8px"><span class="recipe-tag rt-halal">☪️ Halal</span><span class="recipe-tag rt-viet">🇻🇳 Phong cách Á</span></div>
+      <div class="recipe-cols">
+        <div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4>
+          <ul><li class="vi-only">2 chén gạo</li><li class="en-only hide">2 cups rice</li>
+          <li class="vi-only">½ lon Nước Cốt Dừa Ayam 400ml (khoảng 200ml)</li><li class="en-only hide">½ can Ayam Coconut Milk 400ml (~200ml)</li>
+          <li class="vi-only">½ lon Bắp Ngô Ayam 425g (ráo nước)</li><li class="en-only hide">½ can Ayam Corn Kernels 425g (drained)</li>
+          <li class="vi-only">Muối, lá dứa (tùy chọn)</li><li class="en-only hide">Salt, pandan leaves (optional)</li></ul>
+        </div>
+        <div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4>
+          <ol><li class="vi-only">Vo gạo, cho vào nồi cơm</li><li class="en-only hide">Wash rice, add to rice cooker</li>
+          <li class="vi-only">Thêm nước cốt dừa + nước lọc (tổng = 2 chén)</li><li class="en-only hide">Add coconut milk + water (total = 2 cups)</li>
+          <li class="vi-only">Cho bắp ngô vào, thêm chút muối</li><li class="en-only hide">Add corn kernels, a pinch of salt</li>
+          <li class="vi-only">Nấu cơm bình thường. Ăn với cá kho hoặc gà</li><li class="en-only hide">Cook as normal. Serve with braised fish or chicken</li></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function filterRecipes(btn, group){
+    document.querySelectorAll('#recipeFilters .sku-filter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.recipe-card[data-group]').forEach(card=>{
+      if(group==='all') card.style.display='';
+      else if(group==='nhanh'){
+        var meta=card.querySelector('.recipe-meta').textContent;
+        card.style.display=(meta.includes('10 min')||meta.includes('12 min')||meta.includes('15 min'))?'':'none';
+      }
+      else card.style.display=(card.dataset.group===group)?'':'none';
+    });
+  }
+  </script>
+</div>
+
 
 </div><!-- end .content -->
 
