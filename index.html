@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ayam Brand™ – Sales Training Hub v3 | DGM</title>
+<style>
+:root{
+  --red:#C8102E;--yellow:#FFE140;--yellow2:#FFBC18;
+  --teal:#2F7898;--green:#0E7544;--brown:#5C4033;
+  --navy:#1B3A57;--gray:#3E4A59;--cream:#F8F6F0;
+  --purple:#4A148C;--orange:#E65100;--coconut:#00695C;
+  --white:#fff;--shadow:0 4px 18px rgba(0,0,0,.10);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.15);
+  --radius:14px;--font:"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--cream);color:var(--gray);}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.3);}
+.topbar .brand{display:flex;align-items:center;gap:10px;}
+.topbar .brand img{height:36px;border-radius:4px;}
+.topbar .brand h1{font-size:16px;font-weight:700;letter-spacing:.03em;line-height:1.2;}
+.topbar .brand h1 span{color:var(--yellow);display:block;font-size:10px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.v-badge{background:var(--yellow);color:var(--navy);font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px;}
+.lang-toggle{display:flex;gap:6px;}
+.lang-toggle button{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff;border-radius:20px;padding:4px 13px;font-size:12px;cursor:pointer;transition:.2s;}
+.lang-toggle button.active{background:var(--yellow);color:var(--navy);border-color:var(--yellow);font-weight:700;}
+
+/* ── NAV ── */
+.nav-wrap{background:#fff;border-bottom:3px solid var(--yellow);overflow-x:auto;white-space:nowrap;position:sticky;top:58px;z-index:150;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+.nav-tabs{display:inline-flex;gap:0;padding:0 10px;}
+.nav-tabs button{background:none;border:none;padding:13px 16px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-3px;transition:.2s;white-space:nowrap;}
+.nav-tabs button.active{color:var(--red);border-bottom-color:var(--red);}
+.nav-tabs button:hover{color:var(--red);}
+.nav-tabs button .badge{background:var(--red);color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px;vertical-align:middle;}
+.nav-tabs button .badge-new{background:var(--orange);color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px;}
+
+/* ── CONTENT ── */
+.content{max-width:1020px;margin:0 auto;padding:28px 20px 80px;}
+.module{display:none;}.module.active{display:block;}
+
+/* ── CARDS ── */
+.card{background:#fff;border-radius:var(--radius);padding:22px 26px;margin-bottom:18px;box-shadow:var(--shadow);}
+.card h2{font-size:17px;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-weight:700;}
+.card h3{font-size:14.5px;color:var(--navy);margin:14px 0 6px;font-weight:700;}
+.card p,.card li{font-size:14px;line-height:1.75;}
+.card ul,.card ol{padding-left:20px;margin-top:4px;}
+.card li{margin-bottom:5px;}
+
+/* ── PILLS ── */
+.pill{display:inline-block;padding:3px 11px;border-radius:20px;font-size:12px;font-weight:600;margin:3px 2px;}
+.pill-red{background:var(--red);color:#fff;}.pill-yellow{background:var(--yellow);color:var(--navy);}
+.pill-teal{background:var(--teal);color:#fff;}.pill-green{background:var(--green);color:#fff;}
+.pill-gray{background:#e8e8e8;color:var(--gray);}.pill-purple{background:var(--purple);color:#fff;}
+.pill-orange{background:var(--orange);color:#fff;}
+
+/* ── GRIDS ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:700px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr;}.grid4{grid-template-columns:1fr 1fr;}}
+
+/* ── STATS ── */
+.stat-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+.stat-box{flex:1;min-width:130px;background:#fff;border-radius:12px;padding:16px 14px;box-shadow:var(--shadow);text-align:center;border-top:4px solid var(--yellow);transition:transform .2s;}
+.stat-box:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.stat-box .num{font-size:32px;font-weight:800;color:var(--red);line-height:1;}
+.stat-box .lbl{font-size:12px;color:var(--gray);margin-top:5px;line-height:1.3;}
+@keyframes countUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.stat-box .num{animation:countUp .5s ease both;}
+
+/* ── OBJECTION CARDS ── */
+.objection{border-left:4px solid var(--red);background:#fff5f5;border-radius:0 12px 12px 0;padding:15px 18px;margin-bottom:14px;transition:box-shadow .2s;}
+.objection:hover{box-shadow:var(--shadow);}
+.objection .q{font-weight:700;color:var(--red);font-size:14.5px;margin-bottom:8px;}
+.objection .a{font-size:14px;color:var(--gray);line-height:1.7;}
+.objection .tip{margin-top:10px;background:#fff;border:1.5px dashed var(--yellow2);border-radius:8px;padding:8px 13px;font-size:13px;color:var(--brown);}
+.tag-ack{color:var(--teal);font-weight:700;}
+.tag-exp{color:var(--navy);font-weight:700;}
+.tag-pro{color:var(--green);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-search-bar{width:100%;padding:11px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;margin-bottom:16px;outline:none;transition:border-color .2s;}
+.faq-search-bar:focus{border-color:var(--teal);}
+.faq-cat-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.faq-cat-btn{padding:6px 16px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-size:12.5px;cursor:pointer;transition:.2s;font-weight:600;}
+.faq-cat-btn.active,.faq-cat-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+.faq-refresh{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:var(--gray);}
+.faq-refresh button{background:var(--teal);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12.5px;cursor:pointer;font-weight:600;transition:.2s;}
+.faq-refresh button:hover{background:var(--navy);}
+.faq-refresh button.loading{opacity:.6;cursor:wait;}
+.faq-status{font-size:11px;color:var(--teal);margin-left:6px;}
+details.faq-item{border-bottom:1px solid #eee;padding:13px 0;}
+details.faq-item summary{font-weight:700;font-size:14px;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-right:4px;}
+details.faq-item summary::-webkit-details-marker{display:none;}
+details.faq-item summary .arrow{color:var(--red);font-size:16px;transition:transform .25s;flex-shrink:0;}
+details[open] .arrow{transform:rotate(90deg);}
+details.faq-item .faq-cat-label{font-size:10px;background:#eee;color:#666;padding:2px 8px;border-radius:10px;flex-shrink:0;}
+.faq-item .ans{padding:10px 0 4px;font-size:13.5px;line-height:1.75;color:var(--gray);}
+.faq-item .ans table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;}
+.faq-item .ans th{background:var(--navy);color:#fff;padding:7px 10px;}
+.faq-item .ans td{padding:7px 10px;border-bottom:1px solid #eee;}
+.faq-item .ans tr:nth-child(even) td{background:#f8fafc;}
+.faq-item .ans .note{background:#fffde7;border-left:3px solid var(--yellow2);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:8px;font-size:13px;}
+.faq-item .ans .warn{background:#fff3e0;border-left:3px solid var(--orange);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:8px;font-size:13px;color:var(--orange);}
+.faq-item .ans .good{background:#e8f5e9;border-left:3px solid var(--green);padding:8px 12px;border-radius:0 8px 8px 0;margin-top:8px;font-size:13px;color:var(--green);}
+.faq-no-result{text-align:center;padding:32px;color:#999;font-size:14px;}
+
+/* ── RETORT ANIMATION ── */
+.retort-flow{display:flex;align-items:center;gap:0;margin:20px 0;flex-wrap:wrap;justify-content:center;}
+.retort-step{text-align:center;background:#fff;border-radius:12px;padding:16px 14px;flex:1;min-width:130px;box-shadow:var(--shadow);border-top:3px solid var(--purple);position:relative;animation:slideUp .5s ease both;}
+.retort-step:nth-child(1){animation-delay:.1s;}
+.retort-step:nth-child(3){animation-delay:.2s;}
+.retort-step:nth-child(5){animation-delay:.3s;}
+.retort-step:nth-child(7){animation-delay:.4s;}
+.retort-step .step-icon{font-size:28px;margin-bottom:8px;}
+.retort-step .step-num{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.retort-step strong{display:block;font-size:13px;color:var(--navy);margin-bottom:4px;}
+.retort-step span{font-size:11.5px;color:var(--gray);}
+.retort-arrow{font-size:20px;color:var(--purple);padding:0 4px;flex-shrink:0;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── WIN POINTS (PRODUCT CARDS) ── */
+.product-group{margin-bottom:28px;}
+.product-group-title{font-size:16px;font-weight:800;color:#fff;background:var(--navy);padding:11px 18px;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:8px;}
+.product-group-body{background:#fff;border-radius:0 0 10px 10px;padding:18px;box-shadow:var(--shadow);}
+.win-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px;}
+.win-card{background:var(--cream);border-radius:10px;padding:14px;border-left:4px solid var(--red);transition:transform .2s,box-shadow .2s;}
+.win-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.win-card .wc-num{font-size:22px;font-weight:900;color:var(--red);opacity:.2;line-height:1;}
+.win-card .wc-title{font-size:13px;font-weight:700;color:var(--navy);margin:-4px 0 5px;}
+.win-card .wc-body{font-size:12.5px;color:var(--gray);line-height:1.6;}
+.win-card.highlight{border-left-color:var(--orange);background:#fff8e1;}
+.win-card.coconut{border-left-color:var(--coconut);}
+
+/* ── INFOGRAPHICS ── */
+.infographic{background:#fff;border-radius:16px;padding:0;overflow:hidden;box-shadow:var(--shadow);margin-bottom:20px;}
+.infographic-header{padding:16px 22px;color:#fff;display:flex;align-items:center;gap:10px;}
+.infographic-header h3{font-size:15px;font-weight:700;}
+.infographic-header .sub{font-size:11.5px;opacity:.85;margin-top:2px;}
+.infographic-body{padding:18px 22px;}
+
+/* Nutrition bars */
+.nutr-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.nutr-label{width:140px;font-size:12.5px;color:var(--navy);font-weight:600;flex-shrink:0;}
+.nutr-bar-wrap{flex:1;background:#f0f0f0;border-radius:20px;height:20px;overflow:hidden;}
+.nutr-bar{height:100%;border-radius:20px;display:flex;align-items:center;padding-left:8px;font-size:10.5px;font-weight:700;color:#fff;transition:width 1.2s ease;width:0;}
+.nutr-val{font-size:12px;font-weight:700;color:var(--gray);width:52px;text-align:right;flex-shrink:0;}
+
+/* Comparison table */
+.comp-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start;margin-top:12px;}
+.comp-vs .vs-mid{font-size:18px;font-weight:900;color:var(--red);padding-top:18px;text-align:center;}
+.comp-side{background:#f8f8f8;border-radius:10px;padding:14px;}
+.comp-side.ayam{background:#fff5f5;border:1.5px solid var(--red);}
+.comp-side h4{font-size:13px;font-weight:700;margin-bottom:8px;}
+.comp-side.ayam h4{color:var(--red);}
+.comp-side li{font-size:12.5px;line-height:1.65;list-style:none;padding-left:0;}
+.comp-side.ayam li::before{content:"✅ ";}
+.comp-side li::before{content:"⚠️ ";}
+
+/* Halal badge */
+.halal-badge{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;}
+.halal-card{flex:1;min-width:180px;border-radius:12px;padding:16px;text-align:center;}
+.halal-card.jakim{background:linear-gradient(135deg,#1B3A57,#2F7898);color:#fff;}
+.halal-card.mui{background:linear-gradient(135deg,#0E7544,#1B8A57);color:#fff;}
+.halal-card .hc-icon{font-size:32px;margin-bottom:6px;}
+.halal-card h4{font-size:15px;font-weight:800;margin-bottom:4px;}
+.halal-card .hc-sub{font-size:11.5px;opacity:.85;line-height:1.5;}
+.halal-card .hc-scope{margin-top:8px;font-size:11px;background:rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;}
+
+/* Can types */
+.can-compare{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;}
+@media(max-width:640px){.can-compare{grid-template-columns:1fr;}}
+.can-card{border-radius:12px;padding:16px;text-align:center;}
+.can-card.bpa{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:1.5px solid #4CAF50;}
+.can-card.std{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:1.5px solid #FF9800;}
+.can-card.tetra{background:linear-gradient(135deg,#e0f2f1,#b2dfdb);border:1.5px solid var(--coconut);}
+.can-card .cc-icon{font-size:32px;margin-bottom:8px;}
+.can-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.can-card ul{list-style:none;text-align:left;font-size:12px;line-height:1.7;}
+.can-card li::before{content:"• ";}
+
+/* Ingredient list decoder */
+.ingredient-decoder{margin-top:10px;}
+.ing-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f0f0f0;}
+.ing-code{font-weight:800;font-size:13px;min-width:70px;flex-shrink:0;}
+.ing-name{font-size:13px;font-weight:600;color:var(--navy);min-width:150px;flex-shrink:0;}
+.ing-role{font-size:12.5px;color:var(--gray);flex:1;}
+.ing-status{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;}
+.s-safe{background:#e8f5e9;color:#1B5E20;}.s-no{background:#ffebee;color:#b71c1c;}.s-ok{background:#fff3e0;color:#E65100;}
+
+/* NIP reader */
+.nip-diagram{background:linear-gradient(135deg,#1B3A57,#2F7898);color:#fff;border-radius:12px;padding:20px;margin-top:10px;}
+.nip-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:13px;}
+.nip-row:last-child{border-bottom:none;font-weight:700;font-size:14px;}
+.nip-row .nip-key{opacity:.85;}
+.nip-row .nip-tip{font-size:11px;opacity:.65;margin-top:2px;}
+
+/* ── SKU TABLE ── */
+.sku-search{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;margin-bottom:12px;outline:none;transition:border-color .2s;}
+.sku-search:focus{border-color:var(--teal);}
+.sku-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.sku-filter{padding:5px 14px;border-radius:18px;border:1.5px solid #ddd;background:#fff;font-size:12.5px;cursor:pointer;transition:.2s;font-weight:600;}
+.sku-filter.active,.sku-filter:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+table.sku{width:100%;border-collapse:collapse;font-size:13px;}
+table.sku th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;font-weight:600;}
+table.sku td{padding:8px 10px;border-bottom:1px solid #eee;vertical-align:top;}
+table.sku tr:nth-child(even) td{background:#f8fafc;}
+table.sku tr:hover td{background:#fff8e1;}
+.origin-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;}
+.o-vn{background:#d4edda;color:#155724;}.o-my{background:#cce5ff;color:#004085;}
+.o-th{background:#fff3cd;color:#856404;}.o-id{background:#f8d7da;color:#721c24;}
+.o-it{background:#e2d9f3;color:#4a235a;}
+
+/* ── CERT GRID ── */
+.cert-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.cert-card{background:var(--cream);border:1.5px solid #ddd;border-radius:10px;padding:12px 16px;flex:1;min-width:185px;}
+.cert-card .icon{font-size:22px;margin-bottom:4px;}
+.cert-card strong{display:block;color:var(--navy);font-size:13.5px;}
+.cert-card span{font-size:12px;color:var(--gray);}
+.cert-card .cert-no{font-size:11px;color:var(--teal);font-weight:700;margin-top:4px;}
+.cert-card .cert-valid{font-size:11px;color:var(--green);font-weight:600;}
+
+/* ── RECIPE CARD ── */
+.recipe-card{background:#fff;border-radius:14px;margin-bottom:18px;box-shadow:var(--shadow);overflow:hidden;}
+.recipe-header{background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;padding:15px 20px;}
+.recipe-header h3{font-size:16px;margin:0;font-weight:700;}
+.recipe-meta{display:flex;gap:14px;margin-top:5px;font-size:12px;opacity:.85;flex-wrap:wrap;}
+.recipe-body{padding:16px 20px;}
+.recipe-products{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.rp-badge{background:#fff3cd;border:1px solid #ffc107;color:#856404;border-radius:8px;padding:3px 10px;font-size:12px;font-weight:600;}
+.recipe-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:580px){.recipe-cols{grid-template-columns:1fr;}}
+.recipe-cols h4{font-size:12.5px;color:var(--red);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
+.recipe-cols ul,.recipe-cols ol{padding-left:18px;font-size:13px;line-height:1.6;}
+
+/* ── 65ML SPOTLIGHT ── */
+.spotlight{background:linear-gradient(135deg,#BF360C,#E64A19);color:#fff;border-radius:16px;padding:22px 24px;margin-bottom:18px;position:relative;overflow:hidden;}
+.spotlight::before{content:"⭐";position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.12;}
+.spotlight h2{font-size:20px;font-weight:800;margin-bottom:4px;}
+.spotlight .sub{font-size:13px;opacity:.85;margin-bottom:14px;}
+.price-badge{display:inline-block;background:var(--yellow);color:var(--navy);font-size:28px;font-weight:900;padding:10px 22px;border-radius:12px;margin-right:10px;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+.price-badge span{display:block;font-size:12px;font-weight:600;text-align:center;}
+.no-comp-badge{display:inline-block;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:10px;vertical-align:middle;}
+
+/* ── ESG ── */
+.esg-pillars{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.esg-pill{flex:1;min-width:130px;border-radius:10px;padding:13px 14px;color:#fff;font-size:12px;font-weight:700;text-align:center;}
+.esg-1{background:#e05a2b;}.esg-2{background:#e8971f;}.esg-3{background:#d4a000;}.esg-4{background:#2b8fd4;}.esg-5{background:#27a84f;}
+.esg-pill span{display:block;font-size:11px;font-weight:400;margin-top:3px;opacity:.9;}
+
+/* ── SHELF LIFE TABLE ── */
+.shelf-table{width:100%;border-collapse:collapse;font-size:14px;}
+.shelf-table th{background:var(--navy);color:#fff;padding:8px 12px;}
+.shelf-table td{padding:8px 12px;border-bottom:1px solid #eee;}
+.shelf-table tr:nth-child(even) td{background:#f8fafc;}
+
+/* ── LOADING SPINNER ── */
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:4px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── TOOLTIP ── */
+[data-tip]{position:relative;cursor:help;border-bottom:1px dashed currentColor;}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#333;color:#fff;font-size:11.5px;padding:5px 10px;border-radius:6px;white-space:nowrap;z-index:999;pointer-events:none;}
+
+/* ── HIDDEN ── */
+.vi-only,.en-only{}.hide{display:none!important;}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .topbar{padding:8px 14px;}
+  .topbar .brand h1{font-size:13px;}
+  .content{padding:18px 12px 60px;}
+  .price-badge{font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<div class="topbar">
+  <div class="brand">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Ayam_Brand_logo.svg/200px-Ayam_Brand_logo.svg.png"
+         onerror="this.style.display='none'" alt="Ayam Brand"/>
+    <h1>Sales Training Hub <span>Denis G.M. Company Limited · Internal Use Only</span></h1>
+  </div>
+  <div class="topbar-right">
+    <span class="v-badge">v3.0</span>
+    <div class="lang-toggle">
+      <button id="btn-vi" class="active" onclick="setLang('vi')">VI</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav-wrap">
+  <div class="nav-tabs" id="mainNav">
+    <button class="active" onclick="showModule('m-brand',this)">🏢 <span class="vi-only">Thương hiệu</span><span class="en-only hide">Brand</span></button>
+    <button onclick="showModule('m-retort',this)">🔬 <span class="vi-only">Retort</span><span class="en-only hide">Retort Tech</span></button>
+    <button onclick="showModule('m-products',this)">💪 <span class="vi-only">Sản phẩm & Win Points</span><span class="en-only hide">Products & Win Points</span></button>
+    <button onclick="showModule('m-coconut',this)">🥥 <span class="vi-only">Nước Cốt Dừa 65ml</span><span class="en-only hide">Coconut 65ml</span><span class="badge-new">⭐ NEW</span></button>
+    <button onclick="showModule('m-obj',this)">💬 <span class="vi-only">Xử lý phản đối</span><span class="en-only hide">Objections</span></button>
+    <button onclick="showModule('m-faq',this)">📚 <span class="vi-only">Kiến thức chuyên sâu</span><span class="en-only hide">Deep Knowledge</span><span class="badge">GS</span></button>
+    <button onclick="showModule('m-sku',this)">📦 <span class="vi-only">SKU Directory</span><span class="en-only hide">SKU Directory</span></button>
+    <button onclick="showModule('m-cook',this)">🍳 <span class="vi-only">Cookbook</span><span class="en-only hide">Cookbook</span></button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════
+     MODULE 1 – THƯƠNG HIỆU
+══════════════════════════════════════════ -->
+<div id="m-brand" class="module active">
+
+  <div class="card">
+    <h2>🏢 <span class="vi-only">Tổng quan Ayam Brand™ – Since 1892</span><span class="en-only hide">Ayam Brand™ Overview – Since 1892</span></h2>
+    <p class="vi-only">Ayam Brand™ được sáng lập năm <strong>1892</strong> tại Singapore bởi <strong>Alfred Clouet</strong> — một trong những thương hiệu thực phẩm đóng hộp lâu đời nhất châu Á. Thuộc <strong>Maison Denis</strong> – tập đoàn gia đình Pháp thành lập từ 1862, thành viên <strong>UN Global Compact</strong>. Tại Việt Nam, phân phối độc quyền bởi <strong>Công ty TNHH Denis G.M.</strong></p>
+    <p class="en-only hide">Ayam Brand™ was founded in <strong>1892</strong> in Singapore by <strong>Alfred Clouet</strong> — one of Asia's oldest canned food brands. Part of <strong>Maison Denis</strong>, a French family group from 1862 and <strong>UN Global Compact</strong> member. In Vietnam, exclusively distributed by <strong>Denis G.M. Co. Ltd.</strong></p>
+    <div style="margin-top:12px">
+      <span class="pill pill-red">Since 1892</span>
+      <span class="pill pill-teal vi-only">130+ năm di sản</span><span class="pill pill-teal en-only hide">130+ Year Heritage</span>
+      <span class="pill pill-yellow">Halal JAKIM & MUI</span>
+      <span class="pill pill-green">RSPO Palm Oil</span>
+      <span class="pill pill-gray">Dolphin Safe Tuna</span>
+      <span class="pill pill-gray vi-only">BPA-Free Cans (từ 2012)</span><span class="pill pill-gray en-only hide">BPA-Free Cans (since 2012)</span>
+      <span class="pill pill-purple">FSSC 22000</span>
+      <span class="pill pill-orange vi-only">40+ Quốc gia</span><span class="pill pill-orange en-only hide">40+ Countries</span>
+    </div>
+  </div>
+
+  <div class="stat-row" id="statRow">
+    <div class="stat-box"><div class="num" data-target="1694">0</div><div class="lbl vi-only">Điểm bán toàn quốc</div><div class="lbl en-only hide">Outlets Nationwide</div></div>
+    <div class="stat-box"><div class="num" data-target="30">0</div><div class="lbl vi-only">SKU tại Việt Nam</div><div class="lbl en-only hide">SKUs in Vietnam</div></div>
+    <div class="stat-box"><div class="num" data-target="130" data-suffix="+">0</div><div class="lbl vi-only">Năm di sản</div><div class="lbl en-only hide">Years of Heritage</div></div>
+    <div class="stat-box"><div class="num" data-target="40" data-suffix="+">0</div><div class="lbl vi-only">Quốc gia có mặt</div><div class="lbl en-only hide">Countries</div></div>
+    <div class="stat-box"><div class="num" data-target="35000" data-suffix="m²">0</div><div class="lbl vi-only">Diện tích nhà máy VN</div><div class="lbl en-only hide">VN Factory Area</div></div>
+  </div>
+
+  <div class="card">
+    <h2>📊 <span class="vi-only">Phủ hàng theo kênh – Storelist 2025</span><span class="en-only hide">Channel Coverage – Storelist 2025</span></h2>
+    <div class="stat-row">
+      <div class="stat-box" style="border-top-color:var(--red)"><div class="num" style="font-size:24px">660</div><div class="lbl">GT Central</div></div>
+      <div class="stat-box" style="border-top-color:var(--teal)"><div class="num" style="font-size:24px">546</div><div class="lbl">GT South</div></div>
+      <div class="stat-box" style="border-top-color:var(--yellow2)"><div class="num" style="font-size:24px">139</div><div class="lbl">GT North</div></div>
+      <div class="stat-box" style="border-top-color:var(--green)"><div class="num" style="font-size:24px">385</div><div class="lbl">MT Stores</div></div>
+      <div class="stat-box" style="border-top-color:var(--purple)"><div class="num" style="font-size:24px">65</div><div class="lbl">CVS / Sub-dist</div></div>
+    </div>
+    <p style="font-size:12px;color:#999;margin-top:-6px">* <span class="vi-only">Top tỉnh: HCM (801), Đà Nẵng (430), Huế (215), Hà Nội (148+)</span><span class="en-only hide">Top cities: HCM (801), Da Nang (430), Hue (215), Hanoi (148+)</span></p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>🏭 <span class="vi-only">Chứng nhận Nhà máy</span><span class="en-only hide">Factory Certifications</span></h2>
+      <p style="font-size:12px;color:var(--teal);margin-bottom:12px" class="vi-only">Cấp bởi Bureau Veritas Certification VN · Phạm vi: Đóng hộp & tiệt trùng retort</p>
+      <p style="font-size:12px;color:var(--teal);margin-bottom:12px" class="en-only hide">Issued by Bureau Veritas VN · Scope: Canned goods & retort sterilization</p>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="icon">🔬</div><strong>HACCP CODEX 2022</strong><span class="vi-only">Phân tích mối nguy & CCP</span><span class="en-only hide">Hazard Analysis & Critical Control Points</span><div class="cert-no">VN014024</div><div class="cert-valid">✅ Valid until 11-10-2028</div></div>
+        <div class="cert-card"><div class="icon">🛡️</div><strong>FSSC 22000 V6</strong><span class="vi-only">An toàn thực phẩm quốc tế</span><span class="en-only hide">International Food Safety (ISO 22000:2018)</span><div class="cert-no">VN014069-1</div><div class="cert-valid">✅ Valid until 25-10-2028</div></div>
+        <div class="cert-card"><div class="icon">✅</div><strong>GMP</strong><span class="vi-only">Thực hành sản xuất tốt</span><span class="en-only hide">Good Manufacturing Practice</span><div class="cert-no">VN014026</div><div class="cert-valid">✅ Valid until 14-08-2028</div></div>
+        <div class="cert-card"><div class="icon">🏅</div><strong>ISO 9001 & 14001</strong><span class="vi-only">Chất lượng & Môi trường</span><span class="en-only hide">Quality & Environmental Mgmt</span><div class="cert-valid">✅ Bureau Veritas</div></div>
+        <div class="cert-card"><div class="icon">☪️</div><strong>Halal JAKIM & MUI</strong><span class="vi-only">Malaysia & Indonesia</span><span class="en-only hide">Malaysia & Indonesia Halal</span><div class="cert-valid">✅ JAKIM (MY) · MUI (ID)</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🌿 <span class="vi-only">ESG & Bền vững</span><span class="en-only hide">ESG & Sustainability</span></h2>
+      <div class="esg-pillars">
+        <div class="esg-pill esg-1">Responsible Supply<span class="vi-only">Cung ứng có trách nhiệm</span><span class="en-only hide">Responsible sourcing</span></div>
+        <div class="esg-pill esg-2">Green Buildings 2030<span>Toà nhà xanh 2030</span></div>
+        <div class="esg-pill esg-3">Solar Energy<span>Năng lượng mặt trời</span></div>
+        <div class="esg-pill esg-4">Gender Equity<span>Bình đẳng giới</span></div>
+        <div class="esg-pill esg-5">100% Recyclable 2030<span>Bao bì tái chế 2030</span></div>
+      </div>
+      <ul style="margin-top:14px">
+        <li>🎯 <span class="vi-only">Trung hoà carbon vào năm</span><span class="en-only hide">Carbon neutral by</span> <strong>2040</strong></li>
+        <li>🌴 100% <strong>RSPO</strong>-certified sustainable palm oil</li>
+        <li>🐬 <span class="vi-only">Thành viên sáng lập <strong>SASPO</strong> cùng WWF-Singapore</span><span class="en-only hide">Founding member of <strong>SASPO</strong> with WWF-Singapore</span></li>
+        <li>🎣 100% <span class="vi-only">cá ngừ</span><span class="en-only hide">tuna</span> <strong>Dolphin Safe</strong> – <span class="vi-only">chống đánh bắt IUU</span><span class="en-only hide">anti-IUU fishing policy</span></li>
+        <li>♻️ <span class="vi-only">Mục tiêu bao bì tái chế <strong>100% vào 2030</strong></span><span class="en-only hide">100% recyclable packaging target by <strong>2030</strong></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🥫 <span class="vi-only">Nhà máy sản xuất theo nhóm sản phẩm</span><span class="en-only hide">Production Factories by Product Group</span></h2>
+    <div class="grid2">
+      <div><h3>🇻🇳 Vietnam Factory – Beans & Vegetables</h3><p class="vi-only">Đậu, cà chua, đậu Hà Lan, đậu gà, đậu đỏ. Nguyên liệu đậu nhập từ <strong>Mỹ (Great Northern Beans)</strong>. Nhà máy 35,000m², đạt FSSC 22000 / HACCP / GMP.</p><p class="en-only hide">Beans, tomatoes, peas, chickpeas, red kidney beans. Beans imported from <strong>USA (Great Northern variety)</strong>. 35,000m² factory, FSSC 22000 / HACCP / GMP.</p></div>
+      <div><h3>🇲🇾 Malaysia Factories (2) – Fish & Coconut</h3><p class="vi-only">Cá trích, cá thu, nước cốt dừa, sốt. Cá đánh bắt vùng biển lạnh → thịt chắc, Omega-3 dồi dào. Dừa <strong>Non-GMO</strong>. Quản lý trực tiếp bởi Denis Group.</p><p class="en-only hide">Sardines, mackerel, coconut milk, sauces. Cold-water fish → firmer flesh, richer Omega-3. <strong>Non-GMO</strong> coconuts. Directly managed by Denis Group.</p></div>
+      <div><h3>🇹🇭 Thailand Factory (1) – Tuna & Sriracha</h3><p class="vi-only">Cá ngừ Skipjack đánh bắt tự nhiên — 100% Dolphin Safe. Bắp ngọt chọn lọc. Sriracha từ ớt và tỏi thật.</p><p class="en-only hide">Wild-caught Skipjack tuna — 100% Dolphin Safe. Selected sweet corn. Thai-style Sriracha from real chillies and garlic.</p></div>
+      <div><h3>🇮🇩 Indonesia – Coconut Mini Pack</h3><p class="vi-only">Nước cốt dừa 65ml Tetra Pak — <strong>sản phẩm chiến lược H2 2026</strong>. Dừa nguồn gốc Indonesia.</p><p class="en-only hide">Coconut milk 65ml Tetra Pak — <strong>H2 2026 strategic product</strong>. Indonesian coconut origin.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 2 – RETORT TECHNOLOGY
+══════════════════════════════════════════ -->
+<div id="m-retort" class="module">
+  <div class="card">
+    <h2>🔬 <span class="vi-only">Công nghệ Retort – Tại sao Ayam Brand khác biệt</span><span class="en-only hide">Retort Technology – Why Ayam Brand is Different</span></h2>
+    <p class="vi-only" style="font-size:14px;margin-bottom:16px">Retort là công nghệ tiệt trùng nhiệt áp suất cao — tiêu chuẩn vàng của ngành thực phẩm đóng hộp quốc tế. Đây là lý do <strong>không cần chất bảo quản hóa học</strong> mà vẫn có HSD 3 năm.</p>
+    <p class="en-only hide" style="font-size:14px;margin-bottom:16px">Retort is high-pressure thermal sterilization — the gold standard of international canned food. This is why <strong>no chemical preservatives are needed</strong> while achieving a 3-year shelf life.</p>
+
+    <div class="retort-flow">
+      <div class="retort-step"><div class="step-num">1</div><div class="step-icon">🔒</div><strong class="vi-only">Hút chân không</strong><strong class="en-only hide">Vacuum Seal</strong><span class="vi-only">Loại bỏ hoàn toàn không khí & oxy khỏi lon</span><span class="en-only hide">Removes all air & oxygen from can</span></div>
+      <div class="retort-arrow">→</div>
+      <div class="retort-step"><div class="step-num">2</div><div class="step-icon">🔐</div><strong class="vi-only">Hàn kín hermetic</strong><strong class="en-only hide">Hermetic Seal</strong><span class="vi-only">Niêm phong hoàn toàn – không khí ngoài không thể xâm nhập</span><span class="en-only hide">Complete seal – outside air cannot enter</span></div>
+      <div class="retort-arrow">→</div>
+      <div class="retort-step"><div class="step-num">3</div><div class="step-icon">🌡️</div><strong>115–135°C</strong><span class="vi-only">Gia nhiệt áp suất cao trong retort autoclave. Tiêu diệt 100% vi sinh vật & bào tử</span><span class="en-only hide">High-pressure heat in retort autoclave. Destroys 100% of microorganisms & spores</span></div>
+      <div class="retort-arrow">→</div>
+      <div class="retort-step"><div class="step-num">4</div><div class="step-icon">❄️</div><strong class="vi-only">Làm lạnh kiểm soát</strong><strong class="en-only hide">Controlled Cooling</strong><span class="vi-only">Hạ nhiệt từ từ, giữ kết cấu sản phẩm & cân bằng áp suất lon</span><span class="en-only hide">Gradual cooling preserves product texture & balances can pressure</span></div>
+    </div>
+
+    <div class="infographic" style="margin-top:20px">
+      <div class="infographic-header" style="background:linear-gradient(135deg,var(--purple),#7B1FA2)">
+        <div>
+          <h3 class="vi-only">⚔️ Retort vs Chất Bảo Quản Hóa Học – So sánh trực tiếp</h3>
+          <h3 class="en-only hide">⚔️ Retort vs Chemical Preservatives – Direct Comparison</h3>
+          <div class="sub vi-only">Dùng khi khách hỏi "không có BQ sao bảo quản được lâu?"</div>
+          <div class="sub en-only hide">Use when customers ask "how can it last without preservatives?"</div>
+        </div>
+      </div>
+      <div class="infographic-body">
+        <div class="comp-vs">
+          <div class="comp-side ayam">
+            <h4>🏆 Ayam Brand – Retort</h4>
+            <ul>
+              <li class="vi-only">Tiệt trùng vật lý – không hoá chất</li><li class="en-only hide">Physical sterilization – no chemicals</li>
+              <li class="vi-only">HSD 3 năm hoàn toàn tự nhiên</li><li class="en-only hide">3-year shelf life – all natural</li>
+              <li class="vi-only">Không E211, E202, BHA, BHT</li><li class="en-only hide">No E211, E202, BHA, BHT</li>
+              <li class="vi-only">BPA-Free (đang hoàn thiện)</li><li class="en-only hide">BPA-Free (in transition)</li>
+              <li class="vi-only">Khi mở lon = lần đầu không khí vào</li><li class="en-only hide">Opening can = first time air enters</li>
+            </ul>
+          </div>
+          <div class="vs-mid">VS</div>
+          <div class="comp-side">
+            <h4 style="color:var(--gray)">⚠️ <span class="vi-only">Nhãn nội địa VN phổ biến</span><span class="en-only hide">Common VN domestic brands</span></h4>
+            <ul>
+              <li class="vi-only">E211 (Sodium Benzoate) – ức chế vi khuẩn hóa học</li><li class="en-only hide">E211 (Sodium Benzoate) – chemical inhibitor</li>
+              <li class="vi-only">E202 (Potassium Sorbate) – chống nấm mốc</li><li class="en-only hide">E202 (Potassium Sorbate) – anti-mold</li>
+              <li class="vi-only">HSD thường ngắn hơn hoặc tương đương</li><li class="en-only hide">Shelf life often shorter or similar</li>
+              <li class="vi-only">Khách hàng ngày càng né tránh E-number</li><li class="en-only hide">Consumers increasingly avoid E-numbers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="faq-item" style="margin-top:16px;padding-top:0;border:none">
+          <div class="note">💬 <strong class="vi-only">Script bán hàng:</strong><strong class="en-only hide">Sales script:</strong> <em class="vi-only">"Lon Ayam khi mở ra là lần đầu tiên không khí chạm vào sản phẩm — đó là lý do không cần chất bảo quản hóa học. Công nghệ này đã tồn tại 200 năm, HSD 3 năm là bằng chứng rõ nhất."</em><em class="en-only hide">"Opening the can is the first time air touches the product — that's exactly why no chemical preservatives are needed. This technology has existed for 200 years; the 3-year shelf life is the clearest proof."</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>🥫 <span class="vi-only">Công nghệ BPA-Free Can</span><span class="en-only hide">BPA-Free Can Technology</span></h2>
+      <p class="vi-only" style="font-size:13.5px;margin-bottom:12px"><strong>BPA (Bisphenol A)</strong> là hoá chất trong lớp phủ bên trong lon truyền thống — có thể di chuyển vào thực phẩm, gây lo ngại sức khoẻ. Ayam Brand đã chuyển đổi sang <strong>BPA-Free lining từ 2012</strong>.</p>
+      <p class="en-only hide" style="font-size:13.5px;margin-bottom:12px"><strong>BPA (Bisphenol A)</strong> is a chemical in traditional can linings — can migrate into food, raising health concerns. Ayam Brand switched to <strong>BPA-Free lining from 2012</strong>.</p>
+      <div class="can-compare">
+        <div class="can-card bpa">
+          <div class="cc-icon">✅</div>
+          <h4>Ayam Brand<br/>BPA-Free Can</h4>
+          <ul>
+            <li class="vi-only">Lớp phủ không BPA/BPF/BPS</li><li class="en-only hide">No BPA/BPF/BPS lining</li>
+            <li class="vi-only">Ngăn oxy & vi khuẩn</li><li class="en-only hide">Blocks oxygen & bacteria</li>
+            <li class="vi-only">An toàn hơn cho sức khoẻ</li><li class="en-only hide">Safer for health</li>
+            <li class="vi-only">HSD dài hơn</li><li class="en-only hide">Longer shelf life</li>
+          </ul>
+        </div>
+        <div class="can-card std">
+          <div class="cc-icon">⚠️</div>
+          <h4 class="vi-only">Lon Truyền Thống<br/>(có BPA)</h4><h4 class="en-only hide">Traditional Can<br/>(with BPA)</h4>
+          <ul>
+            <li class="vi-only">Lớp epoxy chứa BPA</li><li class="en-only hide">Epoxy lining contains BPA</li>
+            <li class="vi-only">BPA có thể migrate vào thực phẩm</li><li class="en-only hide">BPA may migrate into food</li>
+            <li class="vi-only">Tiêu chuẩn cũ</li><li class="en-only hide">Older standard</li>
+          </ul>
+        </div>
+        <div class="can-card tetra">
+          <div class="cc-icon">🥥</div>
+          <h4>Tetra Pak 65ml<br/>(Coconut Mini)</h4>
+          <ul>
+            <li class="vi-only">Không kim loại – hoàn toàn BPA-Free</li><li class="en-only hide">No metal – completely BPA-Free</li>
+            <li class="vi-only">Thiết kế tam giác độc quyền</li><li class="en-only hide">Exclusive triangle design</li>
+            <li class="vi-only">Tái chế được</li><li class="en-only hide">Recyclable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>📖 <span class="vi-only">3 Cơ chế bảo quản tự nhiên</span><span class="en-only hide">3 Natural Preservation Mechanisms</span></h2>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
+        <div style="background:#f3e5f5;border-radius:10px;padding:14px;border-left:4px solid var(--purple)">
+          <strong style="color:var(--purple)">1. 🔬 Retort Sterilization</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only">Gia nhiệt 115–135°C áp suất cao trong autoclave → tiêu diệt 100% vi sinh vật & bào tử chịu nhiệt (kể cả <em data-tip="Loại vi khuẩn nguy hiểm nhất trong thực phẩm đóng hộp">Clostridium botulinum</em>)</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide">Heat 115–135°C at high pressure in autoclave → destroys 100% of microorganisms & heat-resistant spores (including <em data-tip="The most dangerous bacteria in canned foods">Clostridium botulinum</em>)</p>
+        </div>
+        <div style="background:#e8f5e9;border-radius:10px;padding:14px;border-left:4px solid var(--green)">
+          <strong style="color:var(--green)">2. 🧂 <span class="vi-only">Muối tự nhiên (Brine)</span><span class="en-only hide">Natural Salt (Brine)</span></strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only">Nước muối trong lon đậu/peas ức chế vi khuẩn bằng cơ chế thẩm thấu tự nhiên — không cần thêm hoá chất bảo quản</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide">Brine in bean/pea cans inhibits bacteria via natural osmosis — no chemical preservatives needed</p>
+        </div>
+        <div style="background:#e3f2fd;border-radius:10px;padding:14px;border-left:4px solid var(--teal)">
+          <strong style="color:var(--teal)">3. 🥫 BPA-Free Lining (từ 2012)</strong>
+          <p style="font-size:13px;margin-top:5px" class="vi-only">Lớp phủ bên trong lon ngăn oxy & vi khuẩn xâm nhập sau khi tiệt trùng → kéo dài HSD, an toàn hơn cho sức khoẻ</p>
+          <p style="font-size:13px;margin-top:5px" class="en-only hide">Interior lining blocks oxygen & bacteria after sterilization → extends shelf life, safer for health</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 3 – PRODUCTS & WIN POINTS
+══════════════════════════════════════════ -->
+<div id="m-products" class="module">
+
+  <div class="card" style="margin-bottom:20px">
+    <h2>💪 <span class="vi-only">Điểm mạnh & Win Arguments theo nhóm sản phẩm</span><span class="en-only hide">Product Strengths & Win Arguments by Group</span></h2>
+    <p style="font-size:13.5px" class="vi-only">Mỗi nhóm sản phẩm có <strong>5 luận điểm bán hàng cốt lõi</strong> — ghi nhớ và dùng trực tiếp khi gặp khách. Kéo xuống để xem infographic dinh dưỡng từng nhóm.</p>
+    <p style="font-size:13.5px" class="en-only hide">Each product group has <strong>5 core win arguments</strong> — memorize and use directly with customers. Scroll down for nutrition infographics per group.</p>
+  </div>
+
+  <!-- GROUP: ĐẬU -->
+  <div class="product-group">
+    <div class="product-group-title" style="background:var(--navy)">🫘 <span class="vi-only">Nhóm Đậu – Baked Beans / Chickpeas / Red Kidney Beans</span><span class="en-only hide">Bean Group – Baked Beans / Chickpeas / Red Kidney Beans</span></div>
+    <div class="product-group-body">
+      <div class="win-grid">
+        <div class="win-card"><div class="wc-num">01</div><div class="wc-title">🌽 Great Northern Beans từ Mỹ</div><div class="wc-body vi-only">Hạt to hơn Navy Beans (Heinz) — kết cấu chắc, không nhão. Nhập khẩu trực tiếp từ USA & Canada.</div><div class="wc-body en-only hide">Larger than Navy Beans (Heinz) — firm texture, not mushy. Directly imported from USA & Canada.</div></div>
+        <div class="win-card"><div class="wc-num">02</div><div class="wc-title">🏭 Nhà máy VN FSSC 22000 – giá tốt nhất</div><div class="wc-body vi-only">Sản xuất tại VN → giá competitive 18,900–29,900đ. Heinz từ UK giá 42–49k. Chất lượng quốc tế, giá địa phương.</div><div class="wc-body en-only hide">Made in VN → competitive price 18,900–29,900₫. Heinz from UK costs 42–49k. International quality, local price.</div></div>
+        <div class="win-card"><div class="wc-num">03</div><div class="wc-title">☪️ Halal JAKIM + MUI đồng thời</div><div class="wc-body vi-only">Duy nhất trong phân khúc có cả 2 chứng nhận. Heinz, Fiamma, Cirio KHÔNG có Halal đầy đủ.</div><div class="wc-body en-only hide">Only brand with both certifications simultaneously. Heinz, Fiamma, Cirio lack full Halal.</div></div>
+        <div class="win-card"><div class="wc-num">04</div><div class="wc-title">📦 3 Variants – đa dạng nhất</div><div class="wc-body vi-only">Tomato 230g (entry) + Tomato 425g (family) + Cheeze 425g. Cộng thêm Chickpeas + Red Kidney Beans.</div><div class="wc-body en-only hide">Tomato 230g (entry) + Tomato 425g (family) + Cheeze 425g. Plus Chickpeas + Red Kidney Beans.</div></div>
+        <div class="win-card"><div class="wc-num">05</div><div class="wc-title">☕ Đậu Đỏ – Café & Dessert Trend</div><div class="wc-body vi-only">Red Bean Latte, Frappé, Parfait đang bùng nổ. Mở lon → dùng ngay, không cần ngâm nấu. Bổ sung đạm thực vật + chất xơ.</div><div class="wc-body en-only hide">Red Bean Latte, Frappé, Parfait trend is booming. Open can → use immediately. Adds plant protein + fiber.</div></div>
+      </div>
+
+      <!-- Infographic: Dinh dưỡng đậu -->
+      <div class="infographic" style="margin-top:18px">
+        <div class="infographic-header" style="background:linear-gradient(135deg,#1B3A57,#2F7898)">
+          <div>
+            <h3>📊 <span class="vi-only">Dinh dưỡng Đậu Ayam Brand (per 100g)</span><span class="en-only hide">Ayam Brand Bean Nutrition (per 100g)</span></h3>
+            <div class="sub vi-only">Nguồn: Great Northern Beans / Chickpeas / Red Kidney Beans – USDA data</div>
+            <div class="sub en-only hide">Source: Great Northern Beans / Chickpeas / Red Kidney Beans – USDA data</div>
+          </div>
+        </div>
+        <div class="infographic-body">
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Protein (đạm)</div><div class="nutr-label en-only hide">Protein</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="72" style="background:var(--navy)">8–9g</div></div><div class="nutr-val">8–9g</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Chất xơ</div><div class="nutr-label en-only hide">Dietary Fiber</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="55" style="background:var(--green)">6g</div></div><div class="nutr-val">6g</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Carbohydrate</div><div class="nutr-label en-only hide">Carbohydrate</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="85" style="background:var(--yellow2);">18–20g</div></div><div class="nutr-val">18–20g</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Chất béo</div><div class="nutr-label en-only hide">Fat</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="5" style="background:var(--teal)">0.5g</div></div><div class="nutr-val">0.5g</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Sắt (% DV)</div><div class="nutr-label en-only hide">Iron (% DV)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="45" style="background:var(--red)">~20%</div></div><div class="nutr-val">~20%</div></div>
+          <div class="note vi-only">✅ Không cholesterol · ✅ Ít béo · ✅ Đạm thực vật – phù hợp ăn chay, plant-based lifestyle · ✅ Chỉ số GI thấp – tốt cho người tiểu đường</div>
+          <div class="note en-only hide">✅ Zero cholesterol · ✅ Low fat · ✅ Plant protein – ideal for vegetarian, plant-based · ✅ Low GI – good for diabetics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP: CÁ -->
+  <div class="product-group">
+    <div class="product-group-title" style="background:#01579B">🐟 <span class="vi-only">Nhóm Cá – Tuna / Sardines / Mackerel</span><span class="en-only hide">Fish Group – Tuna / Sardines / Mackerel</span></div>
+    <div class="product-group-body">
+      <div class="win-grid">
+        <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">01</div><div class="wc-title">🐟 73% Cá Ngừ – cao nhất phân khúc</div><div class="wc-body vi-only">Sea Crown 53% · Hạ Long ~57%. Tính giá/gram thịt thực tế: Ayam có thể RẺ HƠN Sea Crown.</div><div class="wc-body en-only hide">Sea Crown 53% · Ha Long ~57%. On price-per-gram-of-fish: Ayam may be CHEAPER than Sea Crown.</div></div>
+        <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">02</div><div class="wc-title">🫒 EVOO – Extra Virgin Olive Oil</div><div class="wc-body vi-only">Cá Trích Ayam dùng EVOO – cao cấp nhất. 3 Cô Gái dùng dầu đậu nành. Rẻ hơn Minerva 30–50%.</div><div class="wc-body en-only hide">Ayam Sardines use EVOO – highest grade. 3 Co Gai uses soybean oil. 30–50% cheaper than Minerva.</div></div>
+        <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">03</div><div class="wc-title">🌊 Dolphin Safe + Không MSG</div><div class="wc-body vi-only">Sea Crown, Hạ Long, 3 Cô Gái chưa xác nhận Dolphin Safe. Hạ Long CÓ MSG. Ayam = không MSG + bền vững.</div><div class="wc-body en-only hide">Sea Crown, Ha Long, 3 Co Gai not confirmed Dolphin Safe. Ha Long HAS MSG. Ayam = no MSG + sustainable.</div></div>
+        <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">04</div><div class="wc-title">🌊 Biển lạnh → Omega-3 cao hơn</div><div class="wc-body vi-only">Cá trích Atlantic Morocco + Cá thu Atlantic đánh bắt vùng biển lạnh → tích tụ mỡ → Omega-3 dồi dào hơn cá biển ấm.</div><div class="wc-body en-only hide">Atlantic Moroccan sardines + Atlantic mackerel from cold waters → more fat accumulation → richer Omega-3 than warm-water fish.</div></div>
+        <div class="win-card" style="border-left-color:#01579B"><div class="wc-num">05</div><div class="wc-title">📦 Đa dạng nhất – 7+4+2 variants</div><div class="wc-body vi-only">Tuna: 7 variants (Chunks/Flakes × Oil/Water/Olive + Chilli). Sardine: 4 variants EVOO. Mackerel: 2 sizes.</div><div class="wc-body en-only hide">Tuna: 7 variants. Sardine: 4 EVOO flavours. Mackerel: 2 sizes. Most diverse fish portfolio in VN.</div></div>
+      </div>
+
+      <!-- Infographic: Omega-3 -->
+      <div class="infographic" style="margin-top:18px">
+        <div class="infographic-header" style="background:linear-gradient(135deg,#01579B,#0288D1)">
+          <div>
+            <h3>🐟 <span class="vi-only">Omega-3 & Dinh dưỡng nhóm Cá Ayam Brand (per 100g)</span><span class="en-only hide">Omega-3 & Fish Nutrition – Ayam Brand (per 100g)</span></h3>
+            <div class="sub vi-only">Biển lạnh → Omega-3 cao hơn biển ấm. Nguồn: USDA / WHO data</div>
+            <div class="sub en-only hide">Cold water → Higher Omega-3 than warm water fish. Source: USDA / WHO data</div>
+          </div>
+        </div>
+        <div class="infographic-body">
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Omega-3 (Cá Trích)</div><div class="nutr-label en-only hide">Omega-3 (Sardine)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="90" style="background:#01579B">~2,200mg</div></div><div class="nutr-val">~2,200mg</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Omega-3 (Cá Thu)</div><div class="nutr-label en-only hide">Omega-3 (Mackerel)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="85" style="background:#0288D1">~2,000mg</div></div><div class="nutr-val">~2,000mg</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Omega-3 (Cá Ngừ)</div><div class="nutr-label en-only hide">Omega-3 (Tuna)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="40" style="background:var(--teal)">~900mg</div></div><div class="nutr-val">~900mg</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Protein (Cá Ngừ)</div><div class="nutr-label en-only hide">Protein (Tuna)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="95" style="background:var(--navy)">26–29g</div></div><div class="nutr-val">26–29g</div></div>
+          <div class="nutr-bar-row"><div class="nutr-label vi-only">Canxi (Cá Trích)</div><div class="nutr-label en-only hide">Calcium (Sardine)</div><div class="nutr-bar-wrap"><div class="nutr-bar" data-w="60" style="background:var(--green)">~350mg</div></div><div class="nutr-val">~350mg</div></div>
+          <div class="note vi-only">🐟 Cá Trích chứa canxi cao gấp đôi sữa (per 100g) · Vitamin B12 từ cá thu không có trong rau củ · WHO khuyến nghị Omega-3 1,000–2,000mg/ngày</div>
+          <div class="note en-only hide">🐟 Sardines contain 2× more calcium than milk (per 100g) · B12 from mackerel not found in vegetables · WHO recommends 1,000–2,000mg Omega-3/day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP: DỪA -->
+  <div class="product-group">
+    <div class="product-group-title" style="background:var(--coconut)">🥥 <span class="vi-only">Nhóm Dừa – Coconut Milk 400ml & 65ml</span><span class="en-only hide">Coconut Group – Coconut Milk 400ml & 65ml</span></div>
+    <div class="product-group-body">
+      <div class="win-grid">
+        <div class="win-card coconut"><div class="wc-num">01</div><div class="wc-title">🌴 Non-GMO + Nhà máy Denis Malaysia</div><div class="wc-body vi-only">Dừa Non-GMO, nhà máy quản lý trực tiếp – không outsource. Chaokoh, Kara đều third-party. Denis kiểm soát toàn bộ chuỗi.</div><div class="wc-body en-only hide">Non-GMO coconuts, factory directly managed – no outsourcing. Chaokoh, Kara are third-party. Denis controls full supply chain.</div></div>
+        <div class="win-card coconut highlight"><div class="wc-num">02</div><div class="wc-title">⭐ 65ml – Không đối thủ tại VN</div><div class="wc-body vi-only">Thiết kế tam giác Tetra Pak độc quyền. 9,900đ/gói. Chưa có sản phẩm nào cùng quy cách tại VN. First mover advantage.</div><div class="wc-body en-only hide">Exclusive triangle Tetra Pak design. 9,900₫/pack. No product with same format in VN. Clear first mover advantage.</div></div>
+        <div class="win-card coconut"><div class="wc-num">03</div><div class="wc-title">☪️ Halal JAKIM + MUI – duy nhất 2 chứng nhận</div><div class="wc-body vi-only">Kara chỉ có MUI (Indonesia). Chaokoh chỉ có Halal Thailand. Ayam Brand = duy nhất có cả 2 đồng thời.</div><div class="wc-body en-only hide">Kara: MUI only. Chaokoh: Thai Halal only. Ayam Brand = only brand with both simultaneously.</div></div>
+        <div class="win-card coconut"><div class="wc-num">04</div><div class="wc-title">📦 BPA-Free + HSD 36 tháng dài nhất</div><div class="wc-body vi-only">Tân Nhiên chỉ HSD 12–18T. Ayam Brand 36T với BPA-Free cans. An toàn hơn + tồn kho linh hoạt hơn.</div><div class="wc-body en-only hide">Tan Nhien only 12–18 months. Ayam 36 months with BPA-Free cans. Safer + more flexible inventory.</div></div>
+        <div class="win-card coconut"><div class="wc-num">05</div><div class="wc-title">💰 Rẻ hơn Chaokoh 10–20%</div><div class="wc-body vi-only">Ayam 400ml ~38,000đ vs Chaokoh 42,000–48,000đ. Non-GMO + dual Halal + BPA-Free – giá trị vượt trội.</div><div class="wc-body en-only hide">Ayam 400ml ~38,000₫ vs Chaokoh 42,000–48,000₫. Non-GMO + dual Halal + BPA-Free – superior value.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 4 – 65ML COCONUT SPOTLIGHT
+══════════════════════════════════════════ -->
+<div id="m-coconut" class="module">
+
+  <div class="spotlight">
+    <h2>🥥 <span class="vi-only">Nước Cốt Dừa Ayam Brand 65ml</span><span class="en-only hide">Ayam Brand Coconut Milk 65ml</span></h2>
+    <div class="sub vi-only">Sản phẩm chiến lược H2 2026 · Slogan: "EVERYDAY BEST PRICE" · Mục tiêu: Phủ hàng NHANH NHẤT danh mục</div>
+    <div class="sub en-only hide">H2 2026 Strategic Product · Slogan: "EVERYDAY BEST PRICE" · Goal: FASTEST distribution growth in portfolio</div>
+    <div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div class="price-badge">9,900đ<span>Consumer Price</span></div>
+      <div class="no-comp-badge">🏆 <span class="vi-only">Không có đối thủ trực tiếp tại VN</span><span class="en-only hide">No direct competitor in VN</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>📦 <span class="vi-only">Thông tin sản phẩm</span><span class="en-only hide">Product Specifications</span></h2>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse">
+        <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy);width:45%" class="vi-only">Thành phần</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy);width:45%" class="en-only hide">Ingredients</td><td style="padding:7px 0;border-bottom:1px solid #eee" class="vi-only">Chiết xuất dừa (63%), nước, guar gum</td><td style="padding:7px 0;border-bottom:1px solid #eee" class="en-only hide">Coconut extract (63%), water, guar gum</td></tr>
+        <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="vi-only">Xuất xứ</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="en-only hide">Origin</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee">🇮🇩 Indonesia</td></tr>
+        <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="vi-only">Bao bì</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="en-only hide">Packaging</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee" class="vi-only">Tetra Pak tam giác – thiết kế độc quyền</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee" class="en-only hide">Triangle Tetra Pak – exclusive design</td></tr>
+        <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="vi-only">Quy cách</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="en-only hide">Pack Config</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee">46 packs / carton</td></tr>
+        <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="vi-only">Hạn sử dụng</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-weight:700;color:var(--navy)" class="en-only hide">Shelf Life</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee" class="vi-only">18 tháng – bảo quản thường</td><td colspan="2" style="padding:7px 0;border-bottom:1px solid #eee" class="en-only hide">18 months – ambient storage</td></tr>
+        <tr><td style="padding:7px 0;font-weight:700;color:var(--navy)" class="vi-only">Chứng nhận</td><td style="padding:7px 0;font-weight:700;color:var(--navy)" class="en-only hide">Certifications</td><td colspan="2" style="padding:7px 0">☪️ Halal JAKIM + MUI · FSSC 22000 · Non-GMO</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>💰 <span class="vi-only">Cơ cấu giá phân phối</span><span class="en-only hide">Distribution Price Structure</span></h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:#e3f2fd;border-radius:10px;padding:12px;border-left:4px solid var(--teal)"><div style="font-size:11px;color:var(--teal);font-weight:700;text-transform:uppercase">① DGM → Đại lý / Agent</div><div style="font-size:20px;font-weight:800;color:var(--navy);margin-top:4px">7,400đ <span style="font-size:12px;font-weight:400;color:var(--gray)">/ gói (chưa VAT 8%)</span></div></div>
+        <div style="background:#e8f5e9;border-radius:10px;padding:12px;border-left:4px solid var(--green)"><div style="font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase">② Đại lý → Điểm bán / Outlet</div><div style="font-size:20px;font-weight:800;color:var(--navy);margin-top:4px">~8,000đ <span style="font-size:12px;font-weight:400;color:var(--gray)">→ Margin ~8.1%</span></div></div>
+        <div style="background:#fff8e1;border-radius:10px;padding:12px;border-left:4px solid var(--orange)"><div style="font-size:11px;color:var(--orange);font-weight:700;text-transform:uppercase">③ Giá người tiêu dùng / Consumer</div><div style="font-size:26px;font-weight:900;color:var(--red);margin-top:4px">9,900đ <span style="font-size:12px;font-weight:700;color:var(--orange)">EVERYDAY BEST PRICE</span></div><div style="font-size:12px;color:var(--gray);margin-top:2px" class="vi-only">Margin điểm bán ≈ 14.6% – hấp dẫn nhất danh mục</div><div style="font-size:12px;color:var(--gray);margin-top:2px" class="en-only hide">Outlet margin ≈ 14.6% – most attractive in portfolio</div></div>
+        <div style="background:var(--cream);border-radius:10px;padding:10px;font-size:12.5px;color:var(--brown)">🎁 <strong class="vi-only">Khuyến mãi đặt hàng đầu:</strong><strong class="en-only hide">Opening order promo:</strong> <span class="vi-only">Mua 8 thùng tặng 1 thùng</span><span class="en-only hide">Buy 8 cartons get 1 free</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🍳 <span class="vi-only">Ứng dụng thực tế</span><span class="en-only hide">Real-World Applications</span></h2>
+    <div class="grid3">
+      <div style="background:#e0f2f1;border-radius:10px;padding:14px"><strong style="color:var(--coconut)">🏠 <span class="vi-only">Nấu ăn tại nhà</span><span class="en-only hide">Home Cooking</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>🍲 <span class="vi-only">Cà ri 2 người – đúng lượng</span><span class="en-only hide">Curry for 2 – perfect portion</span></li><li>🍜 <span class="vi-only">Canh / soup</span><span class="en-only hide">Soup / broth</span></li><li>🍮 <span class="vi-only">Chè dừa, bánh</span><span class="en-only hide">Coconut desserts</span></li><li>🥤 <span class="vi-only">Coconut smoothie</span><span class="en-only hide">Coconut smoothie</span></li></ul></div>
+      <div style="background:#f3e5f5;border-radius:10px;padding:14px"><strong style="color:var(--purple)">☕ <span class="vi-only">Café & Dessert Trend</span><span class="en-only hide">Café & Dessert Trend</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>☕ Coconut Coffee / Latte</li><li>🧋 Coconut milk tea</li><li>🍦 <span class="vi-only">Kem dừa, parfait</span><span class="en-only hide">Coconut ice cream</span></li><li>🥐 <span class="vi-only">Bánh ngọt, tráng miệng</span><span class="en-only hide">Pastries, desserts</span></li></ul></div>
+      <div style="background:#fff3e0;border-radius:10px;padding:14px"><strong style="color:var(--orange)">🍽️ <span class="vi-only">HoReCa nhỏ</span><span class="en-only hide">Small HoReCa</span></strong><ul style="margin-top:8px;font-size:13px;list-style:none;line-height:1.8"><li>🍴 <span class="vi-only">Quán cơm – 1 gói = 1 phần cà ri</span><span class="en-only hide">Rice shops – 1 pack = 1 curry portion</span></li><li>🚚 Food truck</li><li>🏨 <span class="vi-only">Khách sạn mini</span><span class="en-only hide">Mini hotel amenity</span></li><li>📦 <span class="vi-only">Căng tin, bếp nhỏ</span><span class="en-only hide">Canteen, small kitchen</span></li></ul></div>
+    </div>
+    <div class="note" style="margin-top:14px">
+      💬 <strong class="vi-only">GT Script:</strong><strong class="en-only hide">GT Script:</strong> <em class="vi-only">"Anh/chị ơi, đây là nước cốt dừa gói nhỏ 65ml – giá chỉ 9,900đ. Khách nấu 1 tô canh hay 1 phần cà ri là vừa đúng, không thừa không phải bỏ. Thử lấy 5 thùng xem khách phản hồi thế nào – bán hết em đổi ngay."</em>
+      <em class="en-only hide">"This is the 65ml mini coconut milk – only 9,900₫. Perfect for 1 bowl of soup or 1 curry portion – no waste, no leftovers. Try 5 cartons and see customer response – if it doesn't sell, I'll swap immediately."</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 5 – XỬ LÝ PHẢN ĐỐI
+══════════════════════════════════════════ -->
+<div id="m-obj" class="module">
+  <div class="card">
+    <h2>💬 <span class="vi-only">Xử lý phản đối từ điểm bán GT</span><span class="en-only hide">Handling GT Outlet Objections</span></h2>
+    <p class="vi-only" style="font-size:13.5px">Kỹ thuật cốt lõi: <strong class="tag-ack">Xác nhận</strong> → <strong class="tag-exp">Giải thích</strong> → <strong class="tag-pro">Đề xuất</strong>. Đừng tranh luận — hãy đặt câu hỏi ngược để dẫn dắt.</p>
+    <p class="en-only hide" style="font-size:13.5px">Core technique: <strong class="tag-ack">Acknowledge</strong> → <strong class="tag-exp">Explain</strong> → <strong class="tag-pro">Propose</strong>. Don't argue — ask counter-questions to guide the conversation.</p>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Giá cao quá, khách tôi không mua đâu ❞</div>
+    <div class="q en-only hide">❝ The price is too high, my customers won't buy it ❞</div>
+    <div class="a vi-only"><span class="tag-ack">Xác nhận:</span> "Dạ em hiểu, giá Ayam Brand nhỉnh hơn nhãn nội địa."<br/><span class="tag-exp">Giải thích:</span> "Nhưng Ayam Brand đang có mặt tại <strong>1,694 điểm bán</strong> toàn quốc — khách đã quen tìm mua. Nguyên liệu nhập từ Mỹ, đóng lon nhà máy FSSC 22000 — không phải giá cao vô lý."<br/><span class="tag-pro">Đề xuất:</span> "Thử nhập 1 thùng Đậu Sốt Cà 230g — entry-level để khách quen trước. Em hỗ trợ trưng bày."</div>
+    <div class="a en-only hide"><span class="tag-ack">Acknowledge:</span> "I understand — Ayam Brand is priced higher than local brands."<br/><span class="tag-exp">Explain:</span> "But Ayam Brand is already in <strong>1,694 outlets</strong> nationwide — customers are already looking for it. Ingredients from the USA, canned in an FSSC 22000-certified factory — the price reflects real quality."<br/><span class="tag-pro">Propose:</span> "Try 1 carton of Baked Beans 230g — entry-level for customers to try. I'll help with shelf display."</div>
+    <div class="tip vi-only">💡 <strong>Tip:</strong> "Khách anh/chị hay mua tầm 20–30k? Đậu Hà Lan 230g của em ở đúng tầm đó — thử để xem khách phản hồi."</div>
+    <div class="tip en-only hide">💡 <strong>Tip:</strong> "What price range do your customers usually buy? Our Processed Peas 230g fits right in — try it and see the response."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Tôi đã có mặt hàng này rồi, nhãn khác ❞</div>
+    <div class="q en-only hide">❝ I already carry this product type under another brand ❞</div>
+    <div class="a vi-only"><span class="tag-ack">Xác nhận:</span> "Dạ đúng, anh/chị đang phục vụ được một nhóm khách."<br/><span class="tag-exp">Giải thích:</span> "Ayam Brand là nhãn quốc tế 130 năm, không BQ, BPA-Free — phân khúc khách hàng <em>khác</em>: gia đình quan tâm sức khoẻ, khách nước ngoài, người mua theo thương hiệu."<br/><span class="tag-pro">Đề xuất:</span> "Trưng thêm 1 facing nhỏ — test 30 ngày. Không bán được, em đổi hàng."</div>
+    <div class="a en-only hide"><span class="tag-ack">Acknowledge:</span> "Yes, you're already serving one customer segment."<br/><span class="tag-exp">Explain:</span> "Ayam Brand is a 130-year international brand, no preservatives, BPA-free — targets a <em>different segment</em>: health-conscious families, expats, brand-loyal shoppers."<br/><span class="tag-pro">Propose:</span> "Add 1 small facing — 30-day test. If it doesn't sell, I'll swap it out."</div>
+    <div class="tip vi-only">💡 <strong>Tip:</strong> "MT như Co.opmart, Mega Market, Lotte đều trưng bày Ayam Brand — khách GT cũng tìm mua về."</div>
+    <div class="tip en-only hide">💡 <strong>Tip:</strong> "Co.opmart, Mega Market, Lotte all carry Ayam Brand — GT customers come looking for it."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Hàng chậm bán, tôi bị tồn kho ❞</div>
+    <div class="q en-only hide">❝ It moves slowly — I get stuck with stock ❞</div>
+    <div class="a vi-only"><span class="tag-exp">Giải thích:</span> "Thực phẩm đóng hộp HSD <em>3 năm (đậu, cá) — 18 tháng (cà chua) — 2 năm (sốt)</em> — rủi ro tồn kho rất thấp."<br/><span class="tag-pro">Đề xuất:</span> "Vấn đề thường là <em>vị trí shelf</em> — hàng lẫn với nhãn khác khách không thấy. Em sẽ hỗ trợ trưng bày mắt nhìn."</div>
+    <div class="a en-only hide"><span class="tag-exp">Explain:</span> "Shelf life: <em>3 years (beans, fish) — 18 months (tomato) — 2 years (sauces)</em> — inventory risk is minimal."<br/><span class="tag-pro">Propose:</span> "The issue is usually <em>shelf position</em> — mixed with other brands. I'll help with eye-level placement."</div>
+    <div class="tip vi-only">💡 DGM có chính sách hỗ trợ xoay date. Hàng gần hết hạn chưa bán → liên hệ NVBH đổi hàng.</div>
+    <div class="tip en-only hide">💡 DGM supports date rotation. Near-expiry unsold stock → contact SR for a swap.</div>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Sản phẩm không có chất bảo quản sẽ mau hỏng ❞</div>
+    <div class="q en-only hide">❝ Without preservatives, won't it spoil quickly? ❞</div>
+    <div class="a vi-only"><span class="tag-exp">Giải thích:</span> "Lon được <em>hút chân không → hàn kín → tiệt trùng retort 115–135°C</em> — tiêu diệt 100% vi khuẩn & bào tử, không cần hoá chất."<br/><strong>Bằng chứng:</strong> "HSD 3 năm trên lon là minh chứng rõ nhất — công nghệ retort đã tồn tại 200 năm."</div>
+    <div class="a en-only hide"><span class="tag-exp">Explain:</span> "Cans are <em>vacuum-sealed → hermetically closed → retort sterilized 115–135°C</em> — destroys 100% bacteria & spores, no chemicals needed."<br/><strong>Evidence:</strong> "3-year shelf life is the clearest proof — retort technology has existed for 200 years."</div>
+    <div class="tip vi-only">💡 Chỉ vào lon: "Khi mở ra là lần đầu tiên không khí vào — đó là lý do không cần chất bảo quản."</div>
+    <div class="tip en-only hide">💡 Point to the can: "Opening it is the first time air enters — that's why no preservatives are needed."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Chiết khấu ít, nhãn khác cho nhiều hơn ❞</div>
+    <div class="q en-only hide">❝ The margin is too low — other brands give more ❞</div>
+    <div class="a vi-only"><span class="tag-exp">Đổi góc nhìn:</span> "Tính lợi nhuận theo <em>VNĐ/thùng</em>, không phải %. Giá bán lẻ Ayam cao hơn — tiền thật nhận vẫn cao hơn. Ayam Brand ít bị ép giá vì không cạnh tranh với 50 nhãn nội địa."</div>
+    <div class="a en-only hide"><span class="tag-exp">Reframe:</span> "Calculate profit in <em>VND per carton</em>, not percentage. Ayam's higher retail price means actual cash margin is higher. Ayam Brand faces less price pressure because it doesn't compete with 50 local brands."</div>
+    <div class="tip vi-only">💡 Dùng máy tính: "Thùng 24 lon × 150g — mua X, bán Y, lời Z/thùng. So sánh thực tế nhé."</div>
+    <div class="tip en-only hide">💡 Use a calculator: "24-can carton — buy X, sell Y, profit Z/carton. Let's compare the real numbers."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q vi-only">❝ Mặt hàng này mới, chưa có nhu cầu ❞</div>
+    <div class="q en-only hide">❝ This is new here — no demand yet ❞</div>
+    <div class="a vi-only"><span class="tag-exp">Hỏi ngược:</span> "Từ trước tới nay anh/chị giải quyết nhu cầu khách hỏi cá đóng hộp chất lượng như thế nào?"<br/><span class="tag-pro">Gợi ý:</span> "Nếu có thể cải thiện 1 điều về hàng đang bán thì đó là gì? Chúng ta cùng xem Ayam có giải quyết không."</div>
+    <div class="a en-only hide"><span class="tag-exp">Counter-question:</span> "How do you currently handle customers asking for quality canned fish?"<br/><span class="tag-pro">Suggest:</span> "If you could improve one thing about what you currently sell — what would it be? Let's see if Ayam Brand solves that."</div>
+    <div class="tip vi-only">💡 Luôn tự hỏi: "Mình đang tiếp cận đúng loại điểm bán chưa?" — Outlet thực phẩm chế biến & khu expat phù hợp hơn chợ nông thôn.</div>
+    <div class="tip en-only hide">💡 Always ask: "Am I targeting the right outlet type?" — Ready-to-cook food stores and expat areas are better than rural markets.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 6 – KIẾN THỨC CHUYÊN SÂU (FAQ)
+     Data from Google Sheet
+══════════════════════════════════════════ -->
+<div id="m-faq" class="module">
+  <div class="card" style="padding-bottom:14px">
+    <h2>📚 <span class="vi-only">Kiến thức chuyên sâu – FAQ</span><span class="en-only hide">Deep Knowledge – FAQ</span></h2>
+    <div class="faq-refresh">
+      <button id="btnRefresh" onclick="loadFAQ()">
+        <span id="refreshIcon">🔄</span> <span class="vi-only">Cập nhật từ Google Sheet</span><span class="en-only hide">Refresh from Google Sheet</span>
+      </button>
+      <span id="faqStatus" class="faq-status"></span>
+      <span style="font-size:11px;color:#bbb" class="vi-only">· Dữ liệu từ Google Sheet – admin có thể cập nhật bất cứ lúc nào</span>
+      <span style="font-size:11px;color:#bbb" class="en-only hide">· Data from Google Sheet – admin can update anytime</span>
+    </div>
+    <input class="faq-search-bar" id="faqSearch" type="text" placeholder="🔍 Tìm kiếm câu hỏi... / Search questions..." oninput="filterFAQ()"/>
+    <div class="faq-cat-row" id="faqCatRow"></div>
+  </div>
+
+  <div id="faqContainer"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 7 – SKU DIRECTORY
+══════════════════════════════════════════ -->
+<div id="m-sku" class="module">
+  <div class="card">
+    <h2>📦 <span class="vi-only">Danh mục SKU – Ayam Brand tại Việt Nam</span><span class="en-only hide">SKU Directory – Ayam Brand Vietnam</span></h2>
+    <input class="sku-search" id="skuSearch" type="text" placeholder="🔍 Tìm sản phẩm... / Search product..." oninput="filterSKU()"/>
+    <div class="sku-filter-row" id="skuFilters">
+      <button class="sku-filter active" onclick="setSKUFilter(this,'all')" data-filter="all" class="vi-only">Tất cả</button>
+      <button class="sku-filter" onclick="setSKUFilter(this,'dau')" data-filter="dau">🫘 Đậu</button>
+      <button class="sku-filter" onclick="setSKUFilter(this,'ca')" data-filter="ca">🐟 Cá</button>
+      <button class="sku-filter" onclick="setSKUFilter(this,'dua')" data-filter="dua">🥥 Dừa</button>
+      <button class="sku-filter" onclick="setSKUFilter(this,'sot')" data-filter="sot">🌶️ Sốt</button>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="sku" id="skuTable">
+      <thead><tr><th>#</th><th class="vi-only">Tên sản phẩm</th><th class="en-only hide">Product Name</th><th class="vi-only">Nhóm</th><th class="en-only hide">Group</th><th class="vi-only">Quy cách</th><th class="en-only hide">Pack</th><th class="vi-only">Xuất xứ</th><th class="en-only hide">Origin</th><th class="vi-only">HSD</th><th class="en-only hide">Shelf Life</th><th class="vi-only">Halal</th><th class="en-only hide">Halal</th></tr></thead>
+      <tbody id="skuBody"></tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE 8 – COOKBOOK
+══════════════════════════════════════════ -->
+<div id="m-cook" class="module">
+  <div class="card"><h2>🍳 <span class="vi-only">Cookbook – Gợi ý món ăn ngon</span><span class="en-only hide">Cookbook – Recipe Suggestions</span></h2><p style="font-size:13.5px" class="vi-only">Tất cả công thức dưới 30 phút, phù hợp bếp gia đình Việt. Dùng để tư vấn khách hàng cách sử dụng sản phẩm.</p><p style="font-size:13.5px" class="en-only hide">All recipes under 30 minutes, suitable for Vietnamese family cooking. Use to advise customers on product usage.</p></div>
+
+  <div class="recipe-card">
+    <div class="recipe-header"><h3 class="vi-only">🐟 Cá Thu Kho Tiêu & Sốt Đen</h3><h3 class="en-only hide">🐟 Braised Mackerel with Black Pepper Sauce</h3><div class="recipe-meta"><span>⏱ 15 min</span><span class="vi-only">👥 2–3 người</span><span class="en-only hide">👥 Serves 2–3</span><span>⭐ Easy</span></div></div>
+    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Cá Thu Sốt Cà 230g</span><span class="rp-badge en-only hide">🥫 Mackerel in Tomato 230g</span><span class="rp-badge vi-only">🫙 Sốt Tiêu Đen 210ml</span><span class="rp-badge en-only hide">🫙 Black Pepper Sauce 210ml</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1 lon Cá Thu Sốt Cà 230g</li><li class="en-only hide">1 can Mackerel in Tomato 230g</li><li class="vi-only">2–3 muỗng Sốt Tiêu Đen Ayam</li><li class="en-only hide">2–3 tbsp Ayam Black Pepper Sauce</li><li class="vi-only">1/2 hành tím, 2 tép tỏi</li><li class="en-only hide">1/2 shallot, 2 garlic cloves</li><li class="vi-only">Nước mắm, đường, tiêu, hành lá</li><li class="en-only hide">Fish sauce, sugar, pepper, spring onion</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Phi tỏi hành tím thơm</li><li class="en-only hide">Sauté garlic & shallot</li><li class="vi-only">Cho cá vào, đảo nhẹ</li><li class="en-only hide">Add fish, stir gently</li><li class="vi-only">Thêm sốt tiêu đen, nước mắm, đường</li><li class="en-only hide">Add black pepper sauce, fish sauce, sugar</li><li class="vi-only">Rim nhỏ lửa 8–10 phút</li><li class="en-only hide">Simmer on low heat 8–10 min</li><li class="vi-only">Dùng nóng với cơm trắng</li><li class="en-only hide">Serve hot with steamed rice</li></ol></div></div></div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header"><h3 class="vi-only">☕ Latte Đậu Đỏ (Café Trend)</h3><h3 class="en-only hide">☕ Red Bean Latte (Café Trend)</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 1 người</span><span class="en-only hide">👥 Serves 1</span><span>⭐ Very Easy</span></div></div>
+    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Đậu Đỏ 425g</span><span class="rp-badge en-only hide">🥫 Red Kidney Beans 425g</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">2–3 muỗng Đậu Đỏ Ayam Brand</li><li class="en-only hide">2–3 tbsp Ayam Red Kidney Beans</li><li class="vi-only">120–150ml sữa tươi</li><li class="en-only hide">120–150ml fresh milk</li><li class="vi-only">30ml espresso (hoặc cà phê phin đậm)</li><li class="en-only hide">30ml espresso or strong drip coffee</li><li class="vi-only">10–20ml syrup / sữa đặc</li><li class="en-only hide">10–20ml syrup or condensed milk</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Cho đậu đỏ vào đáy ly</li><li class="en-only hide">Place red beans at bottom of glass</li><li class="vi-only">Hâm nóng sữa + syrup, rót vào</li><li class="en-only hide">Warm milk + syrup, pour in</li><li class="vi-only">Rót cà phê lên tạo tầng màu</li><li class="en-only hide">Pour coffee on top for color layers</li><li class="vi-only">Thêm đá nếu dùng lạnh</li><li class="en-only hide">Add ice for iced version</li></ol></div></div></div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header" style="background:linear-gradient(135deg,var(--coconut),#00897B)"><h3 class="vi-only">🥥 Cà Ri Gà Nước Cốt Dừa 65ml</h3><h3 class="en-only hide">🥥 Coconut Chicken Curry – 65ml pack</h3><div class="recipe-meta"><span>⏱ 25 min</span><span class="vi-only">👥 2 người (1 gói 65ml = vừa đủ)</span><span class="en-only hide">👥 2 persons (1 pack 65ml = perfect amount)</span><span>⭐ Easy</span></div></div>
+    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge" style="background:#e0f2f1;border-color:var(--coconut);color:var(--coconut)">🥥 Nước Cốt Dừa 65ml</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1 gói Nước Cốt Dừa Ayam 65ml</li><li class="en-only hide">1 pack Ayam Coconut Milk 65ml</li><li class="vi-only">200g đùi gà xẻ miếng</li><li class="en-only hide">200g chicken thigh, cut</li><li class="vi-only">1 muỗng bột cà ri, muối, đường</li><li class="en-only hide">1 tbsp curry powder, salt, sugar</li><li class="vi-only">Khoai tây, hành tây</li><li class="en-only hide">Potato, onion</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Ướp gà với bột cà ri 10 phút</li><li class="en-only hide">Marinate chicken with curry powder 10 min</li><li class="vi-only">Xào hành, thêm gà, chiên sơ</li><li class="en-only hide">Sauté onion, add chicken, brown slightly</li><li class="vi-only">Thêm khoai tây + 100ml nước</li><li class="en-only hide">Add potato + 100ml water</li><li class="vi-only">Rót nước cốt dừa 65ml vào, rim 10 phút</li><li class="en-only hide">Pour in 65ml coconut milk, simmer 10 min</li></ol></div></div>
+      <div class="note vi-only" style="margin-top:10px">💡 1 gói 65ml = đúng lượng cho 2 người, không thừa, không cần tủ lạnh sau khi dùng xong gói.</div>
+      <div class="note en-only hide" style="margin-top:10px">💡 1 pack 65ml = exactly right for 2 persons, no leftovers, no refrigeration needed after use.</div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header"><h3>🥗 Healthy Chickpea & Tuna Salad</h3><div class="recipe-meta"><span>⏱ 10 min</span><span class="vi-only">👥 2 người</span><span class="en-only hide">👥 Serves 2</span><span>⭐ Very Easy</span></div></div>
+    <div class="recipe-body"><div class="recipe-products"><span class="rp-badge vi-only">🥫 Đậu Gà 425g</span><span class="rp-badge en-only hide">🥫 Chickpeas 425g</span><span class="rp-badge vi-only">🥫 Cá Ngừ Ngâm Nước 150g</span><span class="rp-badge en-only hide">🥫 Tuna in Water 150g</span></div><div class="recipe-cols"><div><h4 class="vi-only">Nguyên liệu</h4><h4 class="en-only hide">Ingredients</h4><ul><li class="vi-only">1/2 lon Đậu Gà Ayam 425g (rửa, ráo)</li><li class="en-only hide">1/2 can Ayam Chickpeas 425g (drained, rinsed)</li><li class="vi-only">1 lon Cá Ngừ Ngâm Nước 150g</li><li class="en-only hide">1 can Tuna in Water 150g</li><li class="vi-only">1/2 dưa leo, ớt chuông, rau mùi</li><li class="en-only hide">1/2 cucumber, capsicum, coriander</li><li class="vi-only">Dressing: 2 muỗng dầu olive + chanh + muối tiêu</li><li class="en-only hide">Dressing: 2 tbsp olive oil + lemon + salt & pepper</li></ul></div><div><h4 class="vi-only">Cách làm</h4><h4 class="en-only hide">Method</h4><ol><li class="vi-only">Mở lon đậu gà, rửa qua nước để giảm natri</li><li class="en-only hide">Open chickpeas, rinse to reduce sodium</li><li class="vi-only">Mở lon cá ngừ, để ráo, tách thành miếng</li><li class="en-only hide">Open tuna, drain, flake into pieces</li><li class="vi-only">Trộn tất cả với dressing</li><li class="en-only hide">Mix all ingredients with dressing</li><li class="vi-only">Để lạnh 15 phút trước khi ăn</li><li class="en-only hide">Chill 15 min before serving</li></ol></div></div></div>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
+<script>
+// ─────────────────────────────────────────────
+// LANG TOGGLE
+// ─────────────────────────────────────────────
+let currentLang='vi';
+function setLang(l){
+  currentLang=l;
+  document.querySelectorAll('.vi-only').forEach(el=>el.classList.toggle('hide',l!=='vi'));
+  document.querySelectorAll('.en-only').forEach(el=>el.classList.toggle('hide',l!=='en'));
+  document.getElementById('btn-vi').classList.toggle('active',l==='vi');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+}
+
+// ─────────────────────────────────────────────
+// MODULE SWITCH
+// ─────────────────────────────────────────────
+function showModule(id,btn){
+  document.querySelectorAll('.module').forEach(m=>m.classList.remove('active'));
+  document.querySelectorAll('.nav-tabs button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='m-faq' && !faqLoaded) loadFAQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─────────────────────────────────────────────
+// COUNTER ANIMATION
+// ─────────────────────────────────────────────
+function animateCounters(){
+  document.querySelectorAll('.num[data-target]').forEach(el=>{
+    const target=parseInt(el.dataset.target);
+    const suffix=el.dataset.suffix||'';
+    let current=0;
+    const increment=Math.ceil(target/40);
+    const timer=setInterval(()=>{
+      current=Math.min(current+increment,target);
+      el.textContent=current.toLocaleString()+suffix;
+      if(current>=target)clearInterval(timer);
+    },30);
+  });
+}
+setTimeout(animateCounters,300);
+
+// ─────────────────────────────────────────────
+// NUTRITION BAR ANIMATION
+// ─────────────────────────────────────────────
+function animateBars(){
+  document.querySelectorAll('.nutr-bar[data-w]').forEach(bar=>{
+    setTimeout(()=>{bar.style.width=bar.dataset.w+'%';},200);
+  });
+}
+const barObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateBars();barObserver.disconnect();}});
+},{threshold:0.3});
+document.querySelectorAll('.infographic-body').forEach(el=>barObserver.observe(el));
+
+// ─────────────────────────────────────────────
+// SKU DATA
+// ─────────────────────────────────────────────
+const SKU_DATA=[
+  {n:"Baked Beans Tomato Sauce 230g",g:"dau",pack:"48 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Baked Beans Tomato Sauce 425g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Baked Beans Cheeze Sauce 425g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tomato Puree 220g",g:"dau",pack:"48 lon/thùng",origin:"vn",hsd:"18T",halal:"JAKIM+MUI"},
+  {n:"Tomato Puree 430g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"18T",halal:"JAKIM+MUI"},
+  {n:"Chickpeas in Brine 425g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Red Kidney Beans 425g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"White Beans 425g",g:"dau",pack:"24 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Processed Peas 230g",g:"dau",pack:"48 lon/thùng",origin:"vn",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Corn Kernels 425g",g:"dau",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Chunks in Sunflower Oil 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Flakes in Sunflower Oil 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Chunks in Water 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Flakes in Water Light 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Chunks in Olive Oil Light 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Tuna Flakes in Olive Oil Light 150g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Chilli Tuna 160g",g:"ca",pack:"24 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Mackerel in Tomato Sauce 230g",g:"ca",pack:"48 lon/thùng",origin:"th",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Mackerel in Tomato Sauce 155g",g:"ca",pack:"12 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Sardine in Tomato Sauce 155g",g:"ca",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Sardine in Extra Virgin Olive Oil 120g",g:"ca",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Sardine in EVOO & Chilli 120g",g:"ca",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Sardine in EVOO & Peppercorn 120g",g:"ca",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Coconut Milk 400ml (63%)",g:"dua",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Pure Coconut Cream 400ml (100%)",g:"dua",pack:"24 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"Pure Coconut Cream 270ml",g:"dua",pack:"12 lon/thùng",origin:"my",hsd:"36T",halal:"JAKIM+MUI"},
+  {n:"⭐ Coconut Milk 65ml Tetra Pak",g:"dua",pack:"46 gói/thùng",origin:"id",hsd:"18T",halal:"JAKIM+MUI"},
+  {n:"Sriracha Hot Chilli Sauce 235ml",g:"sot",pack:"12 chai/thùng",origin:"th",hsd:"24T",halal:"JAKIM"},
+  {n:"Black Pepper Sauce 210ml",g:"sot",pack:"12 chai/thùng",origin:"my",hsd:"24T",halal:"JAKIM+MUI"},
+  {n:"Sweet Chilli Sauce 285ml",g:"sot",pack:"12 chai/thùng",origin:"my",hsd:"24T",halal:"JAKIM+MUI"},
+];
+let skuFilter='all';
+function renderSKU(data){
+  const q=document.getElementById('skuSearch').value.toLowerCase();
+  const body=document.getElementById('skuBody');
+  const originLabel={vn:'🇻🇳 VN',my:'🇲🇾 MY',th:'🇹🇭 TH',id:'🇮🇩 ID',it:'🇮🇹 IT'};
+  const originClass={vn:'o-vn',my:'o-my',th:'o-th',id:'o-id',it:'o-it'};
+  let rows=data.filter(s=>(skuFilter==='all'||s.g===skuFilter)&&(!q||s.n.toLowerCase().includes(q)));
+  body.innerHTML=rows.map((s,i)=>`<tr>
+    <td>${i+1}</td><td>${s.n}</td><td>${s.g==='dau'?'🫘 Đậu':s.g==='ca'?'🐟 Cá':s.g==='dua'?'🥥 Dừa':'🌶️ Sốt'}</td>
+    <td>${s.pack}</td>
+    <td><span class="origin-badge ${originClass[s.origin]}">${originLabel[s.origin]}</span></td>
+    <td>${s.hsd}</td><td style="font-size:11px">${s.halal}</td>
+  </tr>`).join('');
+}
+function filterSKU(){renderSKU(SKU_DATA);}
+function setSKUFilter(btn,f){
+  skuFilter=f;
+  document.querySelectorAll('.sku-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSKU(SKU_DATA);
+}
+renderSKU(SKU_DATA);
+
+// ─────────────────────────────────────────────
+// FAQ – GOOGLE SHEET INTEGRATION
+// ─────────────────────────────────────────────
+/*
+  SETUP INSTRUCTIONS:
+  1. Create a Google Sheet with columns:
+     A: category | B: category_label | C: question_vi | D: question_en | E: answer_vi | F: answer_en | G: tags
+  2. Publish to web: File → Share → Publish to web → CSV
+  3. Replace SHEET_CSV_URL below with the published CSV URL
+  4. Done – press Refresh button to load latest FAQ from Sheet
+*/
+const SHEET_CSV_URL = 'https://script.google.com/macros/s/AKfycbzCyk0sxRnqfjwMV4rI3YanAdCRZ9EbivofNqHHW0_df8En5w4IMgluZfDRV4odXVOA/exec';
+
+let faqLoaded=false;
+let allFAQItems=[];
+let activeCat='all';
+
+// ── Static pre-loaded FAQ (always shown, even without Sheet connection)
+const STATIC_FAQ=[
+  // ── CHẤT BẢO QUẢN & PHỤ GIA
+  {cat:'bq',cat_label:'🔬 Chất BQ & Phụ gia',q_vi:'Chất bảo quản là gì? Phân biệt với phụ gia thực phẩm?',q_en:'What are preservatives? How are they different from food additives?',
+   a_vi:`<b>Chất bảo quản (Preservatives)</b> là một <em>loại phụ gia thực phẩm</em>, mục đích chính là kéo dài HSD bằng cách ngăn vi sinh vật sinh trưởng hoặc làm chậm oxy hóa.<br><br>
+<b>Phụ gia thực phẩm (Food Additives)</b> là nhóm rộng hơn, gồm nhiều loại:<br>
+<table><thead><tr><th>Loại</th><th>Mục đích</th><th>Ví dụ</th></tr></thead><tbody>
+<tr><td>Chất bảo quản</td><td>Kéo dài HSD, chống vi khuẩn</td><td>E211, E202, E200</td></tr>
+<tr><td>Chất tạo màu</td><td>Màu sắc bắt mắt</td><td>E102, E110, E129</td></tr>
+<tr><td>Chất tăng vị (MSG)</td><td>Tăng umami</td><td>E621 (Bột ngọt)</td></tr>
+<tr><td>Chất làm dày/ổn định</td><td>Kết cấu sánh, ổn định</td><td>E407, E412 (Guar gum)</td></tr>
+<tr><td>Chất điều chỉnh pH</td><td>Kiểm soát độ chua/ngọt</td><td>E330 (Axit Citric)</td></tr>
+<tr><td>Chất chống oxy hóa</td><td>Giữ màu, chống ôi</td><td>E300 (Vitamin C)</td></tr>
+</tbody></table>
+<div class="good">✅ <b>Ayam Brand KHÔNG có:</b> E211, E202, E621 (MSG bổ sung), màu nhân tạo, trans fat, BPA/BPF/BPS</div>
+<div class="note">ℹ️ Ayam Brand <b>CÓ</b> các phụ gia an toàn & hợp pháp: E330 (axit citric – điều chỉnh pH), muối, đường, E412 guar gum (nước cốt dừa 65ml – chất làm dày tự nhiên)</div>`,
+   a_en:`<b>Preservatives</b> are a <em>type of food additive</em> whose primary purpose is to extend shelf life by inhibiting microbial growth or slowing oxidation.<br><br>
+<b>Food Additives</b> is a broader category including:<br>
+<table><thead><tr><th>Type</th><th>Purpose</th><th>Examples</th></tr></thead><tbody>
+<tr><td>Preservatives</td><td>Extend shelf life, anti-bacterial</td><td>E211, E202, E200</td></tr>
+<tr><td>Colorants</td><td>Visual appeal</td><td>E102, E110, E129</td></tr>
+<tr><td>Flavor enhancers (MSG)</td><td>Enhance umami</td><td>E621 (Monosodium Glutamate)</td></tr>
+<tr><td>Thickeners/Stabilizers</td><td>Texture, stability</td><td>E407, E412 (Guar gum)</td></tr>
+<tr><td>pH regulators</td><td>Control acidity/sweetness</td><td>E330 (Citric Acid)</td></tr>
+<tr><td>Antioxidants</td><td>Prevent rancidity, preserve color</td><td>E300 (Vitamin C)</td></tr>
+</tbody></table>
+<div class="good">✅ <b>Ayam Brand does NOT contain:</b> E211, E202, E621 (added MSG), artificial colors, trans fats, BPA/BPF/BPS</div>
+<div class="note">ℹ️ Ayam Brand <b>DOES contain</b> safe, legal additives: E330 (citric acid – pH adjustment), salt, sugar, E412 guar gum (65ml coconut – natural thickener)</div>`},
+
+  {cat:'bq',cat_label:'🔬 Chất BQ & Phụ gia',q_vi:'Cách đọc Ingredient List (danh sách thành phần) – các điểm cần lưu ý?',q_en:'How to read an Ingredient List – what to watch for?',
+   a_vi:`<b>Quy tắc đọc Ingredient List:</b><br><br>
+<b>1. Thứ tự giảm dần theo trọng lượng</b><br>Thành phần đứng đầu = nhiều nhất. Ví dụ: "Cá ngừ (73%)" → 73% là cá thật.<br><br>
+<b>2. Tìm % cụ thể nếu có</b><br>Ayam Brand Tuna 73% vs đối thủ 53% → Ayam có nhiều cá hơn thực tế.<br><br>
+<b>3. Cảnh báo đỏ – cần tránh:</b>
+<div class="warn">❌ E211 (Sodium Benzoate) · E202 (Potassium Sorbate) = Chất bảo quản hóa học<br>❌ E621 / MSG (Bột ngọt / Chất điều vị 621) = Tăng vị nhân tạo<br>❌ Dầu cọ chưa chứng nhận / Unspecified "vegetable oil" (nghi ngại trans fat)<br>❌ Màu nhân tạo: E102, E110, E122, E129</div>
+<b>4. An toàn – chấp nhận được:</b>
+<div class="good">✅ E330 (Axit Citric) – điều chỉnh pH, tự nhiên, có trong cam quýt<br>✅ E412 (Guar Gum) – chất làm dày từ hạt guar tự nhiên<br>✅ NaCl (Muối) · Sugar (Đường) – nguyên liệu thực phẩm tự nhiên<br>✅ E300 (Vitamin C / Ascorbic Acid) – chống oxy hóa tự nhiên</div>
+<b>5. Script bán hàng:</b> Chỉ vào ingredient list của đối thủ và của Ayam, để khách tự so sánh → không cần giải thích nhiều.`,
+   a_en:`<b>Rules for reading an Ingredient List:</b><br><br>
+<b>1. Descending order by weight</b><br>First ingredient = most abundant. E.g., "Tuna (73%)" → 73% is actual fish.<br><br>
+<b>2. Look for specific percentages</b><br>Ayam Brand Tuna 73% vs competitors 53% → Ayam has more actual fish.<br><br>
+<b>3. Red flags – avoid:</b>
+<div class="warn">❌ E211 (Sodium Benzoate) · E202 (Potassium Sorbate) = Chemical preservatives<br>❌ E621 / MSG (Monosodium Glutamate) = Artificial flavor enhancer<br>❌ Unspecified "vegetable oil" (trans fat concern)<br>❌ Artificial colors: E102, E110, E122, E129</div>
+<b>4. Safe – acceptable:</b>
+<div class="good">✅ E330 (Citric Acid) – pH regulator, natural, found in citrus<br>✅ E412 (Guar Gum) – natural thickener from guar beans<br>✅ NaCl (Salt) · Sugar – natural food ingredients<br>✅ E300 (Vitamin C / Ascorbic Acid) – natural antioxidant</div>
+<b>5. Sales script:</b> Point to competitor's ingredient list vs Ayam's — let the customer compare themselves.`},
+
+  {cat:'bq',cat_label:'🔬 Chất BQ & Phụ gia',q_vi:'Cách đọc bảng NIP (Nutrition Information Panel)?',q_en:'How to read a Nutrition Information Panel (NIP)?',
+   a_vi:`<b>Bảng Thông tin Dinh dưỡng (NIP)</b> – cách đọc nhanh:
+<div class="nip-diagram">
+<div class="nip-row"><span class="nip-key">Serving Size</span><span><b>Khẩu phần (per serving)</b> – thường 100g hoặc 1 lon<br><div class="nip-tip">⚠️ Luôn đọc per 100g để so sánh công bằng giữa các sản phẩm</div></span></div>
+<div class="nip-row"><span class="nip-key">Energy (kJ/kcal)</span><span><b>Năng lượng</b> – 1 kcal = 4.18 kJ. Tham khảo: 2,000 kcal/ngày</span></div>
+<div class="nip-row"><span class="nip-key">Total Fat (g)</span><span><b>Tổng chất béo</b> – gồm Saturated (béo no) và Trans fat (béo chuyển hóa – nguy hiểm)</span></div>
+<div class="nip-row"><span class="nip-key">- Saturated Fat</span><span><b>Béo no</b> – &lt;10% tổng năng lượng là an toàn theo WHO</span></div>
+<div class="nip-row"><span class="nip-key">- Trans Fat</span><span><b>Béo chuyển hóa</b> – Ayam Brand: 0g. Tốt cho tim mạch.</span></div>
+<div class="nip-row"><span class="nip-key">Sodium (mg)</span><span><b>Natri</b> – tương đương muối. WHO khuyến nghị &lt;2,000mg/ngày. Đậu đóng hộp: rửa qua nước giảm 40% natri.</span></div>
+<div class="nip-row"><span class="nip-key">Protein (g)</span><span><b>Đạm</b> – cá ngừ Ayam: 26–29g/100g – nguồn đạm hoàn chỉnh</span></div>
+<div class="nip-row"><span class="nip-key">% Daily Value</span><span><b>% Giá trị hàng ngày</b> – dựa trên 2,000 kcal/ngày. &gt;20% = cao, &lt;5% = thấp</span></div>
+</div>
+<div class="note">💡 <b>Script:</b> "Nhìn vào Trans Fat = 0g và Sodium trên lon Ayam vs nhãn nội địa — đây là cách khách quan nhất để so sánh chất lượng."</div>`,
+   a_en:`<b>How to read a Nutrition Information Panel (NIP):</b>
+<div class="nip-diagram">
+<div class="nip-row"><span class="nip-key">Serving Size</span><span><b>Portion size (per serving)</b> – usually 100g or 1 can<br><div class="nip-tip">⚠️ Always compare per 100g for a fair comparison between products</div></span></div>
+<div class="nip-row"><span class="nip-key">Energy (kJ/kcal)</span><span><b>Energy</b> – 1 kcal = 4.18 kJ. Reference: 2,000 kcal/day</span></div>
+<div class="nip-row"><span class="nip-key">Total Fat (g)</span><span><b>Total fat</b> – includes Saturated fat and Trans fat (dangerous)</span></div>
+<div class="nip-row"><span class="nip-key">- Saturated Fat</span><span><b>Saturated fat</b> – &lt;10% of total energy is safe per WHO</span></div>
+<div class="nip-row"><span class="nip-key">- Trans Fat</span><span><b>Trans fat</b> – Ayam Brand: 0g. Good for cardiovascular health.</span></div>
+<div class="nip-row"><span class="nip-key">Sodium (mg)</span><span><b>Sodium</b> – equivalent to salt. WHO recommends &lt;2,000mg/day. Canned beans: rinsing reduces sodium by ~40%.</span></div>
+<div class="nip-row"><span class="nip-key">Protein (g)</span><span><b>Protein</b> – Ayam tuna: 26–29g/100g – complete protein source</span></div>
+<div class="nip-row"><span class="nip-key">% Daily Value</span><span><b>% Daily Value</b> – based on 2,000 kcal/day. &gt;20% = high, &lt;5% = low</span></div>
+</div>`},
+
+  {cat:'halal',cat_label:'☪️ Halal',q_vi:'Chứng nhận Halal JAKIM và MUI – từ đâu, cho ai, tại sao quan trọng?',q_en:'Halal Certifications JAKIM & MUI – where from, for whom, why important?',
+   a_vi:`<div class="halal-badge">
+<div class="halal-card jakim"><div class="hc-icon">☪️</div><h4>JAKIM</h4><div class="hc-sub">Jabatan Kemajuan Islam Malaysia<br>Bộ Phát triển Hồi giáo Malaysia</div><div class="hc-scope">🌍 Công nhận tại 40+ quốc gia (trừ Indonesia & GCC)<br>Tiêu chuẩn: Rất nghiêm ngặt – kiểm tra toàn bộ chuỗi cung ứng<br>Gia hạn: Hàng năm – kiểm tra đột xuất</div></div>
+<div class="halal-card mui"><div class="hc-icon">☪️</div><h4>MUI</h4><div class="hc-sub">Majelis Ulama Indonesia<br>Hội đồng Ulama Indonesia</div><div class="hc-scope">🌍 Bắt buộc cho tất cả thực phẩm nhập vào Indonesia<br>Tiêu chuẩn: Nghiêm ngặt – phù hợp ĐNA và GCC<br>Gia hạn: Hàng năm</div></div>
+</div>
+<br><b>Tại sao quan trọng với sales tại Việt Nam?</b><ul>
+<li>🕌 Cộng đồng người Chăm (VN): ~160,000 người – 100% theo đạo Hồi, mua Halal</li>
+<li>🌏 Expat Malaysia/Indonesia: 30,000–50,000 người tại VN (TP.HCM, HN)</li>
+<li>🏢 MICE/B2B: Khách sạn 4–5 sao phục vụ khách Trung Đông cần menu Halal</li>
+<li>📦 Xuất khẩu: JAKIM + MUI mở cửa thị trường Malaysia, Indonesia, GCC</li>
+<li>⚔️ Competitive edge: Heinz, Fiamma, Cirio, Chaokoh KHÔNG có đủ cả JAKIM lẫn MUI</li>
+</ul>`,
+   a_en:`<div class="halal-badge">
+<div class="halal-card jakim"><div class="hc-icon">☪️</div><h4>JAKIM</h4><div class="hc-sub">Jabatan Kemajuan Islam Malaysia<br>Islamic Development Dept. Malaysia</div><div class="hc-scope">🌍 Recognized in 40+ countries (excl. Indonesia & GCC)<br>Standard: Very strict – full supply chain audit<br>Renewal: Annual – surprise inspections</div></div>
+<div class="halal-card mui"><div class="hc-icon">☪️</div><h4>MUI</h4><div class="hc-sub">Majelis Ulama Indonesia<br>Indonesian Council of Ulama</div><div class="hc-scope">🌍 Mandatory for all food imports into Indonesia<br>Standard: Strict – recognized across SEA and GCC<br>Renewal: Annual</div></div>
+</div>
+<br><b>Why it matters for sales in Vietnam:</b><ul>
+<li>🕌 Cham Muslim community (VN): ~160,000 people – 100% Muslim, buy Halal</li>
+<li>🌏 Malaysian/Indonesian expats: 30,000–50,000 in VN (HCMC, HN)</li>
+<li>🏢 MICE/B2B: 4–5-star hotels serving Middle Eastern guests need Halal menus</li>
+<li>📦 Export: JAKIM + MUI opens Malaysia, Indonesia, GCC markets</li>
+<li>⚔️ Competitive edge: Heinz, Fiamma, Cirio, Chaokoh do NOT have both JAKIM + MUI</li>
+</ul>`},
+
+  {cat:'halal',cat_label:'☪️ Halal',q_vi:'Halal là gì? Haram là gì? Phân biệt nhanh.',q_en:'What is Halal? What is Haram? Quick distinction.',
+   a_vi:`<b>Halal (حلال)</b> – Tiếng Ả Rập: "hợp pháp / được phép" theo luật Sharia.<br><br>
+Thực phẩm Halal phải đáp ứng:<ul>
+<li>Không chứa thịt lợn hoặc sản phẩm từ lợn</li>
+<li>Không chứa cồn (alcohol)</li>
+<li>Động vật được giết mổ đúng nghi thức <em>Zabiha</em> (đọc Bismillah, cắt đứt mạch máu)</li>
+<li>Không lẫn với thực phẩm Haram trong toàn bộ quá trình sản xuất</li>
+<li>Người giết mổ phải là người Hồi giáo trưởng thành</li>
+</ul>
+<b>Haram (حرام)</b> – "bất hợp pháp / bị cấm":<ul>
+<li>Thịt lợn và mọi sản phẩm từ lợn (gelatin heo, mỡ heo...)</li>
+<li>Cồn và đồ uống có cồn</li>
+<li>Máu động vật</li>
+<li>Động vật chết không qua giết mổ đúng cách</li>
+<li>Động vật ăn thịt sống (sư tử, chó, mèo...)</li>
+</ul>
+<div class="good">✅ Ayam Brand: Tất cả sản phẩm đều Halal JAKIM + MUI. Không có thành phần Haram. Nhà máy được kiểm tra định kỳ.</div>`,
+   a_en:`<b>Halal (حلال)</b> – Arabic: "lawful / permitted" under Sharia law.<br><br>
+Halal food must satisfy:<ul>
+<li>No pork or pork-derived products</li>
+<li>No alcohol</li>
+<li>Animals slaughtered according to <em>Zabiha</em> ritual (recite Bismillah, sever blood vessels)</li>
+<li>No cross-contamination with Haram products throughout production</li>
+<li>Slaughterer must be an adult Muslim</li>
+</ul>
+<b>Haram (حرام)</b> – "unlawful / forbidden":<ul>
+<li>Pork and all pork-derived products (pork gelatin, lard...)</li>
+<li>Alcohol and alcoholic beverages</li>
+<li>Animal blood</li>
+<li>Animals that died without proper slaughter</li>
+<li>Carnivorous animals (lions, dogs, cats...)</li>
+</ul>
+<div class="good">✅ Ayam Brand: All products are Halal JAKIM + MUI certified. No Haram ingredients. Factories are regularly audited.</div>`},
+
+  {cat:'lon',cat_label:'🥫 Công nghệ Lon',q_vi:'Lon Ayam Brand khác lon thường như thế nào? BPA là gì?',q_en:'How are Ayam Brand cans different from standard cans? What is BPA?',
+   a_vi:`<b>BPA (Bisphenol A)</b> là hoá chất tổng hợp dùng trong lớp epoxy phủ bên trong lon kim loại truyền thống.<br>
+<b>Vấn đề:</b> BPA có thể di chuyển (migrate) vào thực phẩm, đặc biệt khi tiếp xúc nhiệt độ cao — liên quan đến nguy cơ rối loạn nội tiết tố, ảnh hưởng thai nhi, tăng nguy cơ ung thư (nghiên cứu đang tiếp tục).<br><br>
+<b>Ayam Brand – BPA-Free từ 2012:</b>
+<div class="can-compare" style="grid-template-columns:1fr 1fr;margin-top:10px">
+<div class="can-card bpa"><div class="cc-icon">✅</div><h4>Lon BPA-Free Ayam (từ 2012)</h4><ul><li>Lớp phủ acrylic / epoxy không chứa BPA, BPF, BPS</li><li>Ngăn oxy và vi khuẩn sau retort</li><li>An toàn hơn cho trẻ em, phụ nữ mang thai</li><li>Ayam test Real Time Aging trước khi switch</li></ul></div>
+<div class="can-card std"><div class="cc-icon">⚠️</div><h4>Lon truyền thống (có BPA)</h4><ul><li>Lớp epoxy chứa BPA</li><li>Phổ biến tại nhiều thương hiệu cùng phân khúc</li><li>Nguy cơ BPA migrate tại nhiệt độ cao</li></ul></div>
+</div>
+<div class="note">💡 <b>Script:</b> "Từ 2012 Ayam Brand đã chuyển sang lon BPA-Free — Ayam là một trong những nhãn đầu tiên tại châu Á làm điều này, trước khi nó trở thành yêu cầu pháp lý."</div>`,
+   a_en:`<b>BPA (Bisphenol A)</b> is a synthetic chemical used in the epoxy lining inside traditional metal cans.<br>
+<b>Problem:</b> BPA can migrate into food, especially at high temperatures — associated with hormonal disruption, fetal effects, increased cancer risk (ongoing research).<br><br>
+<b>Ayam Brand – BPA-Free since 2012:</b>
+<div class="can-compare" style="grid-template-columns:1fr 1fr;margin-top:10px">
+<div class="can-card bpa"><div class="cc-icon">✅</div><h4>Ayam BPA-Free Can (since 2012)</h4><ul><li>Acrylic/epoxy lining without BPA, BPF, BPS</li><li>Blocks oxygen and bacteria after retort</li><li>Safer for children, pregnant women</li><li>Ayam tested Real Time Aging before switching</li></ul></div>
+<div class="can-card std"><div class="cc-icon">⚠️</div><h4>Traditional Can (with BPA)</h4><ul><li>Epoxy lining contains BPA</li><li>Common among many brands in same segment</li><li>BPA migration risk at high temperatures</li></ul></div>
+</div>
+<div class="note">💡 <b>Script:</b> "Ayam Brand switched to BPA-Free cans in 2012 — one of the first brands in Asia to do so, before it became a legal requirement."</div>`},
+
+  {cat:'lon',cat_label:'🥫 Công nghệ Lon',q_vi:'Tetra Pak là gì? Tại sao nước cốt dừa 65ml dùng Tetra Pak thay vì lon?',q_en:'What is Tetra Pak? Why does the 65ml coconut milk use Tetra Pak instead of a can?',
+   a_vi:`<b>Tetra Pak</b> là bao bì dạng hộp giấy nhiều lớp, gồm: Polyethylene (PE) + Giấy carton + Nhôm (foil) + PE = 6 lớp tổng cộng.<br><br>
+<b>Tại sao 65ml chọn Tetra Pak:</b><ul>
+<li>✅ <b>BPA-Free hoàn toàn</b> – không kim loại, không nguy cơ BPA</li>
+<li>✅ <b>Nhẹ hơn lon</b> – tiện mang theo, thích hợp format nhỏ 65ml</li>
+<li>✅ <b>Thiết kế tam giác độc quyền</b> – nhận diện thương hiệu ngay lập tức trên kệ</li>
+<li>✅ <b>Tái chế được</b> – phù hợp cam kết ESG 2030 của Denis Group</li>
+<li>✅ <b>Chi phí sản xuất phù hợp</b> với mức giá target 9,900đ/gói</li>
+</ul>
+<b>Cách bảo quản Tetra Pak đúng:</b>
+<div class="note">Bảo quản nơi khô ráo, thoáng mát, tránh ánh nắng. Sau khi mở: dùng ngay toàn bộ 65ml — không cần tủ lạnh nếu dùng hết trong 1 lần. HSD 18 tháng.</div>`,
+   a_en:`<b>Tetra Pak</b> is a multi-layer carton packaging: Polyethylene (PE) + Paperboard + Aluminum foil + PE = 6 layers total.<br><br>
+<b>Why 65ml uses Tetra Pak:</b><ul>
+<li>✅ <b>Completely BPA-Free</b> – no metal, no BPA risk</li>
+<li>✅ <b>Lighter than cans</b> – easy to carry, suitable for 65ml format</li>
+<li>✅ <b>Exclusive triangle design</b> – immediate brand recognition on shelf</li>
+<li>✅ <b>Recyclable</b> – aligns with Denis Group ESG commitment 2030</li>
+<li>✅ <b>Cost structure supports</b> 9,900₫/pack target price</li>
+</ul>
+<b>Correct Tetra Pak storage:</b>
+<div class="note">Store in dry, cool place, away from sunlight. After opening: use all 65ml immediately — no refrigeration needed if consumed in one use. Shelf life 18 months.</div>`},
+
+  {cat:'san_pham',cat_label:'📦 Sản phẩm',q_vi:'Tại sao không có chất bảo quản mà vẫn giữ được 3 năm?',q_en:'How can products last 3 years without preservatives?',
+   a_vi:`3 cơ chế bảo quản tự nhiên của Ayam Brand:<br><br>
+1. <b>Tiệt trùng Retort:</b> Hút chân không → Hàn kín hermetic → Gia nhiệt 115–135°C áp suất cao → tiêu diệt 100% vi sinh vật & bào tử chịu nhiệt (kể cả Clostridium botulinum nguy hiểm nhất)<br><br>
+2. <b>Muối tự nhiên (Brine):</b> Nước muối trong lon đậu/peas ức chế vi khuẩn bằng cơ chế thẩm thấu — không cần hoá chất<br><br>
+3. <b>BPA-Free Lining (từ 2012):</b> Lớp phủ bên trong ngăn oxy & vi khuẩn xâm nhập sau khi tiệt trùng → kéo dài HSD, an toàn hơn<br>
+<div class="good">✅ Kết quả: HSD 3 năm (đậu, cá), 18 tháng (cà chua), 2 năm (sốt) — hoàn toàn không cần E211, E202 hay bất kỳ chất bảo quản hóa học nào</div>
+<div class="note">💬 Script: "Khi mở lon là lần đầu tiên không khí vào — đó là lý do không cần BQ hóa học. Công nghệ này tồn tại 200 năm."</div>`,
+   a_en:`3 natural preservation mechanisms of Ayam Brand:<br><br>
+1. <b>Retort Sterilization:</b> Vacuum seal → Hermetic closure → Heat 115–135°C at high pressure → Destroys 100% of microorganisms & heat-resistant spores (including the most dangerous Clostridium botulinum)<br><br>
+2. <b>Natural Salt (Brine):</b> Brine in bean/pea cans inhibits bacteria via osmosis — no chemicals needed<br><br>
+3. <b>BPA-Free Lining (since 2012):</b> Interior lining blocks oxygen & bacteria after sterilization → extends shelf life, safer for health<br>
+<div class="good">✅ Result: 3-year shelf life (beans, fish), 18 months (tomato), 2 years (sauces) — without any E211, E202 or chemical preservatives</div>
+<div class="note">💬 Script: "Opening the can is the first time air enters — that's why no chemical preservatives are needed. This technology has existed for 200 years."</div>`},
+
+  {cat:'san_pham',cat_label:'📦 Sản phẩm',q_vi:'Tại sao đậu Hà Lan Ayam Brand màu sẫm? Có phải kém chất lượng không?',q_en:'Why are Ayam Brand peas darker in colour? Is this lower quality?',
+   a_vi:`<b>Không.</b> Đậu Hà Lan Ayam Brand màu sẫm tự nhiên vì <b>không sử dụng phẩm màu nhân tạo</b> (E100-series).<br><br>
+Màu xanh sáng của một số nhãn khác thường do:<ul>
+<li>E133 (Brilliant Blue) – màu tổng hợp</li>
+<li>E101 (Riboflavin) hoặc hỗn hợp E100-series</li>
+</ul>
+<b>Màu tối hơn = tự nhiên hơn.</b> Dinh dưỡng không bị ảnh hưởng bởi hoá chất tạo màu.<br>
+<div class="good">✅ Script: "Màu sẫm của đậu Hà Lan Ayam là dấu hiệu không dùng phẩm màu — giống như rau Organic thường không bóng đẹp như rau thường nhưng an toàn hơn."</div>`,
+   a_en:`<b>No.</b> Ayam Brand peas are naturally darker because <b>no artificial colouring is used</b> (E100-series).<br><br>
+The bright green of some other brands comes from:<ul>
+<li>E133 (Brilliant Blue) – synthetic color</li>
+<li>E101 (Riboflavin) or E100-series mix</li>
+</ul>
+<b>Darker = more natural.</b> Nutritional value is not compromised by coloring agents.<br>
+<div class="good">✅ Script: "The darker colour of Ayam peas is a sign of no artificial colouring — just like organic vegetables often look less vibrant but are safer."</div>`},
+
+  {cat:'dd',cat_label:'🥗 Dinh dưỡng',q_vi:'Omega-3 trong cá đóng hộp có còn tốt không sau khi qua tiệt trùng?',q_en:'Is Omega-3 in canned fish still good after sterilization?',
+   a_vi:`<b>Có — Omega-3 trong cá đóng hộp vẫn giữ được phần lớn giá trị dinh dưỡng.</b><br><br>
+<b>Nghiên cứu cho thấy:</b><ul>
+<li>Retort ở 115–135°C <b>giữ lại ~85–95% Omega-3</b> (EPA & DHA) so với cá tươi</li>
+<li>Omega-3 là axit béo, không bị phá hủy bởi nhiệt như Vitamin C</li>
+<li>Một số nghiên cứu cho thấy chất béo trong dầu môi trường (olive oil, sunflower) thực ra <b>bảo vệ Omega-3</b> khỏi bị oxy hóa</li>
+</ul>
+<b>So sánh nguồn Omega-3 per 100g:</b>
+<table><thead><tr><th>Sản phẩm</th><th>Omega-3 (mg)</th></tr></thead><tbody>
+<tr><td>Cá Trích Ayam (Atlantic)</td><td>~2,200mg ✅ Cao nhất</td></tr>
+<tr><td>Cá Thu Ayam (Atlantic)</td><td>~2,000mg ✅</td></tr>
+<tr><td>Cá Ngừ Ayam (Skipjack)</td><td>~900mg</td></tr>
+<tr><td>Cá hồi tươi</td><td>~2,500mg (cao nhất nhưng đắt hơn nhiều)</td></tr>
+<tr><td>WHO Khuyến nghị/ngày</td><td>1,000–2,000mg</td></tr>
+</tbody></table>
+<div class="note">✅ Kết luận: Cá trích và cá thu Ayam Brand là cách TIẾT KIỆM NHẤT để đạt đủ Omega-3 mỗi ngày — mở lon, ăn ngay, không cần nấu.</div>`,
+   a_en:`<b>Yes — Omega-3 in canned fish retains most of its nutritional value.</b><br><br>
+<b>Research shows:</b><ul>
+<li>Retort at 115–135°C <b>retains ~85–95% Omega-3</b> (EPA & DHA) vs fresh fish</li>
+<li>Omega-3 are fatty acids, not degraded by heat like Vitamin C</li>
+<li>Some studies show fat in packing medium (olive oil, sunflower) actually <b>protects Omega-3</b> from oxidation</li>
+</ul>
+<b>Omega-3 comparison per 100g:</b>
+<table><thead><tr><th>Product</th><th>Omega-3 (mg)</th></tr></thead><tbody>
+<tr><td>Ayam Sardines (Atlantic)</td><td>~2,200mg ✅ Highest</td></tr>
+<tr><td>Ayam Mackerel (Atlantic)</td><td>~2,000mg ✅</td></tr>
+<tr><td>Ayam Tuna (Skipjack)</td><td>~900mg</td></tr>
+<tr><td>Fresh salmon</td><td>~2,500mg (highest but much more expensive)</td></tr>
+<tr><td>WHO daily recommendation</td><td>1,000–2,000mg</td></tr>
+</tbody></table>
+<div class="note">✅ Conclusion: Ayam sardines and mackerel are the MOST COST-EFFECTIVE way to meet daily Omega-3 needs — open can, eat immediately, no cooking required.</div>`},
+];
+
+function buildFAQCategories(items){
+  const cats={};
+  items.forEach(it=>{ if(!cats[it.cat])cats[it.cat]=it.cat_label; });
+  const row=document.getElementById('faqCatRow');
+  let html=`<button class="faq-cat-btn active" onclick="setFAQCat(this,'all')">🔍 <span class="vi-only">Tất cả</span><span class="en-only ${currentLang==='en'?'':'hide'}">All</span></button>`;
+  Object.entries(cats).forEach(([k,v])=>{
+    html+=`<button class="faq-cat-btn" onclick="setFAQCat(this,'${k}')">${v}</button>`;
+  });
+  row.innerHTML=html;
+}
+
+function renderFAQ(items){
+  const q=document.getElementById('faqSearch').value.toLowerCase();
+  const container=document.getElementById('faqContainer');
+  let filtered=items.filter(it=>{
+    const matchCat=activeCat==='all'||it.cat===activeCat;
+    const matchQ=!q||(it.q_vi||'').toLowerCase().includes(q)||(it.q_en||'').toLowerCase().includes(q)||(it.a_vi||'').toLowerCase().includes(q);
+    return matchCat&&matchQ;
+  });
+  if(!filtered.length){
+    container.innerHTML=`<div class="card"><div class="faq-no-result">🔍 Không tìm thấy kết quả / No results found</div></div>`;
+    return;
+  }
+  // Group by category
+  const grouped={};
+  filtered.forEach(it=>{ if(!grouped[it.cat])grouped[it.cat]={label:it.cat_label,items:[]}; grouped[it.cat].items.push(it); });
+  let html='';
+  Object.values(grouped).forEach(g=>{
+    html+=`<div class="card"><h2>${g.label}</h2>`;
+    g.items.forEach((it,i)=>{
+      html+=`<details class="faq-item">
+        <summary>
+          <span class="vi-only">${it.q_vi||''}</span><span class="en-only ${currentLang==='en'?'':'hide'}">${it.q_en||it.q_vi||''}</span>
+          <span class="arrow">▶</span>
+        </summary>
+        <div class="ans vi-only">${it.a_vi||''}</div>
+        <div class="ans en-only ${currentLang==='en'?'':'hide'}">${it.a_en||it.a_vi||''}</div>
+      </details>`;
+    });
+    html+='</div>';
+  });
+  container.innerHTML=html;
+}
+
+function setFAQCat(btn,cat){
+  activeCat=cat;
+  document.querySelectorAll('.faq-cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFAQ(allFAQItems);
+}
+function filterFAQ(){renderFAQ(allFAQItems);}
+
+async function loadFAQ(){
+  const btn=document.getElementById('btnRefresh');
+  const status=document.getElementById('faqStatus');
+  btn.classList.add('loading');
+  btn.innerHTML=`<span class="spinner"></span>${currentLang==='vi'?'Đang tải...':'Loading...'}`;
+  status.textContent='';
+
+  // Always start with static FAQ
+  allFAQItems=[...STATIC_FAQ];
+
+  if(SHEET_CSV_URL && SHEET_CSV_URL!=='YOUR_GOOGLE_SHEET_CSV_URL_HERE'){
+    try{
+      // Apps Script doGet() returns JSON {items:[...], total:N}
+      const res=await fetch(SHEET_CSV_URL);
+      const json=await res.json();
+
+      if(json.error){
+        throw new Error(json.error);
+      }
+
+      const sheetItems=(json.items||[]).filter(it=>it.q_vi||it.q_en);
+
+      // Merge: sheet items OVERRIDE static items with same cat+q_vi key, then append new
+      const staticKeys=new Set(STATIC_FAQ.map(it=>it.cat+'||'+it.q_vi));
+      const newItems=sheetItems.filter(it=>!staticKeys.has(it.cat+'||'+it.q_vi));
+      const overrideMap=Object.fromEntries(
+        sheetItems.filter(it=>staticKeys.has(it.cat+'||'+it.q_vi))
+          .map(it=>[it.cat+'||'+it.q_vi, it])
+      );
+      const mergedStatic=STATIC_FAQ.map(it=>overrideMap[it.cat+'||'+it.q_vi]||it);
+      allFAQItems=[...mergedStatic,...newItems];
+
+      const newCount=newItems.length;
+      const overCount=Object.keys(overrideMap).length;
+      let msg=`✅ Đã tải ${sheetItems.length} mục từ Google Sheet`;
+      if(newCount>0) msg+=` · ${newCount} câu hỏi mới`;
+      if(overCount>0) msg+=` · ${overCount} cập nhật`;
+      if(json.updated) msg+=` · Sync: ${new Date(json.updated).toLocaleTimeString('vi-VN')}`;
+      status.textContent=msg;
+
+    }catch(e){
+      console.error('FAQ fetch error:',e);
+      status.textContent='⚠️ Không kết nối được Sheet – hiển thị dữ liệu tĩnh. Lỗi: '+e.message;
+    }
+  } else {
+    status.textContent=currentLang==='vi'?'📌 Hiển thị dữ liệu tĩnh – cấu hình Google Sheet URL để auto-update':'📌 Showing static data – configure Google Sheet URL for auto-update';
+  }
+
+  buildFAQCategories(allFAQItems);
+  renderFAQ(allFAQItems);
+  faqLoaded=true;
+  btn.classList.remove('loading');
+  btn.innerHTML=`🔄 ${currentLang==='vi'?'Cập nhật từ Google Sheet':'Refresh from Google Sheet'}`;
+}
+
+function parseCSVLine(line){
+  const cols=[];let cur='';let inQ=false;
+  for(let i=0;i<line.length;i++){
+    if(line[i]==='"'){inQ=!inQ;}
+    else if(line[i]===','&&!inQ){cols.push(cur);cur='';}
+    else{cur+=line[i];}
+  }
+  cols.push(cur);
+  return cols.map(c=>c.trim().replace(/^"|"$/g,''));
+}
+
+// Init FAQ: static data first, then auto-fetch Sheet in background
+allFAQItems=[...STATIC_FAQ];
+buildFAQCategories(allFAQItems);
+renderFAQ(allFAQItems);
+faqLoaded=true;
+// Auto-fetch from Sheet on page load if URL is configured
+if(SHEET_CSV_URL && SHEET_CSV_URL!=='YOUR_GOOGLE_SHEET_CSV_URL_HERE'){
+  setTimeout(()=>loadFAQ(),800);
+}
+</script>
+</body>
+</html>
