@@ -310,6 +310,44 @@ table.sku tr:hover td{background:#fff8e1;}
 .rt-healthy{background:#e8f5e9;color:#1B5E20;}
 .rt-viet{background:#ffebee;color:#b71c1c;}
 
+/* ── THÀNH PHẦN & CLAIM (IL) ── */
+.il-search{width:100%;padding:11px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;margin-bottom:14px;outline:none;transition:border-color .2s;}
+.il-search:focus{border-color:var(--teal);}
+.il-filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.il-filter{padding:6px 16px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-size:12.5px;cursor:pointer;transition:.2s;font-weight:600;color:var(--gray);}
+.il-filter.active,.il-filter:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+.il-count{font-size:12px;color:#888;margin-bottom:12px;}
+.il-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:760px){.il-grid{grid-template-columns:1fr;}}
+.il-card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);border-top:4px solid var(--teal);transition:transform .2s,box-shadow .2s;}
+.il-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.il-card.g-dau{border-top-color:var(--green);}
+.il-card.g-ca{border-top-color:var(--teal);}
+.il-card.g-dua{border-top-color:var(--coconut);}
+.il-card.g-sot{border-top-color:var(--red);}
+.il-card.g-huuco{border-top-color:var(--orange);}
+.il-card .il-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px;}
+.il-card .il-name{font-size:14px;font-weight:800;color:var(--navy);line-height:1.35;}
+.il-card .il-grp{font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;white-space:nowrap;flex-shrink:0;}
+.il-grp.g-dau{background:#e8f5e9;color:#0E7544;}
+.il-grp.g-ca{background:#e0f2f7;color:#2F7898;}
+.il-grp.g-dua{background:#e0f2f1;color:#00695C;}
+.il-grp.g-sot{background:#fff5f5;color:var(--red);}
+.il-grp.g-huuco{background:#fff3e0;color:var(--orange);}
+.il-sec{margin-top:9px;}
+.il-sec .il-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#999;margin-bottom:3px;display:block;}
+.il-sec .il-txt{font-size:12.5px;line-height:1.6;color:var(--gray);}
+.il-add{background:#f8fafc;border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:8px 11px;font-size:12px;line-height:1.6;color:var(--gray);margin-top:3px;}
+.il-claims{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+.il-claim{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;line-height:1.3;}
+.il-claim.ok{background:#e8f5e9;color:#1B5E20;}
+.il-claim.warn{background:#fff3e0;color:#E65100;}
+.il-claim.pot{background:#ede7f6;color:#4A148C;}
+.il-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin:6px 0 4px;}
+.il-legend span{display:flex;align-items:center;gap:5px;}
+.il-legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
+.il-no-result{text-align:center;padding:32px;color:#999;font-size:14px;grid-column:1/-1;}
+
 </style>
 </head>
 <body>
@@ -340,6 +378,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <button onclick="showModule('m-obj',this)">💬 <span class="vi-only">Xử lý phản đối</span><span class="en-only hide">Objections</span></button>
     <button onclick="showModule('m-faq',this)">📚 <span class="vi-only">Kiến thức chuyên sâu</span><span class="en-only hide">Deep Knowledge</span><span class="badge">GS</span></button>
     <button onclick="showModule('m-sku',this)">📦 <span class="vi-only">SKU Directory</span><span class="en-only hide">SKU Directory</span></button>
+    <button onclick="showModule('m-il',this)">🏷️ <span class="vi-only">Thành phần & Claim</span><span class="en-only hide">Ingredients & Claims</span><span class="badge-new">⭐ NEW</span></button>
     <button onclick="showModule('m-sales',this)">🎯 <span class="vi-only">Kỹ năng Sales</span><span class="en-only hide">Sales Skills</span></button>
     <button onclick="showModule('m-cook',this)">🍳 <span class="vi-only">Cookbook</span><span class="en-only hide">Cookbook</span></button>
   </div>
@@ -995,6 +1034,36 @@ table.sku tr:hover td{background:#fff8e1;}
 </div>
 
 <!-- ══════════════════════════════════════════
+     MODULE: THÀNH PHẦN & CLAIM (IL)
+══════════════════════════════════════════ -->
+<div id="m-il" class="module">
+  <div class="card">
+    <h2>🏷️ <span class="vi-only">Thành phần &amp; Thông tin Claim</span><span class="en-only hide">Ingredient List &amp; Claims</span></h2>
+    <p class="vi-only" style="font-size:13.5px;color:var(--gray);margin-bottom:6px;">Tra cứu nhanh <strong>thành phần</strong>, <strong>phân tích phụ gia</strong> và <strong>các điểm claim bán hàng</strong> của từng sản phẩm — giúp Sales trả lời tự tin khi khách hỏi "có chất bảo quản không?", "có màu nhân tạo không?"…</p>
+    <p class="en-only hide" style="font-size:13.5px;color:var(--gray);margin-bottom:6px;">Quick reference for <strong>ingredients</strong>, <strong>additive analysis</strong> and <strong>sales claim points</strong> of each product.</p>
+    <p style="font-size:11.5px;color:#999;margin-bottom:12px;">📚 <span class="vi-only">Căn cứ pháp lý:</span><span class="en-only hide">Legal basis:</span> TT 24/2019/TT-BYT · NĐ 43/2017/NĐ-CP · TT 29/2023/TT-BYT · Codex GSFA</p>
+
+    <div class="il-legend">
+      <span><span class="dot" style="background:#66bb6a"></span> <span class="vi-only">Claim xác nhận</span><span class="en-only hide">Confirmed claim</span></span>
+      <span><span class="dot" style="background:#ffa726"></span> <span class="vi-only">Lưu ý / cảnh báo</span><span class="en-only hide">Caution</span></span>
+      <span><span class="dot" style="background:#7e57c2"></span> <span class="vi-only">Tiềm năng (cần test)</span><span class="en-only hide">Potential (needs testing)</span></span>
+    </div>
+
+    <input class="il-search" id="ilSearch" type="text" placeholder="🔍 Tìm sản phẩm hoặc thành phần... / Search product or ingredient..." oninput="renderIL()"/>
+    <div class="il-filter-row" id="ilFilters">
+      <button class="il-filter active" onclick="setILFilter(this,'all')">🗂️ <span class="vi-only">Tất cả</span><span class="en-only hide">All</span></button>
+      <button class="il-filter" onclick="setILFilter(this,'dau')">🫘 <span class="vi-only">Đậu &amp; Cà chua</span><span class="en-only hide">Beans &amp; Tomato</span></button>
+      <button class="il-filter" onclick="setILFilter(this,'ca')">🐟 <span class="vi-only">Cá</span><span class="en-only hide">Fish</span></button>
+      <button class="il-filter" onclick="setILFilter(this,'dua')">🥥 <span class="vi-only">Dừa</span><span class="en-only hide">Coconut</span></button>
+      <button class="il-filter" onclick="setILFilter(this,'sot')">🌶️ <span class="vi-only">Sốt</span><span class="en-only hide">Sauce</span></button>
+      <button class="il-filter" onclick="setILFilter(this,'huuco')">🌿 <span class="vi-only">Hữu cơ</span><span class="en-only hide">Organic</span></button>
+    </div>
+    <div class="il-count" id="ilCount"></div>
+    <div class="il-grid" id="ilGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
      MODULE: KỸ NĂNG SALES
 ══════════════════════════════════════════ -->
 <div id="m-sales" class="module">
@@ -1508,6 +1577,7 @@ function setLang(l){
   document.querySelectorAll('.en-only').forEach(el=>el.classList.toggle('hide',l!=='en'));
   document.getElementById('btn-vi').classList.toggle('active',l==='vi');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
+  if(typeof renderIL==='function')renderIL();
 }
 
 // ─────────────────────────────────────────────
@@ -1610,6 +1680,160 @@ function setSKUFilter(btn,f){
   renderSKU(SKU_DATA);
 }
 renderSKU(SKU_DATA);
+
+// ─────────────────────────────────────────────
+// THÀNH PHẦN & CLAIM (IL)
+// ─────────────────────────────────────────────
+const IL_DATA=[
+  {n:"Đậu Sốt Cà Chua Ayam Brand",g:"dau",grp:"Đậu Sốt VN",
+   il:"Đậu trắng (55%), sốt cà chua (45%) [nước, đường, cà chua cô đặc, muối, tinh bột biến tính (INS 1422), hỗn hợp gia vị]",
+   add:"INS 1422 (Acetylated distarch adipate): chất làm dày, GRAS. KHÔNG phẩm màu, KHÔNG chất bảo quản tổng hợp.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Ít béo (0.36g)","Nguồn protein thực vật"],warn:[],pot:[]},
+  {n:"Đậu Sốt Cà Chua Phô Mai Ayam Brand",g:"dau",grp:"Đậu Sốt VN",
+   il:"Đậu trắng (50%), sốt cà chua (50%) [nước, đường, cà chua cô đặc (3.8%), phô mai (1.7%), tinh bột biến tính (INS 1422), muối, hỗn hợp gia vị (maltodextrin, đường nâu, bột hành, bột tỏi, dầu hạt cải, quế)]",
+   add:"INS 1422: chất làm dày – được phép (TT24/2019). Phô mai chứa lactose. KHÔNG chất bảo quản, KHÔNG màu nhân tạo.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Ít béo (0.5g)"],warn:["Chứa sữa (phô mai) – cần khai báo allergen"],pot:[]},
+  {n:"Đậu Sốt Cà Chua Duchef",g:"dau",grp:"Đậu Sốt VN",
+   il:"Đậu trắng (55%), sốt cà chua (45%) [nước, đường, cà chua cô đặc, muối, chất làm dày, gia vị]",
+   add:"Tương tự Ayam Brand. KHÔNG màu nhân tạo, KHÔNG chất bảo quản.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Ít béo (0.3g)"],warn:[],pot:[]},
+  {n:"Puree Cà Chua Ayam Brand",g:"dau",grp:"Puree Cà Chua VN",
+   il:"Cà chua cô đặc, nước. (Thành phần ngắn gọn, tối giản)",
+   add:"Không phụ gia. 100% thành phần tự nhiên. Không chất bảo quản, không màu nhân tạo, không gia vị bổ sung.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Không cholesterol (0mg)","Ít calo (26 kcal)","Chỉ 2 thành phần tự nhiên"],warn:[],pot:[]},
+  {n:"Đậu Trắng Ayam Brand",g:"dau",grp:"Đậu Trắng VN",
+   il:"Đậu trắng (55%), nước, muối (0.7%)",
+   add:"Không phụ gia. 3 thành phần tự nhiên. Clean label hoàn toàn.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Không béo (0g)","Ít Sodium tương đối (179mg)","Nguồn protein & chất xơ"],warn:[],pot:[]},
+  {n:"Đậu Gà Ngâm Nước Muối Ayam Brand",g:"dau",grp:"Đậu Gà VN",
+   il:"Đậu gà (55%), nước, đường, muối (0.7%)",
+   add:"Không phụ gia. 4 thành phần tự nhiên. Clean label.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Ít béo (1.5g)","Nguồn protein & chất xơ"],warn:[],pot:[]},
+  {n:"Đậu Đỏ Ngâm Nước Muối Ayam Brand",g:"dau",grp:"Đậu Đỏ VN",
+   il:"Đậu đỏ (55%), nước, đường, muối (0.7%), Calci clorid (INS 509)",
+   add:"INS 509 (Calcium chloride): chất làm rắn chắc (firming agent). Là muối khoáng tự nhiên, an toàn, KHÔNG phải chất bảo quản.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Ít béo (0.5g)","Protein cao nhất nhóm đậu (6g)","INS 509 an toàn – không ảnh hưởng claims"],warn:[],pot:[]},
+  {n:"Sardine In Tomato Sauce 155g",g:"ca",grp:"Cá Trích NK",
+   il:"Cá trích (55%), sốt cà chua (45%) [nước, cà chua cô đặc, muối, gia vị]",
+   add:"Không phụ gia tổng hợp. Nguồn omega-3 tự nhiên từ cá.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (16.3g)"],warn:[],pot:["Giàu Omega-3 (cần test)","Giàu Canxi (cần test)"]},
+  {n:"Sardine EVOO + Chilli 120g",g:"ca",grp:"Cá Trích NK",
+   il:"Cá trích (55%), dầu olive nguyên chất (EVOO), ớt, muối",
+   add:"Không phụ gia. Dầu EVOO tự nhiên. Ớt là gia vị tự nhiên.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (22.7g)","Chứa dầu olive nguyên chất (EVOO)"],warn:[],pot:["Omega-3 (cần test)","Canxi (cần test)"]},
+  {n:"Sardine EVOO 120g",g:"ca",grp:"Cá Trích NK",
+   il:"Cá trích (55%), dầu olive nguyên chất (EVOO), muối",
+   add:"Không phụ gia. Thành phần tối giản, premium.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (23.4g)","Dầu olive nguyên chất"],warn:[],pot:["Omega-3 cao (cần test)","Canxi (cần test)"]},
+  {n:"Sardines In Tomato Sauce 120g",g:"ca",grp:"Cá Trích NK",
+   il:"Cá trích (55%), sốt cà chua (45%) [nước, cà chua, muối]",
+   add:"Không phụ gia. Ít béo hơn sardine 155g.",
+   ok:["Không chất bảo quản","Giàu protein (18.2g)","Béo thấp hơn (4.2g)"],warn:[],pot:["Omega-3 (cần test)","Canxi (cần test)"]},
+  {n:"Mackerel In Tomato Sauce 230g",g:"ca",grp:"Cá Thu NK",
+   il:"Cá thu (55%), sốt cà chua (45%) [nước, cà chua cô đặc (13%), muối, gôm xanthan (E415)]",
+   add:"E415 (Xanthan gum): chất làm dày tự nhiên từ lên men vi khuẩn, được phép (TT24/2019). KHÔNG chất bảo quản.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (13.8g)"],warn:["E415 là phụ gia thực phẩm – không ảnh hưởng claim 'không bảo quản'"],pot:["Omega-3 (cần test)"]},
+  {n:"Premium Coconut Milk 400ml",g:"dua",grp:"Nước Cốt Dừa NK",
+   il:"Nước cốt dừa tươi (75%), nước. (Không có thành phần thứ 3)",
+   add:"Không phụ gia. Sản phẩm tinh khiết. Hàm lượng béo cao tự nhiên.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Không lactose","Thuần chay (Vegan)","Ít sodium (24mg)"],warn:["Béo cao (24.3g) – không claim 'ít béo'"],pot:[]},
+  {n:"Coconut Milk 65ml",g:"dua",grp:"Nước Cốt Dừa NK",
+   il:"Nước cốt dừa, nước, ổn định (E466)",
+   add:"E466 (Carboxymethylcellulose): chất ổn định từ cellulose. An toàn, không bảo quản.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Không lactose, Vegan","Ít sodium (21mg)"],warn:[],pot:[]},
+  {n:"Light Coconut Milk 400ml",g:"dua",grp:"Nước Cốt Dừa NK",
+   il:"Nước cốt dừa (50%), nước (50%), E466",
+   add:"E466: chất ổn định. Ít dừa hơn → ít béo hơn Full-fat. Vẫn không chất bảo quản.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Không lactose, Vegan","Ít béo hơn Premium","Ít sodium (40mg)"],warn:[],pot:[]},
+  {n:"Tuna Chunks In Sunflower Oil 150g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ (65%), dầu hướng dương, muối",
+   add:"Không phụ gia. 3 thành phần tự nhiên.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (25.3g)","Béo vừa (11.8g từ dầu hướng dương)"],warn:[],pot:["Dầu hướng dương giàu Vit E"]},
+  {n:"Tuna Chunks In Water 150g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ khúc (73%), nước, muối",
+   add:"Không phụ gia. 3 thành phần tự nhiên. Hàm lượng béo thấp nhất nhóm cá ngừ.",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (24.9g)","Ít béo (0.8g) – Đạt claim 'Ít béo'","Phù hợp ăn kiêng, thể thao"],warn:[],pot:[]},
+  {n:"Tuna Flakes In Water Light 150g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ miếng (70%), nước, muối",
+   add:"Không phụ gia. Ít sodium nhất trong nhóm cá ngừ (152mg).",
+   ok:["Không chất bảo quản","Giàu protein (23.8g)","Ít béo (1.2g)","Sodium thấp nhất nhóm (152mg)","Phù hợp ăn kiêng"],warn:[],pot:[]},
+  {n:"Tuna Chunks In Olive Oil Light 150g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ khúc (65%), dầu olive, muối",
+   add:"Không phụ gia. Dầu olive tự nhiên.",
+   ok:["Không chất bảo quản","Giàu protein (21.8g)","Dầu olive tự nhiên"],warn:[],pot:["Omega-3 & Vit E (cần test)"]},
+  {n:"Chilli Tuna 160g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ (55%), ớt ngâm giấm, sốt cà chua, muối, đường, gia vị",
+   add:"Ớt và giấm là thành phần tự nhiên. Không chất bảo quản tổng hợp. Sodium cao (543mg).",
+   ok:["Không chất bảo quản","Không màu nhân tạo","Giàu protein (13.9g)"],warn:["Sodium cao (543mg) – không claim 'ít muối'","Béo cao (12.8g)"],pot:[]},
+  {n:"Tuna Flakes In Olive Oil Light 150g",g:"ca",grp:"Cá Ngừ NK",
+   il:"Cá ngừ miếng (65%), dầu olive, muối",
+   add:"Không phụ gia. Dầu olive tự nhiên.",
+   ok:["Không chất bảo quản","Giàu protein (17.4g)","Dầu olive tự nhiên"],warn:[],pot:["Omega-3 (cần test)"]},
+  {n:"Sriracha Sauce 235ml",g:"sot",grp:"Tương Ớt NK",
+   il:"Nước, ớt ngâm giấm 27% (giấm, ớt, muối), giấm, tỏi ngâm giấm (tỏi, giấm), đường, ớt khô 1.2%, chất làm dày (E1422, E415), muối, màu tự nhiên (E160c)",
+   add:"E1422 & E415: chất làm dày. E160c (Paprika extract): MÀU TỰ NHIÊN. Giấm đóng vai trò bảo quản tự nhiên (pH thấp). KHÔNG chất bảo quản tổng hợp.",
+   ok:["Không chất bảo quản tổng hợp (giấm là bảo quản tự nhiên)","Không màu nhân tạo (E160c = màu paprika tự nhiên)","Ít béo (0.7g)"],warn:["Sodium rất cao (3200mg/100g) – bình thường với sốt ớt dùng lượng nhỏ"],pot:[]},
+  {n:"Mỳ Ý Hữu Cơ Alce Nero",g:"huuco",grp:"Mì Nui Hữu Cơ NK",
+   il:"Semolina lúa mì durum hữu cơ 100%. (1 thành phần duy nhất)",
+   add:"Không phụ gia. 1 thành phần duy nhất. Chứng nhận hữu cơ EU (EC 834/2007). Không sodium.",
+   ok:["Hữu cơ (Organic certified)","Không chất bảo quản","Không màu nhân tạo","Không sodium (0mg)","Nguồn protein (11g)"],warn:["Chứa gluten (lúa mì)"],pot:[]},
+  {n:"Nui Ống Nhỏ Hữu Cơ Alce Nero",g:"huuco",grp:"Mì Nui Hữu Cơ NK",
+   il:"Semolina lúa mì durum hữu cơ 100%. (1 thành phần duy nhất)",
+   add:"Giống mỳ ý. 1 thành phần duy nhất.",
+   ok:["Hữu cơ (Organic certified)","Không chất bảo quản","Không sodium (0mg)","Nguồn protein (11g)"],warn:["Chứa gluten"],pot:[]},
+  {n:"Sốt Mì Ý Hữu Cơ Alce Nero",g:"huuco",grp:"Xốt Hữu Cơ NK",
+   il:"Cà chua (91%), dầu ô-liu nguyên chất (3%), hành tây (3%), muối, đường mía, húng quế (0.5%), bột tỏi, bột cần tây (0.05%). Được trồng hữu cơ.",
+   add:"Không phụ gia. 100% thành phần tự nhiên hữu cơ. Cà chua chiếm 91% → nguồn lycopene tự nhiên.",
+   ok:["Hữu cơ (Organic certified)","Không chất bảo quản","Không màu nhân tạo","Dầu olive nguyên chất","100% nguyên liệu tự nhiên","Ít calo (67 kcal)"],warn:[],pot:["Lycopene tự nhiên từ cà chua (cần test để claim)"]},
+];
+let ilFilter='all';
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderIL(){
+  const q=(document.getElementById('ilSearch').value||'').toLowerCase();
+  const grid=document.getElementById('ilGrid');
+  const cnt=document.getElementById('ilCount');
+  const grpMap={dau:'🫘 Đậu',ca:'🐟 Cá',dua:'🥥 Dừa',sot:'🌶️ Sốt',huuco:'🌿 Hữu cơ'};
+  const rows=IL_DATA.filter(d=>{
+    if(ilFilter!=='all'&&d.g!==ilFilter)return false;
+    if(!q)return true;
+    const hay=(d.n+' '+d.il+' '+d.add+' '+d.ok.join(' ')+' '+d.warn.join(' ')+' '+d.pot.join(' ')+' '+d.grp).toLowerCase();
+    return hay.includes(q);
+  });
+  cnt.textContent=(currentLang==='en'?'Showing ':'Đang hiển thị ')+rows.length+(currentLang==='en'?' products':' sản phẩm');
+  if(!rows.length){grid.innerHTML='<div class="il-no-result">'+(currentLang==='en'?'No matching product.':'Không tìm thấy sản phẩm phù hợp.')+'</div>';return;}
+  grid.innerHTML=rows.map(d=>{
+    const claims=[
+      ...d.ok.map(c=>`<span class="il-claim ok">✅ ${esc(c)}</span>`),
+      ...d.warn.map(c=>`<span class="il-claim warn">⚠️ ${esc(c)}</span>`),
+      ...d.pot.map(c=>`<span class="il-claim pot">🔎 ${esc(c)}</span>`)
+    ].join('');
+    return `<div class="il-card g-${d.g}">
+      <div class="il-head">
+        <div class="il-name">${esc(d.n)}</div>
+        <span class="il-grp g-${d.g}">${grpMap[d.g]||''}</span>
+      </div>
+      <div class="il-sec">
+        <span class="il-lbl">${currentLang==='en'?'Ingredients':'Thành phần'}</span>
+        <div class="il-txt">${esc(d.il)}</div>
+      </div>
+      <div class="il-sec">
+        <span class="il-lbl">${currentLang==='en'?'Additive analysis':'Phân tích phụ gia'}</span>
+        <div class="il-add">${esc(d.add)}</div>
+      </div>
+      <div class="il-sec">
+        <span class="il-lbl">${currentLang==='en'?'Sales claims':'Điểm claim bán hàng'}</span>
+        <div class="il-claims">${claims}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function setILFilter(btn,f){
+  ilFilter=f;
+  document.querySelectorAll('.il-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIL();
+}
+renderIL();
 
 // ─────────────────────────────────────────────
 // FAQ – GOOGLE SHEET INTEGRATION
