@@ -348,6 +348,48 @@ table.sku tr:hover td{background:#fff8e1;}
 .il-legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
 .il-no-result{text-align:center;padding:32px;color:#999;font-size:14px;grid-column:1/-1;}
 
+
+/* ── ĐỐI THỦ CẠNH TRANH (CP) ── */
+.cp-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;margin:8px 0 14px;}
+.cp-legend span{display:flex;align-items:center;gap:5px;font-weight:600;color:var(--gray);}
+.cp-legend .dot{width:12px;height:12px;border-radius:3px;display:inline-block;}
+.cp-cat{margin-bottom:28px;}
+.cp-cat-head{background:linear-gradient(135deg,var(--navy),#0E2033);color:#fff;border-radius:14px 14px 0 0;padding:16px 22px;}
+.cp-cat-head .cp-cat-title{font-size:19px;font-weight:900;letter-spacing:.02em;display:flex;align-items:center;gap:8px;}
+.cp-ayam-line{margin-top:9px;background:rgba(255,225,64,.13);border:1.5px dashed var(--yellow);color:var(--yellow);font-size:12.5px;border-radius:9px;padding:7px 12px;line-height:1.55;}
+.cp-body{background:#fff;border-radius:0 0 14px 14px;box-shadow:var(--shadow);padding:18px 20px;}
+.cp-ladder{display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:linear-gradient(90deg,#e8f5e9 0%,#fff8e1 50%,#ffebee 100%);border-radius:10px;padding:10px 14px;margin-bottom:16px;}
+.cp-ladder .lbl{font-size:10.5px;font-weight:800;color:#8a8a8a;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;}
+.cp-ladder .arr{color:#bbb;font-size:13px;}
+.cp-chip{font-size:12px;font-weight:800;padding:4px 12px;border-radius:20px;background:#fff;border:1.5px solid #ddd;color:var(--gray);white-space:nowrap;}
+.cp-chip.ayam{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 2px 8px rgba(200,16,46,.35);}
+.cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:820px){.cp-grid{grid-template-columns:1fr;}}
+.cp-brand{border:1.5px solid #ececec;border-radius:12px;padding:16px 17px 14px;position:relative;background:#fff;transition:transform .2s,box-shadow .2s;border-top:5px solid #78909C;}
+.cp-brand:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.cp-brand.t-mass{border-top-color:#78909C;}
+.cp-brand.t-main{border-top-color:var(--teal);}
+.cp-brand.t-prem{border-top-color:#6A1B9A;}
+.cp-tier{position:absolute;top:12px;right:14px;font-size:9.5px;font-weight:900;letter-spacing:.07em;padding:3px 9px;border-radius:10px;text-transform:uppercase;}
+.cp-tier.t-mass{background:#ECEFF1;color:#546E7A;}
+.cp-tier.t-main{background:#E0F2F7;color:var(--teal);}
+.cp-tier.t-prem{background:#EDE7F6;color:#6A1B9A;}
+.cp-name{font-size:clamp(22px,3.4vw,29px);font-weight:900;letter-spacing:-.01em;color:var(--navy);line-height:1.05;text-transform:uppercase;padding-right:78px;}
+.cp-meta{font-size:11.5px;color:#888;margin:5px 0 4px;font-weight:600;}
+.cp-pos{font-size:12.5px;color:var(--gray);font-style:italic;border-left:3px solid #e0e0e0;padding-left:9px;margin:8px 0 6px;line-height:1.55;}
+.cp-price{display:inline-block;background:var(--cream);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:800;color:var(--brown);margin-bottom:6px;}
+.cp-sec{margin-top:9px;}
+.cp-lbl{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#9a9a9a;display:block;margin-bottom:3px;}
+.cp-list{list-style:none;padding:0;margin:0;font-size:12.5px;line-height:1.65;color:var(--gray);}
+.cp-list.str li::before{content:"✔ ";color:var(--green);font-weight:800;}
+.cp-list.weak li::before{content:"✖ ";color:var(--red);font-weight:800;}
+.cp-list li{margin-bottom:3px;padding-left:2px;}
+.cp-ch{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.cp-ch span{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:12px;background:#E8EAF6;color:#283593;}
+.cp-tm{background:#fff8e1;border-left:3px solid var(--yellow2);padding:8px 11px;font-size:12px;border-radius:0 8px 8px 0;margin-top:9px;color:var(--brown);line-height:1.6;}
+.cp-counter{background:#fff5f5;border:1.5px dashed var(--red);border-radius:10px;padding:9px 12px;font-size:12.5px;color:var(--red);font-weight:600;margin-top:11px;line-height:1.6;}
+.cp-no-result{text-align:center;padding:32px;color:#999;font-size:14px;}
+
 </style>
 </head>
 <body>
@@ -360,7 +402,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <h1>Sales Training Hub <span>Denis G.M. Company Limited · Internal Use Only</span></h1>
   </div>
   <div class="topbar-right">
-    <span class="v-badge">v3.0</span>
+    <span class="v-badge">v3.1</span>
     <div class="lang-toggle">
       <button id="btn-vi" class="active" onclick="setLang('vi')">VI</button>
       <button id="btn-en" onclick="setLang('en')">EN</button>
@@ -375,6 +417,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <button onclick="showModule('m-retort',this)">🔬 <span class="vi-only">Retort</span><span class="en-only hide">Retort Tech</span></button>
     <button onclick="showModule('m-products',this)">💪 <span class="vi-only">Sản phẩm & Win Points</span><span class="en-only hide">Products & Win Points</span></button>
     <button onclick="showModule('m-coconut',this)">🥥 <span class="vi-only">Nước Cốt Dừa 65ml</span><span class="en-only hide">Coconut 65ml</span><span class="badge-new">⭐ NEW</span></button>
+    <button onclick="showModule('m-comp',this)">⚔️ <span class="vi-only">Đối thủ cạnh tranh</span><span class="en-only hide">Competitors</span><span class="badge-new">⭐ NEW</span></button>
     <button onclick="showModule('m-obj',this)">💬 <span class="vi-only">Xử lý phản đối</span><span class="en-only hide">Objections</span></button>
     <button onclick="showModule('m-faq',this)">📚 <span class="vi-only">Kiến thức chuyên sâu</span><span class="en-only hide">Deep Knowledge</span><span class="badge">GS</span></button>
     <button onclick="showModule('m-sku',this)">📦 <span class="vi-only">SKU Directory</span><span class="en-only hide">SKU Directory</span></button>
@@ -921,6 +964,35 @@ table.sku tr:hover td{background:#fff8e1;}
       <em class="en-only hide">"This is the 65ml mini coconut milk – only 9,900₫. Perfect for 1 bowl of soup or 1 curry portion – no waste, no leftovers. Try 5 cartons and see customer response – if it doesn't sell, I'll swap immediately."</em>
     </div>
   </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MODULE – ĐỐI THỦ CẠNH TRANH (COMPETITORS)
+══════════════════════════════════════════ -->
+<div id="m-comp" class="module">
+  <div class="card">
+    <h2>⚔️ <span class="vi-only">Bản đồ Đối thủ cạnh tranh theo nhóm sản phẩm</span><span class="en-only hide">Competitor Map by Product Group</span></h2>
+    <p class="vi-only" style="font-size:13.5px;margin-bottom:6px">Mỗi nhóm sản phẩm gồm: <strong>thang định vị giá</strong> (thấp → cao, Ayam được highlight đỏ), và <strong>thẻ đối thủ</strong> với tên thương hiệu cỡ lớn — kèm định vị, điểm mạnh & kênh phân phối, điểm yếu, hoạt động trade marketing và <strong>cách Ayam Brand đấu lại</strong>.</p>
+    <p class="en-only hide" style="font-size:13.5px;margin-bottom:6px">Each product group includes: a <strong>price positioning ladder</strong> (low → high, Ayam highlighted in red) and <strong>competitor cards</strong> with large brand names — covering positioning, strengths & channels, weaknesses, trade marketing activity and <strong>how Ayam Brand counters</strong>.</p>
+    <p style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:10px">🚫 <span class="vi-only">Nguyên tắc vàng: KHÔNG nói xấu đối thủ trước mặt khách — chỉ dùng dữ liệu để so sánh khách quan (thành phần, %, chứng nhận, giá/gram).</span><span class="en-only hide">Golden rule: NEVER badmouth competitors in front of customers — use objective data only (ingredients, %, certifications, price/gram).</span></p>
+    <div class="cp-legend">
+      <span><span class="dot" style="background:#78909C"></span> MASS – <span class="vi-only">giá rẻ đại trà</span><span class="en-only hide">low-price mass</span></span>
+      <span><span class="dot" style="background:#2F7898"></span> MAINSTREAM – <span class="vi-only">phổ thông</span><span class="en-only hide">mid-market</span></span>
+      <span><span class="dot" style="background:#6A1B9A"></span> PREMIUM – <span class="vi-only">cao cấp / nhập khẩu</span><span class="en-only hide">premium / imported</span></span>
+      <span><span class="dot" style="background:#C8102E"></span> AYAM BRAND – <span class="vi-only">vị trí của chúng ta</span><span class="en-only hide">our position</span></span>
+    </div>
+    <input class="il-search" id="cpSearch" type="text" placeholder="🔍 Tìm thương hiệu đối thủ... / Search competitor brand..." oninput="renderCP()"/>
+    <div class="il-filter-row" id="cpFilters">
+      <button class="il-filter active" onclick="setCPFilter(this,'all')">🗂️ <span class="vi-only">Tất cả</span><span class="en-only hide">All</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'tuna')">🐟 <span class="vi-only">Cá Ngừ</span><span class="en-only hide">Tuna</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'sardmack')">🐟 <span class="vi-only">Cá Trích &amp; Cá Thu</span><span class="en-only hide">Sardines &amp; Mackerel</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'beans')">🫘 <span class="vi-only">Đậu Sốt Cà</span><span class="en-only hide">Baked Beans</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'tomato')">🍅 <span class="vi-only">Puree / Paste Cà Chua</span><span class="en-only hide">Tomato Puree</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'coconut')">🥥 <span class="vi-only">Nước Cốt Dừa</span><span class="en-only hide">Coconut Milk</span></button>
+      <button class="il-filter" onclick="setCPFilter(this,'chili')">🌶️ <span class="vi-only">Tương Ớt</span><span class="en-only hide">Chilli Sauce</span></button>
+    </div>
+  </div>
+  <div id="cpContainer"></div>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -1578,6 +1650,7 @@ function setLang(l){
   document.getElementById('btn-vi').classList.toggle('active',l==='vi');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   if(typeof renderIL==='function')renderIL();
+  if(typeof renderCP==='function')renderCP();
 }
 
 // ─────────────────────────────────────────────
@@ -2213,5 +2286,286 @@ if(SHEET_CSV_URL && SHEET_CSV_URL!=='YOUR_GOOGLE_SHEET_CSV_URL_HERE'){
   setTimeout(()=>loadFAQ(),800);
 }
 </script>
+<script>
+// ─────────────────────────────────────────────
+// ĐỐI THỦ CẠNH TRANH – DATA & RENDER
+// Nguồn: Survey nội bộ DGM + battle cards + khảo sát giá bán lẻ
+// (Lotte, Emart, GO!/BigC, Mega Market, An Nam Gourmet, BHX, Kingfood...) 2025–2026
+// ─────────────────────────────────────────────
+const CP_META={
+  tuna:{icon:'🐟',vi:'CÁ NGỪ',en:'TUNA',
+    ayam_vi:'⭐ Vị trí Ayam Brand: PREMIUM — 73% cá ngừ cao nhất phân khúc, KHÔNG MSG, Dolphin Safe, 7 variants (Oil/Water/Olive/Chilli), Halal JAKIM+MUI, HSD 36T. Giá 150g cao hơn đối thủ Thái ~50% nhưng RẺ HƠN nếu tính trên mỗi gram cá thật.',
+    ayam_en:'⭐ Ayam Brand position: PREMIUM — 73% tuna (highest in segment), NO MSG, Dolphin Safe, 7 variants, dual Halal, 36-month shelf life. Cheaper per gram of actual fish.',
+    ladder:[{n:'Sea Crown',t:''},{n:'Century',t:''},{n:'Nautilus',t:''},{n:'AYAM BRAND',t:'ayam'}]},
+  sardmack:{icon:'🐟',vi:'CÁ TRÍCH & CÁ THU',en:'SARDINES & MACKEREL',
+    ayam_vi:'⭐ Vị trí Ayam Brand: PREMIUM — cá Đại Tây Dương biển lạnh (Omega-3 ~2.000–2.200mg/100g), dòng Sardine EVOO duy nhất phân khúc, không chất bảo quản, Halal kép. Không đối đầu về giá với hàng mass — bán cho phân khúc sức khỏe & premium.',
+    ayam_en:'⭐ Ayam Brand position: PREMIUM — cold-water Atlantic fish (Omega-3 ~2,000–2,200mg/100g), only EVOO sardine line in segment, no preservatives, dual Halal.',
+    ladder:[{n:'Ba Cô Gái',t:''},{n:'Sea Crown',t:''},{n:'Seaspimex',t:''},{n:'Pompui',t:''},{n:'AYAM BRAND',t:'ayam'}]},
+  beans:{icon:'🫘',vi:'ĐẬU SỐT CÀ (BAKED BEANS)',en:'BAKED BEANS',
+    ayam_vi:'⭐ Vị trí Ayam Brand: "Chất lượng quốc tế – Giá địa phương" — hạt Great Northern Mỹ to hơn Navy Beans, sản xuất tại nhà máy VN FSSC 22000 nên giá 18.900–29.900đ (Heinz nhập UK 42–49k), duy nhất Halal JAKIM+MUI, 3 variants + Chickpeas + Red Kidney.',
+    ayam_en:'⭐ Ayam Brand position: "International quality – local price" — US Great Northern beans, VN FSSC 22000 factory, 18,900–29,900₫ vs Heinz 42–49k, only dual-Halal brand.',
+    ladder:[{n:'AYAM BRAND',t:'ayam'},{n:'Fiamma',t:''},{n:'Annalisa',t:''},{n:'Contel',t:''},{n:'Heinz',t:''}]},
+  tomato:{icon:'🍅',vi:'PUREE / PASTE CÀ CHUA',en:'TOMATO PUREE / PASTE',
+    ayam_vi:'⭐ Vị trí Ayam Brand: Puree 220g/430g chỉ 2 thành phần tự nhiên (cà chua cô đặc + nước), không chất bảo quản – không màu – không gia vị, sản xuất VN chuẩn FSSC → clean label nhất trong nhóm với giá nội địa.',
+    ayam_en:'⭐ Ayam Brand position: 2-ingredient clean label puree (tomato concentrate + water), no preservatives/colors, VN-made FSSC quality at local price.',
+    ladder:[{n:'Đồng Tâm',t:''},{n:'Ông Chà Và',t:''},{n:'AYAM BRAND',t:'ayam'},{n:'Annalisa',t:''},{n:'Fiamma',t:''}]},
+  coconut:{icon:'🥥',vi:'NƯỚC CỐT DỪA',en:'COCONUT MILK',
+    ayam_vi:'⭐ Vị trí Ayam Brand: 400ml ~38k (rẻ hơn Chaokoh 10–20%) — Non-GMO, nhà máy do Denis quản lý trực tiếp, Halal kép, BPA-Free, HSD 36T. Đặc biệt: 65ml Tetra Pak 9.900đ KHÔNG có đối thủ cùng quy cách tại VN.',
+    ayam_en:'⭐ Ayam Brand position: 400ml ~38k (10–20% below Chaokoh) — Non-GMO, Denis-managed factory, dual Halal, BPA-Free, 36M shelf life. 65ml Tetra Pak 9,900₫ has NO direct competitor in VN.',
+    ladder:[{n:'Wonderfarm',t:''},{n:'Vietcoco',t:''},{n:'AYAM BRAND',t:'ayam'},{n:'Chaokoh',t:''},{n:'Aroy-D',t:''}]},
+  chili:{icon:'🌶️',vi:'TƯƠNG ỚT / SRIRACHA',en:'CHILLI SAUCE / SRIRACHA',
+    ayam_vi:'⭐ Vị trí Ayam Brand: KHÔNG đối đầu tương ớt Việt đại trà. Sriracha Ayam 235ml chơi ở niche "Sriracha Thái chuẩn": ớt + tỏi thật, KHÔNG chất bảo quản tổng hợp (giấm bảo quản tự nhiên), màu paprika tự nhiên E160c — nhắm pizza/fastfood/HoReCa/expat và kệ hàng nhập.',
+    ayam_en:'⭐ Ayam Brand position: not competing with mass VN chilli sauce. Ayam Sriracha 235ml owns the "authentic Thai Sriracha" niche: real chilli+garlic, no synthetic preservatives, natural paprika color.',
+    ladder:[{n:'Cholimex',t:''},{n:'Chinsu',t:''},{n:'AYAM BRAND',t:'ayam'},{n:'Huy Fong',t:''}]}
+};
+
+const CP_DATA=[
+// ══ CÁ NGỪ ══
+{cat:'tuna',name:'SEA CROWN',origin:'🇹🇭 Thái Lan',owner:'Pattaya Food Group · NK: Nautilus Food VN',tier:'main',
+ pos:'Cá hộp Thái phổ thông "quốc dân mới" — giá dễ mua, phủ cực rộng, danh mục trải dài cá ngừ / nục / trích.',
+ price:'~26.5–28k / 140g (≈ 50% giá Ayam)',
+ str:['Giá thấp hơn Ayam gần một nửa — rào cản dùng thử rất thấp','Phủ dày đặc Bách Hóa Xanh, Kingfood, GT, cửa hàng tiện lợi & online','Hậu thuẫn tập đoàn Pattaya (Thái) — nguồn cung ổn định, danh mục rộng'],
+ weak:['% cá ngừ 53–70% tùy SKU — thấp hơn Ayam (73%)','Có chất điều vị MSG (INS 621); dầu đậu nành, không có dòng EVOO','Không Halal JAKIM+MUI, không claim Dolphin Safe','Branding người tiêu dùng yếu — bán chủ yếu bằng giá'],
+ ch:['GT','MT (BHX/Kingfood)','CVS','Online'],
+ tm:'Khuyến mãi giá sốc kiểu "lốc 2 hộp 30k", trưng bày kệ BHX/GT; gần như không đầu tư TVC/branding.',
+ counter:'💬 Đấu lại: Tính giá trên mỗi GRAM CÁ THẬT (Ayam 73% vs 53–70%) — Ayam không hề đắt hơn. Chốt bằng "không MSG + Dolphin Safe" với khách quan tâm sức khỏe.'},
+{cat:'tuna',name:'CENTURY',origin:'🇵🇭 Philippines',owner:'Century Pacific Food · hàng nhập khẩu',
+ tier:'main',
+ pos:'"Cá ngừ số 1 Philippines" — mạnh về các dòng vị chế biến sẵn (hot & spicy, caldereta, afritada...).',
+ price:'~30–45k / 180g tùy dòng',
+ str:['Nhiều vị chế biến sẵn độc đáo, tiện dùng ngay','Thương hiệu rất mạnh với cộng đồng Philippines & expat ĐNÁ','Bao bì bắt mắt, dễ nhận diện trên kệ hàng nhập'],
+ weak:['Một số SKU chỉ ~28% cá ngừ + protein đậu nành độn, kèm E621 & hương liệu tổng hợp','HSD chỉ 12 tháng (Ayam 36 tháng) — rủi ro tồn kho cho điểm bán','Phân phối mỏng, phụ thuộc nhà nhập khẩu — hay đứt hàng'],
+ ch:['MT nhập khẩu','Cửa hàng đặc sản','Online'],
+ tm:'Hầu như không có trade activity tại VN — bán thụ động qua kệ hàng nhập.',
+ counter:'💬 Đấu lại: Mở bảng thành phần cạnh nhau — 28% cá + đạm đậu nành vs Ayam 73% cá thật, HSD 12T vs 36T. Không cần nói thêm.'},
+{cat:'tuna',name:'NAUTILUS',origin:'🇹🇭 Thái Lan',owner:'Pattaya Food Group (cùng nhà với Sea Crown)',tier:'main',
+ pos:'Dòng "anh em cao cấp hơn" của Sea Crown tại VN — cá ngừ ngâm dầu / ngâm nước, hiện diện MT lâu năm.',
+ price:'~35–50k / 140–185g',
+ str:['Chất lượng ổn định từ hệ thống nhà máy Pattaya','Có mặt lâu năm tại MT (Co.opmart, Lotte, GO!...)','Giá vẫn nằm dưới Ayam — dễ được chọn làm "premium giá mềm"'],
+ weak:['Nhận diện thương hiệu mờ nhạt, dễ nhầm với Sea Crown','Ít variant, không EVOO, không Halal kép','Gần như không có hoạt động branding riêng'],
+ ch:['MT','GT một phần'],
+ tm:'Chủ yếu promo giảm giá theo đợt tại MT.',
+ counter:'💬 Đấu lại: Ayam thắng bằng câu chuyện 130 năm + Dolphin Safe + danh mục 7 variants (Chunks/Flakes × Oil/Water/Olive + Chilli) — thứ Nautilus không kể được.'},
+
+// ══ CÁ TRÍCH & CÁ THU ══
+{cat:'sardmack',name:'BA CÔ GÁI',origin:'🇹🇭→🇻🇳 Royal Foods (Thái, nhà máy tại VN)',owner:'Three Lady Cooks · Royal Foods VN',tier:'mass',
+ pos:'"Vua kênh GT" — cá hộp quốc dân qua nhiều thế hệ, mặc định trong tâm trí người mua tạp hóa & chợ.',
+ price:'~13–19k / 155g (mass)',
+ str:['Độ phủ GT / chợ / tạp hóa số 1 tuyệt đối trong phân khúc','Nhận diện thương hiệu hàng chục năm — khách tự hỏi mua, không cần thuyết phục','Nhà máy tại VN → nguồn cung & giá cực ổn định, chiết khấu GT sâu'],
+ weak:['Nguyên liệu cá nục/cá mòi phổ thông, dầu đậu nành','Định vị giá rẻ — không lên được premium, không câu chuyện Omega-3/EVOO','Biên lợi nhuận VNĐ/lon cho điểm bán thấp'],
+ ch:['GT sâu nhất','Chợ truyền thống','MT đầy đủ'],
+ tm:'TVC truyền hình lâu năm, khuyến mãi thùng cho tạp hóa, trưng bày chợ, chiết khấu sâu theo mùa.',
+ counter:'💬 Đấu lại: KHÔNG đối đầu giá. Ayam bán cho phân khúc khác — "thêm 1 facing premium bên cạnh, không thay thế": EVOO + Omega-3 biển lạnh + không chất bảo quản. Lợi nhuận VNĐ/lon của chủ tiệm cao hơn.'},
+{cat:'sardmack',name:'SEA CROWN',origin:'🇹🇭 Thái Lan',owner:'Pattaya Food Group · NK: Nautilus Food VN',tier:'mass',
+ pos:'Dòng cá trích/nục sốt cà hộp chữ nhật & lon giá rẻ — bám sát Ba Cô Gái ở kênh hiện đại giá thấp.',
+ price:'~15–22k / 155g',
+ str:['Giá rất cạnh tranh, phủ mạnh BHX & chuỗi giá rẻ','Danh mục rộng: sốt cà, kho tiêu, sốt ớt...'],
+ weak:['Không có câu chuyện chất lượng khác biệt','Brand yếu hơn Ba Cô Gái ở GT truyền thống'],
+ ch:['MT (BHX)','GT','Online'],
+ tm:'Promo giá theo lốc/combo tại chuỗi giá rẻ.',
+ counter:'💬 Đấu lại: Như với Ba Cô Gái — Ayam chơi phân khúc trên với cá Đại Tây Dương + EVOO, không giành khách giá rẻ.'},
+{cat:'sardmack',name:'POMPUI',origin:'🇹🇭 Thái Lan (nhập khẩu)',owner:'Thương hiệu cá hộp Thái lâu năm',tier:'main',
+ pos:'Cá thu / cá trích sốt cà "chuẩn vị Thái" — quen thuộc với người tiêu dùng miền Nam từ lâu.',
+ price:'~20–30k / hộp',
+ str:['Hương vị Thái đậm đà, có tệp khách trung thành lâu năm','Uy tín "hàng Thái" trong tâm trí NTD lớn tuổi miền Nam'],
+ weak:['Phân phối phụ thuộc nhà nhập khẩu — hiện diện MT không đều, hay trống kệ','Không hoạt động branding; bao bì ít đổi mới','Không Halal kép, không dòng EVOO / dầu olive'],
+ ch:['GT miền Nam','MT một phần'],
+ tm:'Gần như chỉ promo giá; không TVC/digital.',
+ counter:'💬 Đấu lại: Ayam Mackerel 230g + Sardine EVOO là phân khúc trên hẳn: cá Đại Tây Dương, không chất bảo quản, nguồn cung DGM ổn định — điểm bán không lo trống kệ.'},
+{cat:'sardmack',name:'SEASPIMEX',origin:'🇻🇳 Việt Nam',owner:'Cty XNK Thủy Đặc Sản (30+ năm)',tier:'main',
+ pos:'Thương hiệu thủy sản Việt lâu đời — "hàng Việt chất lượng" phủ đủ hệ thống siêu thị & đại lý toàn quốc.',
+ price:'~20–35k / hộp',
+ str:['Thương hiệu Việt uy tín 30+ năm, được MT nội địa ưu ái','Năng lực nhà máy xuất khẩu — chất lượng ổn định','Giá hợp lý, phủ rộng toàn quốc'],
+ weak:['Hình ảnh thương hiệu cũ, ít đổi mới bao bì & truyền thông','Không câu chuyện premium (EVOO, Omega-3, chứng nhận quốc tế kép)'],
+ ch:['MT','GT','Đại lý toàn quốc'],
+ tm:'Trưng bày MT, hội chợ Hàng Việt Nam Chất Lượng Cao; ít activity NTD.',
+ counter:'💬 Đấu lại: Ayam khác biệt bằng bộ chứng nhận quốc tế (FSSC 22000, Halal JAKIM+MUI, BPA-Free) + nguyên liệu Đại Tây Dương — nhắm khách sức khỏe & expat mà Seaspimex chưa chạm tới.'},
+
+// ══ ĐẬU SỐT CÀ ══
+{cat:'beans',name:'HEINZ',origin:'🇬🇧 Anh Quốc',owner:'Kraft Heinz (nhập khẩu)',tier:'prem',
+ pos:'Biểu tượng baked beans toàn cầu — "chuẩn khẩu vị Anh", benchmark của cả ngành hàng.',
+ price:'~42–49k / 415g (gần gấp đôi Ayam)',
+ str:['Brand equity số 1 thế giới trong ngành hàng — khách expat & khách quen vị Anh cực trung thành','Hiện diện ổn định tại kệ nhập khẩu: An Nam Gourmet, Nam An, Lotte, Emart, MM, GO!','Chất lượng & khẩu vị chuẩn hóa toàn cầu'],
+ weak:['Giá gần gấp đôi Ayam 425g — rào cản lớn với gia đình Việt','Hàng nhập UK → nguồn cung & giá biến động theo tỷ giá/logistics','Navy Beans hạt nhỏ hơn Great Northern; không Halal JAKIM+MUI','Không có trade activity tại VN — không hỗ trợ điểm bán'],
+ ch:['MT premium','An Nam / cửa hàng nhập khẩu','Online'],
+ tm:'Zero trade marketing local — bán hoàn toàn bằng sức mạnh thương hiệu toàn cầu.',
+ counter:'💬 Đấu lại: "Chất lượng quốc tế – Giá địa phương": Ayam rẻ hơn ~40%, hạt Great Northern Mỹ to hơn, sản xuất VN chuẩn FSSC → nguồn cung ổn định + margin điểm bán tốt hơn hẳn.'},
+{cat:'beans',name:'FIAMMA',origin:'🇮🇹 Ý (nhập khẩu)',owner:'Nhãn hàng Ý qua nhà nhập khẩu VN',tier:'main',
+ pos:'"Made in Italy giá mềm" — đậu & cà chua hộp Ý phủ kênh HoReCa/nguyên liệu và kệ nhập khẩu MT.',
+ price:'~20–28k / 400g',
+ str:['Xuất xứ Ý tạo cảm giác "chuẩn Âu" với bếp nhà hàng','Giá bất ngờ dễ chịu — cạnh tranh trực tiếp với hàng nội','Mạnh kênh phân phối nguyên liệu HoReCa (Nguyên Hà...) + MT'],
+ weak:['Thương hiệu với NTD gần như bằng 0 — mua vì giá & xuất xứ, không vì brand','Phụ thuộc nhà nhập khẩu → dễ đứt hàng, date không đều','Không Halal JAKIM+MUI; quy cách hạn chế'],
+ ch:['HoReCa','MT nhập khẩu','Nguyên liệu sỉ'],
+ tm:'Không branding NTD; cạnh tranh thuần bằng giá cho bếp công nghiệp.',
+ counter:'💬 Đấu lại (HoReCa): Ayam thắng bằng SERVICE của DGM — giao ổn định, hỗ trợ xoay date, chứng từ đầy đủ + Halal kép cho khách sạn phục vụ khách Hồi giáo/MICE.'},
+{cat:'beans',name:'ANNALISA',origin:'🇮🇹 Ý (nhập khẩu)',owner:'Nhãn hàng Ý qua nhà nhập khẩu VN',tier:'main',
+ pos:'Đối thủ Ý "song sinh" với Fiamma — đậu & cà chua giá cạnh tranh, hiện diện MT (Lotte, Emart, GO!) khá đều.',
+ price:'~20–28k / 400g',
+ str:['Giá cạnh tranh + xuất xứ Ý','Hiện diện kệ MT tương đối đều ở nhóm hàng nhập giá mềm'],
+ weak:['Nhận diện thương hiệu thấp, không activity','Phụ thuộc nhập khẩu; không Halal kép; không có câu chuyện dinh dưỡng'],
+ ch:['MT','HoReCa','Online'],
+ tm:'Chỉ promo giá theo đợt của nhà nhập khẩu.',
+ counter:'💬 Đấu lại: Với NTD — Ayam là thương hiệu có câu chuyện (130 năm, Halal, không BQ) và có ĐỘI NGŨ chăm kệ; Annalisa chỉ là "lon đậu giá rẻ" không ai chăm.'},
+{cat:'beans',name:'CONTEL',origin:'🌍 Nhập khẩu',owner:'Nhãn nhập khẩu, hiện diện mỏng',tier:'main',
+ pos:'Người chơi phụ — xuất hiện rải rác ở một số hệ thống, chưa tạo áp lực trực diện.',
+ price:'~20–30k',
+ str:['Giá mềm khi có mặt trên kệ'],
+ weak:['Độ phủ rất mỏng, không ổn định','Không thương hiệu, không activity, không đội ngũ thị trường'],
+ ch:['MT rải rác'],
+ tm:'Không đáng kể.',
+ counter:'💬 Đấu lại: Theo dõi là đủ — ưu tiên nguồn lực đấu Heinz (premium) và Fiamma/Annalisa (giá).'},
+
+// ══ PUREE / PASTE CÀ CHUA ══
+{cat:'tomato',name:'FIAMMA',origin:'🇮🇹 Ý (nhập khẩu)',owner:'Nhãn hàng Ý',tier:'main',
+ pos:'Cà chua cô đặc / polpa "chuẩn Ý" cho pizza & pasta — vũ khí chính ở kênh HoReCa Ý/Âu.',
+ price:'~20–30k / 400g',
+ str:['"Cà chua Ý" là chuẩn mặc định của bếp pizza/pasta','Giá tốt cho bếp công nghiệp, quy cách đa dạng (có size lớn)'],
+ weak:['Không brand NTD; phụ thuộc nhập khẩu','Không claim clean label rõ ràng như Ayam (2 thành phần)'],
+ ch:['HoReCa','MT nhập khẩu'],
+ tm:'Không branding; giá sỉ cho bếp.',
+ counter:'💬 Đấu lại: Ayam Puree = 2 thành phần, không BQ, sản xuất VN chuẩn FSSC — clean label + nguồn cung chủ động, không lo đứt hàng nhập.'},
+{cat:'tomato',name:'ANNALISA',origin:'🇮🇹 Ý (nhập khẩu)',owner:'Nhãn hàng Ý',tier:'main',
+ pos:'Song hành với Fiamma ở nhóm cà chua Ý giá mềm trên kệ MT.',
+ price:'~20–28k / 400g',
+ str:['Giá cạnh tranh, xuất xứ Ý','Kệ MT khá đều'],
+ weak:['Không nhận diện, không activity, phụ thuộc NK'],
+ ch:['MT','Online'],
+ tm:'Promo giá theo đợt.',
+ counter:'💬 Đấu lại: Như Fiamma — Ayam thắng bằng clean label 2 thành phần + đội ngũ chăm điểm bán.'},
+{cat:'tomato',name:'ĐỒNG TÂM',origin:'🇻🇳 Việt Nam',owner:'Nhãn nội địa lâu năm',tier:'mass',
+ pos:'Cà chua cô đặc nội địa giá rẻ — quen thuộc với bếp Việt ở kênh GT & chợ.',
+ price:'Giá thấp nhất nhóm',
+ str:['Giá rẻ, quen thuộc người nấu bếp Việt','Phủ GT/chợ tốt'],
+ weak:['Bao bì & hình ảnh cũ; ít chuẩn quốc tế','Không câu chuyện chất lượng/không BQ rõ ràng'],
+ ch:['GT','Chợ'],
+ tm:'Không đáng kể.',
+ counter:'💬 Đấu lại: Ayam nhắm khách nấu Âu/healthy tại MT & khách HoReCa cần chứng từ chuẩn — khác tệp với Đồng Tâm.'},
+{cat:'tomato',name:'ÔNG CHÀ VÀ',origin:'🇻🇳 Việt Nam',owner:'Thương hiệu gia vị lâu đời miền Nam',tier:'mass',
+ pos:'Thương hiệu truyền thống Sài Gòn — nhận diện hoài cổ mạnh ở kênh GT miền Nam.',
+ price:'Giá mềm',
+ str:['Di sản thương hiệu địa phương, khách lớn tuổi trung thành','Kênh GT miền Nam ổn định'],
+ weak:['Hình ảnh cũ, ít đổi mới sản phẩm & bao bì','Không hiện diện mạnh ở MT hiện đại/premium'],
+ ch:['GT miền Nam','Chợ'],
+ tm:'Rất ít.',
+ counter:'💬 Đấu lại: Không đối đầu trực tiếp — Ayam chiếm kệ MT + HoReCa với chuẩn quốc tế, nơi Ông Chà Và không chơi.'},
+
+// ══ NƯỚC CỐT DỪA ══
+{cat:'coconut',name:'CHAOKOH',origin:'🇹🇭 Thái Lan',owner:'Theppadungporn Coconut Co.',tier:'prem',
+ pos:'Thương hiệu cốt dừa Thái nổi tiếng nhất VN — "chuẩn vị Thái" được đầu bếp & kênh baking tin dùng.',
+ price:'~42–48k / 400ml (cao hơn Ayam 10–20%)',
+ str:['Brand mạnh nhất nhóm với đầu bếp & thợ bánh','Phủ tốt MT (Lotte, Emart, MM, GO!) + kênh nguyên liệu baking/pha chế','Chất lượng & độ béo ổn định, uy tín xuất khẩu toàn cầu'],
+ weak:['Đắt hơn Ayam 10–20% với chất lượng tương đương','Chỉ Halal Thái — không có JAKIM+MUI kép','Khủng hoảng truyền thông quốc tế 2020: cáo buộc PETA về lao động khỉ hái dừa → nhiều chuỗi bán lẻ Âu–Mỹ ngừng bán','Hàng nhập → giá biến động theo tỷ giá'],
+ ch:['MT','HoReCa','Baking/pha chế','Online'],
+ tm:'Demo & hợp tác kênh baking; promo "mua 3 giảm giá" tại MT.',
+ counter:'💬 Đấu lại: Cùng đẳng cấp Thái/Malaysia nhưng Ayam rẻ hơn 10–20% + Non-GMO + Halal kép + BPA-Free + nhà máy do Denis quản lý trực tiếp (không outsource như đối thủ).'},
+{cat:'coconut',name:'AROY-D',origin:'🇹🇭 Thái Lan',owner:'Thai Agri Foods',tier:'prem',
+ pos:'Vua format UHT hộp giấy (165ml → 1L) — thống trị kênh pha chế, baking và online.',
+ price:'165ml ~25k · 1L ~79k',
+ str:['Dải quy cách UHT đa dạng nhất (165/250/500ml/1L) — tiện mọi nhu cầu','Rất mạnh kênh nguyên liệu pha chế, tiệm trà sữa/cà phê, e-commerce','Vị ổn định, được cộng đồng nấu ăn tin dùng'],
+ weak:['165ml ~25k — đắt gấp 2.5 lần Ayam 65ml cho nhu cầu "1 lần nấu"','Brand đại chúng NTD thấp hơn Chaokoh','Hàng nhập, không Halal kép'],
+ ch:['Pha chế/Baking','Online','MT'],
+ tm:'Tập trung kênh nguyên liệu & e-commerce; ít activity MT đại chúng.',
+ counter:'💬 Đấu lại: 65ml 9.900đ đánh thẳng nhu cầu "1 lần nấu là hết": rẻ hơn 2.5 lần, không thừa không bỏ — Aroy-D 165ml vẫn dư cho 1 món. First-mover quy cách này tại VN.'},
+{cat:'coconut',name:'WONDERFARM',origin:'🇻🇳 Việt Nam',owner:'Interfood (Kirin Holdings)',tier:'main',
+ pos:'Cốt dừa quốc dân sản xuất trong nước — giá hợp lý, phủ rộng nhất nhóm, có size nhỏ 160ml.',
+ price:'400ml ~30–35k · 160ml ~16k',
+ str:['Phủ MT + GT rộng nhất nhóm cốt dừa','Giá hợp lý, sản xuất trong nước → nguồn cung ổn','Có size nhỏ 160ml đón nhu cầu nấu ít'],
+ weak:['Công thức có chất làm dày; định vị đại trà','Không câu chuyện Non-GMO / Halal kép / BPA-Free','160ml vẫn dư cho 1 món 2 người so với 65ml'],
+ ch:['MT','GT','Online'],
+ tm:'Promo giá thường xuyên tại MT, combo online.',
+ counter:'💬 Đấu lại: So khẩu phần thật — 160ml 16k vs Ayam 65ml 9.9k: đúng lượng 1 lần nấu, rẻ hơn 38%. Ở 400ml: Ayam thắng bằng Non-GMO + HSD 36T + Halal kép.'},
+{cat:'coconut',name:'VIETCOCO',origin:'🇻🇳 Bến Tre',owner:'Lương Quới — nhà máy dừa xuất khẩu lớn',tier:'main',
+ pos:'"Dừa Bến Tre chính gốc" + dòng Organic chứng nhận — thương hiệu Việt đang lên ở phân khúc healthy.',
+ price:'~28–42k / 400ml (có dòng Organic)',
+ str:['Câu chuyện vùng nguyên liệu Bến Tre + chứng nhận Organic','Năng lực nhà máy xuất khẩu lớn, chất lượng ổn định','Giá cạnh tranh, phủ MT tốt, mạnh kênh healthy/e-commerce'],
+ weak:['Nhận diện NTD vẫn sau Chaokoh & Wonderfarm','Ít trade activity NTD; chưa có format nhỏ 65ml'],
+ ch:['MT','Organic/Healthy','Online','Xuất khẩu'],
+ tm:'Hội chợ, kênh organic, e-commerce; ít POSM tại điểm bán.',
+ counter:'💬 Đấu lại: Ayam thắng ở Halal kép + chuẩn quốc tế cho HoReCa phục vụ khách quốc tế; và 65ml là quy cách Vietcoco chưa có — chiếm trước kệ.'},
+
+// ══ TƯƠNG ỚT ══
+{cat:'chili',name:'CHINSU',origin:'🇻🇳 Việt Nam',owner:'Masan Consumer — leader ~43% thị phần',tier:'mass',
+ pos:'Ông vua tương ớt Việt — ngân sách marketing khổng lồ, phân phối sâu nhất cả nước, đổi mới liên tục (wasabi...).',
+ price:'Chai nhỏ ~10–15k · 1kg ~50–58k',
+ str:['Thị phần số 1 (~43%), độ nhận diện tuyệt đối','TVC quốc dân, tài trợ show, POSM phủ mọi kênh, sampling liên tục','Hệ thống phân phối Masan sâu nhất Việt Nam','R&D vị mới liên tục giữ độ nóng thương hiệu'],
+ weak:['Vị tương ớt Việt ngọt — KHÔNG phải Sriracha; không chơi kệ hàng nhập premium','Từng bị thu hồi tại Nhật (2019) do chứa axit benzoic — chất được phép ở VN nhưng bị hạn chế tại Nhật','Hình ảnh đại trà, khó bán cho tệp expat/pizza chuẩn Thái'],
+ ch:['Tất cả các kênh'],
+ tm:'TVC + digital + tài trợ + khuyến mãi MT dày đặc — chuẩn playbook FMCG lớn nhất VN.',
+ counter:'💬 Đấu lại: KHÔNG đối đầu. Ayam Sriracha chơi ở niche "Sriracha Thái chuẩn" cho pizza/gà rán/fastfood/expat — nằm kệ hàng nhập, tệp khách và occasion hoàn toàn khác.'},
+{cat:'chili',name:'CHOLIMEX',origin:'🇻🇳 Việt Nam',owner:'Cholimex Food — ~37–40% thị phần',tier:'mass',
+ pos:'Vua kênh HoReCa & quán ăn — giá cực rẻ, supplier của Pizza Hut VN, 22 loại tương ớt.',
+ price:'270g ~10–12k · 830g ~29k',
+ str:['Giá rẻ nhất nhóm dẫn đầu — thống trị quán ăn, nhà hàng, fastfood','Ớt & tỏi tươi thật, thanh trùng chân không','Danh mục 22 loại tương ớt + hệ sinh thái gia vị 100+ SKU','Tăng trưởng doanh thu ~30%/năm, được MT nội ưu ái'],
+ weak:['Chai phổ thông 270g có E621 + màu tổng hợp E110 (Sunset Yellow) + chất bảo quản E211/E202','Hình ảnh "giá rẻ quán ăn" — khó lên premium','Ít đầu tư TVC so với Masan'],
+ ch:['HoReCa','GT','MT','Fastfood B2B'],
+ tm:'Hợp đồng B2B/fastfood, "đưa hàng Việt về nông thôn", chiết khấu HoReCa sâu; ít quảng cáo NTD.',
+ counter:'💬 Đấu lại: Với khách hỏi "sạch" — đặt 2 nhãn cạnh nhau: chai Cholimex phổ thông có E621 + E110 + E211/E202, còn Ayam Sriracha KHÔNG chất bảo quản tổng hợp (giấm bảo quản tự nhiên) + màu paprika tự nhiên E160c.'},
+{cat:'chili',name:'HUY FONG',origin:'🇺🇸 Mỹ',owner:'Huy Fong Foods — "Sriracha con gà" biểu tượng toàn cầu',tier:'prem',
+ pos:'Cult brand định nghĩa cả category Sriracha — chai con gà nắp xanh là chuẩn khẩu vị của expat & giới sành ăn.',
+ price:'~80–120k+ / chai (hàng nhập/xách tay)',
+ str:['Biểu tượng toàn cầu, độ nhận diện chai con gà tuyệt đối','Tệp expat & fan Sriracha trung thành cao'],
+ weak:['Không có phân phối chính thức mạnh tại VN — chủ yếu hàng nhập/xách tay giá cao','Khủng hoảng thiếu ớt 2022–2024 làm đứt nguồn cung toàn cầu, giá bị đẩy lên','Zero hoạt động thị trường tại VN'],
+ ch:['Cửa hàng nhập khẩu','Online/xách tay'],
+ tm:'Không có tại VN.',
+ counter:'💬 Đấu lại: Ayam Sriracha = trải nghiệm Sriracha Thái chuẩn với nguồn cung ỔN ĐỊNH + giá dễ tiếp cận — là lựa chọn thay thế trực tiếp mỗi khi Huy Fong khan hàng/tăng giá. Chào thẳng các quán pizza, gà rán, poke đang dùng Huy Fong.'}
+];
+
+let cpFilter='all';
+function cpEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function renderCP(){
+  const q=(document.getElementById('cpSearch').value||'').toLowerCase();
+  const box=document.getElementById('cpContainer');
+  const isEN=(typeof currentLang!=='undefined'&&currentLang==='en');
+  const L={pos:isEN?'Positioning':'Định vị',str:isEN?'Strengths':'Điểm mạnh',ch:isEN?'Distribution channels':'Kênh phân phối',weak:isEN?'Weaknesses':'Điểm yếu',tm:isEN?'Trade marketing & branding activity':'Trade marketing & branding activity',price:isEN?'Retail price ref.':'Giá tham khảo',low:isEN?'LOW PRICE':'GIÁ THẤP',high:isEN?'HIGH PRICE':'GIÁ CAO'};
+  const tierLbl={mass:'MASS',main:'MAINSTREAM',prem:'PREMIUM'};
+  const cats=Object.keys(CP_META).filter(c=>cpFilter==='all'||c===cpFilter);
+  let html='';let total=0;
+  cats.forEach(c=>{
+    const m=CP_META[c];
+    const brands=CP_DATA.filter(b=>{
+      if(b.cat!==c)return false;
+      if(!q)return true;
+      const hay=(b.name+' '+b.owner+' '+b.pos+' '+b.str.join(' ')+' '+b.weak.join(' ')+' '+b.tm+' '+b.counter).toLowerCase();
+      return hay.includes(q);
+    });
+    if(!brands.length)return;
+    total+=brands.length;
+    const ladder=m.ladder.map((x,i)=>(i?'<span class="arr">→</span>':'')+`<span class="cp-chip ${x.t}">${cpEsc(x.n)}</span>`).join('');
+    const cards=brands.map(b=>`
+      <div class="cp-brand t-${b.tier}">
+        <span class="cp-tier t-${b.tier}">${tierLbl[b.tier]||''}</span>
+        <div class="cp-name">${cpEsc(b.name)}</div>
+        <div class="cp-meta">${cpEsc(b.origin)} · ${cpEsc(b.owner)}</div>
+        <div class="cp-pos">${cpEsc(b.pos)}</div>
+        <span class="cp-price">💰 ${L.price}: ${cpEsc(b.price)}</span>
+        <div class="cp-sec"><span class="cp-lbl">💪 ${L.str}</span><ul class="cp-list str">${b.str.map(s=>`<li>${cpEsc(s)}</li>`).join('')}</ul></div>
+        <div class="cp-sec"><span class="cp-lbl">🛒 ${L.ch}</span><div class="cp-ch">${b.ch.map(s=>`<span>${cpEsc(s)}</span>`).join('')}</div></div>
+        <div class="cp-sec"><span class="cp-lbl">⚠️ ${L.weak}</span><ul class="cp-list weak">${b.weak.map(s=>`<li>${cpEsc(s)}</li>`).join('')}</ul></div>
+        <div class="cp-tm">📣 <b>${L.tm}:</b> ${cpEsc(b.tm)}</div>
+        <div class="cp-counter">${cpEsc(b.counter)}</div>
+      </div>`).join('');
+    html+=`
+    <div class="cp-cat">
+      <div class="cp-cat-head">
+        <div class="cp-cat-title">${m.icon} ${isEN?m.en:m.vi}</div>
+        <div class="cp-ayam-line">${cpEsc(isEN?m.ayam_en:m.ayam_vi)}</div>
+      </div>
+      <div class="cp-body">
+        <div class="cp-ladder"><span class="lbl">${L.low}</span>${ladder}<span class="lbl">${L.high}</span></div>
+        <div class="cp-grid">${cards}</div>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=total?html:`<div class="card"><div class="cp-no-result">🔍 ${isEN?'No matching competitor.':'Không tìm thấy đối thủ phù hợp.'}</div></div>`;
+}
+function setCPFilter(btn,f){
+  cpFilter=f;
+  document.querySelectorAll('#cpFilters .il-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCP();
+}
+renderCP();
+</script>
+
 </body>
 </html>
