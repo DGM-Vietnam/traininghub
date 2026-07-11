@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Ayam Brand – Sensory Comparison | DGM</title>
+<style>
+:root{
+  --red:#C8102E;--yellow:#FFE140;--yellow2:#FFBC18;--teal:#2F7898;
+  --green:#0E7544;--navy:#1B3A57;--gray:#3E4A59;--cream:#F8F6F0;
+  --coconut:#00695C;--radius:15px;--font:"Segoe UI",Arial,sans-serif;
+  --shadow:0 6px 24px rgba(0,0,0,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:var(--font);background:linear-gradient(160deg,#1B3A57,#0E2033);color:var(--gray);min-height:100vh;padding-bottom:40px;}
+.wrap{max-width:600px;margin:0 auto;padding:14px 12px;}
+.topbar{text-align:center;color:#fff;padding:14px 10px 8px;position:relative;}
+.logo{display:inline-flex;align-items:center;gap:8px;background:var(--red);border:2px solid var(--yellow);border-radius:10px;padding:5px 14px;margin-bottom:9px;}
+.logo b{font-size:16px;letter-spacing:.04em;font-weight:900;}
+.topbar h1{font-size:17px;font-weight:800;margin-bottom:2px;}
+.topbar p{font-size:12px;opacity:.8;}
+.lang{position:absolute;top:12px;right:6px;display:flex;gap:5px;}
+.lang button{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:16px;padding:3px 11px;font-size:12px;cursor:pointer;font-weight:700;}
+.lang button.on{background:var(--yellow);color:var(--navy);border-color:var(--yellow);}
+.card{background:#fff;border-radius:var(--radius);padding:18px 16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card h2{font-size:15px;color:var(--navy);margin-bottom:3px;font-weight:800;display:flex;align-items:center;gap:7px;}
+.card .sub{font-size:12px;color:#888;margin-bottom:12px;line-height:1.5;}
+label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:12px 0 5px;}
+label .req{color:var(--red);}
+input[type=text],select,textarea{width:100%;padding:11px 13px;border:2px solid #e2e6ea;border-radius:10px;font-size:15px;font-family:var(--font);outline:none;transition:border-color .2s;background:#fff;color:var(--gray);}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);}
+textarea{resize:vertical;min-height:52px;}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232F7898' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px;}
+.step-pill{display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:800;padding:2px 11px;border-radius:12px;margin-bottom:9px;}
+.comp-row{display:flex;gap:8px;margin-bottom:8px;align-items:center;}
+.comp-row input{flex:1;}
+.comp-row .del{background:#ffe9ec;color:var(--red);border:none;border-radius:9px;width:40px;height:42px;font-size:18px;font-weight:800;cursor:pointer;flex-shrink:0;}
+.add-comp{background:var(--cream);border:2px dashed var(--teal);color:var(--teal);border-radius:11px;padding:11px;font-size:13.5px;font-weight:700;cursor:pointer;width:100%;margin-top:2px;}
+.prod-head{display:flex;gap:6px;margin-bottom:12px;position:sticky;top:0;background:#fff;padding:8px 0;z-index:5;border-bottom:2px solid #eef1f4;}
+.prod-head .ph{flex:1;text-align:center;font-size:11.5px;font-weight:800;padding:7px 4px;border-radius:9px;line-height:1.25;min-width:0;word-break:break-word;}
+.prod-head .ph.ayam{background:var(--red);color:#fff;}
+.prod-head .ph.comp{background:var(--navy);color:#fff;}
+.crit{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #f0f2f5;}
+.crit .clabel{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.crit .chint{font-size:11px;color:#aaa;font-weight:400;margin-left:auto;}
+.crit-cols{display:flex;gap:6px;}
+.crit-cols .cc{flex:1;min-width:0;}
+.mstars{display:flex;gap:3px;justify-content:center;}
+.mstars .ms{flex:1;aspect-ratio:1;max-width:38px;border:none;background:#e8ebee;border-radius:7px;font-size:13px;font-weight:800;color:#b8bfc6;cursor:pointer;transition:.1s;display:flex;align-items:center;justify-content:center;}
+.mstars .ms.on{background:var(--yellow2);color:#fff;}
+.mstars .ms.on.hi{background:var(--green);}
+.crit-cols .cc input[type=text]{padding:9px 8px;font-size:13px;text-align:center;}
+.crit-cols .cc textarea{padding:8px;font-size:12.5px;min-height:56px;}
+.buy-mini{display:flex;gap:4px;}
+.buy-mini button{flex:1;padding:8px 4px;border:2px solid #e2e6ea;border-radius:8px;background:#fff;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;}
+.buy-mini button.yes.on{background:var(--green);border-color:var(--green);color:#fff;}
+.buy-mini button.no.on{background:#b0b7bd;border-color:#b0b7bd;color:#fff;}
+.btn-submit{width:100%;padding:15px;background:var(--red);color:#fff;border:none;border-radius:13px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(200,16,46,.35);margin-top:6px;}
+.btn-submit:active{transform:scale(.98);}
+.btn-submit:disabled{opacity:.55;cursor:wait;}
+.btn-ghost{width:100%;padding:12px;background:#fff;color:var(--teal);border:2px solid var(--teal);border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;margin-top:9px;}
+.btn-back{background:none;border:none;color:#999;font-size:13px;font-weight:600;cursor:pointer;padding:8px;margin-top:6px;width:100%;}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:30px;font-size:14px;font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,.3);transition:transform .35s;z-index:999;max-width:90%;text-align:center;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.err{background:var(--red);}
+.spin{display:inline-block;width:15px;height:15px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite;vertical-align:-2px;margin-right:6px;}
+@keyframes sp{to{transform:rotate(360deg);}}
+.done{text-align:center;padding:28px 16px;}
+.done .big{font-size:52px;margin-bottom:8px;}
+.done h2{color:var(--green);font-size:19px;margin-bottom:8px;}
+.done p{font-size:13px;color:#777;line-height:1.6;margin-bottom:16px;}
+.namechip{display:inline-block;background:var(--cream);border-radius:20px;padding:6px 15px;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;}
+.foot{text-align:center;color:rgba(255,255,255,.5);font-size:11px;margin-top:6px;line-height:1.6;}
+.hide{display:none!important;}
+[data-en]{display:none;}
+body.en [data-vi]{display:none;}
+body.en [data-en]{display:inline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="lang">
+      <button id="lvi" class="on" onclick="setL('vi')">VI</button>
+      <button id="len" onclick="setL('en')">EN</button>
+    </div>
+    <div class="logo"><b>AYAM BRAND™</b></div>
+    <h1><span data-vi>🥄 Đánh giá cảm quan sản phẩm</span><span data-en>🥄 Product Sensory Evaluation</span></h1>
+    <p><span data-vi>So sánh song song · Ayam Brand vs Đối thủ · Offsite Huế 2026</span><span data-en>Side-by-side · Ayam Brand vs Competitors · Hue Offsite 2026</span></p>
+  </div>
+
+  <div class="card" id="card1">
+    <span class="step-pill"><span data-vi>Bước 1/3</span><span data-en>Step 1/3</span></span>
+    <h2>👤 <span data-vi>Thông tin người đánh giá</span><span data-en>Evaluator info</span></h2>
+    <label><span data-vi>Tên của bạn</span><span data-en>Your name</span> <span class="req">*</span></label>
+    <input type="text" id="taster" placeholder="Quy, Loan, John..." autocomplete="off"/>
+    <label><span data-vi>Nhóm / Bộ phận</span><span data-en>Team / Function</span></label>
+    <select id="team">
+      <option value="">—</option>
+      <option>MKT</option><option>GT South</option><option>GT Central</option><option>GT North</option>
+      <option>MT</option><option>Trade MKT</option><option>Sales Admin / BO</option>
+      <option>BOD / Management</option><option>Guest / Khách mời</option><option>Khác / Other</option>
+    </select>
+    <label><span data-vi>Khu vực</span><span data-en>Region</span></label>
+    <input type="text" id="region" placeholder="HCM / Huế / Đà Nẵng / Hà Nội..." autocomplete="off"/>
+    <button class="btn-submit" style="margin-top:16px" onclick="toStep2()"><span data-vi>Tiếp tục →</span><span data-en>Continue →</span></button>
+  </div>
+
+  <div class="card hide" id="card2">
+    <span class="step-pill"><span data-vi>Bước 2/3</span><span data-en>Step 2/3</span></span>
+    <h2>🐓 <span data-vi>Chọn mẫu đang thử</span><span data-en>Select samples</span></h2>
+    <div class="sub"><span data-vi>Chọn 1 mã Ayam Brand đang thử, rồi nhập (các) đối thủ so sánh song song.</span><span data-en>Pick the Ayam SKU you are tasting, then add competitor(s) for side-by-side comparison.</span></div>
+    <label><span data-vi>Nhóm sản phẩm</span><span data-en>Product group</span> <span class="req">*</span></label>
+    <select id="category" onchange="fillSku()">
+      <option value="">—</option>
+      <option value="Cá Ngừ">🐟 Cá Ngừ / Tuna</option>
+      <option value="Cá Trích">🐟 Cá Trích / Sardine</option>
+      <option value="Cá Thu">🐟 Cá Thu / Mackerel</option>
+      <option value="Đậu Sốt Cà">🫘 Đậu Sốt Cà / Baked Beans</option>
+      <option value="Puree Cà Chua">🍅 Puree Cà Chua / Tomato</option>
+      <option value="Nước Cốt Dừa">🥥 Nước Cốt Dừa / Coconut</option>
+      <option value="Tương Ớt">🌶️ Tương Ớt / Chilli</option>
+      <option value="Khác">Khác / Other</option>
+    </select>
+    <label>🐓 <span data-vi>Mã Ayam Brand đang thử</span><span data-en>Ayam Brand SKU</span> <span class="req">*</span></label>
+    <select id="ayamSku" onchange="ayamCustom(this)"><option value="">—</option></select>
+    <label>⚔️ <span data-vi>Đối thủ so sánh (thêm được nhiều)</span><span data-en>Competitors (add multiple)</span> <span class="req">*</span></label>
+    <div id="compList">
+      <div class="comp-row"><input type="text" class="compName" placeholder="Chaokoh 400ml / Sea Crown 140g..." autocomplete="off"/></div>
+    </div>
+    <button class="add-comp" onclick="addComp()">➕ <span data-vi>Thêm đối thủ</span><span data-en>Add competitor</span></button>
+    <button class="btn-submit" style="margin-top:16px" onclick="toStep3()"><span data-vi>Bắt đầu chấm →</span><span data-en>Start rating →</span></button>
+    <button class="btn-back" onclick="show('1')">← <span data-vi>Quay lại</span><span data-en>Back</span></button>
+  </div>
+
+  <div class="card hide" id="card3">
+    <span class="step-pill"><span data-vi>Bước 3/3</span><span data-en>Step 3/3</span></span>
+    <h2>🥄 <span data-vi>Bảng chấm song song</span><span data-en>Side-by-side scoring</span></h2>
+    <div class="sub"><span data-vi>Chấm công tâm từng tiêu chí. Sao: 1 = kém · 5 = xuất sắc.</span><span data-en>Score fairly. Stars: 1 = poor · 5 = excellent.</span></div>
+    <div class="prod-head" id="prodHead"></div>
+    <div id="critArea"></div>
+    <button class="btn-submit" id="submitBtn" onclick="submitAll()">✅ <span data-vi>Gửi kết quả</span><span data-en>Submit results</span></button>
+    <button class="btn-ghost" onclick="show('2')">← <span data-vi>Đổi mẫu / đối thủ</span><span data-en>Change samples</span></button>
+  </div>
+
+  <div class="card hide done" id="cardDone">
+    <div class="big">🎉</div>
+    <h2><span data-vi>Cảm ơn bạn!</span><span data-en>Thank you!</span></h2>
+    <div class="namechip" id="doneName"></div>
+    <p><span data-vi>Dữ liệu đã gửi. Kết quả hiện trên</span><span data-en>Data submitted. Results appear on</span> <b>Sales Training Hub → Dashboard</b>.</p>
+    <button class="btn-submit" onclick="again()"><span data-vi>Chấm mẫu khác</span><span data-en>Rate another sample</span></button>
+  </div>
+
+  <div class="foot">Denis G.M. Company Limited · Internal Use Only<br/>Ayam Brand since 1892</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SUBMIT_URL='https://script.google.com/macros/s/AKfycbwgHY4SnisKgLPacg4Az138YjKdWH47wEexU4EKGss5gtk6nYIphLCtUqpjbY4yg4mR/exec';
+
+const AYAM_SKU={
+ "Cá Ngừ":["Tuna Chunks in Sunflower Oil 150g","Tuna Flakes in Sunflower Oil 150g","Tuna Chunks in Water 150g","Tuna Flakes in Water Light 150g","Tuna Chunks in Olive Oil 150g","Tuna Flakes in Olive Oil 150g","Chilli Tuna 160g"],
+ "Cá Trích":["Sardine in Tomato Sauce 155g","Sardine in EVOO 120g","Sardine in EVOO & Chilli 120g","Sardine in EVOO & Peppercorn 120g"],
+ "Cá Thu":["Mackerel in Tomato Sauce 230g","Mackerel in Tomato Sauce 155g"],
+ "Đậu Sốt Cà":["Baked Beans Tomato 230g","Baked Beans Tomato 425g","Baked Beans Cheeze 425g","Chickpeas 425g","Red Kidney Beans 425g","White Beans 425g"],
+ "Puree Cà Chua":["Tomato Puree 220g","Tomato Puree 430g"],
+ "Nước Cốt Dừa":["Coconut Milk 400ml","Coconut Milk 65ml","Pure Coconut Cream 400ml","Pure Coconut Cream 270ml"],
+ "Tương Ớt":["Sriracha Hot Chilli 235ml","Sweet Chilli 285ml","Black Pepper Sauce 210ml"],
+ "Khác":[]
+};
+
+const CRIT=[
+ {k:'weight',  t:'text', vi:'⚖️ Trọng lượng / thể tích', en:'⚖️ Weight / volume', area:false, ph:'g / ml'},
+ {k:'solid',   t:'text', vi:'🧊 TL chất rắn (tùy chọn)', en:'🧊 Drained weight (optional)', area:false, ph:'g'},
+ {k:'pack',    t:'star', vi:'📦 Bao bì & tem nhãn (đẹp/hấp dẫn hơn)', en:'📦 Packaging & label (more attractive)'},
+ {k:'appear',  t:'star', vi:'👁️ Ngoại hình, cảm quan (màu, độ hấp dẫn)', en:'👁️ Appearance (colour, appeal)'},
+ {k:'taste',   t:'star', vi:'😋 Vị, hương vị', en:'😋 Taste / flavour'},
+ {k:'texture', t:'star', vi:'🍖 Kết cấu (chắc/béo/mịn)', en:'🍖 Texture (firm/rich/smooth)'},
+ {k:'sauce',   t:'star', vi:'🥫 Đánh giá loại xốt', en:'🥫 Sauce evaluation'},
+ {k:'overall', t:'star', vi:'⭐ Đánh giá tổng quan', en:'⭐ Overall rating'},
+ {k:'improve', t:'text', vi:'🔧 Cần cải thiện gì', en:'🔧 What to improve', area:true, ph:'...'},
+ {k:'strength',t:'text', vi:'💪 Điểm mạnh', en:'💪 Strengths', area:true, ph:'...'},
+ {k:'weakness',t:'text', vi:'⚠️ Điểm yếu', en:'⚠️ Weaknesses', area:true, ph:'...'},
+ {k:'buy',     t:'buy',  vi:'🛒 Sẵn sàng bán/giới thiệu?', en:'🛒 Would sell / recommend?'}
+];
+
+let L='vi',products=[],data={};
+
+function setL(l){L=l;document.body.classList.toggle('en',l==='en');
+  document.getElementById('lvi').classList.toggle('on',l==='vi');
+  document.getElementById('len').classList.toggle('on',l==='en');
+  if(products.length)buildSensory();}
+
+function toStep2(){if(!document.getElementById('taster').value.trim()){toast(L==='en'?'Enter your name':'Nhập tên trước',1);return;}show('2');}
+
+function fillSku(){
+  const g=document.getElementById('category').value,sel=document.getElementById('ayamSku');
+  const list=AYAM_SKU[g]||[];
+  sel.innerHTML='<option value="">— '+(L==='en'?'Select SKU':'Chọn mã')+' —</option>'+
+    list.map(s=>`<option value="${s}">${s}</option>`).join('')+
+    '<option value="__custom">✏️ '+(L==='en'?'Type custom...':'Nhập tay...')+'</option>';
+}
+function ayamCustom(sel){
+  if(sel.value==='__custom'){
+    const v=prompt(L==='en'?'Enter Ayam SKU:':'Nhập mã Ayam:');
+    if(v){const o=document.createElement('option');o.value=v;o.textContent=v;o.selected=true;sel.insertBefore(o,sel.lastChild);}
+    else sel.value='';
+  }
+}
+function addComp(){
+  const row=document.createElement('div');row.className='comp-row';
+  row.innerHTML=`<input type="text" class="compName" placeholder="${L==='en'?'Competitor name / SKU...':'Tên đối thủ / SKU...'}" autocomplete="off"/><button class="del" onclick="this.parentNode.remove()">✕</button>`;
+  document.getElementById('compList').appendChild(row);
+}
+function toStep3(){
+  const g=document.getElementById('category').value,ay=document.getElementById('ayamSku').value;
+  if(!g){toast(L==='en'?'Select group':'Chọn nhóm',1);return;}
+  if(!ay||ay==='__custom'){toast(L==='en'?'Select Ayam SKU':'Chọn mã Ayam',1);return;}
+  const comps=[...document.querySelectorAll('.compName')].map(i=>i.value.trim()).filter(Boolean);
+  if(!comps.length){toast(L==='en'?'Add at least 1 competitor':'Thêm ít nhất 1 đối thủ',1);return;}
+  products=[{label:ay,isAyam:true},...comps.map(c=>({label:c,isAyam:false}))];
+  data={};products.forEach((_,i)=>data[i]={});
+  buildSensory();show('3');
+}
+function buildSensory(){
+  document.getElementById('prodHead').innerHTML=products.map(p=>
+    `<div class="ph ${p.isAyam?'ayam':'comp'}">${p.isAyam?'🐓 ':'⚔️ '}${esc(p.label)}</div>`).join('');
+  let h='';
+  CRIT.forEach(c=>{
+    h+=`<div class="crit"><div class="clabel"><span>${L==='en'?c.en:c.vi}</span>`;
+    if(c.t==='star')h+=`<span class="chint">1–5</span>`;
+    h+=`</div><div class="crit-cols">`;
+    products.forEach((p,pi)=>{
+      h+='<div class="cc">';
+      const val=data[pi][c.k];
+      if(c.t==='star'){
+        h+=`<div class="mstars" data-p="${pi}" data-k="${c.k}">`+
+           [1,2,3,4,5].map(n=>`<button type="button" class="ms${val>=n?' on'+(val>=4?' hi':''):''}" onclick="setMs(${pi},'${c.k}',${n})">${n}</button>`).join('')+'</div>';
+      }else if(c.t==='buy'){
+        h+=`<div class="buy-mini" data-p="${pi}">
+             <button class="yes${val==='Có'?' on':''}" onclick="setBuy(${pi},'Có')">👍</button>
+             <button class="no${val==='Không'?' on':''}" onclick="setBuy(${pi},'Không')">👎</button></div>`;
+      }else if(c.area){
+        h+=`<textarea onchange="setVal(${pi},'${c.k}',this.value)" placeholder="${c.ph}">${val?esc(val):''}</textarea>`;
+      }else{
+        h+=`<input type="text" onchange="setVal(${pi},'${c.k}',this.value)" placeholder="${c.ph}" value="${val?esc(val):''}"/>`;
+      }
+      h+='</div>';
+    });
+    h+='</div></div>';
+  });
+  document.getElementById('critArea').innerHTML=h;
+}
+function setMs(pi,k,n){data[pi][k]=n;const r=document.querySelector(`.mstars[data-p="${pi}"][data-k="${k}"]`);
+  [...r.children].forEach((s,i)=>{const on=i<n;s.classList.toggle('on',on);s.classList.toggle('hi',on&&n>=4);});}
+function setBuy(pi,v){data[pi].buy=v;const r=document.querySelector(`.buy-mini[data-p="${pi}"]`);
+  r.querySelector('.yes').classList.toggle('on',v==='Có');r.querySelector('.no').classList.toggle('on',v==='Không');}
+function setVal(pi,k,v){data[pi][k]=v;}
+
+async function submitAll(){
+  if(!data[0].taste||!data[0].overall){toast(L==='en'?'Rate at least Taste & Overall for Ayam':'Chấm tối thiểu Vị & Tổng quan cho Ayam',1);return;}
+  const btn=document.getElementById('submitBtn');btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>'+(L==='en'?'Sending...':'Đang gửi...');
+  const group='G'+Date.now();
+  const base={taster:document.getElementById('taster').value.trim(),team:document.getElementById('team').value,
+    region:document.getElementById('region').value.trim(),category:document.getElementById('category').value,
+    ayam_ref:products[0].label,group:group};
+  const rows=products.map((p,i)=>({...base,brand:p.isAyam?'Ayam Brand':'Đối thủ',sku:p.label,
+    weight:data[i].weight||'',solid:data[i].solid||'',pack:data[i].pack||0,appear:data[i].appear||0,
+    taste:data[i].taste||0,texture:data[i].texture||0,sauce:data[i].sauce||0,overall:data[i].overall||0,
+    improve:data[i].improve||'',strength:data[i].strength||'',weakness:data[i].weakness||'',
+    buy:data[i].buy||'',ts:new Date().toISOString()}));
+  const ok=await send({rows:rows});
+  btn.disabled=false;btn.innerHTML='✅ '+(L==='en'?'Submit results':'Gửi kết quả');
+  if(ok){document.getElementById('doneName').textContent=base.taster+' · '+base.ayam_ref+' vs '+(products.length-1)+(L==='en'?' competitor(s)':' đối thủ');show('Done');}
+}
+async function send(obj){
+  if(!SUBMIT_URL||SUBMIT_URL.startsWith('PASTE')){console.log('[DEMO]',obj);toast(L==='en'?'⚠️ Demo mode':'⚠️ Chế độ demo',1);return true;}
+  try{await fetch(SUBMIT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(obj)});return true;}
+  catch(e){console.error(e);toast(L==='en'?'Send error':'Lỗi gửi',1);return false;}
+}
+function show(s){['1','2','3','Done'].forEach(x=>document.getElementById('card'+x).classList.add('hide'));
+  document.getElementById('card'+s).classList.remove('hide');window.scrollTo({top:0,behavior:'smooth'});}
+function again(){document.getElementById('category').value='';
+  document.getElementById('ayamSku').innerHTML='<option value="">—</option>';
+  document.getElementById('compList').innerHTML='<div class="comp-row"><input type="text" class="compName" placeholder="..." autocomplete="off"/></div>';
+  products=[];data={};show('2');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+let tt;function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.classList.toggle('err',!!e);t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600);}
+</script>
+</body>
+</html>

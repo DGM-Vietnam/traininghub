@@ -390,6 +390,59 @@ table.sku tr:hover td{background:#fff8e1;}
 .cp-counter{background:#fff5f5;border:1.5px dashed var(--red);border-radius:10px;padding:9px 12px;font-size:12.5px;color:var(--red);font-weight:600;margin-top:11px;line-height:1.6;}
 .cp-no-result{text-align:center;padding:32px;color:#999;font-size:14px;}
 
+
+/* ── TASTING DASHBOARD (TD) ── */
+.td-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.td-toolbar button{background:var(--teal);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.td-toolbar button:hover{background:var(--navy);}
+.td-toolbar button.loading{opacity:.6;cursor:wait;}
+.td-status{font-size:12px;color:var(--teal);}
+.td-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+@media(max-width:640px){.td-kpis{grid-template-columns:1fr 1fr;}}
+.td-kpi{background:#fff;border-radius:12px;padding:15px 12px;box-shadow:var(--shadow);text-align:center;border-top:4px solid var(--teal);}
+.td-kpi .n{font-size:28px;font-weight:900;color:var(--navy);line-height:1;}
+.td-kpi .l{font-size:11.5px;color:#888;margin-top:5px;}
+.td-kpi.ayam{border-top-color:var(--red);}
+.td-kpi.ayam .n{color:var(--red);}
+.td-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+@media(max-width:640px){.td-vs{grid-template-columns:1fr;}}
+.td-vscard{border-radius:14px;padding:18px;color:#fff;text-align:center;box-shadow:var(--shadow);}
+.td-vscard.ayam{background:linear-gradient(135deg,#C8102E,#8B0000);}
+.td-vscard.comp{background:linear-gradient(135deg,#1B3A57,#0E2033);}
+.td-vscard .who{font-size:14px;font-weight:800;opacity:.9;margin-bottom:6px;}
+.td-vscard .score{font-size:44px;font-weight:900;line-height:1;}
+.td-vscard .score small{font-size:16px;opacity:.7;}
+.td-vscard .meta{font-size:11.5px;opacity:.85;margin-top:6px;}
+.td-metrics{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:18px;}
+.td-metrics h3{font-size:14px;color:var(--navy);font-weight:800;margin-bottom:14px;}
+.td-mrow{margin-bottom:13px;}
+.td-mrow .mlabel{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:5px;display:flex;justify-content:space-between;}
+.td-bars{display:flex;flex-direction:column;gap:5px;}
+.td-bar-wrap{display:flex;align-items:center;gap:8px;}
+.td-bar-wrap .tag{font-size:10.5px;font-weight:800;width:52px;flex-shrink:0;}
+.td-bar-wrap .tag.a{color:var(--red);}
+.td-bar-wrap .tag.c{color:var(--navy);}
+.td-track{flex:1;background:#eef1f4;border-radius:20px;height:18px;overflow:hidden;}
+.td-fill{height:100%;border-radius:20px;transition:width 1s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:7px;font-size:10.5px;font-weight:800;color:#fff;min-width:34px;}
+.td-fill.a{background:var(--red);}
+.td-fill.c{background:var(--navy);}
+.td-table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+.td-table th{background:var(--navy);color:#fff;padding:9px 8px;text-align:left;font-weight:700;font-size:11.5px;}
+.td-table td{padding:8px;border-bottom:1px solid #eef1f4;vertical-align:top;}
+.td-table tr:nth-child(even) td{background:#f8fafc;}
+.td-table .b-ayam{color:var(--red);font-weight:800;}
+.td-table .b-comp{color:var(--navy);font-weight:800;}
+.td-table .sc{font-weight:800;text-align:center;}
+.td-empty{text-align:center;padding:36px;color:#999;font-size:14px;}
+.td-qr{background:linear-gradient(135deg,var(--navy),var(--teal));border-radius:14px;padding:18px;color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px;}
+.td-qr img{width:120px;height:120px;border-radius:10px;background:#fff;padding:6px;flex-shrink:0;}
+.td-qr .qtxt h3{font-size:15px;font-weight:800;margin-bottom:5px;}
+.td-qr .qtxt p{font-size:12.5px;opacity:.9;line-height:1.6;margin-bottom:6px;}
+.td-qr .qtxt a{color:var(--yellow);font-weight:700;font-size:12.5px;word-break:break-all;}
+.td-catfilter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.td-catfilter button{padding:5px 13px;border-radius:16px;border:1.5px solid #ddd;background:#fff;font-size:12px;cursor:pointer;font-weight:600;transition:.2s;}
+.td-catfilter button.active,.td-catfilter button:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
 </style>
 </head>
 <body>
@@ -402,7 +455,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <h1>Sales Training Hub <span>Denis G.M. Company Limited · Internal Use Only</span></h1>
   </div>
   <div class="topbar-right">
-    <span class="v-badge">v3.1</span>
+    <span class="v-badge">v3.3</span>
     <div class="lang-toggle">
       <button id="btn-vi" class="active" onclick="setLang('vi')">VI</button>
       <button id="btn-en" onclick="setLang('en')">EN</button>
@@ -424,6 +477,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <button onclick="showModule('m-il',this)">🏷️ <span class="vi-only">Thành phần & Claim</span><span class="en-only hide">Ingredients & Claims</span><span class="badge-new">⭐ NEW</span></button>
     <button onclick="showModule('m-sales',this)">🎯 <span class="vi-only">Kỹ năng Sales</span><span class="en-only hide">Sales Skills</span></button>
     <button onclick="showModule('m-cook',this)">🍳 <span class="vi-only">Cookbook</span><span class="en-only hide">Cookbook</span></button>
+    <button onclick="showModule('m-dash',this)">📊 <span class="vi-only">Dashboard Cảm quan</span><span class="en-only hide">Tasting Dashboard</span><span class="badge-new">⭐ NEW</span></button>
   </div>
 </div>
 
@@ -1737,6 +1791,35 @@ table.sku tr:hover td{background:#fff8e1;}
 </div>
 
 
+<!-- ══════════════════════════════════════════
+     MODULE – DASHBOARD CẢM QUAN (TASTING)
+══════════════════════════════════════════ -->
+<div id="m-dash" class="module">
+  <div class="card">
+    <h2>📊 <span class="vi-only">Dashboard Cảm quan – Ayam Brand vs Đối thủ</span><span class="en-only hide">Tasting Dashboard – Ayam Brand vs Competitors</span></h2>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:10px" class="vi-only">Kết quả blind tasting của team (Offsite Huế 2026). Team quét QR → chấm điểm độc lập từng SKU → dữ liệu hiện tổng hợp ngay tại đây để cả team thấy bức tranh rõ về đối thủ.</p>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:10px" class="en-only hide">Team blind-tasting results (Hue Offsite 2026). Scan QR → rate each SKU independently → aggregated live here.</p>
+
+    <div class="td-qr">
+      <img id="tdQrImg" src="" alt="QR survey"/>
+      <div class="qtxt">
+        <h3>📲 <span class="vi-only">Quét để chấm cảm quan</span><span class="en-only hide">Scan to rate</span></h3>
+        <p class="vi-only">Mở camera điện thoại → quét mã → nhập tên → chấm điểm. Không cần cài app, không cần PIN.</p>
+        <p class="en-only hide">Open phone camera → scan → enter name → rate. No app, no PIN.</p>
+        <a id="tdSurveyLink" href="#" target="_blank">survey.html</a>
+      </div>
+    </div>
+
+    <div class="td-toolbar">
+      <button id="tdRefresh" onclick="loadTasting()">🔄 <span class="vi-only">Cập nhật kết quả</span><span class="en-only hide">Refresh results</span></button>
+      <span id="tdStatus" class="td-status"></span>
+    </div>
+
+    <div class="td-catfilter" id="tdCatFilter"></div>
+    <div id="tdBody"></div>
+  </div>
+</div>
+
 </div><!-- end .content -->
 
 <script>
@@ -1752,6 +1835,7 @@ function setLang(l){
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   if(typeof renderIL==='function')renderIL();
   if(typeof renderCP==='function')renderCP();
+  if(typeof renderTasting==='function' && tdLoaded){buildCatFilter();renderTasting();}
 }
 
 // ─────────────────────────────────────────────
@@ -1763,6 +1847,7 @@ function showModule(id,btn){
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
   if(id==='m-faq' && !faqLoaded) loadFAQ();
+  if(id==='m-dash'){ if(typeof initTdQr==='function') initTdQr(); if(!tdLoaded && typeof loadTasting==='function') loadTasting(); }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -2666,6 +2751,157 @@ function setCPFilter(btn,f){
   renderCP();
 }
 renderCP();
+</script>
+
+<script>
+// ─────────────────────────────────────────────
+// DASHBOARD CẢM QUAN (SENSORY COMPARISON)
+// ─────────────────────────────────────────────
+const TASTING_API = 'https://script.google.com/macros/s/AKfycbwgHY4SnisKgLPacg4Az138YjKdWH47wEexU4EKGss5gtk6nYIphLCtUqpjbY4yg4mR/exec';
+const SURVEY_URL  = 'https://dgm-vietnam.github.io/traininghub/survey.html';
+
+let tdRows=[],tdCat='all',tdLoaded=false;
+
+function initTdQr(){
+  const enc=encodeURIComponent(SURVEY_URL);
+  document.getElementById('tdQrImg').src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+enc;
+  const a=document.getElementById('tdSurveyLink');a.href=SURVEY_URL;a.textContent=SURVEY_URL;
+}
+
+const TD_METRICS=[
+  {k:'pack',vi:'📦 Bao bì & nhãn',en:'📦 Packaging & label'},
+  {k:'appear',vi:'👁️ Ngoại hình',en:'👁️ Appearance'},
+  {k:'taste',vi:'😋 Vị',en:'😋 Taste'},
+  {k:'texture',vi:'🍖 Kết cấu',en:'🍖 Texture'},
+  {k:'sauce',vi:'🥫 Xốt',en:'🥫 Sauce'},
+  {k:'overall',vi:'⭐ Tổng quan',en:'⭐ Overall'}
+];
+
+async function loadTasting(){
+  const btn=document.getElementById('tdRefresh'),st=document.getElementById('tdStatus');
+  btn.classList.add('loading');btn.innerHTML='<span class="spinner"></span>Đang tải...';st.textContent='';
+  if(!TASTING_API||TASTING_API.startsWith('PASTE')){
+    st.textContent=(currentLang==='en'?'⚠️ API not configured – showing demo data':'⚠️ Chưa cấu hình API – hiển thị dữ liệu mẫu');
+    tdRows=TD_DEMO.slice();
+  }else{
+    try{
+      const r=await fetch(TASTING_API);const j=await r.json();
+      tdRows=(j.rows||[]).map(normRow);
+      st.textContent='✅ '+tdRows.length+(currentLang==='en'?' rows · ':' dòng · ')+new Date().toLocaleTimeString('vi-VN');
+    }catch(e){st.textContent=(currentLang==='en'?'⚠️ Connection error – demo data. ':'⚠️ Lỗi kết nối – dữ liệu mẫu. ')+e.message;tdRows=TD_DEMO.slice();}
+  }
+  btn.classList.remove('loading');btn.innerHTML='🔄 '+(currentLang==='en'?'Refresh results':'Cập nhật kết quả');
+  buildCatFilter();renderTasting();tdLoaded=true;
+}
+function normRow(o){
+  return {group:o.group||'',taster:o.taster||'',team:o.team||'',region:o.region||'',
+    category:o.category||'',ayam_ref:o.ayam_ref||'',brand:o.brand||'',sku:o.sku||'',
+    weight:o.weight||'',solid:o.solid||'',
+    pack:+o.pack||0,appear:+o.appear||0,taste:+o.taste||0,texture:+o.texture||0,
+    sauce:+o.sauce||0,overall:+o.overall||0,
+    improve:o.improve||'',strength:o.strength||'',weakness:o.weakness||'',buy:o.buy||''};
+}
+function isAyam(b){return String(b).toLowerCase().indexOf('ayam')>-1;}
+
+function buildCatFilter(){
+  const cats=[...new Set(tdRows.map(r=>r.category).filter(Boolean))];
+  const isEN=currentLang==='en';
+  let h=`<button class="${tdCat==='all'?'active':''}" onclick="setTdCat('all')">🗂️ ${isEN?'All':'Tất cả'}</button>`;
+  cats.forEach(c=>h+=`<button class="${tdCat===c?'active':''}" onclick="setTdCat('${c.replace(/'/g,'')}')">${c}</button>`);
+  document.getElementById('tdCatFilter').innerHTML=h;
+}
+function setTdCat(c){tdCat=c;buildCatFilter();renderTasting();}
+
+function avg(a,k){if(!a.length)return 0;return a.reduce((s,r)=>s+(+r[k]||0),0)/a.length;}
+function composite(a){
+  if(!a.length)return 0;
+  const keys=['pack','appear','taste','texture','sauce','overall'];
+  const per=a.map(r=>{
+    const vals=keys.map(k=>+r[k]||0).filter(v=>v>0);
+    return vals.length?vals.reduce((s,x)=>s+x,0)/vals.length:0;
+  }).filter(v=>v>0);
+  return per.length?per.reduce((s,x)=>s+x,0)/per.length:0;
+}
+
+function renderTasting(){
+  const body=document.getElementById('tdBody'),isEN=currentLang==='en';
+  let rows=tdRows.filter(r=>tdCat==='all'||r.category===tdCat);
+  if(!rows.length){body.innerHTML=`<div class="td-empty">📭 ${isEN?'No data yet. Scan QR to rate.':'Chưa có dữ liệu. Quét QR để chấm.'}</div>`;return;}
+  const ay=rows.filter(r=>isAyam(r.brand)),co=rows.filter(r=>!isAyam(r.brand));
+  const ayS=composite(ay),coS=composite(co);
+  const tasters=new Set(rows.map(r=>r.taster)).size;
+  const groups=new Set(rows.map(r=>r.group)).size;
+  const ayBuy=ay.filter(r=>r.buy==='Có').length,coBuy=co.filter(r=>r.buy==='Có').length;
+
+  let h='';
+  h+=`<div class="td-kpis">
+    <div class="td-kpi"><div class="n">${groups}</div><div class="l">${isEN?'Comparisons':'Lượt so sánh'}</div></div>
+    <div class="td-kpi"><div class="n">${tasters}</div><div class="l">${isEN?'Tasters':'Người chấm'}</div></div>
+    <div class="td-kpi ayam"><div class="n">${ay.length}</div><div class="l">${isEN?'Ayam entries':'Lượt chấm Ayam'}</div></div>
+    <div class="td-kpi"><div class="n">${co.length}</div><div class="l">${isEN?'Competitor entries':'Lượt chấm đối thủ'}</div></div>
+  </div>`;
+
+  h+=`<div class="td-vs">
+    <div class="td-vscard ayam"><div class="who">🐓 AYAM BRAND</div><div class="score">${ayS.toFixed(2)}<small>/5</small></div><div class="meta">${ay.length} ${isEN?'entries':'lượt'} · 👍 ${ayBuy}</div></div>
+    <div class="td-vscard comp"><div class="who">⚔️ ${isEN?'COMPETITORS':'ĐỐI THỦ'}</div><div class="score">${coS.toFixed(2)}<small>/5</small></div><div class="meta">${co.length} ${isEN?'entries':'lượt'} · 👍 ${coBuy}</div></div>
+  </div>`;
+
+  h+=`<div class="td-metrics"><h3>📈 ${isEN?'Score by attribute':'Điểm theo tiêu chí'} (Ayam vs ${isEN?'Competitor':'Đối thủ'})</h3>`;
+  TD_METRICS.forEach(m=>{
+    const a=avg(ay.filter(r=>r[m.k]>0),m.k),c=avg(co.filter(r=>r[m.k]>0),m.k);
+    h+=`<div class="td-mrow"><div class="mlabel"><span>${isEN?m.en:m.vi}</span></div><div class="td-bars">
+      <div class="td-bar-wrap"><span class="tag a">Ayam</span><div class="td-track"><div class="td-fill a" style="width:${a/5*100}%">${a.toFixed(1)}</div></div></div>
+      <div class="td-bar-wrap"><span class="tag c">${isEN?'Comp':'Đối thủ'}</span><div class="td-track"><div class="td-fill c" style="width:${c/5*100}%">${c.toFixed(1)}</div></div></div>
+    </div></div>`;
+  });
+  h+=`</div>`;
+
+  // per-SKU table
+  const skuMap={};
+  rows.forEach(r=>{const key=r.brand+'||'+r.sku;if(!skuMap[key])skuMap[key]={brand:r.brand,sku:r.sku,category:r.category,rows:[]};skuMap[key].rows.push(r);});
+  const skus=Object.values(skuMap).sort((x,y)=>composite(y.rows)-composite(x.rows));
+  h+=`<div style="overflow-x:auto"><table class="td-table"><thead><tr>
+    <th>${isEN?'Brand':'Nhãn'}</th><th>SKU</th><th>${isEN?'Group':'Nhóm'}</th>
+    <th class="sc">${isEN?'Avg':'TB'}</th><th class="sc">👍</th><th class="sc">n</th></tr></thead><tbody>`;
+  skus.forEach(s=>{
+    const sc=composite(s.rows),buy=s.rows.filter(r=>r.buy==='Có').length;
+    h+=`<tr><td class="${isAyam(s.brand)?'b-ayam':'b-comp'}">${isAyam(s.brand)?'🐓 Ayam':'⚔️ '+(isEN?'Comp':'Đối thủ')}</td>
+      <td>${esc2(s.sku)}</td><td>${esc2(s.category)}</td>
+      <td class="sc" style="color:${sc>=4?'#0E7544':sc>=3?'#E65100':'#b71c1c'}">${sc.toFixed(2)}</td>
+      <td class="sc">${buy}/${s.rows.length}</td><td>${s.rows.length}</td></tr>`;
+  });
+  h+=`</tbody></table></div>`;
+
+  // qualitative feedback
+  const fb=rows.filter(r=>r.improve||r.strength||r.weakness).slice(-8).reverse();
+  if(fb.length){
+    h+=`<div class="td-metrics" style="margin-top:16px"><h3>💬 ${isEN?'Feedback (improve / strengths / weaknesses)':'Nhận xét (cải thiện / mạnh / yếu)'}</h3>`;
+    fb.forEach(n=>{
+      let parts=[];
+      if(n.strength)parts.push(`💪 ${esc2(n.strength)}`);
+      if(n.weakness)parts.push(`⚠️ ${esc2(n.weakness)}`);
+      if(n.improve)parts.push(`🔧 ${esc2(n.improve)}`);
+      h+=`<div style="font-size:12.5px;padding:8px 0;border-bottom:1px solid #eef1f4;line-height:1.55">
+        <b style="color:${isAyam(n.brand)?'var(--red)':'var(--navy)'}">${isAyam(n.brand)?'🐓':'⚔️'} ${esc2(n.sku)}</b>
+        <span style="color:#999"> · ${esc2(n.taster)}</span><br>${parts.join(' &nbsp;·&nbsp; ')}</div>`;
+    });
+    h+=`</div>`;
+  }
+
+  body.innerHTML=h;
+  setTimeout(()=>{document.querySelectorAll('#tdBody .td-fill').forEach(f=>{const w=f.style.width;f.style.width='0';requestAnimationFrame(()=>f.style.width=w);});},50);
+}
+function esc2(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// Demo data (parallel structure)
+const TD_DEMO=[
+  {group:'G1',taster:'Loan',team:'GT South',region:'HCM',category:'Nước Cốt Dừa',ayam_ref:'Coconut Milk 400ml',brand:'Ayam Brand',sku:'Coconut Milk 400ml',weight:'400ml',solid:'',pack:5,appear:5,taste:5,texture:5,sauce:0,overall:5,improve:'',strength:'Béo thơm, đặc mịn',weakness:'',buy:'Có'},
+  {group:'G1',taster:'Loan',team:'GT South',region:'HCM',category:'Nước Cốt Dừa',ayam_ref:'Coconut Milk 400ml',brand:'Đối thủ',sku:'Chaokoh 400ml',weight:'400ml',solid:'',pack:4,appear:4,taste:4,texture:4,sauce:0,overall:4,improve:'Giảm giá',strength:'Vị ổn',weakness:'Giá cao',buy:'Có'},
+  {group:'G2',taster:'Hoa',team:'GT Central',region:'Huế',category:'Cá Ngừ',ayam_ref:'Tuna Chunks in Water 150g',brand:'Ayam Brand',sku:'Tuna Chunks in Water 150g',weight:'150g',solid:'110g',pack:5,appear:5,taste:5,texture:5,sauce:0,overall:5,improve:'',strength:'Thịt chắc, ít tanh',weakness:'',buy:'Có'},
+  {group:'G2',taster:'Hoa',team:'GT Central',region:'Huế',category:'Cá Ngừ',ayam_ref:'Tuna Chunks in Water 150g',brand:'Đối thủ',sku:'Sea Crown 140g',weight:'140g',solid:'85g',pack:3,appear:3,taste:3,texture:3,sauce:0,overall:3,improve:'Tăng % cá',strength:'Rẻ',weakness:'Vị nhạt, nhiều nước',buy:'Không'},
+  {group:'G3',taster:'Quy',team:'MKT',region:'HCM',category:'Đậu Sốt Cà',ayam_ref:'Baked Beans Tomato 425g',brand:'Ayam Brand',sku:'Baked Beans Tomato 425g',weight:'425g',solid:'260g',pack:4,appear:4,taste:5,texture:4,sauce:5,overall:5,improve:'',strength:'Hạt to, sốt đậm',weakness:'',buy:'Có'},
+  {group:'G3',taster:'Quy',team:'MKT',region:'HCM',category:'Đậu Sốt Cà',ayam_ref:'Baked Beans Tomato 425g',brand:'Đối thủ',sku:'Heinz 415g',weight:'415g',solid:'250g',pack:5,appear:5,taste:4,texture:4,sauce:4,overall:4,improve:'Giá',strength:'Chuẩn vị Anh',weakness:'Đắt gần gấp đôi',buy:'Có'},
+];
 </script>
 
 </body>
