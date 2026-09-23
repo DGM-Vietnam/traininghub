@@ -464,6 +464,158 @@ table.sku tr:hover td{background:#fff8e1;}
 .td-lightbox img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5);}
 /* thumbnails in SKU table */
 .td-skuimg{width:34px;height:34px;object-fit:cover;border-radius:6px;cursor:pointer;border:1.5px solid #e2e6ea;}
+
+/* ══ DIGITAL TOOLS TAB ══ */
+.dt-hidden{display:none!important;}
+.dt-block{margin-bottom:24px;}
+.dt-block:last-child{margin-bottom:0;}
+.dt-h{font-size:15px;color:var(--navy);font-weight:800;margin:0 0 10px;}
+.dt-shot{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start;}
+@media(max-width:820px){.dt-shot{grid-template-columns:1fr;}}
+.dt-fig{margin:0;}
+.dt-fig img{width:100%;border-radius:10px;border:1px solid #d6dee4;box-shadow:var(--shadow);display:block;cursor:zoom-in;}
+.dt-app{display:inline-block;margin-top:9px;background:var(--navy);color:#fff;font-size:11.5px;font-weight:700;padding:5px 13px;border-radius:20px;text-decoration:none;transition:.2s;}
+.dt-app:hover{background:var(--red);}
+.dt-points{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+.dt-points li{background:var(--cream);border-radius:10px;padding:10px 12px;border-left:3px solid var(--teal);}
+.dt-points b{display:block;font-size:12.5px;color:var(--navy);margin-bottom:3px;}
+.dt-points span{font-size:12px;line-height:1.55;color:var(--gray);}
+.dt-take{margin-top:12px;font-size:13.5px;font-style:italic;font-weight:700;color:var(--red);line-height:1.6;}
+.dt-lead{font-size:14px;line-height:1.75;margin-bottom:14px;}
+/* câu hỏi mở đầu */
+.dt-q{position:relative;background:var(--navy);color:#fff;border-radius:14px;padding:26px 30px 26px 62px;margin-bottom:16px;}
+.dt-q-mark{position:absolute;left:20px;top:6px;font-size:58px;font-weight:900;color:var(--yellow);line-height:1;opacity:.85;}
+.dt-q p{margin:0;font-size:17px;line-height:1.72;font-weight:600;}
+.dt-q b{color:var(--yellow);}
+@media(max-width:600px){.dt-q{padding:22px 18px 20px 20px;}.dt-q-mark{display:none;}.dt-q p{font-size:15px;}}
+.dt-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+@media(min-width:960px){.dt-chips{grid-template-columns:repeat(5,1fr);}}
+.dt-chip{background:var(--cream);border-radius:10px;padding:11px 13px;border-top:3px solid var(--yellow);}
+.dt-chip b{display:block;font-size:12.5px;color:var(--navy);margin-bottom:3px;}
+.dt-chip span{font-size:11.5px;line-height:1.5;color:var(--gray);}
+/* nhu cầu */
+.dt-need{background:#FFF8E1;border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:13px 16px;margin-bottom:16px;}
+.dt-need-t{font-size:10.5px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+.dt-need-b{font-size:13px;line-height:1.7;color:var(--navy);}
+/* dòng quy trình 6 bước */
+.dt-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+@media(min-width:1000px){.dt-flow{grid-template-columns:repeat(6,1fr);}}
+.dt-step{background:var(--cream);border-radius:10px;padding:13px 13px 12px;border-top:3px solid var(--teal);position:relative;}
+.dt-step-n{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:7px;}
+.dt-step-t{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.dt-step-s{font-size:11.5px;line-height:1.5;color:var(--gray);}
+/* bản đồ nhu cầu -> app */
+.dt-maps{display:flex;flex-direction:column;gap:10px;}
+.dt-map{display:grid;grid-template-columns:40px 200px 1fr;gap:12px;align-items:center;background:var(--cream);border-radius:10px;padding:12px 14px;}
+@media(max-width:720px){.dt-map{grid-template-columns:40px 1fr;}.dt-map-d{grid-column:1/-1;}}
+.dt-map-i{font-size:22px;text-align:center;}
+.dt-map-n{font-size:13.5px;font-weight:800;color:var(--navy);}
+.dt-map-d{font-size:12.5px;line-height:1.6;color:var(--gray);}
+/* việc còn phải chốt */
+.dt-opens{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.dt-open{background:#fff;border:1.5px solid #e3d9c0;border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:13px 15px;}
+.dt-open-t{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.dt-open-b{font-size:12px;line-height:1.6;color:var(--gray);}
+.dt-layers{display:flex;flex-direction:column;gap:10px;}
+.dt-layer{display:grid;grid-template-columns:38px 190px 1fr;gap:12px;align-items:center;background:var(--cream);border-radius:10px;padding:12px 14px;}
+@media(max-width:700px){.dt-layer{grid-template-columns:38px 1fr;}.dt-layer-d{grid-column:1/-1;}}
+.dt-layer-n{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.dt-layer-t{font-size:13.5px;font-weight:700;color:var(--navy);}
+.dt-layer-r{font-size:10.5px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;}
+.dt-layer-d{font-size:12.5px;line-height:1.6;color:var(--gray);}
+.dt-panel{background:var(--cream);border-radius:12px;padding:18px;position:relative;border-top:4px solid var(--yellow);}
+.dt-panel-n{position:absolute;right:14px;top:8px;font-size:40px;font-weight:900;color:var(--navy);opacity:.10;line-height:1;}
+.dt-panel h3{margin-top:0;}
+.dt-panel p{font-size:12.5px;line-height:1.65;color:var(--gray);margin-bottom:8px;}
+.dt-panel ul{padding-left:18px;margin-top:6px;}
+.dt-panel li{font-size:12.5px;line-height:1.6;margin-bottom:6px;}
+.dt-hl{color:var(--red)!important;font-weight:700;}
+.dt-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.dt-table th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+.dt-table td{padding:9px 10px;border-bottom:1px solid #e8ecef;line-height:1.5;}
+.dt-cost{color:var(--red);font-weight:800;white-space:nowrap;}
+.dt-zero{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;}
+.dt-zero-t{font-size:13px;font-weight:700;margin-bottom:6px;}
+.dt-zero-n{font-size:46px;font-weight:900;color:var(--yellow);line-height:1.1;}
+.dt-zero-s{font-size:12px;opacity:.85;margin-bottom:12px;}
+.dt-zero ul{text-align:left;padding-left:18px;}
+.dt-zero li{font-size:12px;line-height:1.6;margin-bottom:5px;color:#BFD4E3;}
+.dt-phase{font-size:15px;font-weight:800;color:var(--red);margin-bottom:6px;}
+.dt-lock{max-width:430px;margin:50px auto;text-align:center;background:#fff;border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-lg);border-top:4px solid var(--yellow);}
+.dt-lock input{width:100%;padding:11px 14px;border:1.5px solid #d6dee4;border-radius:10px;font-size:16px;text-align:center;letter-spacing:.1em;margin:12px 0 0;font-family:var(--font);}
+.dt-lock button{background:var(--red);color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;}
+.dt-lock button:hover{background:var(--navy);}
+.dt-err{color:var(--red);font-size:12.5px;font-weight:600;min-height:20px;margin:6px 0 2px;}
+.dt-zoomer{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:600;display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;}
+.dt-zoomer.show{display:flex;}
+.dt-zoomer img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 10px 50px rgba(0,0,0,.6);}
+
+
+/* ── Present mode ── */
+.dt-pbtn{margin-left:auto;background:var(--navy)!important;color:#fff!important;border-radius:16px!important;padding:6px 14px!important;font-weight:700!important;}
+.dt-pbtn:hover{background:var(--red)!important;}
+.subnav{display:flex;align-items:center;}
+.dt-present{position:fixed;inset:0;background:var(--cream);z-index:700;display:none;flex-direction:column;}
+.dt-present.show{display:flex;}
+.dt-bar{display:flex;align-items:center;gap:12px;padding:9px 18px;background:var(--navy);color:#fff;font-size:12.5px;flex-shrink:0;}
+.dt-bar button{background:rgba(255,255,255,.16);border:none;color:#fff;border-radius:8px;padding:6px 13px;font-size:14px;cursor:pointer;line-height:1;}
+.dt-bar button:hover{background:var(--red);}
+.dt-bar .dt-num{font-weight:800;letter-spacing:.04em;min-width:66px;}
+.dt-bar .dt-hint{opacity:.6;font-size:11px;}
+.dt-dots{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;}
+.dt-dot{padding:4px 11px;border-radius:12px;background:rgba(255,255,255,.16);cursor:pointer;font-size:11px;font-weight:600;}
+.dt-dot.on{background:var(--yellow);color:var(--navy);font-weight:800;}
+.dt-stage{flex:1;overflow-y:auto;padding:34px 46px 60px;width:100%;max-width:1560px;margin:0 auto;font-size:18px;}
+.dt-stage .dt-ph{font-size:27px;color:var(--red);font-weight:800;margin:0 0 20px;display:flex;gap:10px;align-items:center;line-height:1.25;}
+.dt-stage .card{box-shadow:none;background:transparent;padding:0;margin:0;}
+.dt-stage .card h2{font-size:27px;margin-bottom:20px;line-height:1.25;}
+.dt-stage .card h3{font-size:19px;}
+.dt-stage .spotlight{padding:34px 38px;}
+.dt-stage .spotlight h2{font-size:30px;}
+.dt-stage .spotlight .sub{font-size:17px;}
+.dt-stage .dt-block{margin-bottom:0;}
+.dt-stage .dt-h{font-size:24px;margin-bottom:16px;line-height:1.25;}
+.dt-stage .dt-points li{padding:14px 16px;}
+.dt-stage .dt-points b{font-size:17px;margin-bottom:5px;}
+.dt-stage .dt-points span{font-size:16px;line-height:1.6;}
+.dt-stage .dt-take{font-size:20px;margin-top:20px;}
+.dt-stage .dt-lead{font-size:18px;}
+.dt-stage .dt-q p{font-size:23px;}
+.dt-stage .dt-q-mark{font-size:70px;}
+.dt-stage .dt-chip b{font-size:16px;}
+.dt-stage .dt-chip span{font-size:14.5px;}
+.dt-stage .dt-need-b{font-size:17px;line-height:1.72;}
+.dt-stage .dt-need-t{font-size:12px;}
+.dt-stage .dt-step-t{font-size:17px;}
+.dt-stage .dt-step-s{font-size:14.5px;}
+.dt-stage .dt-map-n{font-size:17px;}
+.dt-stage .dt-map-d{font-size:15.5px;}
+.dt-stage .dt-map{grid-template-columns:48px 250px 1fr;padding:15px 18px;}
+.dt-stage .dt-map-i{font-size:26px;}
+.dt-stage .dt-open-t{font-size:16px;}
+.dt-stage .dt-open-b{font-size:14.5px;}
+.dt-stage .wc-title{font-size:17px;}
+.dt-stage .wc-body{font-size:15.5px;line-height:1.65;}
+.dt-stage .wc-num{font-size:26px;}
+.dt-stage .wc-num.dt-ico{font-size:24px;}
+.dt-stage .win-card{padding:18px;}
+.dt-stage .dt-layer-t{font-size:17px;}
+.dt-stage .dt-layer-r{font-size:12px;}
+.dt-stage .dt-layer-d{font-size:16px;}
+.dt-stage .dt-layer{grid-template-columns:44px 230px 1fr;padding:15px 18px;}
+.dt-stage .dt-layer-n{width:36px;height:36px;font-size:15px;}
+.dt-stage .dt-panel p,.dt-stage .dt-panel li{font-size:16px;line-height:1.7;}
+.dt-stage .dt-zero-n{font-size:64px;}
+.dt-stage .dt-zero-t{font-size:16px;}
+.dt-stage .dt-zero li{font-size:15px;}
+.dt-stage .dt-table{font-size:15.5px;}
+.dt-stage .dt-table th{font-size:12.5px;}
+.dt-stage .dt-phase{font-size:19px;}
+.dt-stage .dt-app{font-size:14px;padding:7px 16px;}
+.dt-zoomer{z-index:800;}
+@media(max-width:820px){.dt-stage{padding:20px 16px 50px;font-size:16px;}.dt-stage .dt-ph,.dt-stage .card h2{font-size:21px;}.dt-stage .dt-h{font-size:19px;}}
+
+.wc-num.dt-ico{opacity:1;font-size:19px;}
 </style>
 </head>
 <body>
@@ -492,6 +644,7 @@ table.sku tr:hover td{background:#fff8e1;}
     <button onclick="showGroup('g-coconut',this)">🥥 <span class="vi-only">Nước Cốt Dừa 65ml</span><span class="en-only hide">Coconut 65ml</span><span class="badge-new">⭐</span></button>
     <button onclick="showGroup('g-skills',this)">🎯 <span class="vi-only">Kỹ năng & Đối đáp</span><span class="en-only hide">Skills & Q&A</span></button>
     <button onclick="showGroup('g-dash',this)">📊 <span class="vi-only">Dashboard Cảm quan</span><span class="en-only hide">Sensory Dashboard</span><span class="badge-new">⭐</span></button>
+    <button onclick="showDigital(this)">🧰 <span class="vi-only">Công cụ số</span><span class="en-only hide">Digital Tools</span><span class="badge-new">🔒</span></button>
   </div>
 </div>
 <!-- ══ SUB-NAV ══ -->
@@ -517,6 +670,16 @@ table.sku tr:hover td{background:#fff8e1;}
   </div>
   <div class="subnav hide" id="sub-g-dash">
     <button class="active" onclick="subShow('m-dash',this)">📊 <span class="vi-only">Dashboard Cảm quan</span><span class="en-only hide">Sensory Dashboard</span></button>
+  </div>
+  <div class="subnav hide" id="sub-g-digital">
+    <button class="active" onclick="subShow('m-dig-why',this)">❓ <span class="vi-only">Bối cảnh</span><span class="en-only hide">Context</span></button>
+    <button onclick="subShow('m-dig-crm',this)">🗂️ <span class="vi-only">CRM</span><span class="en-only hide">CRM</span></button>
+    <button onclick="subShow('m-dig-sampling',this)">🥄 <span class="vi-only">Sampling</span><span class="en-only hide">Sampling</span></button>
+    <button onclick="subShow('m-dig-field',this)">📲 <span class="vi-only">Daily Survey</span><span class="en-only hide">Daily Survey</span></button>
+    <button onclick="subShow('m-dig-commercial',this)">⚖️ <span class="vi-only">Tuân thủ &amp; Giá</span><span class="en-only hide">Compliance &amp; Price</span></button>
+    <button onclick="subShow('m-dig-how',this)">🧠 <span class="vi-only">Cách làm</span><span class="en-only hide">How</span></button>
+    <button onclick="subShow('m-dig-next',this)">🔄 <span class="vi-only">Kế thừa</span><span class="en-only hide">Continuity</span></button>
+    <button class="dt-pbtn" onclick="dtPresent()">▶ <span class="vi-only">Trình chiếu</span><span class="en-only hide">Present</span></button>
   </div>
 </div>
 
@@ -1859,6 +2022,415 @@ table.sku tr:hover td{background:#fff8e1;}
   </div>
 </div>
 
+<div id="m-dig-why" class="module">
+  <div class="dt-lock" id="dt-lock">
+    <h2 style="justify-content:center">🔒 <span class="vi-only">Khu vực nội bộ</span><span class="en-only hide">Internal area</span></h2>
+    <p style="font-size:13px;line-height:1.6;color:var(--gray)"><span class="vi-only">Tab này chứa ảnh dashboard nội bộ. Nhập mật khẩu để xem.</span><span class="en-only hide">This tab contains internal dashboard screenshots. Enter the password to continue.</span></p>
+    <input type="password" id="dt-pass" placeholder="••••••••" autocomplete="off" onkeydown="if(event.key==='Enter')dtTry()">
+    <div class="dt-err" id="dt-err"></div>
+    <button onclick="dtTry()"><span class="vi-only">Mở khoá</span><span class="en-only hide">Unlock</span></button>
+  </div>
+  <div class="dt-content hide">
+  <div class="spotlight">
+    <h2><span class="vi-only">Tự xây bộ công cụ hỗ trợ phòng kinh doanh &amp; marketing bằng AI</span><span class="en-only hide">Building our own sales &amp; marketing tools with AI</span></h2>
+    <div class="sub"><span class="vi-only">Bảy ứng dụng đang chạy, xây dựng bằng AI, nhân sự không biết code (non coder) — hạ tầng 0 đồng, không phí bản quyền.</span><span class="en-only hide">Seven live applications, built with AI by a non-coder — zero-cost infrastructure, no software licence.</span></div>
+    <div>
+      <span class="pill pill-yellow"><span class="vi-only">7 ứng dụng</span><span class="en-only hide">7 apps</span></span>
+      <span class="pill pill-yellow"><span class="vi-only">20 người dùng</span><span class="en-only hide">20 users</span></span>
+      <span class="pill pill-yellow"><span class="vi-only">từ T6/2026</span><span class="en-only hide">since Jun 2026</span></span>
+      <span class="pill pill-yellow">0 VND</span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>❓ <span class="vi-only">Câu hỏi của người quản lý</span><span class="en-only hide">The manager's question</span></h2>
+    <div class="dt-q">
+      <div class="dt-q-mark">“</div>
+      <p><span class="vi-only">Làm cách nào để team vẫn báo cáo đúng như đang làm, vẫn gửi đúng những thông tin đang gửi — nhưng thứ thu về lại <b>hiệu quả hơn, tức thời hơn, có tính tổng hợp hơn, có tính phân tích hơn và trực quan hơn</b>?</span><span class="en-only hide">How can the team keep reporting exactly as it does today, sending exactly the information it already sends — and still get back something <b>more effective, more immediate, more aggregated, more analytical and more visual</b>?</span></p>
+    </div>
+    <div class="dt-chips">
+      <div class="dt-chip"><b><span class="vi-only">Hiệu quả hơn</span><span class="en-only hide">More effective</span></b><span><span class="vi-only">không ai phải gõ lại, không ai phải đi thu gom</span><span class="en-only hide">nobody re-keys anything, nobody chases anyone</span></span></div>
+      <div class="dt-chip"><b><span class="vi-only">Tức thời hơn</span><span class="en-only hide">More immediate</span></b><span><span class="vi-only">gửi xong là thấy kết quả, không chờ hết tuần</span><span class="en-only hide">the result is there the moment it is sent</span></span></div>
+      <div class="dt-chip"><b><span class="vi-only">Tổng hợp hơn</span><span class="en-only hide">More aggregated</span></b><span><span class="vi-only">mọi báo cáo đổ về cùng một nơi, cùng một định dạng</span><span class="en-only hide">every report lands in one place, in one format</span></span></div>
+      <div class="dt-chip"><b><span class="vi-only">Phân tích hơn</span><span class="en-only hide">More analytical</span></b><span><span class="vi-only">so sánh được giữa người, giữa kênh, giữa tháng</span><span class="en-only hide">comparable across people, channels and months</span></span></div>
+      <div class="dt-chip"><b><span class="vi-only">Trực quan hơn</span><span class="en-only hide">More visual</span></b><span><span class="vi-only">biểu đồ, bản đồ, bảng xếp hạng thay cho file rời</span><span class="en-only hide">charts, maps and rankings instead of loose files</span></span></div>
+    </div>
+    <p class="dt-take"><span class="vi-only">Toàn bộ phần còn lại của tab này là câu trả lời cho đúng một câu hỏi đó.</span><span class="en-only hide">Everything else in this tab is the answer to that one question.</span></p>
+  </div>
+  <div class="card">
+    <h2>📂 <span class="vi-only">Công cụ thì tốt, đủ giải pháp nhưng dữ liệu rời rạc</span><span class="en-only hide">Good tools, complete solutions — scattered data</span></h2>
+    <p class="dt-lead"><span class="vi-only">Đội kinh doanh và marketing vốn đã báo cáo đầy đủ. Chỉ là báo cáo bằng Excel, Microsoft Forms, Google Sheet và Google Drive — bốn công cụ tốt nhưng mỗi báo cáo là 1 báo cáo riêng, phân mảnh, không liên kết với nhau để đồng bộ.</span><span class="en-only hide">The sales and marketing team already reported everything. It reported into Excel, Microsoft Forms, Google Sheets and Google Drive — four good tools, but each report stood alone, fragmented, with nothing linking them together.</span></p>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Mỗi việc một file Excel</span><span class="en-only hide">One Excel file per topic</span></div><div class="wc-body"><span class="vi-only">Theo từng người, từng tuần, từng nội dung. Mỗi file tự nó đều đúng, nhưng không tự so sánh, tổng hợp hay liên kết để có thể phân tích &amp; đưa ra quyết định.</span><span class="en-only hide">Per person, per week, per subject. Each file correct on its own, but nothing compares, consolidates or links them into something you can analyse and decide from.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Form chỉ dừng ở một bảng tính</span><span class="en-only hide">Forms that stopped at a table</span></div><div class="wc-body"><span class="vi-only">Form thu thập câu trả lời, rồi vẫn phải có người mở ra, làm sạch và chép tay kết quả vào slide.</span><span class="en-only hide">A form collects answers, then someone still has to open it, clean it and copy the result into a deck by hand.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Sheet và Drive, sao đi chép lại</span><span class="en-only hide">Sheets and Drive, copied and re-copied</span></div><div class="wc-body"><span class="vi-only">Link chia sẻ, bản này copy từ bản kia, thư mục chồng thư mục. Tìm lại con số tháng trước còn lâu hơn đọc nó.</span><span class="en-only hide">Shared links, versions of versions, folders of files. Finding last month's number took longer than reading it.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Hình ảnh nằm trong nhóm chat</span><span class="en-only hide">Photos living in chat groups</span></div><div class="wc-body"><span class="vi-only">Ảnh điểm bán trong Zalo và WhatsApp, tách rời khỏi báo cáo mà nó thuộc về, khó kiểm xem hình ảnh có đồng bộ với ảnh người khác chụp hay không.</span><span class="en-only hide">Store photos in Zalo and WhatsApp, separated from the report they belonged to, with no way to check whether they match what a colleague shot.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Không thiếu thông tin nào cả. Nó chỉ phân mảnh — nên chưa bao giờ đủ dữ liệu ở một chỗ để so sánh, phân tích hay ra quyết định.</span><span class="en-only hide">Nothing was missing. It was simply fragmented — so there was never enough in one place to compare, analyse or decide from.</span></p>
+  </div>
+  <div class="card">
+    <h2>💡 <span class="vi-only">Giữ nguyên báo cáo. Chỉ thay đổi cách thực hiện nó.</span><span class="en-only hide">Keep the report. Only change how it is done.</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Vẫn là báo cáo đó, quy trình đó</span><span class="en-only hide">Same reports, same flow</span></div><div class="wc-body"><span class="vi-only">Không ai bị yêu cầu làm khác đi. Biểu mẫu vẫn đúng những thông tin đó, đúng thứ tự đó, đúng thứ team vẫn điền.</span><span class="en-only hide">Nobody was asked to work differently. The forms carry the same information, in the same order, that the team was already filling in.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Có hệ thống và sạch</span><span class="en-only hide">Structured and clean</span></div><div class="wc-body"><span class="vi-only">Một bản ghi, một nơi, một định dạng — thấy được ngay kết quả khi báo cáo xong. Dữ liệu thực sự phân tích được.</span><span class="en-only hide">One record, one place, one format — the result is visible the moment the report is finished. Data that can actually be analysed.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Lên dashboard ngay khi gửi</span><span class="en-only hide">On the dashboard as it arrives</span></div><div class="wc-body"><span class="vi-only">Báo cáo vừa gửi là đã nằm trong biểu đồ, bản đồ và bảng tổng hợp. Không thu gom, không gõ lại, không cần thêm người hỗ trợ để tổng hợp &amp; chia sẻ lại.</span><span class="en-only hide">The moment a report is sent it is already in the chart, the map and the summary. No collecting, no re-keying, and no extra person needed to consolidate it and send it back out.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Thay đổi không nằm ở việc team báo cáo cái gì. Nó nằm ở chuyện báo cáo đó trở thành cái gì ngay khi được gửi đi.</span><span class="en-only hide">The change does not sit in what the team reports. It sits in what that report becomes the second it is sent.</span></p>
+  </div>
+  <div class="card">
+    <h2>🚀 <span class="vi-only">Vì sao team dùng nó — mà không cần ai bắt</span><span class="en-only hide">Why the team uses it — without being told to</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Ai cũng thấy phần đóng góp của mình</span><span class="en-only hide">Everyone sees their own contribution</span></div><div class="wc-body"><span class="vi-only">Công việc của mỗi người hiện lên cùng một bảng với mọi người khác. Công sức trước đây biến mất trong một file riêng giờ cả team đều thấy.</span><span class="en-only hide">Each person's work appears on the same board as everyone else's. Effort that used to disappear into a private file is now visible to the whole team.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Minh bạch tự nó tạo ra động lực</span><span class="en-only hide">Transparency creates its own motivation</span></div><div class="wc-body"><span class="vi-only">Hoạt động và kết quả mở cho tất cả. Mọi người tự cố gắng để luôn có tên trên bảng thành tích — không ai phải đi đòi báo cáo.</span><span class="en-only hide">Activity and results are open to everybody. People push to keep their name on the board — nobody has to be chased for a report.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Leader thấy tín hiệu, không chỉ thấy tổng số</span><span class="en-only hide">Leaders see the signals, not just the totals</span></div><div class="wc-body"><span class="vi-only">Chi tiết nhạy cảm nhân viên mang về — một khách mới đáng mở, hàng đang không chạy, một vấn đề tại điểm bán — tới tay leader ngay trong ngày =&gt; xử lí kịp thời.</span><span class="en-only hide">The sensitive detail a rep brings back — a new customer worth opening, stock that is not moving, a problem at an outlet — reaches the leader the same day, so it can be dealt with in time.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Chương trình marketing chạy đồng bộ</span><span class="en-only hide">Marketing programmes run in step</span></div><div class="wc-body"><span class="vi-only">Mỗi hoạt động đều kèm hình ảnh và dữ liệu riêng, nên chương trình được triển khai cùng lúc và nhất quán — nhận diện thương hiệu tại điểm bán đúng như mục tiêu đặt ra.</span><span class="en-only hide">Every activity carries its own photos and data, so programmes are executed together and consistently — brand presence at the point of sale is what we actually intended.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Không có đầu việc nào ở trên là việc mới. Đó đúng là những việc team vẫn làm — chỉ khác là giờ người có thể xử lý đã nhìn thấy chúng.</span><span class="en-only hide">None of these are new tasks. They are the tasks the team already did — now visible to the people who can act on them.</span></p>
+  </div>
+  <div class="card">
+    <h2>🧩 <span class="vi-only">Mỗi app ra đời để trả lời một nhu cầu</span><span class="en-only hide">Each app was born to answer one need</span></h2>
+    <div class="dt-maps"><div class="dt-map"><div class="dt-map-i">🗂️</div><div class="dt-map-n">Sales CRM</div><div class="dt-map-d"><span class="vi-only">Team sales không làm việc ở văn phòng, ở nhiều vùng miền khác nhau, một task thường liên quan nhiều người. Cần một nơi để ai cũng thấy việc mình phải làm hoặc cần theo dõi, trực quan và cập nhật thường xuyên.</span><span class="en-only hide">The sales team does not sit in an office and works across regions; one task often involves several people. They need one place to see, visually and continuously updated, what is theirs to do or to follow.</span></div></div><div class="dt-map"><div class="dt-map-i">🥄</div><div class="dt-map-n">Sampling Management</div><div class="dt-map-d"><span class="vi-only">Một buổi sampling là một dự án nhỏ: lên lịch, yêu cầu, duyệt, thực hiện, báo cáo, kết thúc. Trước đây nó nằm trong chat, không tổng hợp được, không so sánh, phân tích hay đo lường hiệu quả được.</span><span class="en-only hide">A sampling session is a small project: schedule, request, approval, execution, report, close. It used to live in chat — with no way to consolidate, compare, analyse or measure whether it worked.</span></div></div><div class="dt-map"><div class="dt-map-i">📲</div><div class="dt-map-n"><span class="vi-only">Khảo sát điểm bán hằng ngày</span><span class="en-only hide">Instore Daily Survey</span></div><div class="dt-map-d"><span class="vi-only">Toàn bộ việc đội thị trường làm trong ngày và các dashboard sinh ra từ đó. Đây cũng là thông tin tại điểm bán — nơi tiếp xúc trực tiếp người tiêu dùng, nơi quyết định nhận diện thương hiệu và khả năng bán hàng.</span><span class="en-only hide">Everything the field team does in a day, and the dashboards that come out of it. This is also what happens at the outlet — where the shopper is met, and where brand presence and sales are won.</span></div></div><div class="dt-map"><div class="dt-map-i">⚖️</div><div class="dt-map-n">Food Law Intelligence</div><div class="dt-map-d"><span class="vi-only">Quy định thay đổi nhanh và phải theo dõi thật chặt. Rủi ro phải được phát hiện và cảnh báo sớm — tốt nhất là trước khi lô hàng về tới cảng.</span><span class="en-only hide">Regulation now changes quickly and has to be followed closely. Risk has to be found and flagged early — ideally before a shipment reaches the port.</span></div></div><div class="dt-map"><div class="dt-map-i">🏷️</div><div class="dt-map-n">Price Intelligence</div><div class="dt-map-d"><span class="vi-only">Giá trên thị trường biến động liên tục. Cần nắm sớm nhất giá của đối thủ, và giá người tiêu dùng thực trả khi hàng đi qua phân phối thứ cấp.</span><span class="en-only hide">Prices move constantly across the market. We need the earliest possible read on competitor pricing, and on what the consumer actually pays through secondary distribution.</span></div></div><div class="dt-map"><div class="dt-map-i">🎓</div><div class="dt-map-n">Sales Training Hub</div><div class="dt-map-d"><span class="vi-only">Nhất quán trong nội bộ: mình là ai, đối thủ là ai, mình hơn và khác họ điều gì — những key winning points nhân viên cần khi đứng trước khách hàng mới.</span><span class="en-only hide">Internal alignment: who we are, who the competition is, and what makes us different — the winning points a rep needs in front of a new customer.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Không phải một nền tảng vẽ sẵn từ đầu. Các công cụ sinh ra từ nhu cầu thực tế, giải quyết vấn đề đang diễn ra và tạo ra kết quả trực quan hơn, tốt hơn.</span><span class="en-only hide">Not a platform designed up front. Each tool came out of a real need, to solve a problem already happening — and to turn it into something clearer and better.</span></p>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-crm" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>🗂️ <span class="vi-only">CRM bán hàng — toàn bộ khối lượng việc trên một bảng</span><span class="en-only hide">Sales CRM — the whole workload on one board</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Team sales không làm việc ở văn phòng, trải trên ba vùng miền, và một task thường liên quan đến nhiều người. Công việc đến từ mười hướng — tin nhắn, cuộc gọi, một dòng trong biên bản họp, một email — và không ai nói được việc gì đang mở, ai phụ trách. Cần một nơi để mọi người thấy việc mình phải làm hoặc cần theo dõi, trực quan và cập nhật thường xuyên.</span><span class="en-only hide">The sales team does not sit in an office and works across three regions, and one task often involves several people. Work reached them from ten directions — a chat message, a call, a meeting note, an email — and nobody could say what was open or who owned it. They needed one place to see, visually and continuously updated, what was theirs to do or to follow.</span></div>
+    </div>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Bảng này chính là báo cáo tiến độ</span><span class="en-only hide">The board is the status report</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/09-crm-kanban.webp" alt="The board is the status report" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/dgm-crm" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho cả team</span><span class="en-only hide">For everyone in the team</span></b><span><span class="vi-only">sales, trade marketing, marketing và compliance chung một bảng</span><span class="en-only hide">sales, trade marketing, marketing and compliance share one board</span></span></li><li><b><span class="vi-only">Trạng thái là một cột</span><span class="en-only hide">Status is a column</span></b><span><span class="vi-only">không ai phải viết báo cáo tiến độ — kéo thẻ chính là báo cáo</span><span class="en-only hide">nobody writes a status report — moving the card is the report</span></span></li><li><b><span class="vi-only">Chỉ đóng khi được xác nhận</span><span class="en-only hide">Closed only when confirmed</span></b><span><span class="vi-only">người yêu cầu xác nhận hoàn thành, không phải người làm tự báo</span><span class="en-only hide">the requester confirms completion, not the person who did the work</span></span></li><li><b><span class="vi-only">Subtask, deadline, bình luận</span><span class="en-only hide">Subtasks, deadlines, comments</span></b><span><span class="vi-only">trao đổi nằm ngay trên đầu việc thay vì trôi trong nhóm chat</span><span class="en-only hide">the discussion stays on the task instead of in a chat group</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Chương trình họp tuần chính là bảng này. Không ai phải chuẩn bị nữa.</span><span class="en-only hide">The weekly meeting agenda is this board. Nobody prepares it any more.</span></p>
+  </div>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Một task, rồi các subtask của nó</span><span class="en-only hide">A task, then its sub-tasks</span></div><div class="wc-body"><span class="vi-only">Một yêu cầu được tách thành đúng các bước nó cần, mỗi bước có người phụ trách và deadline riêng. Tiến độ của task cha chính là tổng của các phần.</span><span class="en-only hide">A request is broken into the steps it really takes, each with its own owner and its own deadline. Progress on the parent is what the parts add up to.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Quy trình chào hàng mới</span><span class="en-only hide">New-product pitch flow</span></div><div class="wc-body"><span class="vi-only">Chào một SKU mới vào một khách hàng chạy qua các bước cố định — gửi mẫu, báo giá, quyết định vào hàng, đơn đầu tiên — nên không bỏ bước và không rơi rớt giữa các lần ghé.</span><span class="en-only hide">Pitching a new SKU into an account runs through fixed stages — sample, quotation, listing decision, first order — so nothing is skipped and nothing is lost between visits.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Quy trình chào khách hàng mới</span><span class="en-only hide">New-customer opening flow</span></div><div class="wc-body"><span class="vi-only">Mở một khách hàng mới có luồng riêng: tiếp xúc đầu, điều khoản, hồ sơ, giao hàng lần đầu — khác với luồng chào sản phẩm cho khách đã có.</span><span class="en-only hide">Opening a new account has its own track: first contact, terms, paperwork, first delivery — a different flow from pitching a product to an existing one.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Các quy trình khác, chạy tự động</span><span class="en-only hide">Other flows, automated</span></div><div class="wc-body"><span class="vi-only">Bất kỳ việc nào lặp lại đều có thể thành một luồng: app tự tạo bước kế tiếp, giao người và đặt ngày mà không cần ai phải nhớ.</span><span class="en-only hide">Any recurring piece of work can be turned into a flow: the app creates the next step, assigns it and sets the date without anyone remembering to.</span></div></div><div class="win-card"><div class="wc-num">05</div><div class="wc-title"><span class="vi-only">Theo dõi trực quan các task liên quan</span><span class="en-only hide">Visual tracking of linked tasks</span></div><div class="wc-body"><span class="vi-only">Các đầu việc liên quan hiện cạnh nhau, nên người đang làm một việc nhìn thấy nó phụ thuộc vào đâu và ai đang chờ nó.</span><span class="en-only hide">Related tasks are shown together, so the person working on one can see what it depends on and what is waiting for it.</span></div></div><div class="win-card"><div class="wc-num">06</div><div class="wc-title"><span class="vi-only">Cập nhật liên tục giữa các thành viên</span><span class="en-only hide">Continuous updates between members</span></div><div class="wc-body"><span class="vi-only">Nhiều người cùng làm một task và mỗi cập nhật hiện ngay lập tức — không ai phải kể lại lịch sử cho người tiếp theo.</span><span class="en-only hide">Several people work on the same task and each update is visible immediately — no one has to re-explain the history to the next person.</span></div></div></div>
+  </div>
+  <div class="card">
+    <h2>📋 <span class="vi-only">Những phần khác CRM đang gánh sẵn</span><span class="en-only hide">Everything else the CRM already carries</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Pipeline chào hàng</span><span class="en-only hide">Leads pipeline</span></div><div class="wc-body"><span class="vi-only">Cơ hội khách mới theo dõi từ lần tiếp xúc đầu đến khi vào hàng, không rơi rớt giữa các lần ghé.</span><span class="en-only hide">New-customer opportunities tracked from first contact to listing, so nothing is lost between visits.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Khách hàng &amp; sản phẩm</span><span class="en-only hide">Customers &amp; products</span></div><div class="wc-body"><span class="vi-only">Dữ liệu gốc dùng chung cho cả ba thương hiệu, một phiên bản, luôn mới nhất.</span><span class="en-only hide">Shared master data across all three brands, one version, always current.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">KPI bán hàng &amp; họp BGĐ</span><span class="en-only hide">Sales KPI &amp; BOD meeting</span></div><div class="wc-body"><span class="vi-only">Theo dõi KPI từng người và màn hình họp tuần tự dựng chương trình từ dữ liệu công việc trực tiếp.</span><span class="en-only hide">Individual KPI tracking and a weekly meeting view that builds the agenda from live task data.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">KPI bán hàng &amp; màn hình họp BGĐ</span><span class="en-only hide">Sales KPI &amp; the BOD meeting</span></div><div class="wc-body"><span class="vi-only">Theo dõi KPI từng người và màn hình họp tuần tự dựng chương trình thẳng từ dữ liệu công việc trực tiếp.</span><span class="en-only hide">Individual KPI tracking and a weekly meeting view that builds its agenda straight from live task data.</span></div></div></div>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-sampling" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>🥄 <span class="vi-only">Sampling Management — một buổi sampling là một dự án nhỏ</span><span class="en-only hide">Sampling Management — a sampling session is a small project</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Một buổi sampling tốn tiền ở bốn chỗ cùng lúc — thuê PG, thuê địa điểm, hàng mẫu và quà tặng — mà trước đây được tổ chức hoàn toàn trong chat. Yêu cầu duyệt miệng, hình ảnh trôi trong Zalo, và đến khi chốt tháng thì không ai nói được buổi nào hiệu quả, buổi nào không, và mỗi buổi thực sự tốn bao nhiêu.</span><span class="en-only hide">A sampling session costs money in four places at once — PG hire, site rental, product samples and gifts — and used to be organised entirely in chat. Requests were approved verbally, photos ended up in Zalo, and when the month closed nobody could say which session had worked and which had not, or what any of them had cost.</span></div>
+    </div>
+    <div class="dt-flow"><div class="dt-step"><div class="dt-step-n">1</div><div class="dt-step-t"><span class="vi-only">Tạo lịch</span><span class="en-only hide">Schedule</span></div><div class="dt-step-s"><span class="vi-only">nhân viên đặt điểm bán, số ngày và khung giờ</span><span class="en-only hide">a rep books the outlet, the days and the hours</span></div></div><div class="dt-step"><div class="dt-step-n">2</div><div class="dt-step-t"><span class="vi-only">Gửi yêu cầu</span><span class="en-only hide">Request</span></div><div class="dt-step-s"><span class="vi-only">PG, chi phí địa điểm, mẫu và quà được tính chi phí tự động</span><span class="en-only hide">PG, site cost, samples and gifts are costed automatically</span></div></div><div class="dt-step"><div class="dt-step-n">3</div><div class="dt-step-t"><span class="vi-only">Duyệt</span><span class="en-only hide">Approve</span></div><div class="dt-step-s"><span class="vi-only">quản lý hoặc marketing duyệt, yêu cầu chỉnh sửa, hoặc từ chối</span><span class="en-only hide">manager or marketing approves, asks for an edit, or declines</span></div></div><div class="dt-step"><div class="dt-step-n">4</div><div class="dt-step-t"><span class="vi-only">Thực hiện</span><span class="en-only hide">Execute</span></div><div class="dt-step-s"><span class="vi-only">buổi sampling chạy đúng ngày đã chốt, cả team thấy trên lịch</span><span class="en-only hide">the session runs on the agreed date, visible to everyone on the calendar</span></div></div><div class="dt-step"><div class="dt-step-n">5</div><div class="dt-step-t"><span class="vi-only">Báo cáo</span><span class="en-only hide">Report</span></div><div class="dt-step-s"><span class="vi-only">hình ảnh, số mẫu thực dùng, số người thử và doanh số — từ điện thoại</span><span class="en-only hide">photos, samples actually used, tasters and sales from the phone</span></div></div><div class="dt-step"><div class="dt-step-n">6</div><div class="dt-step-t"><span class="vi-only">Kết thúc</span><span class="en-only hide">Close</span></div><div class="dt-step-s"><span class="vi-only">buổi được đóng và rơi thẳng vào các dashboard</span><span class="en-only hide">the session is completed and drops into the dashboards</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Sáu bước đó là đúng quy trình team vẫn làm. App chỉ khiến từng bước để lại một dấu vết.</span><span class="en-only hide">Those six steps are exactly the process the team already followed. The app simply makes every step leave a trace.</span></p>
+  </div>
+  <div class="card">
+    <h2>✅ <span class="vi-only">Tính tiền trước khi chạy, đo hiệu quả sau khi đóng</span><span class="en-only hide">Costed before it runs, measured after it closes</span></h2>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Kế hoạch tự mang theo chi phí của nó</span><span class="en-only hide">The plan carries its own cost</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/17-samp-create.webp" alt="The plan carries its own cost" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho nhân viên kinh doanh</span><span class="en-only hide">For the sales representative</span></b><span><span class="vi-only">điểm bán, ngày, giờ riêng từng ngày, người thực hiện và người giám sát — trong một biểu mẫu</span><span class="en-only hide">outlet, dates, hours per day, people assigned and a supervisor — in one form</span></span></li><li><b><span class="vi-only">Tiền PG được tính, không phải ước</span><span class="en-only hide">PG cost calculated, not estimated</span></b><span><span class="vi-only">app đọc bảng giá PG theo kênh và tự áp giá ngày lễ</span><span class="en-only hide">the app reads the PG rate table by channel and applies the holiday rate by itself</span></span></li><li><b><span class="vi-only">Mẫu được tính tiền ngay khi chọn</span><span class="en-only hide">Samples priced as they are chosen</span></b><span><span class="vi-only">mỗi SKU và số lượng lập tức thành một dòng chi phí</span><span class="en-only hide">each SKU and quantity turns into a cost line immediately</span></span></li><li><b><span class="vi-only">Chặn trùng lịch</span><span class="en-only hide">Double-booking blocked</span></b><span><span class="vi-only">app từ chối một buổi thứ hai tại cùng điểm bán trong khoảng ngày bị chồng</span><span class="en-only hide">the app refuses a second session at the same outlet on overlapping dates</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Người duyệt nhìn thấy một con số tổng, không phải một lời mô tả — và có thể duyệt, trả lại để sửa, hoặc từ chối.</span><span class="en-only hide">The approver sees a total, not a description — and can approve, send back for an edit, or decline.</span></p>
+  </div>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Duyệt, yêu cầu chỉnh sửa, hoặc từ chối</span><span class="en-only hide">Approve, request an edit, or decline</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/18-samp-approval.webp" alt="Approve, request an edit, or decline" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho quản lý và marketing</span><span class="en-only hide">For the manager and marketing</span></b><span><span class="vi-only">mọi yêu cầu đang chờ nằm trong một cột, chi phí hiện ngay trên thẻ</span><span class="en-only hide">every pending request in one column, with its cost on the card</span></span></li><li><b><span class="vi-only">Ba câu trả lời, không phải một</span><span class="en-only hide">Three answers, not one</span></b><span><span class="vi-only">duyệt, trả lại kèm ghi chú để sửa, hoặc từ chối kèm lý do</span><span class="en-only hide">approve, send back for an edit with a note, or decline with a reason</span></span></li><li><b><span class="vi-only">Kế hoạch đã duyệt vẫn cắt được</span><span class="en-only hide">An approved plan can still be trimmed</span></b><span><span class="vi-only">số PG có thể giảm sau khi duyệt — và khi giảm thì kế hoạch quay lại chờ duyệt</span><span class="en-only hide">PG count can be reduced afterwards — and the plan goes back for approval when it is</span></span></li><li><b><span class="vi-only">Huỷ cũng là một yêu cầu</span><span class="en-only hide">Cancellation is a request too</span></b><span><span class="vi-only">huỷ một buổi đã duyệt phải được duyệt riêng, và trạng thái trước đó vẫn được giữ</span><span class="en-only hide">cancelling an approved session needs its own approval, with the previous status kept</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Việc duyệt không còn là một tin nhắn trong nhóm — nó thành một quyết định có ngày, có người và có con số đi kèm.</span><span class="en-only hide">Approval stopped being a message in a group and became a decision with a date, an owner and a number attached.</span></p>
+  </div>
+  </div>
+  <div class="card">
+    <h2>📈 <span class="vi-only">Báo cáo từ điện thoại, rồi đo lại với mục tiêu đã duyệt</span><span class="en-only hide">Reported from the phone, then judged against the target</span></h2>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Ảnh theo bốn nhóm, rồi tới kết quả</span><span class="en-only hide">Photos in four groups, then the result</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/20-samp-report.webp" alt="Photos in four groups, then the result" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Ảnh phải chụp qua app</span><span class="en-only hide">Photos must come through the app</span></b><span><span class="vi-only">tên điểm bán, món ăn từ trên xuống, toàn cảnh, và hình khác</span><span class="en-only hide">the outlet sign, the dishes from above, the full scene, plus anything else</span></span></li><li><b><span class="vi-only">Tự vào đúng thư mục Drive</span><span class="en-only hide">Filed automatically in Drive</span></b><span><span class="vi-only">tháng → kênh → người → ngày và điểm bán, không ai phải đặt tên thư mục</span><span class="en-only hide">month → channel → person → date and outlet, without anyone naming a folder</span></span></li><li><b><span class="vi-only">Dùng quá số mẫu phải có lý do</span><span class="en-only hide">Sample overuse needs a reason</span></b><span><span class="vi-only">dùng nhiều mẫu hơn mức đã duyệt thì bắt buộc giải trình mới gửi được báo cáo</span><span class="en-only hide">using more samples than approved forces an explanation before the report can be sent</span></span></li><li><b><span class="vi-only">Người thử, doanh số và phản hồi</span><span class="en-only hide">Tasters, sales and feedback</span></b><span><span class="vi-only">con số và phản ứng khách hàng được ghi khi buổi vừa kết thúc</span><span class="en-only hide">the numbers and the customer reaction are captured while the session is still fresh</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Bằng chứng và kết quả về cùng một lúc, từ cùng một người, trong cùng một ngày.</span><span class="en-only hide">The evidence and the result arrive together, from the same person, on the same day.</span></p>
+  </div>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Dashboard trả lời &quot;buổi đó có đáng không?&quot;</span><span class="en-only hide">The dashboard answers &quot;was it worth it?&quot;</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/21-samp-dash-overview.webp" alt="The dashboard answers &quot;was it worth it?&quot;" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Pipeline trước tiên</span><span class="en-only hide">Pipeline first</span></b><span><span class="vi-only">chờ duyệt, đã duyệt, hoàn thành, từ chối — tình trạng cả tháng trong một dải</span><span class="en-only hide">pending, approved, completed and declined — the state of the month in one strip</span></span></li><li><b><span class="vi-only">Chi phí trên mỗi người thử</span><span class="en-only hide">Cost per contact</span></b><span><span class="vi-only">tổng chi chia cho số người thực sự thử — con số để so buổi này với buổi kia</span><span class="en-only hide">total spend divided by people who actually tasted — the number that compares sessions</span></span></li><li><b><span class="vi-only">Ước tính so với thực tế</span><span class="en-only hide">Estimated against actual</span></b><span><span class="vi-only">số người thử và doanh số hứa trong kế hoạch, đặt cạnh kết quả thật của buổi</span><span class="en-only hide">the tasters and sales promised in the plan, next to what the session delivered</span></span></li><li><b><span class="vi-only">Điểm bán tốt nhất và kém nhất</span><span class="en-only hide">Best and worst outlets</span></b><span><span class="vi-only">top 5 và bottom 5, để kế hoạch kế tiếp không phải đoán</span><span class="en-only hide">the top five and the bottom five, so the next plan is not a guess</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Buổi tốn nhiều tiền nhất hiếm khi là buổi tiếp cận được nhiều người nhất. Chỉ ở đây mới nhìn ra điều đó.</span><span class="en-only hide">The session that cost the most is rarely the one that reached the most people. That only becomes visible here.</span></p>
+  </div>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-field" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>📲 <span class="vi-only">Daily Survey — app được dùng nhiều nhất, và có nhiều tính năng nhất</span><span class="en-only hide">Daily Survey — the most used app, with the most features</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Mọi việc đội thị trường làm trong một ngày trước đây được báo cáo ở những chỗ khác nhau: file Excel cho tồn kho, một form cho trưng bày, nhóm chat cho hình ảnh, một tin nhắn cho điểm bán mới. Một app phải gánh hết — mà vẫn mở đúng biểu mẫu cho đúng người.</span><span class="en-only hide">Everything the field team does in a day used to be reported somewhere different: an Excel file for stock, a form for display, a chat group for photos, a message for a new outlet. One app had to take all of it — and still open the right form for the right person.</span></div>
+    </div>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/01-survey-login.webp" alt="Sign in" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <figure class="dt-fig"><img src="assets/digital/02-survey-tasks.webp" alt="Task types" loading="lazy" onclick="dtZoom(this.src)"></figure>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div><h3><span class="vi-only">Đăng nhập — chọn tên của mình</span><span class="en-only hide">Sign in — pick your name</span></h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--gray)"><span class="vi-only">Sales MT &amp; GT: hoạt động với giao diện tối ưu dành cho cả laptop &amp; điện thoại. Danh sách nhân viên đọc trực tiếp từ Google Sheet, gắn nhãn theo kênh và vùng (MT · GT Bắc / Trung / Nam). Mã PIN 4 số và dấu vân thiết bị gắn tài khoản với một máy.</span><span class="en-only hide">Sales MT &amp; GT, on an interface built for both laptop and phone. The staff list is read live from Google Sheets, tagged by channel and region (MT · GT North / Central / South). A 4-digit PIN and a device fingerprint bind the account to one phone.</span></p></div>
+      <div><h3><span class="vi-only">Sau đó chọn loại công việc</span><span class="en-only hide">Then choose the job</span></h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--gray)"><span class="vi-only">Mười một loại công việc trên một màn hình — MT daily, GT daily, công việc khác, điểm bán GT mới, đăng ký và báo cáo trưng bày, tặng quà, quản kho quà &amp; POSM, tồn kho &amp; sell-out NPP, ngân sách trade. Mỗi mục mở đúng biểu mẫu của việc đó.</span><span class="en-only hide">Eleven task types in one screen — MT daily, GT daily, other work, new GT outlet, display registration and reporting, gifting, gift &amp; POSM warehouse, distributor stock &amp; sell-out, trade spend. Each opens a form built for that job only.</span></p></div>
+    </div>
+    <a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a>
+    <p class="dt-take"><span class="vi-only">Nhân viên không bao giờ thấy biểu mẫu không thuộc về mình. Vai trò và kênh quyết định menu.</span><span class="en-only hide">A rep never sees a form that is not theirs. Role and channel decide the menu.</span></p>
+  </div>
+  <div class="card">
+    <h2>🎯 <span class="vi-only">Quản lý đội ngoài thị trường bằng chính dữ liệu họ vẫn gửi</span><span class="en-only hide">Running a field team from the data it already sends</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Đội đang ở đâu, đã làm những gì</span><span class="en-only hide">Where the team is, and what they did</span></div><div class="wc-body"><span class="vi-only">Hoạt động hiện ngay khi diễn ra, ai chưa báo cáo, và bản đồ độ phủ vẽ ra từ chính các báo cáo.</span><span class="en-only hide">Activity as it happens, who has not reported yet, and the coverage map drawn from the reports themselves.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Điều gì đang thực sự diễn ra tại điểm bán</span><span class="en-only hide">What is really happening at the outlet</span></div><div class="wc-body"><span class="vi-only">Tồn kệ, diện tích trưng bày, hoạt động đối thủ và hình ảnh từng lượt ghé — điểm bán đúng như nó đang là, không phải như được kể lại.</span><span class="en-only hide">Shelf stock, facings, competitor activity and photos from every visit — the store as it is, not as it is described.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Hiệu suất làm việc của team</span><span class="en-only hide">How the team is performing</span></div><div class="wc-body"><span class="vi-only">Số lượt ghé, điểm bán mới mở, báo cáo hoàn thành và chất lượng theo từng người — một bảng xếp hạng ai cũng kiểm được.</span><span class="en-only hide">Visits, new outlets opened, reports completed and quality per person — a ranking anyone can check.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Chương trình marketing có chạy đồng bộ không</span><span class="en-only hide">Whether marketing runs in step</span></div><div class="wc-body"><span class="vi-only">Mỗi vị trí trưng bày và hoạt động đều được đăng ký, chấm điểm và chụp ảnh, để nhận diện thương hiệu nhất quán giữa các vùng.</span><span class="en-only hide">Every display and activation is registered, scored and photographed, so brand presence is consistent across regions.</span></div></div><div class="win-card"><div class="wc-num">05</div><div class="wc-title"><span class="vi-only">Quà tặng thực sự đi về đâu</span><span class="en-only hide">Where the gifts actually went</span></div><div class="wc-body"><span class="vi-only">Mỗi người một sổ tồn quà tặng và POSM: ai nhận gì, vì sao, kèm ảnh làm bằng chứng. Trùng lặp bị gắn cờ ngay lúc xảy ra.</span><span class="en-only hide">A stock ledger per person for gifts and POSM: who received what, why, and a photo as evidence. Duplicates flagged as they happen.</span></div></div><div class="win-card"><div class="wc-num">06</div><div class="wc-title"><span class="vi-only">Ngân sách marketing được dùng ra sao</span><span class="en-only hide">How the marketing budget is spent</span></div><div class="wc-body"><span class="vi-only">Kế hoạch, cam kết và thực chi theo từng khách hàng trên một dòng thời gian — vượt hay hụt đều lộ ra khi vẫn còn kịp xử lý.</span><span class="en-only hide">Plan, commitment and actual spend per customer on one timeline — over- and under-spend visible while there is still time to act.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Sáu câu hỏi của quản lý, trả lời bằng đúng những báo cáo team vốn đã điền.</span><span class="en-only hide">Six management questions, answered from reports the team was already filling in.</span></p>
+  </div>
+  <div class="card">
+    <h2>📊 <span class="vi-only">Dashboard quản lý — sáu góc nhìn của cùng một ngày</span><span class="en-only hide">Manager dashboard — six views of the same day</span></h2>
+    <p class="dt-lead"><span class="vi-only">Cùng một đường link, cùng một app — chỉ khác tài khoản đăng nhập. Nhân viên mở ra thấy biểu mẫu của mình; quản lý mở ra thấy toàn bộ dashboard dưới đây.</span><span class="en-only hide">The same link and the same app — only the account differs. A rep opens it and gets their own forms; a manager opens it and gets the full dashboard below.</span></p>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Tổng quan &amp; cảnh báo — cả đội trên một màn hình</span><span class="en-only hide">Overview & alerts — the whole team on one screen</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/03-dash-overview.webp" alt="Overview & alerts — the whole team on one screen" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Hôm nay ai đang ngoài thị trường</span><span class="en-only hide">Who is out there today</span></b><span><span class="vi-only">hoạt động của đội hiện ngay khi diễn ra — không phải đi hỏi ai</span><span class="en-only hide">team activity as it happens — nobody has to be asked</span></span></li><li><b><span class="vi-only">Ai chưa báo cáo</span><span class="en-only hide">Who has not reported</span></b><span><span class="vi-only">tự hiện tên, để leader nhắc ngay trong buổi sáng đó</span><span class="en-only hide">named automatically, so a leader can follow up the same morning</span></span></li><li><b><span class="vi-only">Dữ liệu tin được</span><span class="en-only hide">Data you can trust</span></b><span><span class="vi-only">thiết bị trùng và lượt khảo sát trùng bị bắt trước khi vào báo cáo</span><span class="en-only hide">duplicate devices and duplicate visits caught before they reach a report</span></span></li><li><b><span class="vi-only">Dành cho trưởng nhóm</span><span class="en-only hide">For the team leader</span></b><span><span class="vi-only">buổi họp đầu ngày bắt đầu từ màn hình này, không phải từ một cuộc gọi</span><span class="en-only hide">the morning stand-up starts from this screen, not from a phone call</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Không ai phải ráp màn hình này. Mở ra lúc nào nó cũng đúng lúc đó.</span><span class="en-only hide">Nobody assembles this screen. It is simply true whenever you open it.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Bản đồ độ phủ — đội đã thực sự đi những đâu</span><span class="en-only hide">Coverage map — where the team actually went</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/04-dash-map.webp" alt="Coverage map — where the team actually went" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Đội thực sự đã làm việc ở đâu</span><span class="en-only hide">Where the team actually worked</span></b><span><span class="vi-only">vẽ ra từ chính báo cáo họ vẫn gửi, không phải nhập thêm gì</span><span class="en-only hide">drawn from the reports they already send, nothing extra to fill in</span></span></li><li><b><span class="vi-only">Cân đối địa bàn</span><span class="en-only hide">Territory balance</span></b><span><span class="vi-only">khu vực nào được ghé thường xuyên, khu vực nào đang bị bỏ quên</span><span class="en-only hide">which areas get visited often, and which are quietly forgotten</span></span></li><li><b><span class="vi-only">Dành cho trưởng nhóm</span><span class="en-only hide">For the team leader</span></b><span><span class="vi-only">lên kế hoạch tuần sau từ một bức hình thay vì từ một cuộc tranh luận</span><span class="en-only hide">plan next week from a picture instead of from a discussion</span></span></li><li><b><span class="vi-only">Độ phủ, không phải giám sát</span><span class="en-only hide">Coverage, not surveillance</span></b><span><span class="vi-only">app ghi nơi báo cáo được tạo, không phải nơi một con người đang đứng</span><span class="en-only hide">the app records where a report was made, not where a person is</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Hoạch định tuyến và cân đối địa bàn không còn là tranh luận — nó là một bức hình.</span><span class="en-only hide">Route planning and territory balance stopped being an argument and became a picture.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Trưng bày — đã trả tiền thì phải kiểm</span><span class="en-only hide">Display execution — paid for it, so we check it</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/05-dash-display.webp" alt="Display execution — paid for it, so we check it" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho trade marketing</span><span class="en-only hide">For trade marketing</span></b><span><span class="vi-only">mọi vị trí trưng bày đã trả tiền đều được kiểm, chấm điểm và chụp ảnh</span><span class="en-only hide">every display we pay for is checked, scored and photographed</span></span></li><li><b><span class="vi-only">Tự chấm, rồi được duyệt</span><span class="en-only hide">Self-score, then confirm</span></b><span><span class="vi-only">nhân viên tự chấm; trade marketing duyệt hoặc trả lại</span><span class="en-only hide">the rep scores the display; trade marketing approves or rejects it</span></span></li><li><b><span class="vi-only">Lịch sử ảnh theo từng điểm bán</span><span class="en-only hide">Photo history per outlet</span></b><span><span class="vi-only">các lần kiểm nằm cạnh nhau, cam kết so với thực tế đang bày</span><span class="en-only hide">rounds sit side by side, what was committed against what is really there</span></span></li><li><b><span class="vi-only">Cam kết so với thực tế</span><span class="en-only hide">Commitment vs reality</span></b><span><span class="vi-only">danh mục đã cam kết hiện ngay cạnh ảnh chụp kệ hàng</span><span class="en-only hide">the agreed facing list is shown next to the photo of the shelf</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Tiền trưng bày truy xuất được tới từng kệ, kể cả nhiều tháng sau.</span><span class="en-only hide">Display money is auditable down to a single shelf, months after the fact.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Quà tặng &amp; POSM — phần tồn trước đây hay thất thoát</span><span class="en-only hide">Gifts &amp; POSM — stock that used to disappear</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/06-dash-gifts.webp" alt="Gifts &amp; POSM — stock that used to disappear" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Mỗi người một sổ tồn</span><span class="en-only hide">A balance per person</span></b><span><span class="vi-only">tồn đầu, đã phát, còn lại, cho từng loại quà và POSM</span><span class="en-only hide">opening stock, given out, remaining, for every gift and POSM type</span></span></li><li><b><span class="vi-only">Mỗi phần quà đều có lý do</span><span class="en-only hide">Every unit has a reason</span></b><span><span class="vi-only">ai nhận, vì sao, và một tấm ảnh làm bằng chứng</span><span class="en-only hide">who received it, why, and a photo as evidence</span></span></li><li><b><span class="vi-only">Trùng lặp bị bắt, không phải phát hiện sau</span><span class="en-only hide">Duplicates caught, not discovered</span></b><span><span class="vi-only">cùng một điểm bán được tặng hai lần sẽ bị gắn cờ ngay lúc đó</span><span class="en-only hide">the same outlet gifted twice is flagged at the moment it happens</span></span></li><li><b><span class="vi-only">Dành cho leader và kho</span><span class="en-only hide">For the leader and the warehouse</span></b><span><span class="vi-only">hàng mẫu và POSM không còn là khoản chi không ai theo dõi</span><span class="en-only hide">sampling and POSM stop being untracked spending</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Quà tặng và POSM trở thành hàng tồn kho có sổ sách, không còn là một dòng chi lặt vặt.</span><span class="en-only hide">Gift and POSM stock became inventory with a ledger, not a line of petty cash.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Ngân sách trade marketing — kế hoạch so thực chi</span><span class="en-only hide">Trade marketing budget — plan against actual</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/07-dash-budget.webp" alt="Trade marketing budget — plan against actual" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho trade marketing</span><span class="en-only hide">For trade marketing</span></b><span><span class="vi-only">kế hoạch, cam kết và thực chi nằm cùng một chỗ</span><span class="en-only hide">the plan, the commitment and the actual spend live in one place</span></span></li><li><b><span class="vi-only">Dòng thời gian theo khách hàng</span><span class="en-only hide">Timeline per customer</span></b><span><span class="vi-only">mỗi hoạt động rải đúng những tháng nó thực sự chạy</span><span class="en-only hide">each activity spread across the months it actually runs</span></span></li><li><b><span class="vi-only">Kế hoạch so thực chi</span><span class="en-only hide">Plan against actual</span></b><span><span class="vi-only">vượt hoặc hụt đều lộ ra khi vẫn còn kịp xử lý</span><span class="en-only hide">over- and under-spend show up while there is still time to act</span></span></li><li><b><span class="vi-only">Mỗi dòng một người phụ trách</span><span class="en-only hide">One owner per line</span></b><span><span class="vi-only">không ai phải đi hỏi hoạt động này ai chịu trách nhiệm</span><span class="en-only hide">nobody has to ask who is responsible for an activity</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Ngân sách trade không còn là file bảng tính đến cuối quý mới đối chiếu.</span><span class="en-only hide">The trade budget stopped being a spreadsheet reconciled at quarter end.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Tồn kho &amp; sell-out NPP — có đơn trước khi gọi</span><span class="en-only hide">Distributor stock &amp; sell-out — the order before the call</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/08-dash-stock.webp" alt="Distributor stock &amp; sell-out — the order before the call" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://dgm-vietnam.github.io/dgm-daily-survey/dashboard.html" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho trưởng nhóm GT</span><span class="en-only hide">For the GT team leader</span></b><span><span class="vi-only">tồn kho và sell-out NPP, đọc đúng định dạng NPP vẫn gửi</span><span class="en-only hide">distributor stock and sell-out, read in the format the distributor already sends</span></span></li><li><b><span class="vi-only">Số tuần tồn, theo từng SKU</span><span class="en-only hide">Weeks of cover, per SKU</span></b><span><span class="vi-only">app báo mặt hàng sắp hết trước khi khách hàng phải gọi</span><span class="en-only hide">the app says what is about to run out before the customer does</span></span></li><li><b><span class="vi-only">Xu hướng, không phải ảnh chụp</span><span class="en-only hide">Trend, not a snapshot</span></b><span><span class="vi-only">chiều và tốc độ bán ra trong những tuần gần đây</span><span class="en-only hide">the direction and speed of sell-out over recent weeks</span></span></li><li><b><span class="vi-only">Một đơn hàng đề xuất</span><span class="en-only hide">A suggested order</span></b><span><span class="vi-only">nhân viên bước vào với một đề xuất thay vì một câu hỏi</span><span class="en-only hide">the rep walks in with a proposal instead of a question</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Đây chính là module các nền tảng DMS thương mại lấy làm điểm bán — ở đây nó khớp đúng cách mình lên đơn.</span><span class="en-only hide">This is the module commercial DMS platforms are sold on — here it fits our own way of ordering.</span></p>
+  </div>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-commercial" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>⚖️ <span class="vi-only">Food Law Intelligence — tuân thủ, để một án phạt không bao giờ chạm tới thương hiệu</span><span class="en-only hide">Food Law Intelligence — compliance, so a fine never reaches the brand</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Quy định giờ thay đổi theo chu kỳ ngắn, phải theo dõi thật chặt và cập nhật tương ứng vào hồ sơ của mình. Một cái nhãn năm ngoái còn đúng thì năm nay có thể đã sai, và hậu quả không chỉ là bị phạt — mà là hàng hoá bị giữ và thương hiệu bị ảnh hưởng. App theo dõi chính những gì mình đang có, cảnh báo phần không còn tuân thủ, và biến nó thành danh sách việc cần cập nhật, bổ sung hay sửa đổi — tốt nhất là trước khi lô hàng về tới cảng.</span><span class="en-only hide">Regulation now moves in short cycles and has to be tracked closely, with every change reflected back into our own dossiers. A label that was correct last year can be wrong this year, and the consequence is not only a fine — it is goods held up and a brand exposed. The app watches what we already hold, flags what no longer complies, and turns it into a list of things to update, add or amend — ideally before a shipment reaches the port.</span></div>
+    </div>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Mỗi SKU một dòng — nhãn, hồ sơ, bảng dinh dưỡng, rủi ro</span><span class="en-only hide">One line per SKU — label, dossier, nutrition panel, risk</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/13-foodlaw-nip.webp" alt="One line per SKU — label, dossier, nutrition panel, risk" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/dgm-crm/foodlaw" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho nhân viên tuân thủ</span><span class="en-only hide">For the compliance staff</span></b><span><span class="vi-only">mỗi SKU một dòng: nhãn, hồ sơ công bố, bảng dinh dưỡng, phiếu kiểm nghiệm, rủi ro</span><span class="en-only hide">one line per SKU: label, dossier, nutrition panel, test report, risk</span></span></li><li><b><span class="vi-only">Hỏi bằng tiếng Việt thường</span><span class="en-only hide">Ask in plain Vietnamese</span></b><span><span class="vi-only">AI đọc toàn văn kho pháp lý và trả lời kèm đúng điều khoản</span><span class="en-only hide">the AI reads the full legal library and answers with the exact article</span></span></li><li><b><span class="vi-only">Giữ lịch sử, không ghi đè</span><span class="en-only hide">History kept, never overwritten</span></b><span><span class="vi-only">mỗi lần cập nhật hồ sơ vẫn truy được về bản trước đó</span><span class="en-only hide">every dossier update stays traceable to the version before it</span></span></li><li><b><span class="vi-only">Quy định hết hiệu lực bị gắn cờ</span><span class="en-only hide">Expired rules flagged</span></b><span><span class="vi-only">một nghị định đã hết hiệu lực không thể lặng lẽ còn được dùng</span><span class="en-only hide">a decree no longer in force cannot quietly stay in use</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">AI làm công việc trước đây không bao giờ đủ người để làm — đọc mọi trang, mọi lần, cho mọi SKU.</span><span class="en-only hide">AI doing work we could never resource before — reading every page, every time, for every SKU.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Tải nhãn thiết kế lên, nhận lại rủi ro pháp lý</span><span class="en-only hide">Upload the artwork, get the legal risk back</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/14-foodlaw-label.webp" alt="Upload the artwork, get the legal risk back" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/dgm-crm/foodlaw" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Đầu vào chỉ là một tấm ảnh</span><span class="en-only hide">A photo is the input</span></b><span><span class="vi-only">kéo ảnh nhãn vào, không nhập liệu, không mẫu phải điền</span><span class="en-only hide">drag the artwork in, no data entry, no template to fill</span></span></li><li><b><span class="vi-only">Kiểm từng hạng mục một</span><span class="en-only hide">Checked item by item</span></b><span><span class="vi-only">mỗi hạng mục bắt buộc có kết luận riêng và nhận xét riêng</span><span class="en-only hide">each mandatory element gets its own verdict and its own finding</span></span></li><li><b><span class="vi-only">Có căn cứ, không phán bừa</span><span class="en-only hide">Cited, not asserted</span></b><span><span class="vi-only">mỗi điểm đều truy về nghị định hoặc thông tư đang hiệu lực</span><span class="en-only hide">every point traced to the decree or circular in force today</span></span></li><li><b><span class="vi-only">Dành cho marketing và tuân thủ</span><span class="en-only hide">For marketing and compliance</span></b><span><span class="vi-only">nhãn được kiểm trước khi đem in, không phải sau khi đã lên kệ</span><span class="en-only hide">artwork is checked before it goes to print, not after it is on the shelf</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Một phút thay vì cả buổi chiều — nên một SKU nhập khẩu có thể được kiểm trước khi lô hàng về tới cảng, giảm rủi ro khi thông quan và khi lưu thông sau đó.</span><span class="en-only hide">A minute instead of an afternoon — so an imported SKU can be checked before the shipment reaches the port, reducing the risk at customs and in distribution afterwards.</span></p>
+  </div>
+    <p style="font-size:12px;color:var(--gray);font-style:italic"><span class="vi-only">Lưu ý khi trình bày: kết quả AI là bước rà đầu tiên, không phải ý kiến pháp lý — app ghi rõ điều đó trên màn hình.</span><span class="en-only hide">When presenting: the AI result is a first pass, not a legal opinion — the app says so on screen.</span></p>
+  </div>
+  <div class="card">
+    <h2>🏷️ <span class="vi-only">Price Intelligence — nhìn vào kệ hàng</span><span class="en-only hide">Price Intelligence — watching the shelf</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Giá biến động liên tục — giá nguyên vật liệu, vận chuyển, nguồn cung và chi phí đảm bảo tuân thủ đều đẩy giá đi, với mình và với mọi đối thủ. Từ đó sinh ra nhu cầu nắm sớm nhất giá của đối thủ cạnh tranh trực tiếp. Và ở kênh GT, hàng đi qua hệ thống phân phối thứ cấp mới tới người tiêu dùng, nên phải thương lượng với từng đối tượng khách hàng mới ra được giá người tiêu dùng cạnh tranh mà vẫn tăng được doanh số. Đội sales vốn đã đứng trước kệ hàng mỗi ngày, nên dữ liệu chỉ còn việc được ghi nhận lại.</span><span class="en-only hide">Prices move constantly — raw material, freight, supply and the cost of staying compliant all push them around, for us and for every competitor. That creates a need for the earliest possible read on a direct rival's price. And in GT the goods pass through secondary distribution before reaching the shopper, so each customer has to be negotiated separately to land a competitive consumer price while still growing volume. The sales team was already standing in front of the shelf every day, so the data only had to be captured.</span></div>
+    </div>
+
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Biên lợi nhuận thật của kênh</span><span class="en-only hide">The margin the trade actually earns</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/10-price-margin.webp" alt="The margin the trade actually earns" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/pricetracker/manager" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho đội kinh doanh</span><span class="en-only hide">For the sales team</span></b><span><span class="vi-only">front margin thật của từng khách, tính từ giá nhìn thấy trên kệ</span><span class="en-only hide">the front margin each customer actually earns, from prices seen on the shelf</span></span></li><li><b><span class="vi-only">Margin mỏng được gắn cờ</span><span class="en-only hide">Thin margins flagged</span></b><span><span class="vi-only">những SKU mà kênh có quá ít lý do để tiếp tục nhập hàng</span><span class="en-only hide">SKUs where the trade has too little reason to keep stocking us</span></span></li><li><b><span class="vi-only">Mỗi dòng đều có nguồn</span><span class="en-only hide">Every line has a source</span></b><span><span class="vi-only">dữ liệu khảo sát hay đợt tăng giá đã công bố, luôn truy được</span><span class="en-only hide">survey data or an announced price increase, always traceable</span></span></li><li><b><span class="vi-only">Dành cho quản lý</span><span class="en-only hide">For the manager</span></b><span><span class="vi-only">quyết định giá bắt đầu từ kệ hàng, không phải từ bảng giá</span><span class="en-only hide">a pricing decision starts from the shelf, not from the price list</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Chúng tôi thấy được biên lợi nhuận kênh thực sự kiếm được — không phải con số trên bảng giá.</span><span class="en-only hide">We can see the margin the trade actually earns — not the one on our price list.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Ai đang bán ở mức margin nào — và ai chưa điều chỉnh</span><span class="en-only hide">Who sells at what margin — and who has not moved</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/11-price-customer.webp" alt="Who sells at what margin — and who has not moved" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/pricetracker/manager" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Dành cho đàm phán trading term</span><span class="en-only hide">For a trade term negotiation</span></b><span><span class="vi-only">mỗi SKU một dòng, mỗi chain một cột, trước và sau đợt tăng giá</span><span class="en-only hide">one row per SKU, one column per chain, before and after the increase</span></span></li><li><b><span class="vi-only">Ai vẫn chưa điều chỉnh</span><span class="en-only hide">Who has not moved yet</span></b><span><span class="vi-only">khách còn đang bán giá cũ hiện ra ngay lập tức</span><span class="en-only hide">customers still selling at the old price are immediately visible</span></span></li><li><b><span class="vi-only">Khoảng trống listing cũng là tín hiệu</span><span class="en-only hide">Listing gaps are signals too</span></b><span><span class="vi-only">&quot;chưa kinh doanh&quot; nói lên nhiều không kém một mức giá</span><span class="en-only hide">&quot;not listed&quot; tells us as much as a price does</span></span></li><li><b><span class="vi-only">Định vị một khách hàng</span><span class="en-only hide">Positioning a customer</span></b><span><span class="vi-only">biết các chain khác đang làm gì trước khi ngồi vào bàn</span><span class="en-only hide">we know what the other chains do before we sit down</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Định vị khách hàng không còn là cảm nhận — nó là một bảng số ai cũng kiểm được.</span><span class="en-only hide">Customer positioning stopped being a feeling and became a table anyone can check.</span></p>
+  </div>
+  <div class="dt-block">
+    <h3 class="dt-h"><span class="vi-only">Từng đối thủ đứng ở đâu so với mình, tính trên 100g</span><span class="en-only hide">Where every rival sits against us, per 100g</span></h3>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/12-price-competitors.webp" alt="Where every rival sits against us, per 100g" loading="lazy" onclick="dtZoom(this.src)"><a class="dt-app" href="https://buiquangquy.github.io/pricetracker/manager" target="_blank" rel="noopener"><span class="vi-only">Mở app ↗</span><span class="en-only hide">Open app ↗</span></a></figure>
+      <ul class="dt-points"><li><b><span class="vi-only">Do chính đội sales thu thập</span><span class="en-only hide">Collected by the sales team</span></b><span><span class="vi-only">giá đối thủ đến từ chính các chuyến thăm điểm bán, không agency, không mua dữ liệu</span><span class="en-only hide">competitor prices come from the same store visits, no agency, no panel</span></span></li><li><b><span class="vi-only">So sánh công bằng</span><span class="en-only hide">Compared fairly</span></b><span><span class="vi-only">giá trên 100g hoặc 100ml, để các quy cách khác nhau mới so được với nhau</span><span class="en-only hide">price per 100g or 100ml, so different pack sizes can be compared at all</span></span></li><li><b><span class="vi-only">Ayam là chuẩn so sánh</span><span class="en-only hide">Ayam is the benchmark</span></b><span><span class="vi-only">mỗi đối thủ hiện rõ đang nằm trên hay dưới giá của mình</span><span class="en-only hide">every rival shown as sitting above or below our own price</span></span></li><li><b><span class="vi-only">Dành cho marketing</span><span class="en-only hide">For marketing</span></b><span><span class="vi-only">luận điểm định vị có một mức giá kèm ngày tháng làm bằng chứng</span><span class="en-only hide">positioning arguments backed by a price with a date on it</span></span></li></ul>
+    </div>
+    <p class="dt-take"><span class="vi-only">Giá đối thủ trước đây là ý kiến trong cuộc họp. Giờ nó là một con số có ngày tháng đi kèm.</span><span class="en-only hide">Competitor pricing used to be an opinion in a meeting. Now it is a number with a date on it.</span></p>
+  </div>
+  </div>
+  <div class="card">
+    <h2>🎓 <span class="vi-only">Sales Training Hub — cùng một nội dung cho mọi nơi</span><span class="en-only hide">Sales Training Hub — the same briefing everywhere</span></h2>
+    <div class="dt-need">
+      <div class="dt-need-t"><span class="vi-only">Nhu cầu đặt ra</span><span class="en-only hide">The need</span></div>
+      <div class="dt-need-b"><span class="vi-only">Nhất quán trong nội bộ: mọi người cùng hiểu về công ty, tập đoàn, sản phẩm và công nghệ, cùng biết mình là ai, đối thủ là ai, mình hơn và khác họ điều gì. Không chỉ là buổi giới thiệu sản phẩm — đây là bộ key winning points nhân viên mang theo khi tiếp cận khách hàng mới.</span><span class="en-only hide">Internal alignment: everyone should describe the company, the group, the products and the technology the same way, and know who we are, who the competition is and what makes us different. More than a product briefing — it is the set of winning points a rep carries into a new customer.</span></div>
+    </div>
+    <div class="dt-shot">
+      <figure class="dt-fig"><img src="assets/digital/15-training-brand.webp" alt="Brand" loading="lazy" onclick="dtZoom(this.src)"></figure>
+      <figure class="dt-fig"><img src="assets/digital/16-training-products.webp" alt="Win points" loading="lazy" onclick="dtZoom(this.src)"></figure>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div><h3><span class="vi-only">Mình là ai — công ty, tập đoàn, sản phẩm, công nghệ</span><span class="en-only hide">Who we are — company, group, products, technology</span></h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--gray)"><span class="vi-only">Lịch sử thương hiệu, tập đoàn phía sau, độ phủ toàn quốc, danh mục SKU, chứng nhận nhà máy, công nghệ sản xuất và cam kết ESG — để trong nội bộ ai cũng nói về công ty giống nhau.</span><span class="en-only hide">Brand heritage, the group behind it, nationwide coverage, the SKU range, factory certifications, production technology and the ESG commitments — so everyone inside describes the company the same way.</span></p></div>
+      <div><h3><span class="vi-only">Đối thủ là ai — và mình hơn, khác họ điều gì</span><span class="en-only hide">Who the competition is — and what makes us different</span></h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--gray)"><span class="vi-only">Không chỉ là kiến thức sản phẩm: từng đối thủ được gọi tên, điểm mạnh và điểm yếu của họ, và các luận điểm đánh số so sánh bằng dữ kiện — hàm lượng cá, loại dầu, bột ngọt, nguồn nguyên liệu — kèm bằng chứng dinh dưỡng.</span><span class="en-only hide">More than product knowledge: each competitor named, their strengths and weaknesses, and numbered arguments comparing them on a fact — fish content, oil grade, MSG, sourcing — with the nutrition evidence behind them.</span></p></div>
+    </div>
+    <p class="dt-take"><span class="vi-only">Đây chính là các key winning points nhân viên mang theo khi tiếp cận khách hàng mới — thêm vũ khí khi đi ngoài thị trường. Và anh đang đứng trong chính ứng dụng đó: trang này là một phần của nó.</span><span class="en-only hide">These are the winning points a rep carries into a new customer — extra weapons in the field. And you are standing inside that application right now: this page is part of it.</span></p>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-how" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>🧠 <span class="vi-only">AI làm việc ở hai chỗ cùng lúc</span><span class="en-only hide">AI works in two places at once</span></h2>
+    <div class="grid2">
+      <div class="dt-panel">
+        <div class="dt-panel-n">1</div>
+        <h3><span class="vi-only">AI là người xây</span><span class="en-only hide">AI as the builder</span></h3>
+        <p><span class="vi-only">Tôi mô tả vấn đề kinh doanh bằng ngôn ngữ thường. AI viết code, sửa lỗi và viết tài liệu. Tôi rà lại xem có khớp cách team làm thật không, rồi đưa vào dùng.</span><span class="en-only hide">I describe the business problem in plain language. The AI writes, debugs and documents the code. I review it against how the team actually works, then ship it.</span></p>
+        <p class="dt-hl"><span class="vi-only">Người xây không biết code (non coder). Thứ cần không phải nền tảng kỹ thuật — mà là hiểu quy trình đủ sâu để mô tả nó thật chính xác.</span><span class="en-only hide">The person who built these is a non-coder. What is required is not an engineering background — it is knowing the process well enough to specify it precisely.</span></p>
+      </div>
+      <div class="dt-panel">
+        <div class="dt-panel-n">2</div>
+        <h3><span class="vi-only">AI tích hợp ngầm trong các app</span><span class="en-only hide">AI built quietly into the apps</span></h3>
+        <p><span class="vi-only">Chỉ đặt ở đúng những vị trí cần, nên người dùng không phải mở thêm công cụ nào:</span><span class="en-only hide">Placed only where it is needed, so the user never opens a second tool:</span></p>
+        <ul>
+          <li><span class="vi-only">Thêm một nguồn tham khảo ngay lúc phải ra quyết định</span><span class="en-only hide">An extra reference at the moment a decision has to be made</span></li>
+          <li><span class="vi-only">Tăng tính chính xác cho các nhận định trên dashboard</span><span class="en-only hide">Higher accuracy on the readings the dashboards produce</span></li>
+          <li><span class="vi-only">Đọc ảnh nhãn, hồ sơ công bố và văn bản pháp luật, điền sẵn biểu mẫu</span><span class="en-only hide">Reads label photos, dossiers and legal text, and fills the form</span></li>
+          <li><span class="vi-only">Tự cảnh báo khi có quy định mới hoặc bản cập nhật liên quan</span><span class="en-only hide">Alerts by itself when a new rule or a newer version appears</span></li>
+        </ul>
+        <p class="dt-hl"><span class="vi-only">Giới hạn: AI chỉ được nhận định dựa trên văn bản đã có trong kho. Không tự suy luận, và khi không có cơ sở thì phải ghi rõ &quot;không tìm thấy&quot;.</span><span class="en-only hide">Limit: the AI may only draw on documents already in the library. It does not reason on its own, and when it finds no basis it must say &quot;not found&quot;.</span></p>
+      </div>
+    </div>
+    <p class="dt-take"><span class="vi-only">Cái thứ nhất là cách các app được xây. Cái thứ hai nằm sẵn bên trong chúng — lặng lẽ, và chỉ ở nơi nó thêm được giá trị.</span><span class="en-only hide">The first is how the apps got built. The second sits inside them — quietly, only where it adds something.</span></p>
+  </div>
+  <div class="card">
+    <h2>🛠️ <span class="vi-only">Quy trình chuẩn để xây một app ở đây</span><span class="en-only hide">The standard way an app gets built here</span></h2>
+    <div class="dt-flow"><div class="dt-step"><div class="dt-step-n">1</div><div class="dt-step-t"><span class="vi-only">Quy trình</span><span class="en-only hide">The process</span></div><div class="dt-step-s"><span class="vi-only">viết ra ai làm gì, thứ tự nào, trường nào, quyền nào</span><span class="en-only hide">write down who does what, in what order, with which fields and permissions</span></div></div><div class="dt-step"><div class="dt-step-n">2</div><div class="dt-step-t"><span class="vi-only">Google Sheet</span><span class="en-only hide">Google Sheet</span></div><div class="dt-step-s"><span class="vi-only">dựng cấu trúc dữ liệu mà quy trình đó cần</span><span class="en-only hide">build the data structure the process needs</span></div></div><div class="dt-step"><div class="dt-step-n">3</div><div class="dt-step-t"><span class="vi-only">Apps Script</span><span class="en-only hide">Apps Script</span></div><div class="dt-step-s"><span class="vi-only">quy tắc nghiệp vụ, phân quyền và API phía sau</span><span class="en-only hide">the rules, the permissions and the API behind it</span></div></div><div class="dt-step"><div class="dt-step-n">4</div><div class="dt-step-t"><span class="vi-only">GitHub</span><span class="en-only hide">GitHub</span></div><div class="dt-step-s"><span class="vi-only">publish giao diện thành một đường link thường</span><span class="en-only hide">publish the interface as a plain web link</span></div></div><div class="dt-step"><div class="dt-step-n">5</div><div class="dt-step-t"><span class="vi-only">Live</span><span class="en-only hide">Live</span></div><div class="dt-step-s"><span class="vi-only">chạy trên mọi điện thoại và thiết bị, hiển thị tối ưu cho từng màn hình</span><span class="en-only hide">running on any phone or device, laid out for each screen size</span></div></div><div class="dt-step"><div class="dt-step-n">6</div><div class="dt-step-t"><span class="vi-only">Test / demo phạm vi nhỏ</span><span class="en-only hide">Test on a small scope</span></div><div class="dt-step-s"><span class="vi-only">vài người dùng thật, việc thật, trong một tuần</span><span class="en-only hide">a few real users, on real work, for a week</span></div></div><div class="dt-step"><div class="dt-step-n">7</div><div class="dt-step-t"><span class="vi-only">Tinh chỉnh dần</span><span class="en-only hide">Tune it down</span></div><div class="dt-step-s"><span class="vi-only">cắt và sửa cho tới khi ra bản phù hợp nhất</span><span class="en-only hide">cut and adjust until the version actually fits</span></div></div><div class="dt-step"><div class="dt-step-n">8</div><div class="dt-step-t"><span class="vi-only">Go live</span><span class="en-only hide">Go live</span></div><div class="dt-step-s"><span class="vi-only">mở cho cả team sử dụng</span><span class="en-only hide">opened to the whole team</span></div></div><div class="dt-step"><div class="dt-step-n">9</div><div class="dt-step-t"><span class="vi-only">Tiếp tục ghi nhận feedback</span><span class="en-only hide">Keep taking feedback</span></div><div class="dt-step-s"><span class="vi-only">chỉnh tiếp cho đến khi chạy ổn định, không ai còn báo lỗi</span><span class="en-only hide">adjust until it runs without anyone reporting a problem</span></div></div><div class="dt-step"><div class="dt-step-n">10</div><div class="dt-step-t"><span class="vi-only">Chuyển giao cho một thành viên</span><span class="en-only hide">Hand it to a teammate</span></div><div class="dt-step-s"><span class="vi-only">một đồng nghiệp học cách quản lý, cập nhật và nhắc đội on-field theo định kỳ</span><span class="en-only hide">one colleague learns to manage and update it, and reminds the field team regularly</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Bước cuối quan trọng không kém bước đầu: một app chỉ có giá trị khi có người giữ cho dữ liệu chảy về và nhắc team đều đặn.</span><span class="en-only hide">The last step matters as much as the first: an app only pays off if someone keeps the data coming and keeps reminding the team.</span></p>
+  </div>
+  <div class="card">
+    <h2>🏗️ <span class="vi-only">Bốn lớp miễn phí — và không có server nào cả</span><span class="en-only hide">Four free layers — and no server anywhere</span></h2>
+    <div class="dt-layers"><div class="dt-layer"><div class="dt-layer-n">1</div><div><div class="dt-layer-t">GitHub Pages</div><div class="dt-layer-r"><span class="vi-only">Giao diện</span><span class="en-only hide">Interface</span></div></div><div class="dt-layer-d"><span class="vi-only">Chính là ứng dụng. Một đường link chạy trên mọi điện thoại hay laptop — không cài đặt, không cập nhật.</span><span class="en-only hide">The app itself. A web link that works on any phone or laptop — nothing to install, nothing to update.</span></div></div><div class="dt-layer"><div class="dt-layer-n">2</div><div><div class="dt-layer-t">Google Apps Script</div><div class="dt-layer-r"><span class="vi-only">Xử lý &amp; API</span><span class="en-only hide">Logic &amp; API</span></div></div><div class="dt-layer-d"><span class="vi-only">Quy tắc nghiệp vụ, phân quyền, điều hướng. Chạy trên hạ tầng Google, đã nằm trong Google drive công ty đang dùng.</span><span class="en-only hide">Business rules, permissions, routing. Runs on Google infrastructure, inside the company Google Drive we already use.</span></div></div><div class="dt-layer"><div class="dt-layer-n">3</div><div><div class="dt-layer-t">Google Sheets + Drive</div><div class="dt-layer-r"><span class="vi-only">Cơ sở dữ liệu</span><span class="en-only hide">Database</span></div></div><div class="dt-layer-d"><span class="vi-only">Mọi dữ liệu và hình ảnh đổ về đây. Quản lý vẫn có thể mở dữ liệu thô dạng bảng tính bất cứ lúc nào.</span><span class="en-only hide">Every record and photo lands here. Managers can still open the raw data as a spreadsheet at any time.</span></div></div><div class="dt-layer"><div class="dt-layer-n">4</div><div><div class="dt-layer-t">Gemini AI</div><div class="dt-layer-r"><span class="vi-only">Trí tuệ nhân tạo</span><span class="en-only hide">Intelligence</span></div></div><div class="dt-layer-d"><span class="vi-only">Đọc nhãn và văn bản pháp luật, trả lời bằng tiếng Việt, cảnh báo rủi ro tuân thủ kèm trích dẫn thật.</span><span class="en-only hide">Reads labels and legal documents, answers questions in Vietnamese, flags compliance risk with real citations.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Lưu link ra màn hình chính là nó chạy như một ứng dụng bình thường, và mọi bản cập nhật sau vẫn giữ nguyên URL. Chi phí toàn bộ nền tảng: không gì ngoài Google Drive, cộng một API key AI bản miễn phí.</span><span class="en-only hide">Saved to the home screen the link behaves like an ordinary app, and every later update keeps the same URL. Cost of the entire stack: nothing beyond Google Drive, plus a free-tier AI key.</span></p>
+  </div>
+  <div class="card">
+    <h2>💰 <span class="vi-only">20 user sẽ tốn bao nhiêu nếu mua DMS</span><span class="en-only hide">What 20 users would cost on a licensed DMS</span></h2>
+    <div class="grid2">
+      <div>
+        <table class="dt-table"><thead><tr>
+          <th><span class="vi-only">Nhà cung cấp</span><span class="en-only hide">Vendor</span></th><th><span class="vi-only">Giá công bố</span><span class="en-only hide">Published price</span></th><th><span class="vi-only">/năm cho 20 user</span><span class="en-only hide">/year for 20 users</span></th>
+        </tr></thead><tbody><tr><td><b>MobiWork DMS</b></td><td><span class="vi-only">700,000 – 1,200,000 đ/user/năm</span><span class="en-only hide">700,000 – 1,200,000 VND/user/year</span></td><td class="dt-cost"><span class="vi-only">14–24 triệu</span><span class="en-only hide">14–24M VND</span></td></tr><tr><td><b>MISA AMIS DMS</b></td><td><span class="vi-only">80,000 – 120,000 đ/user/tháng</span><span class="en-only hide">80,000 – 120,000 VND/user/month</span></td><td class="dt-cost"><span class="vi-only">19–29 triệu</span><span class="en-only hide">19–29M VND</span></td></tr><tr><td><b>Viettel DMS One</b></td><td><span class="vi-only">1,200,000 đ/user/năm + 2,000,000 đ khởi tạo</span><span class="en-only hide">1,200,000 VND/user/year + 2,000,000 VND setup</span></td><td class="dt-cost"><span class="vi-only">26 triệu</span><span class="en-only hide">26M VND</span></td></tr></tbody></table>
+        <p style="font-size:11px;color:var(--gray);font-style:italic;margin-top:6px"><span class="vi-only">Nguồn: giá DMS công bố tại Việt Nam, tháng 9/2026. Chỉ mang tính tham khảo.</span><span class="en-only hide">Source: published Vietnam DMS pricing, September 2026. Indicative only.</span></p>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--gray);margin-top:10px"><span class="vi-only">Và số đó chỉ mua được module cho đội thị trường. Quy trình bị cố định theo thiết kế của nhà cung cấp. Quản lý sampling, theo dõi ngấm giá, tuân thủ luật thực phẩm và flow công việc riêng của mình hoặc bị báo giá phát triển thêm, hoặc đơn giản là không có.</span><span class="en-only hide">And that buys the field-force module only. The workflow is fixed to the vendor's design. Sampling management, price pass-through tracking, food-law compliance and our own task flow are either quoted as extra development or simply not available.</span></p>
+      </div>
+      <div class="dt-zero">
+        <div class="dt-zero-t"><span class="vi-only">Thực tế chúng tôi chi</span><span class="en-only hide">What we actually spend</span></div>
+        <div class="dt-zero-n"><span class="vi-only">0 đồng</span><span class="en-only hide">0 VND</span></div>
+        <div class="dt-zero-s"><span class="vi-only">mỗi năm, cho cả bảy ứng dụng</span><span class="en-only hide">per year, for all seven applications</span></div>
+        <ul>
+          <li><span class="vi-only">Google Drive — đã có sẵn</span><span class="en-only hide">Google Drive — already in use</span></li>
+          <li><span class="vi-only">Apps Script &amp; GitHub Pages — miễn phí</span><span class="en-only hide">Apps Script &amp; GitHub Pages — free</span></li>
+          <li><span class="vi-only">Gemini API — bản miễn phí, xoay vòng key</span><span class="en-only hide">Gemini API — free tier, key rotation</span></li>
+          <li><span class="vi-only">Công sức xây dựng — 100% nội bộ</span><span class="en-only hide">Build effort — 100% internal</span></li>
+          <li><span class="vi-only">Không giới hạn user, không phí theo đầu người</span><span class="en-only hide">Unlimited users, no per-seat charge</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="dt-take"><span class="vi-only">Chi phí mới là lập luận nhỏ. DMS cho bạn quy trình của nhà cung cấp — chúng tôi cần quy trình của mình, và cần sửa nó mỗi tuần.</span><span class="en-only hide">Cost is the smaller argument. A DMS gives you the vendor's process — we needed ours, and we needed to change it every week.</span></p>
+  </div>
+  <div class="card">
+    <h2>🔐 <span class="vi-only">Ai được xem gì — và cách làm này không đụng tới cái gì</span><span class="en-only hide">Who can see what — and what this does not touch</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num dt-ico">📦</div><div class="wc-title"><span class="vi-only">Phân quyền theo kênh</span><span class="en-only hide">By channel</span></div><div class="wc-body"><span class="vi-only">MT và GT là hai thế giới riêng, khách hàng riêng, giá riêng, chương trình riêng. Một tài khoản chỉ thấy kênh mình thuộc về.</span><span class="en-only hide">MT and GT are separate worlds with separate customers, prices and programmes. An account sees the channel it belongs to.</span></div></div><div class="win-card"><div class="wc-num dt-ico">👤</div><div class="wc-title"><span class="vi-only">Phân quyền theo chức danh công việc</span><span class="en-only hide">By job title</span></div><div class="wc-body"><span class="vi-only">Nhân viên, trưởng nhóm, trade marketing, marketing, tuân thủ và quản lý cùng mở một đường link nhưng nhận về một app khác nhau.</span><span class="en-only hide">Rep, team leader, trade marketing, marketing, compliance and manager each open the same link and get a different app.</span></div></div><div class="win-card"><div class="wc-num dt-ico">🗺️</div><div class="wc-title"><span class="vi-only">Phân quyền theo khu vực</span><span class="en-only hide">By region</span></div><div class="wc-body"><span class="vi-only">Thông tin nhạy cảm của từng khu vực — khách hàng, giá, ngân sách — chỉ người ở khu vực đó, hoặc người được trao quyền, mới xem được, để quyết định do đúng người ra.</span><span class="en-only hide">Sensitive regional data — customers, prices, budget — is visible only to people in that region, or to someone explicitly given the right, so decisions are made by those who own them.</span></div></div><div class="win-card"><div class="wc-num dt-ico">⚠️</div><div class="wc-title"><span class="vi-only">Giới hạn team sales tự đặt ra</span><span class="en-only hide">The limit the sales team sets itself</span></div><div class="wc-body"><span class="vi-only">Đây chỉ là các ứng dụng thực tế phục vụ công việc hằng ngày của team sales, nhằm tối ưu năng suất. Mọi công việc, quy trình, quy định liên phòng ban mà công ty đã có vẫn giữ nguyên. Và vì link GitHub mang tính công khai, những thông tin nhạy cảm — số điện thoại khách hàng, giá vốn hàng hoá, tồn kho DGM — chủ động không đưa lên app và cũng không nằm trong master data.</span><span class="en-only hide">These are practical tools for the sales team's own daily work, to make it more productive. Every cross-department process and regulation the company already has stays exactly as it is. And because a GitHub link is public, confidential data — customer phone numbers, cost of goods, DGM stock — is deliberately kept out of the apps and out of the master data.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Phân quyền được quyết ở phía máy chủ dựa trên master data, không phải bằng cách ẩn nút trên màn hình.</span><span class="en-only hide">Permissions are decided on the server from master data, not by hiding buttons on the screen.</span></p>
+  </div>
+  <div class="card">
+    <h2>🛡️ <span class="vi-only">Bảo mật được quyết ở từng giai đoạn</span><span class="en-only hide">Security is decided at every stage</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num dt-ico">📋</div><div class="wc-title"><span class="vi-only">Khi làm master data</span><span class="en-only hide">Creating master data</span></div><div class="wc-body"><span class="vi-only">Trước khi một trường dữ liệu vào app, nó được phân loại: dữ liệu vận hành thường, hay dữ liệu nhạy cảm — giá người tiêu dùng, giá bán theo kênh, họ và tên nhân viên. Chỉ trường nào thực sự cần cho công việc mới được thu thập.</span><span class="en-only hide">Before a field enters an app it is classified: ordinary operating data, or sensitive data — consumer price, price by channel, staff names. Only fields the work genuinely needs are collected at all.</span></div></div><div class="win-card"><div class="wc-num dt-ico">🔄</div><div class="wc-title"><span class="vi-only">Khi quản trị master data</span><span class="en-only hide">Maintaining master data</span></div><div class="wc-body"><span class="vi-only">Chỉ một bản gốc duy nhất, do người được chỉ định cập nhật. Mọi thay đổi để lại dấu vết trong nhật ký của app và lịch sử phiên bản của Google Sheet — không ai sửa mà không ai biết.</span><span class="en-only hide">One source of truth, updated only by named owners. Every change leaves a trace in the app's activity log and in Google Sheets' own version history — nothing is edited silently.</span></div></div><div class="win-card"><div class="wc-num dt-ico">💻</div><div class="wc-title"><span class="vi-only">Khi build app</span><span class="en-only hide">Building the app</span></div><div class="wc-body"><span class="vi-only">Giao diện chỉ là lớp hiển thị. Quy tắc nghiệp vụ, phân quyền và mọi khoá — kể cả khoá AI — nằm ở lớp máy chủ Apps Script, không nằm trong file giao diện và không nằm trong trình duyệt người dùng.</span><span class="en-only hide">The interface is a display layer only. Business rules, permissions and every key — including the AI key — live in the Apps Script server layer, never in the interface file and never in the user's browser.</span></div></div><div class="win-card"><div class="wc-num dt-ico">☁️</div><div class="wc-title"><span class="vi-only">Khi đưa app vào dùng</span><span class="en-only hide">Putting the app live</span></div><div class="wc-body"><span class="vi-only">Dữ liệu không rời khỏi hạ tầng của công ty: Google Drive và Google Sheet của DGM, trên tài khoản công ty. Không server riêng, không cơ sở dữ liệu bên thứ ba, không bản sao nằm ngoài.</span><span class="en-only hide">Data never leaves the company's own infrastructure: DGM's Google Drive and Sheets, on company accounts. No private server, no third-party database, no copy sitting outside.</span></div></div><div class="win-card"><div class="wc-num dt-ico">👥</div><div class="wc-title"><span class="vi-only">Khi dùng app hằng ngày</span><span class="en-only hide">Everyday use</span></div><div class="wc-body"><span class="vi-only">Mỗi người một tài khoản riêng, có mã PIN và ràng buộc với một thiết bị. Với mọi thao tác ghi — tạo, duyệt, báo cáo, huỷ — vai trò được tra từ master data ở phía máy chủ, và mọi thao tác đều để lại dấu vết.</span><span class="en-only hide">One account per person, with a PIN and a device binding. For every write — create, approve, report, cancel — the role is read from master data on the server, and every action leaves a trace.</span></div></div><div class="win-card"><div class="wc-num dt-ico">📸</div><div class="wc-title"><span class="vi-only">Với dữ liệu báo cáo gửi về</span><span class="en-only hide">The data reports send back</span></div><div class="wc-body"><span class="vi-only">Mỗi bản ghi và mỗi tấm ảnh đều gắn người gửi, thời gian và vị trí, và được xếp vào đúng thư mục Drive nội bộ — chia sẻ trong phạm vi tổ chức, không tạo link công khai.</span><span class="en-only hide">Every record and every photo carries its author, its time and its location, and is filed into the right internal Drive folder — shared inside the organisation, never through a public link.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Không giai đoạn nào trong sáu giai đoạn trên là bước bổ sung. Chúng là điều kiện để một app được đưa vào sử dụng.</span><span class="en-only hide">None of these six stages is an add-on. They are the condition for an app being put into use at all.</span></p>
+  </div>
+  <div class="card">
+    <h2>🔒 <span class="vi-only">Năm lớp bảo vệ quanh dữ liệu</span><span class="en-only hide">Five layers of protection around the data</span></h2>
+    <div class="dt-layers"><div class="dt-layer"><div class="dt-layer-n">1</div><div><div class="dt-layer-t"><span class="vi-only">Định danh người dùng</span><span class="en-only hide">User identity</span></div></div><div class="dt-layer-d"><span class="vi-only">Tài khoản theo từng user, mã PIN và ràng buộc với một thiết bị. Thiết bị trùng và lượt báo cáo trùng được phát hiện và báo cáo hằng ngày.</span><span class="en-only hide">One account per user, a PIN and a binding to one device. Duplicate devices and duplicate submissions are detected and reported daily.</span></div></div><div class="dt-layer"><div class="dt-layer-n">2</div><div><div class="dt-layer-t"><span class="vi-only">Phân quyền ở master data</span><span class="en-only hide">Authorisation held in master data</span></div></div><div class="dt-layer-d"><span class="vi-only">Ai làm gì, thấy gì, giữ vai trò nào đều nằm trong Google Sheet. Mọi thao tác ghi — tạo, duyệt, báo cáo, huỷ — đều tra vai trò đó ở phía máy chủ trước. Chỉ cần ngưng hoạt động tài khoản hoặc đổi thông tin ở đó là người đó không còn đăng nhập và báo cáo được nữa.</span><span class="en-only hide">Who does what, sees what and holds which role all sit in Google Sheets. Every write — create, approve, report, cancel — reads that role on the server first. Deactivate an account or change a person's details there and they can no longer sign in or report.</span></div></div><div class="dt-layer"><div class="dt-layer-n">3</div><div><div class="dt-layer-t"><span class="vi-only">Dữ liệu nằm trong hạ tầng công ty</span><span class="en-only hide">Data stays in company infrastructure</span></div></div><div class="dt-layer-d"><span class="vi-only">Google Drive và Google Sheet của chính DGM, trên tài khoản công ty — hưởng nguyên các lớp bảo vệ và nhật ký truy cập sẵn có của Google.</span><span class="en-only hide">DGM's own Google Drive and Sheets, on company accounts — inheriting Google's protection and its access logging as they are.</span></div></div><div class="dt-layer"><div class="dt-layer-n">4</div><div><div class="dt-layer-t"><span class="vi-only">Giao diện không giữ bí mật nào</span><span class="en-only hide">The interface keeps no secrets</span></div></div><div class="dt-layer-d"><span class="vi-only">File giao diện là mã ai mở app cũng đọc được. Vì vậy khoá AI, mật khẩu dịch vụ và các quy tắc quyết định ai được xem dữ liệu gì đều không nằm ở đó — chúng nằm trong Apps Script. Trình duyệt chỉ hỏi, máy chủ mới quyết định trả về cái gì.</span><span class="en-only hide">The interface file is code anyone who opens the app can read. So the AI key, service passwords and the rules that decide who sees what are not kept there — they live in Apps Script. The browser only asks; the server decides what comes back.</span></div></div><div class="dt-layer"><div class="dt-layer-n">5</div><div><div class="dt-layer-t"><span class="vi-only">Nhật ký và truy vết</span><span class="en-only hide">Logging and traceability</span></div></div><div class="dt-layer-d"><span class="vi-only">Mỗi thao tác ghi đều để lại người thực hiện, thời gian và nội dung trong nhật ký của app; Google Sheet giữ thêm lịch sử phiên bản của chính nó.</span><span class="en-only hide">Every write leaves the person, the time and the content in the app's own log; Google Sheets keeps its own version history on top of that.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Nói thẳng: trang trên GitHub là công khai, người có chuyên môn IT đọc được mã giao diện và chạm tới lớp dữ liệu vận hành phía sau — chính vì vậy không thông tin nhạy cảm nào được đặt ở đó. Phần đang siết thêm: cấp token phiên cho từng lời gọi API.</span><span class="en-only hide">Said plainly: a GitHub page is public, so someone with IT skills can read the interface code and reach the operating data behind it — which is exactly why nothing confidential is put there. Being tightened further: a session token on every API call.</span></p>
+  </div>
+  <div class="card">
+    <h2>📊 <span class="vi-only">Rủi ro còn lại — đã lường trước và ở mức chấp nhận được</span><span class="en-only hide">The residual risk — anticipated, and within acceptable limits</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num dt-ico">⚠️</div><div class="wc-title"><span class="vi-only">Điều xấu nhất có thể xảy ra</span><span class="en-only hide">The worst that could happen</span></div><div class="wc-body"><span class="vi-only">Một người có chuyên môn IT đọc mã giao diện, tìm ra đường dẫn và chạm tới lớp dữ liệu vận hành phía sau — chi phí sampling, danh sách điểm bán, hoạt động tại điểm bán. Hoặc gửi lên một báo cáo không có thật.</span><span class="en-only hide">Someone with IT skills reads the interface code, finds the endpoint and reaches the operating data behind it — sampling costs, the outlet list, activity at the point of sale. Or submits a report that never happened.</span></div></div><div class="win-card"><div class="wc-num dt-ico">🛡️</div><div class="wc-title"><span class="vi-only">Điều không thể xảy ra</span><span class="en-only hide">What cannot happen</span></div><div class="wc-body"><span class="vi-only">Không ai mở được Google Sheet, không xoá được dữ liệu, không đổi được quyền chia sẻ, không chạm được sang Drive, email hay bất kỳ hệ thống nào khác của công ty. Apps Script chỉ làm đúng những việc đã được lập trình, dưới tài khoản chủ.</span><span class="en-only hide">Nobody can open the Google Sheet, delete data, change sharing permissions, or reach Drive, email or any other company system. Apps Script only ever does what it was written to do, under the owner's account.</span></div></div><div class="win-card"><div class="wc-num dt-ico">⚖️</div><div class="wc-title"><span class="vi-only">Vì sao thiệt hại có giới hạn</span><span class="en-only hide">Why the damage is bounded</span></div><div class="wc-body"><span class="vi-only">Không một thông tin nhạy cảm hay dữ liệu cá nhân nào được dùng trong bất kỳ app nào team sales đang chạy — không giá vốn, không tồn kho DGM, không số điện thoại khách hàng, không dữ liệu cá nhân. Đó cũng là lý do module tồn kho và cung ứng tạm thời chưa được đưa lên các app này.</span><span class="en-only hide">No confidential or personal data is used in any app the sales team runs — no cost of goods, no DGM stock, no customer phone numbers, no personal records. That is also why the stock and supply module has been kept off these apps for now.</span></div></div><div class="win-card"><div class="wc-num dt-ico">👁️</div><div class="wc-title"><span class="vi-only">Phát hiện được và chặn kịp thời</span><span class="en-only hide">Detected, and stopped in time</span></div><div class="wc-body"><span class="vi-only">Cảnh báo gian lận chạy hằng ngày: thiết bị trùng, lượt khảo sát trùng, cùng một điểm bán được tặng quà hai lần. Mọi thao tác ghi đều mang theo người thực hiện, thời gian và nội dung trong nhật ký — nên một báo cáo không có thật bị phát hiện và gỡ bỏ ngay trong ngày.</span><span class="en-only hide">Fraud alerts run daily: duplicate devices, duplicate visits, the same outlet gifted twice. Every write carries its author, time and content in the log — so a report that never happened is spotted and removed the same day.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Rủi ro được đánh giá trước khi được chấp nhận. Nó bị giới hạn ngay từ thiết kế, nhìn thấy được khi xảy ra, và khắc phục được sau đó.</span><span class="en-only hide">The risk was assessed before it was accepted. It is bounded by design, visible when it happens, and reversible when it does.</span></p>
+  </div>
+  </div>
+</div>
+
+<div id="m-dig-next" class="module">
+  <div class="dt-content hide">
+  <div class="card">
+    <h2>🤖 <span class="vi-only">Bốn thứ là đủ để bất cứ ai tiếp quản</span><span class="en-only hide">Four things are enough for anyone to take this over</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Có AI</span><span class="en-only hide">There is AI</span></div><div class="wc-body"><span class="vi-only">Người kế nhiệm không cần là người đã viết ra nó. Dán một file vào và hỏi nó làm gì — lời giải thích trả lại bằng tiếng Việt thường, và việc sửa bắt đầu từ việc mô tả triệu chứng.</span><span class="en-only hide">A successor does not need to have written any of it. Paste a file in and ask what it does — the explanation comes back in plain Vietnamese, and a fix starts from describing the symptom.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Có file HTML</span><span class="en-only hide">There is the HTML file</span></div><div class="wc-body"><span class="vi-only">Toàn bộ giao diện của mỗi app là một file HTML duy nhất. Mở ra, sửa, lưu lại — app được publish lại trong khoảng một phút.</span><span class="en-only hide">The whole interface of each app is a single HTML file. Open it, edit it, save it — the app is republished in about a minute.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Có Google Sheet</span><span class="en-only hide">There is the Google Sheet</span></div><div class="wc-body"><span class="vi-only">Mọi dữ liệu nằm trong một bảng tính thường và mọi hình ảnh trong một thư mục Drive thường. Không có gì bị kẹt trong định dạng chỉ app mới hiểu.</span><span class="en-only hide">Every record sits in an ordinary spreadsheet and every photo in an ordinary Drive folder. Nothing is trapped in a format only the app understands.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Có bản script mới nhất</span><span class="en-only hide">There is the latest script</span></div><div class="wc-body"><span class="vi-only">Quy tắc và phân quyền nằm trong một project Apps Script, mở thẳng từ trình duyệt, không cần cài công cụ gì.</span><span class="en-only hide">The rules and permissions live in one Apps Script project, opened from a browser with no tools to install.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Có đủ bốn thứ đó, bất cứ ai cũng kế thừa được, tiếp tục sử dụng và nâng cấp các app đang có.</span><span class="en-only hide">With those four, anyone can keep these apps running — and keep improving them.</span></p>
+  </div>
+  <div class="card">
+    <h2>🗺️ <span class="vi-only">Mọi thứ nằm ở đâu</span><span class="en-only hide">Where everything lives</span></h2>
+    <div class="dt-maps"><div class="dt-map"><div class="dt-map-i">📄</div><div class="dt-map-n"><span class="vi-only">Giao diện — chính là app</span><span class="en-only hide">Interface — the app itself</span></div><div class="dt-map-d"><span class="vi-only">Mỗi app một file HTML, publish trên GitHub Pages. Sửa file đó và lưu lại là app cập nhật trong khoảng một phút.</span><span class="en-only hide">One HTML file per app, published on GitHub Pages. Editing it and saving republishes the app in about a minute.</span></div></div><div class="dt-map"><div class="dt-map-i">⚙️</div><div class="dt-map-n"><span class="vi-only">Phần xử lý — Google Apps Script</span><span class="en-only hide">Logic — Google Apps Script</span></div><div class="dt-map-d"><span class="vi-only">Mỗi app một project Apps Script, chứa quy tắc, phân quyền và API. Mở thẳng từ trình duyệt, không cần cài công cụ gì.</span><span class="en-only hide">One Apps Script project per app, holding the rules, the permissions and the API. Opened from the browser, no tools to install.</span></div></div><div class="dt-map"><div class="dt-map-i">📊</div><div class="dt-map-n"><span class="vi-only">Dữ liệu — Google Sheet</span><span class="en-only hide">Data — Google Sheets</span></div><div class="dt-map-d"><span class="vi-only">Người dùng, sản phẩm, điểm bán, kế hoạch, phê duyệt, báo cáo — mỗi thứ một sheet thường, ai có quyền đều mở ra đọc được.</span><span class="en-only hide">Users, products, outlets, plans, approvals, reports — each an ordinary sheet anyone with access can open and read.</span></div></div><div class="dt-map"><div class="dt-map-i">🖼️</div><div class="dt-map-n"><span class="vi-only">Hình ảnh — Google Drive</span><span class="en-only hide">Photos — Google Drive</span></div><div class="dt-map-d"><span class="vi-only">Tự xếp theo tháng, kênh, người, ngày và điểm bán, nên tìm được một tấm ảnh mà không cần tới app.</span><span class="en-only hide">Filed automatically by month, channel, person, date and outlet, so a photo can be found without the app.</span></div></div><div class="dt-map"><div class="dt-map-i">🔑</div><div class="dt-map-n"><span class="vi-only">Key AI — Gemini API</span><span class="en-only hide">AI key — Gemini API</span></div><div class="dt-map-d"><span class="vi-only">Một key bản miễn phí dùng cho Food Law. Thay nó chỉ là một dòng cấu hình.</span><span class="en-only hide">A free-tier key used by Food Law. Replacing it is a single line of configuration.</span></div></div></div>
+    <p class="dt-take"><span class="vi-only">Năm chỗ, đều nằm trong trình duyệt, đều mở được bằng một tài khoản đúng quyền. Không có server nào phải đăng nhập và không có mã nguồn nào phải biên dịch.</span><span class="en-only hide">Five places, all inside a browser, all openable by a person with the right account. There is no server to log into and no codebase to compile.</span></p>
+  </div>
+  <div class="card">
+    <h2>🔄 <span class="vi-only">Nếu ngày mai tôi nghỉ</span><span class="en-only hide">If I leave tomorrow</span></h2>
+    <div class="win-grid"><div class="win-card"><div class="wc-num">01</div><div class="wc-title"><span class="vi-only">Các app vẫn chạy</span><span class="en-only hide">The apps keep running</span></div><div class="wc-body"><span class="vi-only">Không có gì chạy trên máy của tôi. Mọi app đều do Google và GitHub chạy, và vẫn hoạt động mà không cần ai đụng vào.</span><span class="en-only hide">Nothing runs on a machine of mine. Every app is hosted by Google and GitHub and keeps working without anyone touching it.</span></div></div><div class="win-card"><div class="wc-num">02</div><div class="wc-title"><span class="vi-only">Dữ liệu đọc được mà không cần app</span><span class="en-only hide">The data is readable without the app</span></div><div class="wc-body"><span class="vi-only">Kể cả trường hợp xấu nhất, mọi dữ liệu vẫn là Google Sheet thường và mọi hình ảnh vẫn là thư mục Drive thường. Không có gì bị kẹt trong một định dạng chỉ app mới hiểu.</span><span class="en-only hide">Even in the worst case, every record is still an ordinary Google Sheet and every photo an ordinary Drive folder. Nothing is trapped in a format only the app understands.</span></div></div><div class="win-card"><div class="wc-num">03</div><div class="wc-title"><span class="vi-only">Người kế nhiệm cần hiểu quy trình, không cần là coder hay chuyên gia IT</span><span class="en-only hide">A successor needs the process, not an IT background</span></div><div class="wc-body"><span class="vi-only">Một người hiểu cách team làm việc, có tài khoản và vài giờ ngồi với AI, là duy trì và mở rộng được. Yêu cầu đó nhẹ hơn nhiều so với việc tuyển một lập trình viên.</span><span class="en-only hide">Someone who knows how the team works, with the accounts and a few hours with the AI, can maintain and extend these. That is a far smaller ask than hiring a developer.</span></div></div><div class="win-card"><div class="wc-num">04</div><div class="wc-title"><span class="vi-only">Bàn giao là một checklist, không phải một dự án</span><span class="en-only hide">Handover is a checklist, not a project</span></div><div class="wc-body"><span class="vi-only">Quyền sở hữu tài khoản, năm vị trí ở trên, tài liệu hướng dẫn và một buổi đi qua từng app. Làm trong một tuần là xong.</span><span class="en-only hide">Account ownership, the five locations above, the user guides and one walkthrough per app. It can be done in a week.</span></div></div></div>
+  </div>
+  <div class="spotlight" style="background:linear-gradient(135deg,#1B3A57,#2F7898)">
+    <h2><span class="vi-only">Nhờ AI, chúng tôi đã tạo ra được những cải tiến thật trong công việc hằng ngày của team kinh doanh &amp; marketing.</span><span class="en-only hide">With AI, we were able to make real improvements to how sales and marketing work every day.</span></h2>
+    <div class="sub" style="opacity:.95;font-size:14px"><span class="vi-only">Và phần đáng chia sẻ không phải là các công cụ. Với các thành viên của team sales &amp; marketing DGM, đó là chuyện mọi người giờ nhìn thấy phần đóng góp của chính mình, và hiểu hơn một chút về những gì đang chờ phía trước nếu bước lên một vị trí mới — chính điều đó nâng tinh thần đồng đội và giữ được động lực cho mọi người.</span><span class="en-only hide">And the part worth sharing is not the tools. For the people in DGM&#39;s sales and marketing team, it is that everyone can now see their own contribution, and understand a little more of what lies ahead if they step into a bigger role — which is what lifts team spirit and keeps people motivated.</span></div>
+  </div>
+  </div>
+</div>
+
 </div><!-- end .content -->
 
 <script>
@@ -1881,7 +2453,7 @@ function setLang(l){
 // MODULE SWITCH
 // ─────────────────────────────────────────────
 // first module of each group
-const GROUP_FIRST={'g-brand':'m-brand','g-product':'m-products','g-coconut':'m-coconut','g-skills':'m-sales','g-dash':'m-dash'};
+const GROUP_FIRST={'g-brand':'m-brand','g-product':'m-products','g-coconut':'m-coconut','g-skills':'m-sales','g-dash':'m-dash','g-digital':'m-dig-why'};
 
 function activateModule(id){
   document.querySelectorAll('.module').forEach(m=>m.classList.remove('active'));
@@ -2992,6 +3564,127 @@ const TD_DEMO=[
   {group:'G3',taster:'Quy',team:'MKT',region:'HCM',category:'Đậu Sốt Cà',ayam_ref:'Baked Beans Tomato 425g',brand:'Đối thủ',sku:'Heinz 415g',weight:'415g',solid:'250g',pack:5,appear:5,taste:4,texture:4,sauce:4,overall:4,improve:'Giá',strength:'Chuẩn vị Anh',weakness:'Đắt gần gấp đôi',buy:'Có'},
 ];
 </script>
+
+
+<script>
+
+// ═════════ PRESENT MODE ═════════
+const DT_MODS=['m-dig-why', 'm-dig-crm', 'm-dig-sampling', 'm-dig-field', 'm-dig-commercial', 'm-dig-how', 'm-dig-next'];
+const DT_NAMES_VI=['Bối cảnh', 'CRM', 'Sampling', 'Daily Survey', 'Tuân thủ & Giá', 'Cách làm', 'Kế thừa'];
+const DT_NAMES_EN=['Context', 'CRM', 'Sampling', 'Daily Survey', 'Compliance & Price', 'How', 'Continuity'];
+let dtSlides=[], dtIdx=0;
+
+function dtCollect(){
+  dtSlides=[];
+  DT_MODS.forEach(function(mid,mi){
+    var root=document.querySelector('#'+mid+' .dt-content');
+    if(!root) return;
+    Array.prototype.forEach.call(root.children,function(sec){
+      var blocks=[], head=null;
+      Array.prototype.forEach.call(sec.children,function(ch){
+        if(ch.classList&&ch.classList.contains('dt-block')) blocks.push(ch);
+        if(ch.tagName==='H2') head=ch;
+      });
+      if(blocks.length) blocks.forEach(function(b){dtSlides.push({m:mi,head:head,node:b});});
+      else dtSlides.push({m:mi,head:null,node:sec});
+    });
+  });
+}
+function dtRender(){
+  var s=dtSlides[dtIdx]; if(!s) return;
+  var st=document.getElementById('dt-stage'); st.innerHTML='';
+  if(s.head){var h=s.head.cloneNode(true); h.className='dt-ph'; st.appendChild(h);}
+  st.appendChild(s.node.cloneNode(true));
+  st.scrollTop=0;
+  document.getElementById('dt-num').textContent=(dtIdx+1)+' / '+dtSlides.length;
+  document.querySelectorAll('#dt-dots .dt-dot').forEach(function(d,i){d.classList.toggle('on',i===s.m);});
+}
+function dtGo(n){ if(n<0||n>=dtSlides.length) return; dtIdx=n; dtRender(); }
+function dtJump(mi){ for(var i=0;i<dtSlides.length;i++){ if(dtSlides[i].m===mi){dtGo(i);return;} } }
+function dtPresent(){
+  if(!dtOk()) return;
+  dtCollect(); if(!dtSlides.length) return;
+  var names=(currentLang==='en'?DT_NAMES_EN:DT_NAMES_VI);
+  document.getElementById('dt-dots').innerHTML=names.map(function(n,i){
+    return '<span class="dt-dot" onclick="dtJump('+i+')">'+(i+1)+'. '+n+'</span>';}).join('');
+  document.getElementById('dt-exit').textContent = currentLang==='en'?'✕ Exit':'✕ Thoát';
+  document.getElementById('dt-hint').textContent = currentLang==='en'?'← → slides · 1–7 sections · Esc exit':'← → chuyển slide · 1–7 chọn mục · Esc thoát';
+  dtIdx=0; dtRender();
+  document.getElementById('dt-present').classList.add('show');
+  document.body.style.overflow='hidden';
+  var el=document.documentElement;
+  if(el.requestFullscreen) el.requestFullscreen().catch(function(){});
+}
+function dtExit(){
+  document.getElementById('dt-present').classList.remove('show');
+  document.body.style.overflow='';
+  if(document.fullscreenElement&&document.exitFullscreen) document.exitFullscreen().catch(function(){});
+}
+document.addEventListener('keydown',function(ev){
+  var z=document.getElementById('dt-zoomer');
+  if(ev.key==='Escape'&&z&&z.classList.contains('show')){z.classList.remove('show');return;}
+  var pr=document.getElementById('dt-present');
+  if(!pr||!pr.classList.contains('show')) return;
+  if(ev.key==='ArrowRight'||ev.key==='PageDown'||ev.key===' '){ev.preventDefault();dtGo(dtIdx+1);}
+  else if(ev.key==='ArrowLeft'||ev.key==='PageUp'){ev.preventDefault();dtGo(dtIdx-1);}
+  else if(ev.key==='Escape'){dtExit();}
+  else if(ev.key>='1'&&ev.key<='7'){dtJump(parseInt(ev.key)-1);}
+  else if(ev.key==='Home'){dtGo(0);}
+  else if(ev.key==='End'){dtGo(dtSlides.length-1);}
+});
+
+// ═════════ DIGITAL TOOLS TAB ═════════
+const DT_PASS='DGM2026';
+function dtOk(){try{return sessionStorage.getItem('dt_ok')==='1';}catch(e){return window.__dtOk===true;}}
+function dtSet(){try{sessionStorage.setItem('dt_ok','1');}catch(e){}window.__dtOk=true;}
+function dtApply(){
+  const ok=dtOk();
+  const lock=document.getElementById('dt-lock');
+  if(lock) lock.classList.toggle('hide',ok);
+  document.querySelectorAll('.dt-content').forEach(el=>el.classList.toggle('hide',!ok));
+  const sub=document.getElementById('sub-g-digital');
+  if(sub) sub.classList.toggle('dt-hidden',!ok);
+}
+function showDigital(btn){
+  showGroup('g-digital',btn);
+  dtApply();
+  if(!dtOk()) setTimeout(function(){var i=document.getElementById('dt-pass'); if(i) i.focus();},120);
+}
+function dtTry(){
+  const i=document.getElementById('dt-pass'), e=document.getElementById('dt-err');
+  if((i.value||'').trim()===DT_PASS){
+    dtSet(); dtApply(); i.value=''; e.textContent='';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }else{
+    e.textContent = currentLang==='en' ? 'Wrong password. Try again.' : 'Sai mật khẩu. Nhập lại giúp em.';
+    i.select();
+  }
+}
+function dtZoom(src){
+  let z=document.getElementById('dt-zoomer');
+  if(!z){z=document.createElement('div');z.id='dt-zoomer';z.className='dt-zoomer';
+    z.innerHTML='<img alt="">';z.onclick=function(){z.classList.remove('show');};
+    document.body.appendChild(z);}
+  z.querySelector('img').src=src; z.classList.add('show');
+}
+document.addEventListener('keydown',function(ev){
+  if(ev.key==='Escape'){var z=document.getElementById('dt-zoomer'); if(z) z.classList.remove('show');}
+});
+</script>
+
+
+<div class="dt-present" id="dt-present">
+  <div class="dt-bar">
+    <button onclick="dtGo(dtIdx-1)" title="←">←</button>
+    <button onclick="dtGo(dtIdx+1)" title="→">→</button>
+    <span class="dt-num" id="dt-num"></span>
+    <span class="dt-hint" id="dt-hint"></span>
+    <span class="dt-dots" id="dt-dots"></span>
+    <button id="dt-exit" onclick="dtExit()">✕</button>
+  </div>
+  <div class="dt-stage" id="dt-stage"></div>
+</div>
+
 
 </body>
 </html>
