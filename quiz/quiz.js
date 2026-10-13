@@ -111,10 +111,11 @@
     '.qz .qs .op{display:flex;gap:8px;align-items:center;font-size:13px;margin:4px 0}.qz .qs .op .bar{flex:0 0 90px;height:8px;background:#EEE;border-radius:4px;overflow:hidden}.qz .qs .op .bar i{display:block;height:100%;background:#B9C3CF}',
     '.qz .qs .op.right{font-weight:700;color:var(--qz-good)}.qz .qs .op.right .bar i{background:var(--qz-good)}',
     '.qz .qs .ex{margin-top:8px;font-size:13px;background:var(--qz-cream);border-radius:8px;padding:8px 10px}',
-    '.qz .drawer{position:fixed;inset:0;background:rgba(10,20,35,.5);z-index:500;display:flex;justify-content:flex-end}',
-    '.qz .drawer>div{background:var(--qz-cream);width:min(720px,100%);height:100%;overflow-y:auto;padding:18px}',
-    '.qz .modal{position:fixed;inset:0;background:rgba(10,20,35,.55);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}',
-    '.qz .modal>div{background:#fff;border-radius:16px;padding:22px;max-width:420px;width:100%}',
+    '.qz.drawer,.qz .drawer{position:fixed;inset:0;background:rgba(10,20,35,.5);z-index:500;display:flex;justify-content:flex-end}',
+    '.qz.drawer>div,.qz .drawer>div{background:var(--qz-cream);width:min(720px,100%);height:100%;overflow-y:auto;padding:18px}',
+    '.qz.modal,.qz .modal{position:fixed;inset:0;background:rgba(10,20,35,.55);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}',
+    '.qz.modal>div,.qz .modal>div{background:#fff;border-radius:16px;padding:22px;max-width:420px;width:100%}',
+    '.qz .sconf{margin-top:12px;border:2px solid var(--qz-red);background:#FFF5F6;border-radius:12px;padding:14px}.qz .sconf.okc{border-color:var(--qz-navy);background:#F3F6FA}.qz .sconf p{margin:0 0 6px}.qz .sconf .row{margin-top:10px}.qz .sconf a{text-decoration:underline}',
     '.qz .chk{display:flex;align-items:center;gap:8px;font-size:14px;margin:8px 0}.qz .chk input{width:18px;height:18px}',
     '.qz .pill-sel{display:flex;flex-wrap:wrap;gap:6px}.qz .pill-sel label{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--qz-line);border-radius:20px;padding:5px 11px;font-size:13px;cursor:pointer;background:#fff}',
     '.qz .pill-sel input{margin:0}',
@@ -182,6 +183,7 @@
 
   function modal(html, buttons) {
     return new Promise(function (resolve) {
+      var old = document.querySelector('.qz.modal'); if (old) old.remove();
       var m = document.createElement('div'); m.className = 'qz modal';
       m.innerHTML = '<div>' + html + '<div class="row" style="margin-top:16px">' + buttons.map(function (b, i) { return '<button class="btn ' + (b.cls || '') + '" data-i="' + i + '">' + esc(b.label) + '</button>'; }).join('') + '</div></div>';
       document.body.appendChild(m);
@@ -317,12 +319,12 @@
         '<div id="qz-tabwarn"></div>' +
         '<div class="card qcard" id="qz-q"></div>' +
         '<div class="card"><div class="muted">Bấm số câu để chuyển nhanh · ô xanh đậm = đã trả lời</div><div class="grid" id="qz-grid"></div>' +
-        '<div style="margin-top:14px"><button class="btn red block" id="qz-submit">Nộp bài</button></div></div>';
+        '<div style="margin-top:14px" id="qz-sarea"><button class="btn red block" id="qz-submit">Nộp bài</button></div></div>';
       self.drawQ(); self.drawGrid(); self.tick();
       clearInterval(self.st.timer); self.st.timer = setInterval(function () { self.tick(); }, 1000);
       clearInterval(self.st.ping); self.st.ping = setInterval(function () { self.sendPing(); }, PING_MS);
       self.sendPing();
-      $('#qz-submit').onclick = function () { self.confirmSubmit(); };
+      $('#qz-submit').onclick = function () { self.confirmSubmit(this); };
       if (!self._vis) {
         self._vis = function () {
           if (document.visibilityState === 'hidden' && self.st.att && !self.st.submitting && $('#qz-timer')) {
@@ -359,7 +361,7 @@
       var pv = $('#qz-prev'), nx = $('#qz-next'), ls = $('#qz-last');
       if (pv) pv.onclick = function () { self.st.cur--; self.drawQ(); self.drawGrid(); };
       if (nx) nx.onclick = function () { self.st.cur++; self.drawQ(); self.drawGrid(); };
-      if (ls) ls.onclick = function () { self.confirmSubmit(); };
+      if (ls) ls.onclick = function () { self.confirmSubmit(this); };
       self.updProg();
     },
     drawGrid: function () {
@@ -384,10 +386,37 @@
     },
     debouncePing: function () { var self = this; clearTimeout(self._pd); self._pd = setTimeout(function () { self.sendPing(); }, 4000); },
 
-    confirmSubmit: function () {
-      var self = this, n = self.answeredCount(), t = self.st.att.questions.length;
-      var html = '<h2 style="color:var(--qz-navy)">Nộp bài?</h2><p>Bạn đã trả lời <b>' + n + '/' + t + '</b> câu.' + (n < t ? ' <span class="bad"><b>' + (t - n) + ' câu còn bỏ trống</b> sẽ tính là sai.</span>' : '') + '</p><p class="muted">Sau khi nộp không sửa được nữa.</p>';
-      modal(html, [{ label: 'Làm tiếp', cls: 'ghost' }, { label: 'Nộp bài', cls: 'red' }]).then(function (i) { if (i === 1) self.submit(false); });
+    go: function (k) {
+      this.st.cur = k; this.drawQ(); this.drawGrid();
+      window.scrollTo({ top: ROOT_TAKE.offsetTop - 120, behavior: 'smooth' });
+    },
+    confirmSubmit: function (btn) {
+      var self = this; if (self.st.submitting) return;
+      var n = self.answeredCount(), t = self.st.att.questions.length;
+      // bỏ các hộp xác nhận cũ, hiện lại các nút
+      $$('.sconf', ROOT_TAKE).forEach(function (x) { x.remove(); });
+      $$('#qz-submit,#qz-last', ROOT_TAKE).forEach(function (b) { b.style.display = ''; });
+      var box = document.createElement('div'); box.className = 'sconf' + (n < t ? '' : ' okc');
+      var miss = [];
+      if (n < t) self.st.att.questions.forEach(function (q, k) { if (self.st.answers[q.id] === undefined) miss.push(k); });
+      box.innerHTML = n < t
+        ? '<p class="bad"><b>⚠️ Còn ' + (t - n) + ' câu chưa trả lời</b> (câu ' + miss.slice(0, 12).map(function (k) { return '<a href="#" data-k="' + k + '" class="bad" style="font-weight:700">' + (k + 1) + '</a>'; }).join(', ') + (miss.length > 12 ? '…' : '') + '). Câu bỏ trống sẽ tính là sai.</p>' +
+          '<div class="row"><button class="btn red" data-go="miss">Làm tiếp câu ' + (miss[0] + 1) + '</button><button class="btn ghost" data-go="send">Vẫn nộp bài</button></div>'
+        : '<p><b>Bạn đã trả lời đủ ' + t + '/' + t + ' câu.</b></p><p class="muted">Sau khi nộp sẽ không sửa được nữa.</p>' +
+          '<div class="row"><button class="btn ghost" data-go="back">Xem lại</button><button class="btn red" data-go="send">Xác nhận nộp bài</button></div>';
+      btn.style.display = 'none';
+      btn.parentNode.insertBefore(box, btn.nextSibling);
+      box.scrollIntoView({ block: 'center' });
+      var close = function () { box.remove(); btn.style.display = ''; };
+      $$('a[data-k]', box).forEach(function (a) { a.onclick = function (e) { e.preventDefault(); close(); self.go(Number(a.dataset.k)); }; });
+      $$('button[data-go]', box).forEach(function (b) {
+        b.onclick = function () {
+          var g = b.dataset.go;
+          if (g === 'send') { $$('button', box).forEach(function (x) { x.disabled = true; }); b.innerHTML = '<span class="spin"></span> Đang nộp…'; self.submit(false); }
+          else if (g === 'miss') { close(); self.go(miss[0]); }
+          else close();
+        };
+      });
     },
     submit: function (auto) {
       var self = this, A = self.st.att;
