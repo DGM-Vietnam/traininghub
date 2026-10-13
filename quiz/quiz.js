@@ -99,7 +99,7 @@
     '.qz .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:10px 0}',
     '.qz .tile{background:var(--qz-cream);border-radius:12px;padding:12px}.qz .tile b{display:block;font-size:24px;color:var(--qz-navy);font-variant-numeric:tabular-nums;line-height:1.2}.qz .tile span{font-size:12px;color:var(--qz-muted)}',
     '.qz .bigcode{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--qz-navy);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:12px}',
-    '.qz .bigcode b{font-size:40px;letter-spacing:.12em;color:var(--qz-yellow);font-variant-numeric:tabular-nums;line-height:1}',
+    '.qz .bigcode b{font-size:34px;letter-spacing:.08em;word-break:break-all;color:var(--qz-yellow);font-variant-numeric:tabular-nums;line-height:1}',
     '.qz .tbl{width:100%;border-collapse:collapse;font-size:13px}.qz .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}',
     '.qz .tbl th{background:var(--qz-cream);color:var(--qz-navy);text-align:left;padding:8px 10px;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;position:sticky;top:0}',
     '.qz .tbl td{padding:8px 10px;border-bottom:1px solid var(--qz-line);vertical-align:middle}',
@@ -194,57 +194,116 @@
   // ════════════════════════════════════════════════════════
   var Take = {
     st: { staff: null, att: null, answers: {}, cur: 0, tabs: 0, offset: 0, timer: null, ping: null, submitting: false },
+    user: null,
 
-    render: function () {
-      var saved = store('dgmquiz_att');
+    render: function () { if (this.user) this.home(); else this.loginView(); },
+    msg: function (t, err) { var m = $('#qz-msg'); if (m) m.innerHTML = t ? '<div class="' + (err ? 'err' : 'ok-msg') + '">' + esc(t) + '</div>' : ''; },
+
+    // ── B1: chọn tên + mật khẩu ──
+    loginView: function () {
+      var self = this, saved = store('dgmquiz_user') || {};
       ROOT_TAKE.innerHTML =
-        '<div class="card"><h2>📝 Bài kiểm tra kiến thức Sales</h2>' +
-        '<div class="muted">Dành cho toàn team Sales &amp; Marketing DGM — trả bài thử việc và kiểm tra định kỳ. Nhập mã phiên do Leader cung cấp, chọn tên của bạn rồi bắt đầu.</div>' +
-        '<div class="rules"><div class="rule"><b id="qz-r-size">40</b>câu trắc nghiệm</div><div class="rule"><b id="qz-r-dur">30′</b>thời gian làm bài</div><div class="rule"><b id="qz-r-pass">≥80%</b>điểm đạt</div><div class="rule"><b>1</b>lần nộp / phiên</div></div>' +
-        '<label class="f" for="qz-code">Mã phiên kiểm tra</label><input id="qz-code" type="text" inputmode="numeric" autocomplete="off" placeholder="VD: 4821" maxlength="12">' +
+        '<div class="card" style="max-width:520px;margin:0 auto"><h2>📝 Kiểm tra kiến thức Sales</h2>' +
+        '<div class="muted">Đăng nhập bằng tên và mật khẩu cá nhân để tự luyện tập hoặc làm test định kỳ.</div>' +
         '<label class="f" for="qz-name">Họ tên</label><select id="qz-name"><option value="">Đang tải danh sách…</option></select>' +
-        '<div id="qz-pinwrap" style="display:none"><label class="f" for="qz-pin">Mã PIN cá nhân</label><input id="qz-pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off"></div>' +
-        '<div style="margin-top:16px"><button class="btn red block" id="qz-start">Bắt đầu làm bài</button></div>' +
-        '<div id="qz-msg"></div>' +
-        '<div class="muted" style="margin-top:14px">⚠️ Trong lúc làm bài: không thoát ứng dụng hoặc chuyển sang ứng dụng khác — hệ thống ghi nhận số lần rời màn hình. Mất mạng giữa chừng: mở lại trang, nhập lại mã phiên và tên để làm tiếp, bài làm vẫn giữ nguyên.</div>' +
-        '</div>';
-      if (saved && saved.code) $('#qz-code').value = saved.code;
-      var self = this;
+        '<label class="f" for="qz-pin">Mật khẩu cá nhân</label><input id="qz-pin" type="password" inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Mật khẩu do Leader cấp">' +
+        '<div style="margin-top:16px"><button class="btn red block" id="qz-login">Đăng nhập</button></div><div id="qz-msg"></div></div>';
       api('init').then(function (r) {
-        var sel = $('#qz-name');
+        var sel = $('#qz-name'); if (!sel) return;
         if (!r.ok) { sel.innerHTML = '<option value="">—</option>'; self.msg(r.error, true); return; }
-        self.st.staff = r.staff;
-        if (r.config) { $('#qz-r-size').textContent = r.config.size; $('#qz-r-dur').textContent = r.config.duration + '′'; $('#qz-r-pass').textContent = '≥' + r.config.pass + '%'; }
+        self.st.config = r.config;
         var groups = {};
         r.staff.forEach(function (s) { var g = (CH_VI[s.channel] || s.channel) + (s.region && s.channel === 'GT' ? ' – ' + (REGION_VI[s.region] || s.region) : ''); (groups[g] = groups[g] || []).push(s); });
         sel.innerHTML = '<option value="">— Chọn tên của bạn —</option>' + Object.keys(groups).sort().map(function (g) {
-          return '<optgroup label="' + esc(g) + '">' + groups[g].map(function (s) { return '<option value="' + esc(s.name) + '" data-pin="' + (s.hasPin ? 1 : 0) + '">' + esc(s.name) + ' · ' + esc(s.title) + '</option>'; }).join('') + '</optgroup>';
+          return '<optgroup label="' + esc(g) + '">' + groups[g].map(function (s) { return '<option value="' + esc(s.name) + '">' + esc(s.name) + ' · ' + esc(s.title) + '</option>'; }).join('') + '</optgroup>';
         }).join('');
-        if (saved && saved.name) sel.value = saved.name;
-        self.pinToggle();
+        if (saved.name) sel.value = saved.name;
       });
-      $('#qz-name').onchange = function () { self.pinToggle(); };
-      $('#qz-start').onclick = function () { self.start(); };
-      $('#qz-code').onkeydown = function (e) { if (e.key === 'Enter') self.start(); };
+      var go = function () { self.login(); };
+      $('#qz-login').onclick = go;
+      $('#qz-pin').onkeydown = function (e) { if (e.key === 'Enter') go(); };
     },
-    pinToggle: function () { var o = $('#qz-name').selectedOptions[0]; $('#qz-pinwrap').style.display = o && o.dataset.pin === '1' ? '' : 'none'; },
-    msg: function (t, err) { var m = $('#qz-msg'); if (m) m.innerHTML = t ? '<div class="' + (err ? 'err' : 'ok-msg') + '">' + esc(t) + '</div>' : ''; },
-
-    start: function () {
-      var self = this, code = $('#qz-code').value.trim(), name = $('#qz-name').value, pin = ($('#qz-pin') || {}).value;
-      if (!code) return self.msg('Nhập mã phiên do Leader cung cấp.', true);
+    login: function () {
+      var self = this, name = $('#qz-name').value, pin = $('#qz-pin').value.trim();
       if (!name) return self.msg('Chọn tên của bạn trong danh sách.', true);
-      var btn = $('#qz-start'); btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Đang tạo đề…';
-      api('start', { code: code, name: name, staffPin: pin }).then(function (r) {
-        btn.disabled = false; btn.textContent = 'Bắt đầu làm bài';
-        if (!r.ok) { if (r.needPin) $('#qz-pinwrap').style.display = ''; return self.msg(r.error, true); }
-        store('dgmquiz_att', { code: code, name: name, attemptId: r.attemptId });
+      var b = $('#qz-login'); b.disabled = true; b.innerHTML = '<span class="spin"></span> Đang kiểm tra…';
+      api('login', { name: name, staffPin: pin }).then(function (r) {
+        b.disabled = false; b.textContent = 'Đăng nhập';
+        if (!r.ok) return self.msg(r.error, true);
+        self.user = Object.assign({ pin: pin }, r);
+        store('dgmquiz_user', { name: r.name });
+        self.home();
+      });
+    },
+    logout: function () { this.user = null; this.loginView(); },
+
+    // ── B2: chọn loại thực hiện ──
+    home: function () {
+      var self = this, u = self.user, cfg = self.st.config || { size: 40, duration: 30, pass: 80 };
+      var pending = store('dgmquiz_att');
+      if (pending && pending.name !== u.name) pending = null;
+      ROOT_TAKE.innerHTML =
+        '<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap"><div>' +
+        '<h2 style="margin-bottom:4px">👋 Chào ' + esc(u.name) + '</h2><div class="muted">' + esc(u.title) + ' · ' + esc(CH_VI[u.channel] || u.channel) + (u.region ? ' · ' + esc(REGION_VI[u.region] || u.region) : '') + ' · Đề <b>' + esc(u.trackLabel) + ' – ' + esc(u.levelLabel) + '</b></div></div>' +
+        '<button class="btn sm ghost" id="qz-out">Đăng xuất</button></div>' +
+        '<div class="rules"><div class="rule"><b>' + cfg.size + '</b>câu trắc nghiệm</div><div class="rule"><b>' + cfg.duration + '′</b>thời gian làm bài</div><div class="rule"><b>≥' + cfg.pass + '%</b>điểm đạt</div></div>' +
+        (pending && pending.attemptId ? '<div class="tabwarn">Bạn có bài <b>' + esc(pending.label || '') + '</b> đang làm dở. <button class="btn sm" id="qz-resume" style="margin-left:6px">Tiếp tục làm</button></div>' : '') +
+        '</div>' +
+        '<div class="row">' +
+        '<div class="card" style="margin-bottom:16px"><h2>📘 Tự luyện tập</h2><div class="muted" style="min-height:58px">Đề ngẫu nhiên theo vị trí của bạn. Làm bao nhiêu lần cũng được, xem đáp án và giải thích ngay sau khi nộp. Không tính vào xếp hạng.</div>' +
+        '<button class="btn block" id="qz-practice" style="margin-top:12px">Bắt đầu luyện tập</button></div>' +
+        '<div class="card" style="margin-bottom:16px"><h2>📝 Test định kỳ</h2><div class="muted">Nhập mật khẩu kỳ test do Leader cung cấp (VD: Test tháng 10/2026). Mỗi kỳ chỉ làm 1 lần, có xếp hạng.</div>' +
+        '<input id="qz-code" type="text" autocomplete="off" placeholder="Mật khẩu kỳ test" maxlength="30" style="margin-top:10px;text-transform:uppercase">' +
+        '<button class="btn red block" id="qz-periodic" style="margin-top:10px">Vào làm test</button></div>' +
+        '</div>' +
+        '<div class="card"><h2>📊 Kết quả của tôi</h2><div class="muted">Điểm, thứ hạng và nhận xét các lần đã làm.</div><button class="btn ghost" id="qz-mine" style="margin-top:10px">Xem kết quả</button><div id="qz-msg"></div></div>';
+      $('#qz-out').onclick = function () { self.logout(); };
+      $('#qz-practice').onclick = function () { self.start('PRACTICE', '', this); };
+      $('#qz-periodic').onclick = function () { var c = $('#qz-code').value.trim(); if (!c) return self.msg('Nhập mật khẩu kỳ test do Leader cung cấp.', true); self.start('PERIODIC', c, this); };
+      $('#qz-code').onkeydown = function (e) { if (e.key === 'Enter') $('#qz-periodic').click(); };
+      $('#qz-mine').onclick = function () { self.myResults(); };
+      var rs = $('#qz-resume'); if (rs) rs.onclick = function () { self.start(pending.mode, pending.code, this); };
+    },
+
+    // ── B3: làm bài ──
+    start: function (mode, code, btn) {
+      var self = this, u = self.user;
+      var old = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Đang tạo đề…'; }
+      api('start', { name: u.name, staffPin: u.pin, mode: mode, code: code }).then(function (r) {
+        if (btn) { btn.disabled = false; btn.innerHTML = old; }
+        if (!r.ok) { if (r.needPin) return self.logout(); return self.msg(r.error, true); }
+        store('dgmquiz_att', { name: u.name, mode: mode, code: code, attemptId: r.attemptId, label: r.session.name });
         var local = store('dgmquiz_ans_' + r.attemptId) || {};
         var answers = Object.assign({}, r.draft || {}, local);
         self.st.att = r; self.st.answers = answers; self.st.cur = 0; self.st.tabs = Number(store('dgmquiz_tabs_' + r.attemptId)) || 0;
-        self.st.offset = r.serverNow - Date.now(); self.st.name = name; self.st.submitting = false;
+        self.st.offset = r.serverNow - Date.now(); self.st.name = u.name; self.st.submitting = false;
         for (var i = 0; i < r.questions.length; i++) { if (answers[r.questions[i].id] === undefined) { self.st.cur = i; break; } }
         self.quizView();
+      });
+    },
+
+    // ── Kết quả của tôi ──
+    myResults: function () {
+      var self = this, u = self.user;
+      ROOT_TAKE.innerHTML = '<div class="card"><span class="spin"></span> Đang tải kết quả…</div>';
+      api('myResults', { name: u.name, staffPin: u.pin }).then(function (r) {
+        if (!r.ok) { if (r.needPin) return self.logout(); ROOT_TAKE.innerHTML = '<div class="card"><div class="err">' + esc(r.error) + '</div></div>'; return; }
+        var tests = r.list.filter(function (x) { return !x.practice; }), prac = r.list.filter(function (x) { return x.practice; });
+        var card = function (x) {
+          return '<div class="qs"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><b style="color:var(--qz-navy)">' + esc(x.sessionName) + '</b><div class="muted">' + esc(x.date) + (x.level ? ' · ' + esc(x.level) : '') + '</div></div>' +
+            '<div style="text-align:right"><b class="' + pctClass(x.pct) + '" style="font-size:20px">' + x.pct + '%</b> <span class="muted">' + x.correct + '/' + x.total + '</span><br><span class="badge ' + (x.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(x.result) + '</span>' + (x.rank ? ' <span class="badge prog">Hạng ' + x.rank.rank + '/' + x.rank.of + '</span>' : '') + '</div></div>' +
+            (x.comment ? '<div class="ex">💬 ' + esc(x.comment) + '</div>' : '') +
+            (x.leaderComment ? '<div class="ex" style="background:#EEF3F8">🧑‍🏫 <b>Leader:</b> ' + esc(x.leaderComment) + '</div>' : '') +
+            (x.topics.length ? '<details style="margin-top:6px"><summary class="muted" style="cursor:pointer">Điểm theo chủ đề</summary>' + x.topics.map(function (t) { var p = Math.round(t.correct * 100 / t.total); return '<div class="tbar"><div class="l">' + esc(TOPIC_VI[t.topic] || t.label) + '</div><div class="b"><i class="' + pctClass(p) + '" style="width:' + p + '%"></i></div><div class="v">' + t.correct + '/' + t.total + '</div></div>'; }).join('') + '</details>' : '') +
+            '</div>';
+        };
+        var best = prac.length ? Math.max.apply(null, prac.map(function (x) { return x.pct; })) : null;
+        ROOT_TAKE.innerHTML = '<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 style="margin:0">📊 Kết quả của ' + esc(u.name) + '</h2><button class="btn sm ghost" id="qz-back">← Quay lại</button></div></div>' +
+          '<div class="card"><h2>📝 Test định kỳ (' + tests.length + ')</h2>' + (tests.length ? tests.map(card).join('') : '<div class="empty">Chưa làm kỳ test nào.</div>') + '</div>' +
+          '<div class="card"><h2>📘 Tự luyện tập (' + prac.length + ' lần' + (best != null ? ' · cao nhất ' + best + '%' : '') + ')</h2>' + (prac.length ? prac.slice(0, 10).map(card).join('') : '<div class="empty">Chưa luyện tập lần nào.</div>') + '</div>';
+        $('#qz-back').onclick = function () { self.home(); };
+        window.scrollTo({ top: ROOT_TAKE.offsetTop - 120, behavior: 'smooth' });
       });
     },
 
@@ -345,7 +404,7 @@
             return;
           }
           store('dgmquiz_ans_' + A.attemptId, null); store('dgmquiz_tabs_' + A.attemptId, null);
-          var sv = store('dgmquiz_att'); if (sv) { delete sv.attemptId; store('dgmquiz_att', sv); }
+          store('dgmquiz_att', null);
           self.resultView(r);
         });
       };
@@ -358,6 +417,8 @@
         '<div class="score"><div class="ring" style="--v:' + r.pct + ';--c:' + c + '"><div><b>' + r.pct + '%</b><small>' + r.correct + '/' + r.total + ' câu</small></div></div>' +
         '<div><span class="badge ' + (r.pass ? 'pass' : 'fail') + '">' + (r.pass ? 'ĐẠT' : 'CHƯA ĐẠT') + '</span>' + (r.late ? ' <span class="badge late">NỘP TRỄ</span>' : '') +
         '<p style="margin-top:8px">Ngưỡng đạt: <b>' + r.passMark + '%</b>. ' + (r.pass ? 'Bạn nắm vững kiến thức nền tảng — tiếp tục giữ phong độ!' : 'Leader sẽ cùng bạn ôn lại các chủ đề còn yếu bên dưới.') + '</p></div></div>' +
+        (r.comment ? '<div class="ex" style="font-size:14px;margin-top:12px">💬 ' + esc(r.comment) + '</div>' : '') +
+        (r.rank ? '<div style="margin-top:8px"><span class="badge prog">Hạng tạm thời ' + r.rank.rank + '/' + r.rank.of + ' trong kỳ ' + esc(r.sessionName || '') + '</span> <span class="muted">(thứ hạng cập nhật khi cả team nộp xong)</span></div>' : '') +
         '<h3>Kết quả theo chủ đề</h3>' +
         r.topics.sort(function (a, b) { return a.correct / a.total - b.correct / b.total; }).map(function (t) {
           var p = Math.round(t.correct * 100 / t.total);
@@ -369,8 +430,10 @@
             '<div class="x">💡 ' + esc(x.exp) + (x.src ? '<br><span class="muted">Nguồn: ' + esc(x.src) + '</span>' : '') + '</div></div>';
         }).join('') : '<div class="empty">Không sai câu nào. Xuất sắc! 🏆</div>') + '</div>'
           : '<div class="card"><div class="muted">Bạn sai ' + r.wrongCount + ' câu. Đáp án và giải thích chi tiết sẽ được Leader trao đổi trong buổi training sau.</div></div>') +
-        '<div class="card"><button class="btn ghost block" id="qz-back">Về màn hình bắt đầu</button></div>';
+        '<div class="card"><div class="row"><button class="btn ghost" id="qz-back">← Về trang chính</button>' + (r.practice ? '<button class="btn" id="qz-again">Luyện tập thêm một đề</button>' : '<button class="btn" id="qz-mine2">Xem kết quả của tôi</button>') + '</div></div>';
       $('#qz-back').onclick = function () { self.st.att = null; self.render(); };
+      var ag = $('#qz-again'); if (ag) ag.onclick = function () { self.start('PRACTICE', '', this); };
+      var mn = $('#qz-mine2'); if (mn) mn.onclick = function () { self.myResults(); };
       window.scrollTo({ top: ROOT_TAKE.offsetTop - 120, behavior: 'smooth' });
     }
   };
@@ -394,7 +457,7 @@
     },
     loginView: function (err) {
       var self = this;
-      ROOT_LEAD.innerHTML = '<div class="card" style="max-width:420px;margin:0 auto"><h2>🧑‍🏫 Khu vực Leader</h2><div class="muted">Tạo phiên kiểm tra, theo dõi realtime, xem đáp án &amp; giải thích, ghi nhận training.</div>' +
+      ROOT_LEAD.innerHTML = '<div class="card" style="max-width:420px;margin:0 auto"><h2>🧑‍🏫 Khu vực Leader</h2><div class="muted">Tạo kỳ test, theo dõi realtime, xem đáp án &amp; giải thích, ghi nhận training.</div>' +
         '<label class="f" for="qz-lpin">Mã PIN Leader</label><input id="qz-lpin" type="password" inputmode="numeric" autocomplete="off">' +
         '<div style="margin-top:14px"><button class="btn block" id="qz-lgo">Đăng nhập</button></div><div id="qz-lmsg">' + (err ? '<div class="err">' + esc(err) + '</div>' : '') + '</div></div>';
       var go = function () {
@@ -417,7 +480,7 @@
     },
     shell: function () {
       var self = this;
-      var tabs = [['live', '📡 Phiên & Live'], ['stats', '📉 Câu sai nhiều'], ['monthly', '📅 Kết quả theo tháng'], ['training', '🗒️ Ghi nhận training'], ['bank', '📚 Đáp án & giải thích']];
+      var tabs = [['live', '📡 Kỳ test & Live'], ['rank', '🏆 Xếp hạng & nhận xét'], ['stats', '📉 Câu sai nhiều'], ['monthly', '📅 Kết quả theo tháng'], ['training', '🗒️ Ghi nhận training'], ['bank', '📚 Đáp án & giải thích']];
       ROOT_LEAD.innerHTML = '<div class="ltabs noprint">' + tabs.map(function (t) { return '<button data-v="' + t[0] + '" class="' + (self.view === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') +
         '<button data-v="logout" style="margin-left:auto">👤 ' + esc(self.me.leader) + ' · Thoát</button></div><div id="qz-lv"></div>';
       $$('.ltabs button', ROOT_LEAD).forEach(function (b) {
@@ -435,22 +498,24 @@
     v_live: function () {
       var self = this;
       self.el().innerHTML =
-        '<div class="card noprint"><h2>➕ Tạo phiên kiểm tra mới</h2><div class="row">' +
-        '<div><label class="f">Loại</label><select id="ns-type"><option value="DINHKY">Kiểm tra định kỳ (cả team)</option><option value="PROBATION">Trả bài thử việc</option><option value="LUYENTAP">Luyện tập</option></select></div>' +
+        '<div class="card noprint"><h2>➕ Tạo kỳ test mới</h2><div class="row">' +
+        '<div><label class="f">Loại</label><select id="ns-type"><option value="DINHKY">Test định kỳ (cả team)</option><option value="PROBATION">Trả bài thử việc</option></select></div>' +
         '<div><label class="f">Cấp độ đề</label><select id="ns-level"><option value="AUTO">Tự động theo chức danh</option><option value="CO_BAN">Cơ bản (Salesman, Admin, Digital)</option><option value="NANG_CAO">Nâng cao (Sales Rep, Trade Mkt)</option></select></div>' +
         '<div><label class="f">Đề theo kênh</label><select id="ns-track"><option value="AUTO">Tự động theo kênh của từng nhân viên</option><option value="ALL">Chỉ phần chung (40 câu)</option><option value="GT">Kênh GT</option><option value="MT">Kênh MT</option><option value="HRC">B2B / HoReCa</option><option value="BO">Back Office</option></select></div></div>' +
-        '<label class="f">Tên phiên</label><input id="ns-name" type="text" placeholder="VD: Kiểm tra định kỳ T10/2026 – toàn team">' +
+        '<div class="row"><div><label class="f">Tên kỳ test</label><input id="ns-name" type="text" placeholder="VD: Test tháng 10/2026"></div>' +
+        '<div><label class="f">Mật khẩu kỳ test (nhân viên nhập để vào làm)</label><input id="ns-code" type="text" maxlength="30" placeholder="VD: T10-2026 · để trống = tạo ngẫu nhiên" style="text-transform:uppercase"></div></div>' +
         '<div class="row"><div><label class="f">Thời gian (phút)</label><input id="ns-dur" type="number" min="5" max="120" value="' + (self.me.config.DURATION_MIN || 30) + '"></div><div><label class="f">Ngưỡng đạt (%)</label><input id="ns-pass" type="number" min="10" max="100" value="' + (self.me.config.PASS_PCT || 80) + '"></div></div>' +
         '<label class="chk"><input type="checkbox" id="ns-reveal"> Cho nhân viên xem đáp án &amp; giải thích ngay sau khi nộp</label>' +
         '<label class="chk"><input type="checkbox" id="ns-retake"> Cho phép làm lại nhiều lần trong phiên (phù hợp Luyện tập)</label>' +
-        '<button class="btn red" id="ns-go">Tạo phiên &amp; lấy mã</button><div id="ns-msg"></div></div>' +
+        '<button class="btn red" id="ns-go">Tạo kỳ test</button><div id="ns-msg"></div></div>' +
         '<div id="qz-live"></div>' +
-        '<div class="card"><h2>🗂️ Các phiên kiểm tra</h2><div id="qz-sess"><span class="spin"></span></div></div>';
-      $('#ns-type').onchange = function () { var t = this.value; $('#ns-reveal').checked = t !== 'PROBATION'; $('#ns-retake').checked = t === 'LUYENTAP'; };
+        '<div class="card"><h2>🗂️ Các kỳ test</h2><div id="qz-sess"><span class="spin"></span></div></div>';
+      (function () { var d = new Date(), mm = ('0' + (d.getMonth() + 1)).slice(-2); $('#ns-name').value = 'Test tháng ' + mm + '/' + d.getFullYear(); $('#ns-code').placeholder = 'VD: T' + mm + '-' + d.getFullYear() + ' · để trống = tạo ngẫu nhiên'; })();
+      $('#ns-type').onchange = function () { var t = this.value; $('#ns-reveal').checked = t !== 'PROBATION'; $('#ns-retake').checked = false; };
       $('#ns-type').onchange.call($('#ns-type'));
       $('#ns-go').onclick = function () {
         var b = this; b.disabled = true;
-        self.call('createSession', { type: $('#ns-type').value, track: $('#ns-track').value, level: $('#ns-level').value, name: $('#ns-name').value, duration: $('#ns-dur').value, pass: $('#ns-pass').value, reveal: $('#ns-reveal').checked, retake: $('#ns-retake').checked }).then(function (r) {
+        self.call('createSession', { type: $('#ns-type').value, track: $('#ns-track').value, level: $('#ns-level').value, name: $('#ns-name').value, code: $('#ns-code').value, duration: $('#ns-dur').value, pass: $('#ns-pass').value, reveal: $('#ns-reveal').checked, retake: $('#ns-retake').checked }).then(function (r) {
           b.disabled = false;
           if (!r.ok) { $('#ns-msg').innerHTML = '<div class="err">' + esc(r.error) + '</div>'; return; }
           self.liveCode = r.code; self.loadSessions(); self.openLive(r.code);
@@ -464,8 +529,8 @@
       self.call('sessions').then(function (r) {
         var box = $('#qz-sess'); if (!box || !r.ok) return;
         self.sessions = r.sessions;
-        if (!r.sessions.length) { box.innerHTML = '<div class="empty">Chưa có phiên nào. Tạo phiên đầu tiên ở trên.</div>'; return; }
-        box.innerHTML = '<div class="tblwrap"><table class="tbl"><thead><tr><th>Mã</th><th>Tên phiên</th><th>Loại</th><th>Đề</th><th>Trạng thái</th><th>Đã nộp</th><th>Đạt</th><th>Điểm TB</th><th></th></tr></thead><tbody>' +
+        if (!r.sessions.length) { box.innerHTML = '<div class="empty">Chưa có phiên nào. Tạo kỳ test đầu tiên ở trên.</div>'; return; }
+        box.innerHTML = '<div class="tblwrap"><table class="tbl"><thead><tr><th>Mật khẩu</th><th>Tên kỳ</th><th>Loại</th><th>Đề</th><th>Trạng thái</th><th>Đã nộp</th><th>Đạt</th><th>Điểm TB</th><th></th></tr></thead><tbody>' +
           r.sessions.map(function (s) {
             return '<tr class="click" data-c="' + esc(s.code) + '"><td><b>' + esc(s.code) + '</b></td><td>' + esc(s.name) + '<div class="muted">' + esc(s.created) + ' · ' + esc(s.by) + '</div></td><td>' + esc(s.typeLabel) + '</td><td>' + esc(s.trackLabel) + '<div class="muted">' + esc(s.levelLabel || '') + '</div></td>' +
               '<td><span class="badge ' + (s.status === 'OPEN' ? 'pass' : 'none') + '">' + (s.status === 'OPEN' ? 'Đang mở' : 'Đã đóng') + '</span></td><td>' + s.done + '/' + s.count + '</td><td>' + s.passCount + '</td><td class="' + pctClass(s.avg) + '"><b>' + (s.avg == null ? '—' : s.avg + '%') + '</b></td><td><button class="btn sm ghost">Xem</button></td></tr>';
@@ -489,10 +554,10 @@
           var order = { IN_PROGRESS: 0, EXPIRED: 1, LATE: 2, SUBMITTED: 2 };
           L.sort(function (a, b) { return (order[a.status] - order[b.status]) || ((b.pct || 0) - (a.pct || 0)) || ((b.answered || 0) - (a.answered || 0)); });
           box.innerHTML = '<div class="card">' +
-            '<div class="bigcode"><div><div style="font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.08em">Mã phiên</div><b>' + esc(S.code) + '</b></div>' +
+            '<div class="bigcode"><div><div style="font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.08em">Mật khẩu kỳ test</div><b>' + esc(S.code) + '</b></div>' +
             '<div style="flex:1;min-width:180px"><div style="font-weight:700">' + esc(S.name) + '</div><div style="font-size:12.5px;opacity:.85">' + esc(TYPE_VI[S.type] || S.type) + ' · Đề: ' + esc(TRACK_VI[S.track] || S.track) + ' · Cấp độ: ' + esc(LEVEL_VI[S.level] || 'Theo chức danh') + ' · ' + S.duration + ' phút · Đạt ≥' + S.pass + '%</div>' +
-            '<div style="font-size:12px;opacity:.7;margin-top:3px">Nhân viên mở Training Hub → 📝 Kiểm tra → nhập mã này</div></div>' +
-            '<div class="noprint" style="display:flex;gap:6px;flex-wrap:wrap">' + (S.status === 'OPEN' ? '<button class="btn sm yellow" id="lv-close">Đóng phiên</button>' : '<button class="btn sm yellow" id="lv-open">Mở lại phiên</button>') +
+            '<div style="font-size:12px;opacity:.7;margin-top:3px">Nhân viên: Training Hub → 📝 Kiểm tra → đăng nhập → Test định kỳ → nhập mật khẩu này</div></div>' +
+            '<div class="noprint" style="display:flex;gap:6px;flex-wrap:wrap">' + (S.status === 'OPEN' ? '<button class="btn sm yellow" id="lv-close">Đóng kỳ test</button>' : '<button class="btn sm yellow" id="lv-open">Mở lại phiên</button>') +
             '<button class="btn sm ghost" id="lv-stats" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Phân tích câu sai →</button></div></div>' +
             '<div class="tiles"><div class="tile"><b>' + L.length + '</b><span>Đã vào làm</span></div><div class="tile"><b>' + prog.length + '</b><span>Đang làm</span></div><div class="tile"><b>' + done.length + '</b><span>Đã nộp</span></div>' +
             '<div class="tile"><b class="good">' + pass + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(avg) + '">' + (avg == null ? '—' : avg + '%') + '</b><span>Điểm trung bình</span></div><div class="tile"><b>' + r.notStarted.length + '</b><span>Chưa vào</span></div></div>' +
@@ -534,11 +599,14 @@
         var wrong = r.items.filter(function (x) { return !x.ok; });
         inner.innerHTML = '<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 style="margin:0">' + esc(r.name) + '</h2><button class="btn sm ghost" id="dr-x">Đóng ✕</button></div>' +
           '<p><b class="' + pctClass(r.pct) + '">' + r.pct + '%</b> · <span class="badge ' + (r.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(r.result) + '</span></p><div class="muted">' + esc(r.topics) + '</div>' +
+          (r.comment ? '<div class="ex">💬 <b>Nhận xét tự động:</b> ' + esc(r.comment) + '</div>' : '') +
+          '<label class="f">Nhận xét của Leader (nhân viên xem được trong "Kết quả của tôi")</label><textarea id="dr-lc">' + esc(String(r.leaderComment || '').replace(/ — [^—]+$/, '')) + '</textarea><button class="btn sm" id="dr-lcs" style="margin-top:6px">💾 Lưu nhận xét</button>' +
           '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="dr-tr">🗒️ Ghi nhận training 1-1 cho các câu sai</button><button class="btn sm ghost" id="dr-re">↺ Hủy bài này, cho làm lại</button></div><div id="dr-msg"></div></div>' +
           '<div class="card"><h2>Câu trả lời sai (' + wrong.length + ')</h2>' + (wrong.length ? wrong.map(function (x) {
             return '<div class="rv"><span class="chip">' + esc(x.id) + '</span><span class="chip">' + esc(TOPIC_VI[x.topic] || x.topic) + '</span><div style="font-weight:600;margin-top:4px">' + esc(x.q) + '</div><div class="a bad">✗ Chọn: ' + esc(x.chosen) + '</div><div class="a good">✓ Đúng: ' + esc(x.correct) + '</div><div class="x">💡 ' + esc(x.exp) + '</div></div>';
           }).join('') : '<div class="empty">Không có câu sai.</div>') + '</div>';
         $('#dr-x', d).onclick = function () { d.remove(); };
+        $('#dr-lcs', d).onclick = function () { var bt = this; bt.disabled = true; self.call('setComment', { attemptId: id, comment: $('#dr-lc', d).value }).then(function (x) { bt.disabled = false; $('#dr-msg', d).innerHTML = x.ok ? '<div class="ok-msg">Đã lưu nhận xét.</div>' : '<div class="err">' + esc(x.error) + '</div>'; if (x.ok && self.view === 'rank' && self._rankReload) self._rankReload(); }); };
         $('#dr-re', d).onclick = function () {
           modal('<h2 style="color:var(--qz-navy)">Cho ' + esc(r.name) + ' làm lại?</h2><p>Bài này sẽ bị đánh dấu HỦY (vẫn lưu trên Sheet) và nhân viên được làm lại trong cùng phiên. Phiên phải đang mở.</p>', [{ label: 'Không', cls: 'ghost' }, { label: 'Cho làm lại', cls: 'red' }]).then(function (i) {
             if (i !== 1) return;
@@ -551,6 +619,47 @@
           self.view = 'training'; self.shell();
         };
       });
+    },
+
+    // ── XẾP HẠNG & NHẬN XÉT ──
+    v_rank: function () {
+      var self = this;
+      var months = []; var d = new Date();
+      for (var i = 0; i < 12; i++) { var m = new Date(d.getFullYear(), d.getMonth() - i, 1); months.push(m.getFullYear() + '-' + ('0' + (m.getMonth() + 1)).slice(-2)); }
+      self.el().innerHTML = '<div class="card noprint"><h2>🏆 Xếp hạng &amp; nhận xét</h2><div class="muted">Chọn kỳ test (mặc định kỳ mới nhất) hoặc xem theo tháng (điểm cao nhất của mỗi người, không tính tự luyện). Bấm vào một người để xem bài làm và ghi nhận xét.</div><div class="row">' +
+        '<div><label class="f">Kỳ test</label><select id="rk-code"></select></div><div><label class="f">Hoặc theo tháng</label><select id="rk-month"><option value="">—</option>' + months.map(function (m) { return '<option>' + m + '</option>'; }).join('') + '</select></div></div>' +
+        '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="rk-go">Xem xếp hạng</button><button class="btn ghost" id="rk-print">🖨️ In bảng xếp hạng</button></div></div><div id="rk-out"></div>';
+      var fill = function () {
+        var list = (self.sessions || []).filter(function (s) { return s.code !== 'TU-LUYEN-TAP'; });
+        $('#rk-code').innerHTML = '<option value="">—</option>' + list.map(function (s, i) { return '<option value="' + esc(s.code) + '"' + (i === 0 ? ' selected' : '') + '>' + esc(s.name + ' (' + s.code + ')') + '</option>'; }).join('');
+      };
+      var go = function () {
+        var code = $('#rk-code').value, month = code ? '' : $('#rk-month').value;
+        $('#rk-out').innerHTML = '<div class="card"><span class="spin"></span></div>';
+        self.call('ranking', { code: code, month: month }).then(function (r) {
+          if (!r.ok) { $('#rk-out').innerHTML = '<div class="card"><div class="err">' + esc(r.error) + '</div></div>'; return; }
+          if (!r.list.length) { $('#rk-out').innerHTML = '<div class="card empty">Chưa có bài nộp.</div>'; return; }
+          var medal = ['🥇', '🥈', '🥉'];
+          $('#rk-out').innerHTML = '<div class="card"><div class="tiles"><div class="tile"><b>' + r.list.length + '</b><span>Người đã làm</span></div><div class="tile"><b class="good">' + r.passCount + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(r.avg) + '">' + r.avg + '%</b><span>Điểm trung bình</span></div></div>' +
+            '<div class="tblwrap"><table class="tbl"><thead><tr><th>Hạng</th><th>Nhân viên</th><th>Kênh / Cấp độ</th><th>Điểm</th><th>Thời gian</th><th>Kết quả</th><th style="min-width:260px">Nhận xét</th></tr></thead><tbody>' +
+            r.list.map(function (x) {
+              var weak = x.topics.filter(function (t) { return t.correct / t.total < 0.7; }).map(function (t) { return TOPIC_VI[t.topic] || t.label; });
+              return '<tr class="click" data-a="' + esc(x.attemptId) + '"><td style="font-size:18px"><b>' + (medal[x.rank - 1] || x.rank) + '</b></td><td><b>' + esc(x.name) + '</b><div class="muted">' + esc(x.title) + (x.practice ? ' · tự luyện ' + x.practice + ' lần' : '') + '</div></td>' +
+                '<td>' + esc(CH_VI[x.channel] || x.channel) + (x.region ? ' · ' + esc(REGION_VI[x.region] || x.region) : '') + '<div class="muted">' + esc(x.level) + '</div></td>' +
+                '<td class="' + pctClass(x.pct) + '"><b>' + x.pct + '%</b><div class="muted">' + x.correct + '/' + x.total + '</div></td><td>' + (x.durSec ? mmss(x.durSec) : '') + '</td>' +
+                '<td><span class="badge ' + (x.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(x.result) + '</span></td>' +
+                '<td style="font-size:12.5px">' + esc(x.comment) + (weak.length ? '<div class="muted">Yếu: ' + esc(weak.join(', ')) + '</div>' : '') + (x.leaderComment ? '<div style="margin-top:4px;color:var(--qz-navy)">🧑‍🏫 ' + esc(x.leaderComment) + '</div>' : '') + '</td></tr>';
+            }).join('') + '</tbody></table></div></div>';
+          $$('tr[data-a]', $('#rk-out')).forEach(function (tr) { tr.onclick = function () { self.attemptDrawer(tr.dataset.a); }; });
+        });
+      };
+      self._rankReload = go;
+      $('#rk-go').onclick = go;
+      $('#rk-code').onchange = function () { if (this.value) $('#rk-month').value = ''; };
+      $('#rk-month').onchange = function () { if (this.value) $('#rk-code').value = ''; };
+      $('#rk-print').onclick = function () { window.print(); };
+      if (self.sessions && self.sessions.length) { fill(); go(); }
+      else self.call('sessions').then(function (r) { if (r.ok) self.sessions = r.sessions; fill(); go(); });
     },
 
     // ── PHÂN TÍCH CÂU SAI ──
@@ -617,11 +726,11 @@
         var draw = function () {
           var ch = $('#mo-ch').value, q = $('#mo-q').value.toLowerCase();
           var ppl = r.people.filter(function (p) { return (!ch || p.channel === ch) && (!q || p.name.toLowerCase().indexOf(q) >= 0); });
-          $('#mo-t').innerHTML = '<thead><tr><th>Nhân viên</th><th>Kênh</th>' + r.months.map(function (m) { return '<th>' + esc(m.slice(5) + '/' + m.slice(0, 4)) + '</th>'; }).join('') + '<th>Thử việc</th></tr></thead><tbody>' +
+          $('#mo-t').innerHTML = '<thead><tr><th>Nhân viên</th><th>Kênh</th>' + r.months.map(function (m) { return '<th>' + esc(m.slice(5) + '/' + m.slice(0, 4)) + '</th>'; }).join('') + '<th>Thử việc</th><th>Tự luyện</th></tr></thead><tbody>' +
             ppl.map(function (p, i) {
               return '<tr class="click" data-i="' + r.people.indexOf(p) + '"><td><b>' + esc(p.name) + '</b><div class="muted">' + esc(p.title) + '</div></td><td>' + esc(CH_VI[p.channel] || p.channel) + '<div class="muted">' + esc(REGION_VI[p.region] || p.region) + '</div></td>' +
                 r.months.map(function (m) { var c = p.months[m]; return '<td class="' + (c ? pctClass(c.best) : '') + '">' + (c ? '<b>' + c.best + '%</b> <span class="muted">(' + c.n + ')</span>' : '<span class="muted">—</span>') + '</td>'; }).join('') +
-                '<td>' + (p.probation ? '<span class="badge ' + (p.probation.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(p.probation.result) + ' ' + p.probation.pct + '%</span><div class="muted">' + esc(p.probation.date) + '</div>' : '<span class="muted">—</span>') + '</td></tr>';
+                '<td>' + (p.probation ? '<span class="badge ' + (p.probation.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(p.probation.result) + ' ' + p.probation.pct + '%</span><div class="muted">' + esc(p.probation.date) + '</div>' : '<span class="muted">—</span>') + '</td><td>' + (p.practice ? p.practice + ' lần' : '<span class="muted">—</span>') + '</td></tr>';
             }).join('') + '</tbody>';
           $$('tr[data-i]', $('#mo-t')).forEach(function (tr) { tr.onclick = function () { self.history(r.people[Number(tr.dataset.i)]); }; });
         };
