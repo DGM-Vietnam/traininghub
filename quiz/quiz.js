@@ -19,6 +19,15 @@
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function store(k, v) { try { if (v === undefined) { var x = localStorage.getItem(k); return x ? JSON.parse(x) : null; } if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
   function sstore(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  // "12 phút 05 giây" / ô thời gian có thanh so với giới hạn + cờ làm nhanh bất thường
+  function durTxt(sec) { if (sec == null) return '—'; sec = Math.max(0, Math.round(sec)); var m = Math.floor(sec / 60), s2 = sec % 60; return (m ? m + ' phút ' : '') + (s2 < 10 && m ? '0' : '') + s2 + ' giây'; }
+  function fastFlag(sec, lim) { return sec != null && lim && sec < lim * 0.2; }
+  function durCell(sec, lim) {
+    if (sec == null) return '<span class="muted">—</span>';
+    var pc = lim ? Math.min(100, Math.round(sec * 100 / lim)) : 0;
+    return '<b>' + mmss(sec) + '</b>' + (lim ? '<span class="muted"> / ' + Math.round(lim / 60) + '′</span><div class="mini" style="margin-top:3px"><i style="width:' + pc + '%;background:' + (pc >= 95 ? 'var(--qz-y2)' : 'var(--qz-teal)') + '"></i></div>' : '') +
+      (fastFlag(sec, lim) ? '<div><span class="badge late" title="Hoàn thành dưới 20% thời gian cho phép — nên xem lại có làm bài nghiêm túc không">⚡ Nhanh bất thường</span></div>' : '');
+  }
   function mmss(sec) { sec = Math.max(0, Math.round(sec)); var m = Math.floor(sec / 60), s = sec % 60; return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s; }
   function pctClass(p) { return p == null ? '' : p >= 80 ? 'good' : p >= 65 ? 'mid' : 'bad'; }
   var REGION_VI = { North: 'Miền Bắc', Central: 'Miền Trung', South: 'Miền Nam', Nationwide: 'Toàn quốc', All: 'Toàn quốc' };
@@ -293,7 +302,7 @@
         if (!r.ok) { if (r.needPin) return self.logout(); ROOT_TAKE.innerHTML = '<div class="card"><div class="err">' + esc(r.error) + '</div></div>'; return; }
         var tests = r.list.filter(function (x) { return !x.practice; }), prac = r.list.filter(function (x) { return x.practice; });
         var card = function (x) {
-          return '<div class="qs"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><b style="color:var(--qz-navy)">' + esc(x.sessionName) + '</b><div class="muted">' + esc(x.date) + (x.level ? ' · ' + esc(x.level) : '') + '</div></div>' +
+          return '<div class="qs"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><b style="color:var(--qz-navy)">' + esc(x.sessionName) + '</b><div class="muted">' + esc(x.date) + (x.level ? ' · ' + esc(x.level) : '') + (x.durSec != null ? ' · ⏱ ' + durTxt(x.durSec) : '') + '</div></div>' +
             '<div style="text-align:right"><b class="' + pctClass(x.pct) + '" style="font-size:20px">' + x.pct + '%</b> <span class="muted">' + x.correct + '/' + x.total + '</span><br><span class="badge ' + (x.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(x.result) + '</span>' + (x.rank ? ' <span class="badge prog">Hạng ' + x.rank.rank + '/' + x.rank.of + '</span>' : '') + '</div></div>' +
             (x.comment ? '<div class="ex">💬 ' + esc(x.comment) + '</div>' : '') +
             (x.leaderComment ? '<div class="ex" style="background:#EEF3F8">🧑‍🏫 <b>Leader:</b> ' + esc(x.leaderComment) + '</div>' : '') +
@@ -445,6 +454,7 @@
         '<div class="card"><h2>' + (r.pass ? '🎉 Chúc mừng!' : '📘 Cần ôn thêm') + '</h2>' +
         '<div class="score"><div class="ring" style="--v:' + r.pct + ';--c:' + c + '"><div><b>' + r.pct + '%</b><small>' + r.correct + '/' + r.total + ' câu</small></div></div>' +
         '<div><span class="badge ' + (r.pass ? 'pass' : 'fail') + '">' + (r.pass ? 'ĐẠT' : 'CHƯA ĐẠT') + '</span>' + (r.late ? ' <span class="badge late">NỘP TRỄ</span>' : '') +
+        (r.durSec != null ? '<div style="margin-top:8px">⏱ Thời gian làm: <b>' + durTxt(r.durSec) + '</b>' + (r.limitSec ? ' <span class="muted">/ ' + Math.round(r.limitSec / 60) + ' phút</span>' : '') + '</div>' : '') +
         '<p style="margin-top:8px">Ngưỡng đạt: <b>' + r.passMark + '%</b>. ' + (r.pass ? 'Bạn nắm vững kiến thức nền tảng — tiếp tục giữ phong độ!' : 'Leader sẽ cùng bạn ôn lại các chủ đề còn yếu bên dưới.') + '</p></div></div>' +
         (r.comment ? '<div class="ex" style="font-size:14px;margin-top:12px">💬 ' + esc(r.comment) + '</div>' : '') +
         (r.rank ? '<div style="margin-top:8px"><span class="badge prog">Hạng tạm thời ' + r.rank.rank + '/' + r.rank.of + ' trong kỳ ' + esc(r.sessionName || '') + '</span> <span class="muted">(thứ hạng cập nhật khi cả team nộp xong)</span></div>' : '') +
@@ -589,9 +599,9 @@
             '<div class="noprint" style="display:flex;gap:6px;flex-wrap:wrap">' + (S.status === 'OPEN' ? '<button class="btn sm yellow" id="lv-close">Đóng kỳ test</button>' : '<button class="btn sm yellow" id="lv-open">Mở lại phiên</button>') +
             '<button class="btn sm ghost" id="lv-stats" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.4)">Phân tích câu sai →</button></div></div>' +
             '<div class="tiles"><div class="tile"><b>' + L.length + '</b><span>Đã vào làm</span></div><div class="tile"><b>' + prog.length + '</b><span>Đang làm</span></div><div class="tile"><b>' + done.length + '</b><span>Đã nộp</span></div>' +
-            '<div class="tile"><b class="good">' + pass + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(avg) + '">' + (avg == null ? '—' : avg + '%') + '</b><span>Điểm trung bình</span></div><div class="tile"><b>' + r.notStarted.length + '</b><span>Chưa vào</span></div></div>' +
+            '<div class="tile"><b class="good">' + pass + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(avg) + '">' + (avg == null ? '—' : avg + '%') + '</b><span>Điểm trung bình</span></div><div class="tile"><b>' + (function () { var d = done.map(function (x) { return x.durSec; }).filter(function (v) { return v; }); return d.length ? mmss(d.reduce(function (a, v) { return a + v; }, 0) / d.length) : '—'; })() + '</b><span>Thời gian TB</span></div><div class="tile"><b>' + r.notStarted.length + '</b><span>Chưa vào</span></div></div>' +
             '<div class="muted">Tự cập nhật mỗi 5 giây · ' + new Date().toLocaleTimeString('vi-VN') + '</div>' +
-            '<div class="tblwrap" style="margin-top:8px"><table class="tbl"><thead><tr><th>Nhân viên</th><th>Kênh</th><th>Trạng thái</th><th>Tiến độ</th><th>Điểm</th><th>Kết quả</th><th>Rời MH</th><th>Thời gian</th></tr></thead><tbody>' +
+            '<div class="tblwrap" style="margin-top:8px"><table class="tbl"><thead><tr><th>Nhân viên</th><th>Kênh</th><th>Trạng thái</th><th>Tiến độ</th><th>Điểm</th><th>Kết quả</th><th>Rời MH</th><th>Thời gian làm</th></tr></thead><tbody>' +
             (L.length ? L.map(function (x) {
               var stt = x.status === 'IN_PROGRESS' ? '<span class="badge prog">Đang làm · còn ' + mmss(x.remainSec) + '</span>' + (x.lastSeenSec != null && x.lastSeenSec > 60 ? ' <span class="muted">(mất tín hiệu ' + Math.round(x.lastSeenSec / 60) + '′)</span>' : '')
                 : x.status === 'EXPIRED' ? '<span class="badge late">Hết giờ, chưa nộp</span>' : x.status === 'LATE' ? '<span class="badge late">Nộp trễ</span>' : '<span class="badge none">Đã nộp</span>';
@@ -600,7 +610,7 @@
                 '<td><div class="mini"><i style="width:' + pp + '%"></i></div><span class="muted">' + x.answered + '/' + x.total + '</span></td>' +
                 '<td class="' + pctClass(x.pct) + '"><b>' + (x.pct == null ? '' : x.pct + '%') + '</b>' + (x.correct != null ? '<div class="muted">' + x.correct + '/' + x.total + '</div>' : '') + '</td>' +
                 '<td>' + (x.result ? '<span class="badge ' + (x.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(x.result) + '</span>' : '') + '</td>' +
-                '<td' + (x.tabs >= 3 ? ' class="bad"' : '') + '><b>' + (x.tabs || 0) + '</b></td><td>' + (x.durSec ? mmss(x.durSec) : esc(x.start)) + '</td></tr>';
+                '<td' + (x.tabs >= 3 ? ' class="bad"' : '') + '><b>' + (x.tabs || 0) + '</b></td><td>' + (x.durSec != null ? durCell(x.durSec, x.limitSec) : '<span class="muted">Bắt đầu ' + esc(x.start) + '</span>') + '</td></tr>';
             }).join('') : '<tr><td colspan="8" class="empty">Chưa có ai vào làm. Đọc mã phiên cho team.</td></tr>') + '</tbody></table></div>' +
             (r.notStarted.length ? '<h3>Chưa vào làm (' + r.notStarted.length + ')</h3><div>' + r.notStarted.map(function (s) { return '<span class="chip" style="margin:3px 4px 3px 0">' + esc(s.name) + ' · ' + esc(CH_VI[s.channel] || s.channel) + '</span>'; }).join('') + '</div>' : '') +
             '</div>';
@@ -627,7 +637,7 @@
         if (!r.ok) { inner.innerHTML = '<div class="card"><div class="err">' + esc(r.error) + '</div></div>'; return; }
         var wrong = r.items.filter(function (x) { return !x.ok; });
         inner.innerHTML = '<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h2 style="margin:0">' + esc(r.name) + '</h2><button class="btn sm ghost" id="dr-x">Đóng ✕</button></div>' +
-          '<p><b class="' + pctClass(r.pct) + '">' + r.pct + '%</b> · <span class="badge ' + (r.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(r.result) + '</span></p><div class="muted">' + esc(r.topics) + '</div>' +
+          '<p><b class="' + pctClass(r.pct) + '">' + r.pct + '%</b> · <span class="badge ' + (r.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(r.result) + '</span> · ⏱ <b>' + durTxt(r.durSec) + '</b>' + (r.limitSec ? ' <span class="muted">/ ' + Math.round(r.limitSec / 60) + ' phút</span>' : '') + (fastFlag(r.durSec, r.limitSec) ? ' <span class="badge late">⚡ Nhanh bất thường</span>' : '') + (r.submitted ? '<span class="muted"> · nộp ' + esc(r.submitted) + '</span>' : '') + '</p><div class="muted">' + esc(r.topics) + '</div>' +
           (r.comment ? '<div class="ex">💬 <b>Nhận xét tự động:</b> ' + esc(r.comment) + '</div>' : '') +
           '<label class="f">Nhận xét của Leader (nhân viên xem được trong "Kết quả của tôi")</label><textarea id="dr-lc">' + esc(String(r.leaderComment || '').replace(/ — [^—]+$/, '')) + '</textarea><button class="btn sm" id="dr-lcs" style="margin-top:6px">💾 Lưu nhận xét</button>' +
           '<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="dr-tr">🗒️ Ghi nhận training 1-1 cho các câu sai</button><button class="btn sm ghost" id="dr-re">↺ Hủy bài này, cho làm lại</button></div><div id="dr-msg"></div></div>' +
@@ -669,13 +679,14 @@
           if (!r.ok) { $('#rk-out').innerHTML = '<div class="card"><div class="err">' + esc(r.error) + '</div></div>'; return; }
           if (!r.list.length) { $('#rk-out').innerHTML = '<div class="card empty">Chưa có bài nộp.</div>'; return; }
           var medal = ['🥇', '🥈', '🥉'];
-          $('#rk-out').innerHTML = '<div class="card"><div class="tiles"><div class="tile"><b>' + r.list.length + '</b><span>Người đã làm</span></div><div class="tile"><b class="good">' + r.passCount + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(r.avg) + '">' + r.avg + '%</b><span>Điểm trung bình</span></div></div>' +
-            '<div class="tblwrap"><table class="tbl"><thead><tr><th>Hạng</th><th>Nhân viên</th><th>Kênh / Cấp độ</th><th>Điểm</th><th>Thời gian</th><th>Kết quả</th><th style="min-width:260px">Nhận xét</th></tr></thead><tbody>' +
+          $('#rk-out').innerHTML = '<div class="card"><div class="tiles"><div class="tile"><b>' + r.list.length + '</b><span>Người đã làm</span></div><div class="tile"><b class="good">' + r.passCount + '</b><span>Đạt</span></div><div class="tile"><b class="' + pctClass(r.avg) + '">' + r.avg + '%</b><span>Điểm trung bình</span></div><div class="tile"><b>' + (r.avgDur != null ? mmss(r.avgDur) : '—') + '</b><span>Thời gian TB</span></div><div class="tile"><b>' + (r.minDur != null ? mmss(r.minDur) + ' – ' + mmss(r.maxDur) : '—') + '</b><span>Nhanh nhất – chậm nhất</span></div></div>' +
+            '<div class="muted" style="margin-bottom:6px">Xếp hạng theo điểm; bằng điểm thì ai làm <b>nhanh hơn</b> xếp trên.</div>' +
+            '<div class="tblwrap"><table class="tbl"><thead><tr><th>Hạng</th><th>Nhân viên</th><th>Kênh / Cấp độ</th><th>Điểm</th><th style="min-width:110px">Thời gian làm</th><th>Kết quả</th><th style="min-width:260px">Nhận xét</th></tr></thead><tbody>' +
             r.list.map(function (x) {
               var weak = x.topics.filter(function (t) { return t.correct / t.total < 0.7; }).map(function (t) { return TOPIC_VI[t.topic] || t.label; });
               return '<tr class="click" data-a="' + esc(x.attemptId) + '"><td style="font-size:18px"><b>' + (medal[x.rank - 1] || x.rank) + '</b></td><td><b>' + esc(x.name) + '</b><div class="muted">' + esc(x.title) + (x.practice ? ' · tự luyện ' + x.practice + ' lần' : '') + '</div></td>' +
                 '<td>' + esc(CH_VI[x.channel] || x.channel) + (x.region ? ' · ' + esc(REGION_VI[x.region] || x.region) : '') + '<div class="muted">' + esc(x.level) + '</div></td>' +
-                '<td class="' + pctClass(x.pct) + '"><b>' + x.pct + '%</b><div class="muted">' + x.correct + '/' + x.total + '</div></td><td>' + (x.durSec ? mmss(x.durSec) : '') + '</td>' +
+                '<td class="' + pctClass(x.pct) + '"><b>' + x.pct + '%</b><div class="muted">' + x.correct + '/' + x.total + '</div></td><td>' + durCell(x.durSec, x.limitSec) + '</td>' +
                 '<td><span class="badge ' + (x.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(x.result) + '</span></td>' +
                 '<td style="font-size:12.5px">' + esc(x.comment) + (weak.length ? '<div class="muted">Yếu: ' + esc(weak.join(', ')) + '</div>' : '') + (x.leaderComment ? '<div style="margin-top:4px;color:var(--qz-navy)">🧑‍🏫 ' + esc(x.leaderComment) + '</div>' : '') + '</td></tr>';
             }).join('') + '</tbody></table></div></div>';
@@ -758,7 +769,7 @@
           $('#mo-t').innerHTML = '<thead><tr><th>Nhân viên</th><th>Kênh</th>' + r.months.map(function (m) { return '<th>' + esc(m.slice(5) + '/' + m.slice(0, 4)) + '</th>'; }).join('') + '<th>Thử việc</th><th>Tự luyện</th></tr></thead><tbody>' +
             ppl.map(function (p, i) {
               return '<tr class="click" data-i="' + r.people.indexOf(p) + '"><td><b>' + esc(p.name) + '</b><div class="muted">' + esc(p.title) + '</div></td><td>' + esc(CH_VI[p.channel] || p.channel) + '<div class="muted">' + esc(REGION_VI[p.region] || p.region) + '</div></td>' +
-                r.months.map(function (m) { var c = p.months[m]; return '<td class="' + (c ? pctClass(c.best) : '') + '">' + (c ? '<b>' + c.best + '%</b> <span class="muted">(' + c.n + ')</span>' : '<span class="muted">—</span>') + '</td>'; }).join('') +
+                r.months.map(function (m) { var c = p.months[m]; return '<td class="' + (c ? pctClass(c.best) : '') + '">' + (c ? '<b>' + c.best + '%</b> <span class="muted">(' + c.n + ')</span>' + (c.bestDur != null ? '<div class="muted">⏱ ' + mmss(c.bestDur) + '</div>' : '') : '<span class="muted">—</span>') + '</td>'; }).join('') +
                 '<td>' + (p.probation ? '<span class="badge ' + (p.probation.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(p.probation.result) + ' ' + p.probation.pct + '%</span><div class="muted">' + esc(p.probation.date) + '</div>' : '<span class="muted">—</span>') + '</td><td>' + (p.practice ? p.practice + ' lần' : '<span class="muted">—</span>') + '</td></tr>';
             }).join('') + '</tbody>';
           $$('tr[data-i]', $('#mo-t')).forEach(function (tr) { tr.onclick = function () { self.history(r.people[Number(tr.dataset.i)]); }; });
@@ -768,8 +779,8 @@
     },
     history: function (p) {
       var self = this;
-      $('#mo-h').innerHTML = '<div class="card"><h2>🧾 ' + esc(p.name) + ' — lịch sử làm bài</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>Ngày</th><th>Phiên</th><th>Loại</th><th>Cấp độ</th><th>Điểm</th><th>Kết quả</th><th>Theo chủ đề</th><th>Rời MH</th></tr></thead><tbody>' +
-        p.history.map(function (h) { return '<tr class="click" data-a="' + esc(h.attemptId) + '"><td>' + esc(h.date) + '</td><td>' + esc(h.code) + '</td><td>' + esc(h.typeLabel) + '</td><td>' + esc(h.level || '') + '</td><td class="' + pctClass(h.pct) + '"><b>' + h.pct + '%</b> <span class="muted">' + h.correct + '/' + h.total + '</span></td><td><span class="badge ' + (h.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(h.result) + '</span></td><td class="muted">' + esc(h.topics) + '</td><td>' + h.tabs + '</td></tr>'; }).join('') +
+      $('#mo-h').innerHTML = '<div class="card"><h2>🧾 ' + esc(p.name) + ' — lịch sử làm bài</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>Ngày</th><th>Phiên</th><th>Loại</th><th>Cấp độ</th><th>Điểm</th><th>Thời gian làm</th><th>Kết quả</th><th>Theo chủ đề</th><th>Rời MH</th></tr></thead><tbody>' +
+        p.history.map(function (h) { return '<tr class="click" data-a="' + esc(h.attemptId) + '"><td>' + esc(h.date) + '</td><td>' + esc(h.code) + '</td><td>' + esc(h.typeLabel) + '</td><td>' + esc(h.level || '') + '</td><td class="' + pctClass(h.pct) + '"><b>' + h.pct + '%</b> <span class="muted">' + h.correct + '/' + h.total + '</span></td><td>' + durCell(h.durSec, h.limitSec) + '</td><td><span class="badge ' + (h.result === 'ĐẠT' ? 'pass' : 'fail') + '">' + esc(h.result) + '</span></td><td class="muted">' + esc(h.topics) + '</td><td>' + h.tabs + '</td></tr>'; }).join('') +
         '</tbody></table></div></div>';
       $$('tr[data-a]', $('#mo-h')).forEach(function (tr) { tr.onclick = function () { self.attemptDrawer(tr.dataset.a); }; });
       $('#mo-h').scrollIntoView({ behavior: 'smooth' });
