@@ -46,17 +46,37 @@
   };
   const certById = id => (M && M.certs || []).find(c => c.cert_id === id);
 
-  // Link chia sẻ Google Drive → link ảnh hiển thị được
-  function fixUrl(u) {
+  // Link chia sẻ Google Drive → danh sách link ảnh thử lần lượt
+  function imgSources(u) {
     u = String(u || '').trim();
-    const m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
-    return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w600` : u;
+    const m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=|thumbnail\?id=)([\w-]{20,})/)
+      || u.match(/[?&]id=([\w-]{20,})/);
+    if (!m || !/google/.test(u)) return u ? [u] : [];
+    const id = m[1];
+    return [
+      `https://lh3.googleusercontent.com/d/${id}=w600`,
+      `https://drive.google.com/thumbnail?id=${id}&sz=w600`,
+      `https://drive.google.com/uc?export=view&id=${id}`
+    ];
   }
+  // ảnh lỗi → thử link kế tiếp; hết link → hiện khung + dấu ⚠
+  window.__hmImgErr = function (img) {
+    const rest = (img.getAttribute('data-fb') || '').split('|').filter(Boolean);
+    if (rest.length) {
+      img.setAttribute('data-fb', rest.slice(1).join('|'));
+      img.src = rest[0];
+      return;
+    }
+    const d = document.createElement('div');
+    d.className = img.className + ' hm-slot hm-broken';
+    d.title = t('Không tải được ảnh — kiểm tra quyền chia sẻ Drive', 'Image failed to load — check Drive sharing');
+    d.textContent = '⚠';
+    img.replaceWith(d);
+  };
   function imgSlot(url, icon, cls) {
-    url = fixUrl(url);
-    return url
-      ? `<img class="${cls}" src="${E(url)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;${cls} hm-slot&quot;>${icon}</div>'"/>`
-      : `<div class="${cls} hm-slot" title="${t('Chưa có ảnh', 'No image yet')}">${icon}</div>`;
+    const src = imgSources(url);
+    if (!src.length) return `<div class="${cls} hm-slot" title="${t('Chưa có ảnh', 'No image yet')}">${icon}</div>`;
+    return `<img class="${cls}" src="${E(src[0])}" data-fb="${E(src.slice(1).join('|'))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="__hmImgErr(this)"/>`;
   }
   function originBadge(p) {
     const o = ORIGIN[String(p.origin_key || '').toLowerCase()] || ['', '🌍'];
@@ -74,6 +94,7 @@
   /* ───────── CSS ───────── */
   const css = document.createElement('style');
   css.textContent = `
+  .hm-broken{border-color:#f5b041;color:#e67e22;background:#fff8ee;}
   .hm-ph{color:#b0b0b0;font-style:italic;font-size:11.5px;}
   .hm-slot{display:flex;align-items:center;justify-content:center;border:1.5px dashed #cfd6de;background:#f7f9fb;color:#b8c1cc;}
   .hm-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;font-size:18px;background:#fff;}
@@ -114,7 +135,7 @@
   function barHTML() {
     let msg = '';
     if (state === 'loading') msg = `<span class="spinner" style="border-color:rgba(47,120,152,.3);border-top-color:var(--teal)"></span>${t('Đang tải master data…', 'Loading master data…')}`;
-    else if (state === 'live') msg = `✅ ${t('Master data', 'Master data')} · ${M.count} SKU · ${new Date(M.updated).toLocaleString('vi-VN')}`;
+    else if (state === 'live') msg = `✅ ${t('Master data', 'Master data')} · ${M.count} SKU · ${t('Ảnh', 'Images')}: ${M.products.filter(p => p.image_url).length}/${M.count} · ${new Date(M.updated).toLocaleString('vi-VN')}`;
     else if (state === 'cached') msg = `<span class="err">⚠️ ${t('Không kết nối được master — đang hiện bản lưu lúc', 'Cannot reach master — showing copy saved at')} ${new Date(M.updated).toLocaleString('vi-VN')}</span>`;
     else if (state === 'noapi') msg = `<span class="err">⚠️ ${t('Chưa cấu hình MASTER_API trong hub-master.js', 'MASTER_API not configured in hub-master.js')}</span>`;
     else msg = `<span class="err">⚠️ ${t('Lỗi tải master data', 'Master data error')}: ${E(stateNote)}</span>`;
