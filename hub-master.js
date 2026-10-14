@@ -46,7 +46,14 @@
   };
   const certById = id => (M && M.certs || []).find(c => c.cert_id === id);
 
+  // Link chia sẻ Google Drive → link ảnh hiển thị được
+  function fixUrl(u) {
+    u = String(u || '').trim();
+    const m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+    return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w600` : u;
+  }
   function imgSlot(url, icon, cls) {
+    url = fixUrl(url);
     return url
       ? `<img class="${cls}" src="${E(url)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;${cls} hm-slot&quot;>${icon}</div>'"/>`
       : `<div class="${cls} hm-slot" title="${t('Chưa có ảnh', 'No image yet')}">${icon}</div>`;
