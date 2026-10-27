@@ -626,6 +626,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
 .dt-zero li{font-size:12px;line-height:1.6;margin-bottom:5px;color:#BFD4E3;}
 .dt-phase{font-size:15px;font-weight:800;color:var(--red);margin-bottom:6px;}
 .dt-lock{max-width:430px;margin:50px auto;text-align:center;background:#fff;border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-lg);border-top:4px solid var(--yellow);}
+.dt-pass-form{margin:0;}
 .dt-lock input{width:100%;padding:11px 14px;border:1.5px solid #d6dee4;border-radius:10px;font-size:16px;text-align:center;letter-spacing:.1em;margin:12px 0 0;font-family:var(--font);}
 .dt-lock button{background:var(--red);color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;}
 .dt-lock button:hover{background:var(--navy);}
@@ -1663,7 +1664,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
       <span><span class="dot" style="background:#6A1B9A"></span> PREMIUM – <span class="vi-only">cao cấp / nhập khẩu</span><span class="en-only hide">premium / imported</span></span>
       <span><span class="dot" style="background:#C8102E"></span> AYAM BRAND – <span class="vi-only">vị trí của chúng ta</span><span class="en-only hide">our position</span></span>
     </div>
-    <input class="il-search" id="cpSearch" type="text" placeholder="🔍 Tìm thương hiệu đối thủ... / Search competitor brand..." oninput="renderCP()"/>
+    <input class="il-search" id="cpSearch" type="text" name="hub-cpSearch-q" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" placeholder="🔍 Tìm thương hiệu đối thủ... / Search competitor brand..." oninput="renderCP()"/>
     <div class="il-filter-row" id="cpFilters">
       <button class="il-filter active" onclick="setCPFilter(this,'all')">🗂️ <span class="vi-only">Tất cả</span><span class="en-only hide">All</span></button>
       <button class="il-filter" onclick="setCPFilter(this,'tuna')">🐟 <span class="vi-only">Cá Ngừ</span><span class="en-only hide">Tuna</span></button>
@@ -1757,7 +1758,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
       <span style="font-size:11px;color:#bbb" class="vi-only">· Dữ liệu từ Google Sheet – admin có thể cập nhật bất cứ lúc nào</span>
       <span style="font-size:11px;color:#bbb" class="en-only hide">· Data from Google Sheet – admin can update anytime</span>
     </div>
-    <input class="faq-search-bar" id="faqSearch" type="text" placeholder="🔍 Tìm kiếm câu hỏi... / Search questions..." oninput="filterFAQ()"/>
+    <input class="faq-search-bar" id="faqSearch" type="text" name="hub-faqSearch-q" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" placeholder="🔍 Tìm kiếm câu hỏi... / Search questions..." oninput="filterFAQ()"/>
     <div class="faq-cat-row" id="faqCatRow"></div>
   </div>
 
@@ -1770,7 +1771,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
 <div id="m-sku" class="module">
   <div class="card">
     <h2>📦 <span class="vi-only">Danh mục SKU – Ayam Brand tại Việt Nam</span><span class="en-only hide">SKU Directory – Ayam Brand Vietnam</span></h2>
-    <input class="sku-search" id="skuSearch" type="text" placeholder="🔍 Tìm sản phẩm... / Search product..." oninput="filterSKU()"/>
+    <input class="sku-search" id="skuSearch" type="text" name="hub-skuSearch-q" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" placeholder="🔍 Tìm sản phẩm... / Search product..." oninput="filterSKU()"/>
     <div class="sku-filter-row" id="skuFilters">
       <button class="sku-filter active" onclick="setSKUFilter(this,'all')" data-filter="all" class="vi-only">Tất cả</button>
       <button class="sku-filter" onclick="setSKUFilter(this,'dau')" data-filter="dau">🫘 Đậu</button>
@@ -1803,7 +1804,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
       <span><span class="dot" style="background:#7e57c2"></span> <span class="vi-only">Tiềm năng (cần test)</span><span class="en-only hide">Potential (needs testing)</span></span>
     </div>
 
-    <input class="il-search" id="ilSearch" type="text" placeholder="🔍 Tìm sản phẩm hoặc thành phần... / Search product or ingredient..." oninput="renderIL()"/>
+    <input class="il-search" id="ilSearch" type="text" name="hub-ilSearch-q" autocomplete="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-form-type="other" placeholder="🔍 Tìm sản phẩm hoặc thành phần... / Search product or ingredient..." oninput="renderIL()"/>
     <div class="il-filter-row" id="ilFilters">
       <button class="il-filter active" onclick="setILFilter(this,'all')">🗂️ <span class="vi-only">Tất cả</span><span class="en-only hide">All</span></button>
       <button class="il-filter" onclick="setILFilter(this,'dau')">🫘 <span class="vi-only">Đậu &amp; Cà chua</span><span class="en-only hide">Beans &amp; Tomato</span></button>
@@ -2351,7 +2352,7 @@ a.dt-sys-n:hover{border-color:var(--red);}
   <div class="dt-lock" id="dt-lock">
     <h2 style="justify-content:center"><svg class="dt-i" aria-hidden="true"><use href="#i-lock"/></svg> <span class="vi-only">Khu vực nội bộ</span><span class="en-only hide">Internal area</span></h2>
     <p style="font-size:13px;line-height:1.6;color:var(--gray)"><span class="vi-only">Tab này chứa ảnh dashboard nội bộ. Nhập mật khẩu để xem.</span><span class="en-only hide">This tab contains internal dashboard screenshots. Enter the password to continue.</span></p>
-    <input type="password" id="dt-pass" placeholder="••••••••" autocomplete="off" onkeydown="if(event.key==='Enter')dtTry()">
+    <form class="dt-pass-form" autocomplete="off" onsubmit="dtTry();return false;"><input type="password" id="dt-pass" name="dt-pass-x" placeholder="••••••••" autocomplete="new-password" data-lpignore="true"></form>
     <div class="dt-err" id="dt-err"></div>
     <button onclick="dtTry()"><span class="vi-only">Mở khoá</span><span class="en-only hide">Unlock</span></button>
   </div>
@@ -3751,5 +3752,73 @@ document.addEventListener('keydown',function(ev){
 
  <script src="hub-master.js"></script>
 <script src="quiz/quiz.js"></script>
+
+<script>
+// ═════════ HUB: chặn autofill ô tìm kiếm + nhớ vị trí khi refresh ═════════
+(function(){
+  var SEARCH=['cpSearch','faqSearch','skuSearch','ilSearch'];
+  function clearIfAutofilled(el){
+    if(el && el.value && el.dataset.typed!=='1'){ el.value=''; el.dispatchEvent(new Event('input',{bubbles:true})); }
+  }
+  SEARCH.forEach(function(id){
+    var el=document.getElementById(id); if(!el) return;
+    ['keydown','paste','cut','compositionstart','beforeinput'].forEach(function(ev){
+      el.addEventListener(ev,function(){ el.dataset.typed='1'; });
+    });
+    el.addEventListener('input',function(){ if(el.dataset.typed!=='1') setTimeout(function(){clearIfAutofilled(el);},0); });
+    el.addEventListener('change',function(){ clearIfAutofilled(el); });
+  });
+  [200,800,2000,4000,8000].forEach(function(t){ setTimeout(function(){ SEARCH.forEach(function(id){ clearIfAutofilled(document.getElementById(id)); }); },t); });
+
+  // ── nhớ tab / sub-tab / vị trí cuộn / ngôn ngữ trong phiên (refresh vẫn giữ)
+  var KEY='hub_pos_v1', restoring=false;
+  function get(){ try{ return JSON.parse(sessionStorage.getItem(KEY)||'{}'); }catch(e){ return {}; } }
+  function put(o){ try{ var c=get(); for(var k in o) c[k]=o[k]; sessionStorage.setItem(KEY,JSON.stringify(c)); }catch(e){} }
+  var _am=window.activateModule;
+  if(typeof _am==='function'){
+    window.activateModule=activateModule=function(id){ _am(id); if(!restoring) put({mod:id,y:0}); };
+  }
+  var _sl=window.setLang;
+  if(typeof _sl==='function'){
+    window.setLang=setLang=function(l){ _sl(l); put({lang:l}); };
+  }
+  var tmr=null;
+  window.addEventListener('scroll',function(){ if(restoring) return; clearTimeout(tmr); tmr=setTimeout(function(){ put({y:Math.round(window.scrollY)}); },200); },{passive:true});
+  window.addEventListener('beforeunload',function(){ if(!restoring) put({y:Math.round(window.scrollY)}); });
+
+  function topBtnFor(gid){
+    var bs=document.querySelectorAll('#mainNav button');
+    for(var i=0;i<bs.length;i++){
+      var oc=bs[i].getAttribute('onclick')||'';
+      if(oc.indexOf("'"+gid+"'")>=0) return bs[i];
+      if(gid==='g-digital' && oc.indexOf('showDigital')>=0) return bs[i];
+      if(gid==='g-quiz' && !oc) return bs[i];
+    }
+    return null;
+  }
+  function restore(){
+    var st=get();
+    if(st.lang && st.lang!==window.currentLang && typeof _sl==='function'){ _sl(st.lang); }
+    if(!st.mod || !document.getElementById(st.mod)) return;
+    restoring=true;
+    var subBtn=null, gid=null;
+    var subs=document.querySelectorAll('.subnav');
+    for(var i=0;i<subs.length && !gid;i++){
+      var bs=subs[i].querySelectorAll('button');
+      for(var j=0;j<bs.length;j++){
+        if((bs[j].getAttribute('onclick')||'').indexOf("'"+st.mod+"'")>=0){ subBtn=bs[j]; gid=subs[i].id.replace(/^sub-/,''); break; }
+      }
+    }
+    if(!gid){ for(var g in GROUP_FIRST){ if(GROUP_FIRST[g]===st.mod){ gid=g; break; } } }
+    var tb=gid?topBtnFor(gid):null;
+    if(gid==='g-digital' && typeof showDigital==='function') showDigital(tb); else if(gid) showGroup(gid,tb);
+    if(subBtn && subBtn.closest('.subnav')){ var first=subBtn.closest('.subnav').querySelector('button'); if(first!==subBtn) subShow(st.mod,subBtn); }
+    var y=st.y||0;
+    setTimeout(function(){ window.scrollTo(0,y); setTimeout(function(){ window.scrollTo(0,y); restoring=false; },500); },350);
+  }
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  window.addEventListener('load',function(){ setTimeout(restore,120); });
+})();
+</script>
 </body>
 </html>
